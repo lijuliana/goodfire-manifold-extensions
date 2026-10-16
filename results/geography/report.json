@@ -32,8 +32,8 @@
  "pca": {
   "explained_variance_ratio": [
    0.07693531534801389,
-   0.05954732889187692,
-   0.04492333278273289
+   0.05954732889187716,
+   0.04492333278273309
   ],
   "n_points": 3007,
   "n_components": 3
@@ -50,42 +50,48 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "5-NN continent accuracy 0.93 vs majority baseline 0.31"
+    "note": "5-NN continent accuracy 0.93 vs majority baseline 0.31",
+    "partial_threshold": 0.08
    },
    {
     "name": "silhouette_by_group",
-    "value": 0.20650410940388794,
+    "value": 0.20650410940396483,
     "threshold": 0.05,
     "op": ">=",
     "critical": false,
     "passed": true,
-    "note": ""
+    "note": "",
+    "partial_threshold": null
    },
    {
     "name": "within_group_lat_r2",
-    "value": 0.5916410893056346,
+    "value": 0.5916410893056342,
     "threshold": 0.3,
     "op": ">=",
     "critical": false,
     "passed": true,
-    "note": "latitude linearly readable inside each continent cluster"
+    "note": "latitude linearly readable inside each continent cluster",
+    "partial_threshold": null
    },
    {
     "name": "within_group_lon_r2",
-    "value": 0.4382332747025816,
+    "value": 0.4382332747025814,
     "threshold": 0.2,
     "op": ">=",
     "critical": false,
     "passed": true,
-    "note": "longitude linearly readable inside each continent cluster"
+    "note": "longitude linearly readable inside each continent cluster",
+    "partial_threshold": null
    }
   ],
   "extras": {
    "knn_acc": 0.9275012299545056,
-   "baseline": 0.3145992683737945
+   "baseline": 0.3145992683737945,
+   "rubric_version": 2
   }
  },
  "status": "matches",
+ "status_v1": "matches",
  "color": {
   "color_by": "continent",
   "color_mode": "categorical",

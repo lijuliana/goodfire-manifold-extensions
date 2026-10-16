@@ -31,9 +31,9 @@
  },
  "pca": {
   "explained_variance_ratio": [
-   0.33678207320078235,
-   0.20258651654187404,
-   0.18302879087434967
+   0.33678207320078246,
+   0.202586516541874,
+   0.18302879087434942
   ],
   "n_points": 1848,
   "n_components": 3
@@ -50,7 +50,8 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": ""
+    "note": "",
+    "partial_threshold": 0.5
    },
    {
     "name": "hue_cyclic_order",
@@ -59,32 +60,37 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "12 hue bins in cyclic order"
+    "note": "12 hue bins in cyclic order",
+    "partial_threshold": null
    },
    {
     "name": "height_vs_lightness_or_saturation",
     "value": 0.8268123222107656,
     "threshold": 0.4,
     "op": ">=",
-    "critical": false,
+    "critical": true,
     "passed": true,
-    "note": "best = lightness; |spearman| lightness=0.83 saturation=0.00"
+    "note": "best = lightness; |spearman| lightness=0.83 saturation=0.00",
+    "partial_threshold": 0.25
    },
    {
     "name": "height_vs_radius2_r2",
-    "value": 0.14271393196632665,
+    "value": 0.14271393196632676,
     "threshold": 0.2,
     "op": ">=",
     "critical": false,
     "passed": false,
-    "note": "paraboloid signature: height ~ radius^2"
+    "note": "paraboloid signature: height ~ radius^2",
+    "partial_threshold": null
    }
   ],
   "extras": {
-   "height_axis_variable": "lightness"
+   "height_axis_variable": "lightness",
+   "rubric_version": 2
   }
  },
  "status": "partial",
+ "status_v1": "partial",
  "color": {
   "color_by": "hex",
   "color_mode": "hex"

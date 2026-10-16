@@ -31,9 +31,9 @@
  },
  "pca": {
   "explained_variance_ratio": [
-   0.11961474964795445,
-   0.064979763583246,
-   0.05915533516459138
+   0.11961474964795421,
+   0.06497976358324617,
+   0.05915533516459135
   ],
   "n_points": 199,
   "n_components": 3
@@ -50,25 +50,28 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "linear axis (e.g. year)"
+    "note": "linear axis (e.g. year)",
+    "partial_threshold": 0.7
    },
    {
     "name": "periodic_circular_corr",
-    "value": 0.720118071372775,
+    "value": 0.7201180713727744,
     "threshold": 0.6,
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "after removing the linear trend, angle vs periodic phase"
+    "note": "after removing the linear trend, angle vs periodic phase",
+    "partial_threshold": 0.4
    },
    {
     "name": "periodic_fit_r2",
-    "value": 0.4107827551276973,
+    "value": 0.41078275512769674,
     "threshold": 0.3,
     "op": ">=",
     "critical": false,
     "passed": true,
-    "note": "residual variance explained by cos/sin(phase)"
+    "note": "residual variance explained by cos/sin(phase)",
+    "partial_threshold": null
    },
    {
     "name": "periodic_cyclic_order",
@@ -77,12 +80,16 @@
     "op": ">=",
     "critical": false,
     "passed": true,
-    "note": ""
+    "note": "",
+    "partial_threshold": null
    }
   ],
-  "extras": {}
+  "extras": {
+   "rubric_version": 2
+  }
  },
  "status": "matches",
+ "status_v1": "matches",
  "color": {
   "color_by": "year",
   "color_mode": "continuous"

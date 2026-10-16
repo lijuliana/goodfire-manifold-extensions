@@ -33,9 +33,9 @@
  },
  "pca": {
   "explained_variance_ratio": [
-   0.24275866820428424,
-   0.20357895760872663,
-   0.09856128419194508
+   0.24275866820428388,
+   0.20357895760872693,
+   0.09856128419194506
   ],
   "n_points": 56,
   "n_components": 3
@@ -52,7 +52,8 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "class centroids appear in cyclic order"
+    "note": "class centroids appear in cyclic order",
+    "partial_threshold": null
    },
    {
     "name": "circular_corr",
@@ -61,40 +62,45 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "angle in best-fit plane vs ground-truth phase"
+    "note": "angle in best-fit plane vs ground-truth phase",
+    "partial_threshold": 0.6
    },
    {
     "name": "circle_fit_r2",
-    "value": 0.6481557892323416,
+    "value": 0.6481557892323417,
     "threshold": 0.5,
     "op": ">=",
     "critical": false,
     "passed": true,
-    "note": "variance of PCA-3 explained by cos/sin(phase)"
+    "note": "variance of PCA-3 explained by cos/sin(phase)",
+    "partial_threshold": null
    },
    {
     "name": "roundness_cv",
-    "value": 0.14229302928937695,
+    "value": 0.14229302928937657,
     "threshold": 0.35,
     "op": "<=",
     "critical": false,
     "passed": true,
-    "note": "std/mean of radii in the fitted plane"
+    "note": "std/mean of radii in the fitted plane",
+    "partial_threshold": null
    }
   ],
   "extras": {
    "centroid_angles": {
     "0": 2.9423663152457835,
-    "1": 2.263831444537041,
-    "2": 1.35537780917034,
-    "3": 0.5365779733690436,
-    "4": -0.3307279240896375,
-    "5": -1.440238024366687,
-    "6": -2.2321808207588076
-   }
+    "1": 2.2638314445370415,
+    "2": 1.3553778091703401,
+    "3": 0.5365779733690443,
+    "4": -0.3307279240896384,
+    "5": -1.4402380243666877,
+    "6": -2.232180820758807
+   },
+   "rubric_version": 2
   }
  },
  "status": "matches",
+ "status_v1": "matches",
  "color": {
   "color_by": "day",
   "color_mode": "categorical",

@@ -31,9 +31,9 @@
  },
  "pca": {
   "explained_variance_ratio": [
-   0.32200992030961084,
-   0.18960405301236274,
-   0.1407472459732622
+   0.3220099203096108,
+   0.18960405301236238,
+   0.14074724597326244
   ],
   "n_points": 99,
   "n_components": 3
@@ -44,27 +44,42 @@
   "reason": "all checks passed",
   "checks": [
    {
-    "name": "linear_r2_from_pcs",
-    "value": 0.9679134799469983,
-    "threshold": 0.9,
+    "name": "spearman_best_direction",
+    "value": 0.98717377860235,
+    "threshold": 0.8,
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "R^2 of label regressed on the 3 PCs"
+    "note": "label monotone along the best linear direction in PCA-3",
+    "partial_threshold": 0.6
    },
    {
-    "name": "spearman_pc1_vs_label",
-    "value": 0.9411626468769325,
-    "threshold": 0.8,
+    "name": "knn_r2",
+    "value": 0.971490543049487,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "cross-validated 10-NN R^2 of the label from PCA-3 (nonlinear readability)",
+    "partial_threshold": 0.4
+   },
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.9679134799469982,
+    "threshold": 0.5,
     "op": ">=",
     "critical": false,
     "passed": true,
-    "note": "label monotone along PC1"
+    "note": "R^2 of label regressed on the 3 PCs (share of top-3 variance)",
+    "partial_threshold": null
    }
   ],
-  "extras": {}
+  "extras": {
+   "rubric_version": 2
+  }
  },
  "status": "matches",
+ "status_v1": "matches",
  "color": {
   "color_by": "age",
   "color_mode": "continuous"

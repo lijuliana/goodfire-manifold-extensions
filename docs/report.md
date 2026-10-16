@@ -79,7 +79,14 @@ PC2/PC3 (the ones-digit circle) read out ordinal suffixes (s, st, nd, rd, th); a
 girls/boys to retirement/retired, PC2 married/marriage to puppies/youngsters; geography PC1 from
 Africa/Caribbean to Europe/Baltics, PC2 Central America to Africa/Madagascar, PC3 Kurdistan/Iraq
 to Brazil/Uruguay; formality PC1 from you/my/really (and emoticons in the empirical readout) to
-Reuters/spokesman.
+Reuters/spokesman. Political bias separates into a lean axis (PC1: socialist/feminist/progressive
+vs conservative/GOP/Republican, identical under the Jacobian lens and the lens-free readout) and
+an intensity axis (PC3: extremist/ultra/very vs neutral/balanced/bipartisan), which is why the
+raw-dataset run looked like two arms with a separate neutral cluster. Sentence length's PC1 reads
+question words (what/why/how) against web boilerplate (Contains/Download/Page), i.e. length is
+entangled with genre in WikiText. For template manifolds (temperature, years, days) the lens-free
+readout is uninformative because the template fixes the next-token distribution; the lenses on the
+direction are what carry the meaning there.
 
 **Steering (App. B.1, Table 2).** Interpolating between bin centroids in PCA space and adding
 the delta at block 19: temperature moves the answer from "cold" to "warm" along the path; colours
@@ -98,5 +105,7 @@ transitions for days and temperature.
 
 ## Compute
 
-GPU ledger: `logs/gpu_ledger.jsonl` (`uv run manifolds ledger summary`). Billed Azure uptime is the
-headline number; per-job compute entries are subsets of it.
+GPU ledger: `logs/gpu_ledger.jsonl` (`uv run manifolds ledger summary`). Billed Azure T4 uptime,
+reconciled against the Azure activity log: 1.86 GPU-hours over three sessions (one of them
+ran ~2 h longer than needed because a cycle script died after a crash without deallocating). Actual
+model computation inside those sessions was well under an hour. No AWS or GCP GPU time was used.

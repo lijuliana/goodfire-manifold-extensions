@@ -264,7 +264,14 @@ def _env() -> Environment:
 
 
 def _safe_json(s: str) -> str:
-    return s.replace("</", "<\\/")
+    # "</" must not appear inside a <script> block; U+FFFD (undecodable byte tokens) is written as
+    # a JSON escape so the page text never contains the literal replacement character.
+    return s.replace("</", "<\\/").replace("\ufffd", "\\ufffd")
+
+
+def _clean_text(s: str) -> str:
+    """Visible placeholder for undecodable byte tokens in rendered table text."""
+    return s.replace("\ufffd", "\u25a1")
 
 
 def _round_list(v: Any, nd: int = 3) -> Any:
@@ -423,13 +430,14 @@ def _depth_payload(d: Path) -> dict[str, Any] | None:
         for key, name in (("jacobian_lens", "Jacobian lens"), ("logit_lens", "logit lens"),
                           ("tuned_lens", "tuned lens")):
             if key in e:
-                rows.append({"name": name, "up": " · ".join(repr(t) for t in e[key]["up"]),
-                             "down": " · ".join(repr(t) for t in e[key]["down"])})
+                rows.append({"name": name,
+                             "up": _clean_text(" · ".join(repr(t) for t in e[key]["up"])),
+                             "down": _clean_text(" · ".join(repr(t) for t in e[key]["down"]))})
         emp = e.get("empirical", {})
         if emp.get("positive"):
             rows.append({"name": "real logits (correlation)",
-                         "up": " · ".join(repr(t) for t in emp["positive"]),
-                         "down": " · ".join(repr(t) for t in emp["negative"])})
+                         "up": _clean_text(" · ".join(repr(t) for t in emp["positive"])),
+                         "down": _clean_text(" · ".join(repr(t) for t in emp["negative"]))})
         pcs.append({"pc": e["pc"], "rows": rows,
                     "var": f"{100 * e.get('explained_variance_ratio', 0):.0f}%"})
     agr = dj.get("lens_top1_agreement_with_model_at_layer") or {}
