@@ -113,6 +113,16 @@
  },
  "status": "matches",
  "status_v1": null,
+ "probe_view": {
+  "label": "n",
+  "r2_circle": 0.9223199423638733,
+  "r2_linear": 0.9783114361700344,
+  "axes": [
+   "pred cos(2pi v/10)",
+   "pred sin(2pi v/10)",
+   "pred magnitude"
+  ]
+ },
  "color": {
   "color_by": "ones_digit",
   "color_mode": "cyclic"

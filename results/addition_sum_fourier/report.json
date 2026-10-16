@@ -115,6 +115,16 @@
  },
  "status": "matches",
  "status_v1": null,
+ "probe_view": {
+  "label": "sum",
+  "r2_circle": 0.9142961359687211,
+  "r2_linear": 0.9965751967819803,
+  "axes": [
+   "pred cos(2pi v/10)",
+   "pred sin(2pi v/10)",
+   "pred magnitude"
+  ]
+ },
  "color": {
   "color_by": "sum_mod10",
   "color_mode": "cyclic"

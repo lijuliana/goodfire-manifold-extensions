@@ -99,12 +99,17 @@ a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 
 JS = r"""
 function renderFig(el, fig){
-  Plotly.newPlot(el, fig.data, fig.layout, {responsive:true, displaylogo:false,
-    modeBarButtonsToRemove:['toImage','resetCameraLastSave3d','hoverClosest3d']});
+  // pass the whole figure so slider frames are registered (data/layout alone drops them)
+  return Plotly.newPlot(el, {data: fig.data, layout: fig.layout, frames: fig.frames || []},
+    {responsive:true, displaylogo:false,
+     modeBarButtonsToRemove:['toImage','resetCameraLastSave3d','hoverClosest3d']});
 }
 function figFrom(id){ return JSON.parse(document.getElementById(id).textContent); }
+if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.eager-fig').forEach(el => renderFig(el, figFrom(el.dataset.fig)));
+  window.scrollTo(0, 0);
+  const eager = Array.from(document.querySelectorAll('.eager-fig')).map(el => renderFig(el, figFrom(el.dataset.fig)));
+  Promise.all(eager).then(() => { window.scrollTo(0, 0); });
   const lazy = document.querySelectorAll('.lazy-fig');
   if (!('IntersectionObserver' in window)) { lazy.forEach(el => renderFig(el, figFrom(el.dataset.fig))); return; }
   const io = new IntersectionObserver(entries => entries.forEach(e => {
@@ -171,6 +176,14 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 <div class="fig eager-fig" id="fig-main" data-fig="json-main"></div>
 <script type="application/json" id="json-main">{{ r.figure_json|safe }}</script>
 <p class="small mono">drag to rotate · scroll to zoom · hover for the prompt</p>
+{% if r.probe %}
+<h2>Fourier-probe view</h2>
+<div class="box">
+<p class="small">The source's claim for this manifold is about linear <em>probes</em>, not the top principal components: the raw PCA above is a blob because the circle carries little variance. Here each point is placed at the cross-validated predictions of ridge probes trained on the block activations: x and y are the predicted cos and sin of 2π·{{ r.probe.label }}/10 (the ones-digit circle, R² {{ '%.2f'|format(r.probe.r2_circle) }}), z is the predicted magnitude (R² {{ '%.2f'|format(r.probe.r2_linear) }}). Predictions are out-of-fold, so a visible circle cannot come from overfitting.</p>
+<div class="fig eager-fig" id="fig-probe" data-fig="json-probe"></div>
+<script type="application/json" id="json-probe">{{ r.probe.figure_json|safe }}</script>
+</div>
+{% endif %}
 <div class="two">
 <div>
 <h2>What the source reports</h2>
@@ -415,6 +428,16 @@ def _sae_payload(d: Path) -> dict[str, Any] | None:
     }
 
 
+def _probe_payload(d: Path, rep: dict[str, Any]) -> dict[str, Any] | None:
+    pv = rep.get("probe_view")
+    if not pv or not (d / "probe_figure.json").exists():
+        return None
+    return {
+        "label": pv["label"], "r2_circle": pv["r2_circle"], "r2_linear": pv["r2_linear"],
+        "figure_json": _safe_json(_compact_figure((d / "probe_figure.json").read_text(encoding="utf-8"))),
+    }
+
+
 def _depth_payload(d: Path) -> dict[str, Any] | None:
     if not (d / "depth.json").exists() or not (d / "depth_figure.json").exists():
         return None
@@ -560,6 +583,7 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
             "precision": rep.get("precision_check"),
             "figure_json": _safe_json(_compact_figure(fig_path.read_text(encoding="utf-8"))),
             "sae": _sae_payload(results_dir / name),
+            "probe": _probe_payload(results_dir / name, rep),
             "depth": _depth_payload(results_dir / name),
             "steer": _steer_payload(results_dir / name),
         }

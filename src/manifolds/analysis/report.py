@@ -52,6 +52,38 @@ def _status_v1(name: str) -> str | None:
     return _STATUS_V1.get(name)
 
 
+def _probe_view(name: str, acts: np.ndarray, labels: list[dict[str, Any]],
+                out_dir: Path | None, value_key: str) -> dict[str, Any]:
+    """Cross-validated ridge-probe coordinates: (cos, sin)(2 pi v/10) and the magnitude v."""
+    from sklearn.linear_model import RidgeCV
+    from sklearn.model_selection import KFold, cross_val_predict
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    v = np.asarray([lab[value_key] for lab in labels], dtype=float)
+    ph = 2 * np.pi * (v % 10) / 10
+    y_circ = np.c_[np.cos(ph), np.sin(ph)]
+    y_lin = (v - v.mean()) / (v.std() + 1e-9)
+    cv = KFold(n_splits=5, shuffle=True, random_state=0)
+
+    def model():
+        return make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(0, 5, 11)))
+
+    pc = cross_val_predict(model(), acts, y_circ, cv=cv)
+    pl = cross_val_predict(model(), acts, y_lin, cv=cv)
+    r2_circle = float(1 - ((y_circ - pc) ** 2).sum() / ((y_circ - y_circ.mean(0)) ** 2).sum())
+    r2_lin = float(1 - ((y_lin - pl) ** 2).sum() / ((y_lin - y_lin.mean()) ** 2).sum())
+    coords = np.c_[pc[:, 0], pc[:, 1], pl]
+    out = {"label": value_key, "r2_circle": r2_circle, "r2_linear": r2_lin,
+           "axes": ["pred cos(2pi v/10)", "pred sin(2pi v/10)", "pred magnitude"]}
+    if out_dir is not None:
+        hover = [f"{lab[value_key]:g}" for lab in labels]
+        fig = build_figure(coords, [lab[value_key] % 10 for lab in labels], color_mode="cyclic",
+                           hover_text=hover, color_title=f"{value_key} mod 10")
+        (out_dir / "probe_figure.json").write_text(figure_to_json(fig), encoding="utf-8")
+    return out
+
+
 def analyze_manifold(
     spec: ManifoldSpec,
     cfg: RunConfig,
@@ -83,6 +115,11 @@ def analyze_manifold(
         x = center_by_group(x, labels, nuisance)
     pca = fit_pca(x, cfg.analysis.pca_components)
     shape = run_shape_check(spec.name, pca.coords, labels, acts=x)
+
+    probe_view = None
+    if ROLES[spec.name]["kind"] == "fourier_probe":
+        probe_view = _probe_view(spec.name, x, labels, out_dir if write else None,
+                                 ROLES[spec.name]["value"])
 
     color = _color_config(spec.name, labels)
     color_values = [lab[color["color_by"]] for lab in labels]
@@ -128,6 +165,7 @@ def analyze_manifold(
         "shape": shape.to_dict(),
         "status": shape.status,
         "status_v1": _status_v1(spec.name),
+        "probe_view": probe_view,
         "color": color,
         "meta": meta,
         "precision_check": precision,
