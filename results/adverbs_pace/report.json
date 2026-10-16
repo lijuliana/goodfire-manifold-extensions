@@ -448,6 +448,7 @@
  },
  "status": "partial",
  "status_v1": null,
+ "probe_view": null,
  "color": {
   "color_by": "speed_rank",
   "color_mode": "continuous"

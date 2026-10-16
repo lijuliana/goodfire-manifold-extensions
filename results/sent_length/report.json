@@ -86,6 +86,7 @@
  },
  "status": "matches",
  "status_v1": "failed",
+ "probe_view": null,
  "color": {
   "color_by": "n_tokens",
   "color_mode": "continuous"

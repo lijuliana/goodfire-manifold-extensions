@@ -1,0 +1,175 @@
+{
+ "name": "weekdays_last",
+ "spec": {
+  "tier": "cyclic",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 18,
+  "expected_geometry": "no weekday circle at the last token; base-10 Fourier features of the pre-modulo sum (day + offset) instead",
+  "replication_mode": "probe-based",
+  "sources": [
+   "feucht2026 Fig. 3",
+   "feucht2026 Sec. 4"
+  ],
+  "prompt_template": "Q: What day is {offset} days after {concept}?\nA:",
+  "dataset": "same prompts as weekdays_circle",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "Q: What day is {offset} days after {concept}?\\nA:",
+  "source": "arXiv 2605.01148 App. A Table 1 + Fig. 3 / Fig. 5",
+  "deviations": [
+   "read at the last token, block 18 (paper's addition-module site)"
+  ],
+  "n_total": 98,
+  "n_kept": 98,
+  "n_outliers_removed": 0,
+  "examples": [
+   "Q: What day is one days after Monday?\nA:",
+   "Q: What day is two days after Monday?\nA:",
+   "Q: What day is three days after Monday?\nA:",
+   "Q: What day is four days after Monday?\nA:",
+   "Q: What day is five days after Monday?\nA:"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.24606030020290073,
+   0.12038861876884462,
+   0.07924907505354739
+  ],
+  "n_points": 98,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "fourier_probe",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "probe_r2_period_10",
+    "value": 0.9517868902706528,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "cross-validated ridge probe to cos/sin(2 pi sum/10)",
+    "partial_threshold": 0.3,
+    "informative": false
+   },
+   {
+    "name": "probe_r2_period_5",
+    "value": 0.8187611438885097,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "",
+    "partial_threshold": 0.3,
+    "informative": false
+   },
+   {
+    "name": "probe_r2_period_2",
+    "value": 0.9230644281309338,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "",
+    "partial_threshold": 0.3,
+    "informative": false
+   },
+   {
+    "name": "probe_r2_period_10_minus_control_7",
+    "value": 0.3852335414278638,
+    "threshold": 0.2,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "control period 7 probe R^2 = 0.57",
+    "partial_threshold": null,
+    "informative": false
+   },
+   {
+    "name": "raw_pca_circular_corr_mod10",
+    "value": 0.1014669527428257,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "is the mod-10 circle visible in the raw 3-D PCA (not claimed by the paper)",
+    "partial_threshold": null,
+    "informative": true
+   },
+   {
+    "name": "concept_circle_circular_corr",
+    "value": 0.0002529027664931855,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "paper (Fig. 3): the concept's circle is NOT present at this position; low values confirm that",
+    "partial_threshold": null,
+    "informative": true
+   }
+  ],
+  "extras": {
+   "probe_r2": {
+    "2": 0.9230644281309338,
+    "5": 0.8187611438885097,
+    "10": 0.9517868902706528
+   },
+   "control_r2": 0.566553348842789,
+   "concept_circle_absent": true,
+   "rubric_version": 2.1
+  }
+ },
+ "status": "matches",
+ "status_v1": null,
+ "probe_view": {
+  "label": "premod_sum",
+  "r2_circle": 0.955249365196981,
+  "r2_linear": 0.9991061332973034,
+  "axes": [
+   "pred cos(2pi v/10)",
+   "pred sin(2pi v/10)",
+   "pred magnitude"
+  ]
+ },
+ "color": {
+  "color_by": "day",
+  "color_mode": "categorical",
+  "category_order": [
+   "Friday",
+   "Monday",
+   "Saturday",
+   "Sunday",
+   "Thursday",
+   "Tuesday",
+   "Wednesday"
+  ]
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 18,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "weekdays_last",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 98,
+  "elapsed_s": 4.92,
+  "started": "2026-10-16T05:52:19+00:00",
+  "finished": "2026-10-16T05:52:24+00:00"
+ },
+ "precision_check": null
+}

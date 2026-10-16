@@ -97,6 +97,7 @@
  },
  "status": "matches",
  "status_v1": "matches",
+ "probe_view": null,
  "color": {
   "color_by": "continent",
   "color_mode": "categorical",

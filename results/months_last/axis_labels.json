@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T06:22:16+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "answer/response framing ↔ temporal/numeric continuation",
+   "rationale": "The negative end is consistent across all three lenses: ' answer', ' answered' and ' Answer' recur, and the real-logit readout adds ' Answer', ' According' and ' Usually'. The positive lens tokens are noise ('YW', 'ану'), but real-logit correlation positives are temporal and count words (' Twenty', ' Next', ' Now', ' During', ' Last', ' Sevent').",
+   "confidence": "medium"
+  },
+  {
+   "pc": 2,
+   "label": "small counts/neighbors ↔ final/siblings",
+   "rationale": "The Jacobian lens pairs ' FINAL', ' final' and ' siblings' against ' neighbors', ' two' and ' solitary'. The logit and tuned lenses show '-three' and '.two' on the negative side but are otherwise fragments. Real-logit correlation contrasts question openers (' Does', ' Are', ' Is') with causal and temporal openers (' Because', ' After', ' Since'), so the signal is weak and mixed.",
+   "confidence": "low"
+  },
+  {
+   "pc": 3,
+   "label": "late months (eleven/December) ↔ mid-year months (four–six)",
+   "rationale": "All three lenses agree: the positive end carries '5', '6', '4', 'five', ' fourth' and ' fifth', while the negative end carries '11', ' eleven' and '十一'. Real-logit correlation supports this, with ' Apr', ' Mar', ' Jun' and ' Five' positive and ' December' and ' Last' negative.",
+   "confidence": "high"
+  }
+ ]
+}

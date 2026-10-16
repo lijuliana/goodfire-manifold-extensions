@@ -86,6 +86,7 @@
  },
  "status": "failed",
  "status_v1": null,
+ "probe_view": null,
  "color": {
   "color_by": "length_pm",
   "color_mode": "continuous"

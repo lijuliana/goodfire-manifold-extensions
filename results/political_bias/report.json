@@ -123,6 +123,7 @@
  },
  "status": "matches",
  "status_v1": null,
+ "probe_view": null,
  "color": {
   "color_by": "bias_label",
   "color_mode": "diverging"

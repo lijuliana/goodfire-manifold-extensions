@@ -111,6 +111,7 @@
  },
  "status": "partial",
  "status_v1": null,
+ "probe_view": null,
  "color": {
   "color_by": "emotion",
   "color_mode": "categorical",

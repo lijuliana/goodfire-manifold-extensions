@@ -94,5 +94,17 @@
  "numbers_1_100": {
   "status": "matches",
   "reason": "all checks passed"
+ },
+ "weekdays_last": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "months_last": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "hours_last": {
+  "status": "matches",
+  "reason": "all checks passed"
  }
 }

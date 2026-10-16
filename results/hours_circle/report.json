@@ -122,6 +122,7 @@
  },
  "status": "partial",
  "status_v1": null,
+ "probe_view": null,
  "color": {
   "color_by": "hour",
   "color_mode": "cyclic"

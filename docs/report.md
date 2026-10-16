@@ -68,7 +68,9 @@ the model's real next token on 76% of prompts, against 41% for the logit lens an
 lens. On the other templates the real next token is punctuation, so top-1 agreement is near zero
 for all lenses and the comparison is uninformative.
 
-**What the axes mean.** Each principal axis is decoded four ways (three lenses on the direction,
+**What the axes mean.** Each principal axis is decoded four ways, and Claude Opus 5.5 writes a
+one-line reading of the four token lists with a confidence flag (`results/<m>/axis_labels.json`,
+shown above the tables; a guide, not a measurement). Each principal axis is decoded four ways (three lenses on the direction,
 plus the lens-free correlation between the coordinate and the model's real next-token
 log-probabilities over word-like tokens). The lenses agree with each other and with the
 plots: temperature PC1 runs from snow/frost/freezing to sun/sunshine/tropical; colours PC1 from
@@ -124,6 +126,13 @@ objects.
 | months_circle | concept token, block 19 | partial | circle (circular corr passes); 10 of 12 months in cyclic order |
 | hours_circle | concept token, block 19 | partial | circle; 22 of 24 hours in cyclic order (1152 prompts) |
 | addition_sum_fourier | last token "=", block 18 | matches | ridge Fourier probes read the sum with R² 0.91 (period 10), 0.93 (period 5), 0.98 (period 2); a control probe for period 7 scores near zero. The mod-10 circle is not visible in the raw 3-D PCA, as the paper says. |
+| weekdays_last | last token, block 18 | matches | the paper's negative claim (Fig. 3): the weekday circle is absent here (circular corr 0.00), while probes read the pre-modulo sum day + offset with R² 0.95 (period 10) |
+| months_last | last token, block 18 | matches | month circle absent (0.08); month + offset probes R² 0.94 (period 10), control period 7 ≈ 0 |
+| hours_last | last token, block 18 | matches | hour circle absent (0.09); hour + offset probes R² 0.84 (period 10), 0.96 (period 2) |
+
+For the probe-based manifolds the site shows a "Fourier-probe view" as the main plot: points at
+out-of-fold ridge-probe predictions (cos, sin of the ones digit; magnitude), which renders the
+circle-plus-magnitude helix the raw PCA cannot show (addition: R² 0.91 circle, 0.997 magnitude).
 
 Rubric v2.1 changes (made after the first pass on these tiers, documented in `shapes.py`): k-NN
 neighbour count scales with n; cyclic order is graded (fraction of expected neighbours adjacent,
@@ -141,6 +150,6 @@ hours were "failed" and addition "partial"; those verdicts changed only through 
 ## Compute
 
 GPU ledger: `logs/gpu_ledger.jsonl` (`uv run manifolds ledger summary`). Billed Azure T4 uptime,
-reconciled against the Azure activity log: 4.37 GPU-hours over six sessions (one of them
+reconciled against the Azure activity log: 4.91 GPU-hours over seven sessions (one of them
 ran ~2 h longer than needed because a cycle script died after a crash without deallocating). Actual
 model computation inside those sessions was well under an hour. No AWS or GCP GPU time was used.

@@ -96,6 +96,7 @@
  },
  "status": "partial",
  "status_v1": "partial",
+ "probe_view": null,
  "color": {
   "color_by": "hex",
   "color_mode": "hex"
