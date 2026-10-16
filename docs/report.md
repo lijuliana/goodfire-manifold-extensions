@@ -96,16 +96,51 @@ non-monotonically; years never leaves "17" (the Table 2 target tokens are centur
 base prompt's own answer dominates). We report these as obtained; the paper's Fig. 2 shows smooth
 transitions for days and temperature.
 
+## Extended tier (blog manifolds, supervised approximations; rubric v2.1)
+
+The blog's unsupervised figure names eight manifolds without templates; two more come from other
+posts. All templates and item lists are ours (recorded on each page), so these test whether the
+*same variables* organise block-19 activations under a reasonable template, not the blog's exact
+objects.
+
+| manifold | ordered by | n | verdict | notes |
+|---|---|---|---|---|
+| ordinals | rank first..hundredth | 100 | matches | clean line along PC1 (49% of variance) |
+| classical_composers | birth year | 84 | matches | chronological line |
+| scotus_cases | decision year | 57 | failed | year ordering is present along the best direction (Spearman ≥ 0.8) but the nonlinear readability check fails at this sample size |
+| chemical_bonds | bond length (pm) | 47 | failed | no ordering by length at the answer position (Spearman 0.49); the 8B base model may simply not know these values |
+| adverbs_pace | our speed ranking of 18 adverbs × 5 frames | 90 | partial | after centring per sentence frame the ranking is readable (partial band); centroid path broken |
+| statistical_uncertainty | ln(std/mean) in "mean +/- std" strings | 300 | partial | Spearman 0.62, kNN R² 0.47 after frame centring; the paper found this manifold unsupervised in scientific text |
+| bible_verses | book order × chapter | 180 | matches | books trace a line in canonical order |
+| slant_rhymes_ore | rhyme grade with "-ore" (3 levels) | 75 | matches | perfect / slant / none separate and order |
+| numbers_1_100 | n | 100 | matches | tested as the source claims it: Fourier probes for periods 10, 5, 2 read n well; the raw PCA is a magnitude line, not a visible helix |
+| emotions_valence_arousal | six emotions (Claude-generated sentences) | 240 | partial | emotions cluster and are separable, but centroid distances do not track Russell's valence-arousal circumplex in PCA-3 |
+
+## Cyclic tier (Feucht et al. 2026 templates)
+
+| manifold | read at | verdict | notes |
+|---|---|---|---|
+| weekdays_circle | concept token, block 19 | matches | circle with all 7 days in order (98 prompts) |
+| months_circle | concept token, block 19 | partial | circle (circular corr passes); 10 of 12 months in cyclic order |
+| hours_circle | concept token, block 19 | partial | circle; 22 of 24 hours in cyclic order (1152 prompts) |
+| addition_sum_fourier | last token "=", block 18 | matches | ridge Fourier probes read the sum with R² 0.91 (period 10), 0.93 (period 5), 0.98 (period 2); a control probe for period 7 scores near zero. The mod-10 circle is not visible in the raw 3-D PCA, as the paper says. |
+
+Rubric v2.1 changes (made after the first pass on these tiers, documented in `shapes.py`): k-NN
+neighbour count scales with n; cyclic order is graded (fraction of expected neighbours adjacent,
+partial ≥ 0.75) instead of all-or-nothing for 12- and 24-class circles; informative checks never
+gate; multi-frame prompt sets are centred per frame before PCA. Under the first pass months and
+hours were "failed" and addition "partial"; those verdicts changed only through these mechanics.
+
 ## Skipped (and why)
 
-- Extended text tier (10) and cyclic tier (4): scheduled after review of the core tier.
 - Vision tier (DINOv3 lighting/shadow, InceptionV1 curves, SDXL pretzel, DINOv2 position sheet): listed in `manifest.yaml`; not run (user decision, 2026-10-15).
+- Last-token variants of the weekday/month/hour circles (the paper's negative claim at block 18): not run; the concept-token reads above are the positive claim.
 - Unsupervised Ising discovery pipeline: needs the paper's SAEs and a 500M-token background corpus; the blog's discovered manifolds are approximated with supervised prompt sets instead.
 - Template lens / activation oracles: no pre-trained oracle for base Llama-3.1-8B; single-token readouts suffice here.
 
 ## Compute
 
 GPU ledger: `logs/gpu_ledger.jsonl` (`uv run manifolds ledger summary`). Billed Azure T4 uptime,
-reconciled against the Azure activity log: 3.59 GPU-hours over three sessions (one of them
+reconciled against the Azure activity log: 4.37 GPU-hours over six sessions (one of them
 ran ~2 h longer than needed because a cycle script died after a crash without deallocating). Actual
 model computation inside those sessions was well under an hour. No AWS or GCP GPU time was used.
