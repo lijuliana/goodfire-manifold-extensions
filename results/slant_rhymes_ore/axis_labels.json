@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T06:00:17+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "compound-word / noun-suffix continuation ↔ function-word or punctuation continuation",
+   "rationale": "The negative end gathers concrete noun pieces and compound tails: Jacobian ' neon', ' harbour', 'room', ' farm' and real-logit 'shore', 'roof', 'borough', '-room'. The positive end has punctuation and brackets in the Jacobian ('.^', ' (...)') and tuned lens (' .', ' ,'), plus sentence-level function words in the real logits (' The', ' and', ' which', ' meaning').",
+   "confidence": "medium"
+  },
+  {
+   "pc": 2,
+   "label": "suffix/compound fragments ↔ comparative/likelihood phrasing",
+   "rationale": "The positive end is comparative and degree language, with ' than', ' likely', ' pretty', ' quite' and ' precisely' showing up in all lenses, and ' likely' / ' difficult' in the real logits. The negative end is word-ending pieces such as 'room', 'son', 'oon' across the lenses and 'less', 'ware', '-like', 'ful' in the real logits.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "'-r'-cluster word endings (rier/rell/red) ↔ '-y' endings and sentence breaks",
+   "rationale": "All three lenses agree on negative tokens 'rier', 'rell', 'riers', 'red', and the real logits add 'rr', 're', 'ter', 'ried'. Positive tokens are 'y', 'ys', 'ery', 'arily' and 'yard', along with line-ending punctuation in the Jacobian lens; this looks like a phonetic ending split relevant to rhyming.",
+   "confidence": "high"
+  }
+ ]
+}

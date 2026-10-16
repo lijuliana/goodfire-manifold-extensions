@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T06:00:27+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "age/range value continuation ↔ temporal/comparative prepositions",
+   "rationale": "On the negative side, the Jacobian, logit and tuned lenses all give 'range', '-range', ' ranging' and '-old', and the real-logit correlation gives ' old', ' years', ' months' and ' SD', so this end is about a numeric range or age statistic. On the positive side, the Jacobian lens and the real-logit correlation both give connectives such as ' compared', ' when', ' whilst', ' during' and ' within'.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "unit tokens after numbers ↔ prepositions/clause connectives",
+   "rationale": "On the negative side, the Jacobian lens gives units (' grams', ' acres', ' inches', ' GHz') and the real-logit correlation gives ' years', ' yrs', 'mm' and 'kg', so this end predicts a unit after a number. On the positive side, the Jacobian lens, tuned lens and real-logit correlation give ' during', ' after', ' following' and ' when'. The logit lens is noise.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "time/rate units (post, bpm, seconds) ↔ British spelling/biofluid nouns",
+   "rationale": "On the negative side, the real-logit correlation gives ' bpm', ' seconds', ' minutes' and ' after', and the Jacobian lens gives American spellings plus ' after', so this end is time and rate measures. The positive side is split: the Jacobian lens gives British spellings ('colour', 'labour'), while the real-logit correlation gives ' serum', ' plasma', ' urine' and ' of'. The logit and tuned lenses are noisy apart from ' significant'.",
+   "confidence": "medium"
+  }
+ ]
+}

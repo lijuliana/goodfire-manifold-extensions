@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:59:12+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "formal news reporting ↔ casual personal chat",
+   "rationale": "Negative ends across Jacobian, logit and real correlations show newswire tokens (Reuters, spokesman/spokeswoman, Officials, President, Tuesday, Advertisement), while positive ends show second-person and slang tokens (you, your, kinda, alot, youre, haha, lol, Awesome).",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "sentence-initial contrastive connectives ↔ mid-clause function words",
+   "rationale": "Negative ends of the Jacobian, tuned and real-correlation readouts consistently show discourse connectives (but, But, Yet, However, Although, While, whereas). The real-correlation positive end shows mid-sentence prepositions and conjunctions (on, is, to, with, for), while the lens positives are subword noise.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "chatty/political commentary ↔ instructional documentation",
+   "rationale": "The Jacobian positive end (Instructions, Requirements, Description, Examples, Types) and the real-correlation positive end (Select, Consult, Apply, Download, Choose) point to manual-style imperative text. The negative ends show emoticon and ellipsis punctuation (:), !!, ...) and political speech reporting (said, Oh, Obama, Hillary). The logit and tuned lenses are mostly noise.",
+   "confidence": "medium"
+  }
+ ]
+}

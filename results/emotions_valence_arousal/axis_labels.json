@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:59:06+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "profane anger/disgust ↔ calm narrative connectives",
+   "rationale": "The Jacobian lens negative end is profanity and disgust ('fucking', 'damn', 'shit', 'nausea'), with ' bile' appearing in the tuned lens, while its positive end and the real-logit positives are discourse continuations (' BUT', ' THEN', ' Later', ' However', ' Soon'); the logit and tuned lenses are mostly fragments.",
+   "confidence": "medium"
+  },
+  {
+   "pc": 2,
+   "label": "indignant outrage ↔ wistful melancholy",
+   "rationale": "At the positive end, the Jacobian lens gives ' loneliness', ' sadness', ' memories', ' nights' and ' Suddenly', with suddenly-tokens echoed in the logit and tuned lenses and ' Life', ' Winter', ' Finally' in the real-logit correlation; the negative end has ' outraged', ' WTF', ' obviously', ' apparently' (Jacobian) matching ' Obviously', ' Clearly', ' Furious' (real-logit).",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "fear/panic ↔ pleasant everyday contentment",
+   "rationale": "The Jacobian, logit and tuned lenses all put fear tokens at the negative end (' terrified', ' panic', ' fear', ' страх'), and the real-logit correlation adds ' Fear'; the positive end has ' nice', ' happy', ' yummy', ' usually' (Jacobian) and ' Sometimes', ' Usually', ' Good' (real-logit).",
+   "confidence": "high"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:58:17+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "elderly / retirement era ↔ youthful physical description",
+   "rationale": "All three lenses agree on the negative end: 194/195/WWII, retirement, retirees and dementia mark old age and birth decades. The positive end is youth and physical traits, with girls/boys/adolescent in the Jacobian lens and tall/handsome/lean in the logit and tuned lenses.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "young offspring (puppies, toddlers) ↔ married middle-aged adult",
+   "rationale": "Three lenses agree on the positive end: married/marriage/divorced, birth years 196/197/198, and ages 33/35 point to adult marital life stage. The negative end is clear only in the Jacobian lens (puppies, toddlers, youngsters, kittens); the logit and tuned negatives are noise.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "teenagers ↔ pets / dog age",
+   "rationale": "The negative end is consistent across lenses: teenagers, teens, youth and adolescents in the Jacobian lens, with teens/teen/teenager also appearing in the tuned and logit lenses. The positive end is clear only in the Jacobian lens (dogs, pets, veterinary, canine); the other lenses mostly give fragments plus some retirement tokens.",
+   "confidence": "medium"
+  }
+ ]
+}

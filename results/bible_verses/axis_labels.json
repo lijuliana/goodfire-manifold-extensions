@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:58:26+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "exhortation/ellipsis fragments ↔ historical narrative of Israel",
+   "rationale": "The Jacobian lens's positive end shows ' Israel', ' Jerusalem', ' Chronicles', ' narration' and ' story', and the tuned lens adds ' stories'; the negative end has ellipses plus ' urging' and ' encourages', which suggests exhortatory text. The logit lens is mostly fragments, and the real-logit correlation is uninformative function words.",
+   "confidence": "medium"
+  },
+  {
+   "pc": 2,
+   "label": "narrative action (sleep, entered) ↔ epistles/letters",
+   "rationale": "The Jacobian lens's positive end is dominated by ' letter(s)', ' greetings' and ' introductory', and the tuned lens agrees with ' Letter', '(letter' and ' introductory'. The negative end has ' sleeping'/' asleep' in the Jacobian lens and ' entered'/' enter' in the logit and tuned lenses, which suggests narrative scenes.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "prophetic/poetic books ↔ article/prose formatting",
+   "rationale": "The Jacobian lens's negative end includes ' Isaiah', ' Poetry' and ' prophet' alongside line-ending punctuation, while its positive end shows '<article', '.resume' and '記事', which suggests article-style prose. The other lenses are mostly noise, apart from ' Nathan' on the negative side.",
+   "confidence": "medium"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:58:41+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "20th-century (1910s–1960s) ↔ Baroque/Enlightenment era (1600s–1700s)",
+   "rationale": "All three lenses put year prefixes 161–175 and ' Enlightenment' on the positive end, and 189–196 plus ' Soviet', ' WWII', ' Nazi' and '昭和' (Shōwa era) on the negative end; the real-logit correlation shows only uninformative function words.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "WWII-era mid-20th century ↔ Romantic/Napoleonic 19th century (1780s–1880s)",
+   "rationale": "All three lenses agree: the positive end is 179–187 with ' Victorian' and ' Napoleon', and the negative end is ' WWII', ' Hitler', ' Stalin', ' Eisenhower' and 192–195, isolating 19th-century births from the 1930s–40s; the real-logit correlation shows only function words.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "18th-century Classical era (1660s–1770s) ↔ late 19th century / medieval",
+   "rationale": "All three lenses put 166–177 and ' Enlightenment' on the negative end; the positive end mixes late-1800s prefixes (185–189, ' Victorian') with medieval tokens (' Dante', ' medieval', ' Byz', '146'/'125'), so this axis appears to contrast 18th-century births with dates further from that era in either direction.",
+   "confidence": "medium"
+  }
+ ]
+}

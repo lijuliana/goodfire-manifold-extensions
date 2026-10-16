@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T06:00:39+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "weekend (Saturday/Sunday) ↔ midweek (Wednesday)",
+   "rationale": "All three lenses put Sunday, Saturday, Sundays and weekend at the negative end, and 'nesday' (the Wednesday fragment) heads the positive end in the logit and tuned lenses; the remaining positive tokens are noise.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "Friday ↔ Monday/Tuesday",
+   "rationale": "All three lenses consistently put Monday, Mondays, MON and Tuesday at the positive end and Fri, Friday and Fridays at the negative end, giving a start-of-week vs end-of-week contrast.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "non-day formatting tokens ↔ Friday",
+   "rationale": "The Jacobian lens clearly puts Friday, Fri and Fridays at the positive end, and the logit and tuned lenses each show only ' Fridays' among fragments; the negative end in every lens is whitespace, single letters or fragments.",
+   "confidence": "medium"
+  }
+ ]
+}

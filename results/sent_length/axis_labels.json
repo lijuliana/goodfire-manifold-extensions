@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T06:00:11+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "punctuation / web-page boilerplate ↔ question-word continuations",
+   "rationale": "The Jacobian negative end is clause punctuation ('.', ',', ';', ':'), while its positive end holds question words ('why', '为什么', 'چرا', '왜'). The real-logit correlation splits the same way, with ' What', ' Why', ' How' on the positive side and web/catalog tokens ' Download', ' Click', ' Hardcover', ' Page' on the negative side. Tuned and logit lenses weakly echo the positive end with ' what' and ' why'.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "declarative sentence openers / ellipsis ↔ wh-question words",
+   "rationale": "The Jacobian positive end ('why', '是什么', '哪', 'what') and the real-logit positive end (' Who', ' Where', ' Which', ' Why') both point to interrogatives. The negatives are ellipsis tokens ('…', '[…]') in the Jacobian and declarative openers (' The', ' As', ' Since', ' Although') in the real-logit readout. The logit and tuned lenses are mostly noise.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "citation / reference metadata ↔ wh-question words",
+   "rationale": "All four readouts put question words (' what', ' why', ' Which', ' how') at the positive end. The real-logit negative end is bibliographic metadata (' Retrieved', ' ISBN', ' Archived', ' Title', ' Contents'). The lens negatives are mostly fragments such as '…)', 'buster' and ' kW'.",
+   "confidence": "high"
+  }
+ ]
+}

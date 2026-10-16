@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T06:00:04+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "fill-in blanks/punctuation ↔ code and foreign fragments",
+   "rationale": "The Jacobian negative end is dominated by blank underscores (' ____', ' ______') and ':\\n'/'?\\n', and the tuned lens negative end partly agrees (':\\n', ' (', ':'); the positive end is incoherent code and foreign-script fragments ('.ActionListener', 'ChangeEvent', 'istrovství').",
+   "confidence": "medium"
+  },
+  {
+   "pc": 2,
+   "label": "recent era (2010s–2020s) ↔ early/mid 1900s",
+   "rationale": "All three lenses put '201'/'202' at the negative end, and the Jacobian adds ' COVID', ' Obama', ' Putin' and ' Fukushima'; logit and tuned put '194'/'191' at the positive end.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "modern politics/celebrity news ↔ early-1900s legal cases",
+   "rationale": "The positive end has '193', '192', '194' and '191' across all three lenses, plus ' law', ' cases', ' legal' and ' litigation'; the Jacobian negative end has ' Melania', ' Obama', ' Brexit' and ' memes'.",
+   "confidence": "high"
+  }
+ ]
+}

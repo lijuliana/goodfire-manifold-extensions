@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:59:28+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "Other months / question punctuation ↔ January–February (early year)",
+   "rationale": "All three lenses put ' January', 'February', ' Jan', 'bruary' and 'vier' at the positive end. The negative end is mostly noise, apart from the Jacobian lens's '?\\n'-type punctuation and faint autumn fragments ('/oct', 'tember').",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "Winter months (Nov–Feb) ↔ summer months (Aug–Sep)",
+   "rationale": "The negative end is dominated by ' January', ' December', ' November', ' February' and '冬' (winter) across all lenses. The positive end has ' Summer', 'summer', ' Sommer', '夏' (summer), '-Aug' and '-Sep', which reads as the seasonal opposite on the month circle.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "Autumn months (Sep–Oct) / years ↔ question/list punctuation",
+   "rationale": "The Jacobian negative end shows ' September', ' October', ' Oktober', ' oct' and year prefixes ('199', '198', '200'), and '/oct' also appears in the logit and tuned lenses. The positive end is '?\\n' and ' etc' punctuation, while the remaining logit and tuned tokens are noise.",
+   "confidence": "medium"
+  }
+ ]
+}

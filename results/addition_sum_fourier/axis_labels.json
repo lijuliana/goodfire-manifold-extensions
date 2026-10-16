@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:58:02+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "'zero' / math words ↔ formatting junk tokens",
+   "rationale": "Jacobian and tuned lenses put ' zero', ' ZERO', ' Zero', ' math' and ' five' on the negative end, and the real-logit readout adds 'ZERO'; the positive end holds newline and formatting fragments plus unrelated subwords ('nez', 'pare', ' JetBrains').",
+   "confidence": "medium"
+  },
+  {
+   "pc": 2,
+   "label": "two-digit numbers (~49–65) ↔ non-numeric subword fragments",
+   "rationale": "Jacobian, logit and tuned lenses agree on numeric tokens such as '49', '59', '049', '51', '57', '55', '65' and '195' at the negative end; the positive end is subword fragments ('andom', 'auer', 'asan').",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "fifty/sixty range numbers ↔ multilingual fragments (incl. 'twenty')",
+   "rationale": "Jacobian, logit and tuned lenses agree on ' fifty', ' Fifty', ' sixty', '50', '58', '59' and '60' at the negative end; the positive end is mostly fragments, with only weak low-number hints ('двад', '21').",
+   "confidence": "high"
+  }
+ ]
+}

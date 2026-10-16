@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:59:34+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "percent/quantity units ↔ digit/arithmetic framing",
+   "rationale": "Real-logit correlation separates ' percent', ' per', ' pct', ' cents', ' mph' (negative) from ' digit', '-digit', ' multiplied', '-sided' (positive). The Jacobian lens agrees, with ' percent' and numeric fragments on the negative end and '-digit', ' ×', '→' on the positive end. Logit and tuned lenses only share '-digit'.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "counted nouns/plural entities ↔ arithmetic operation continuations",
+   "rationale": "Real-logit positive tokens are operations (' plus', ' minus', ' divided', ' multiplied', ' raised', ' followed'). Real-logit negative tokens are nouns a number would count (' stories', ' comments', ' states', ' people', ' teams'). The lenses are mostly noise, though ' CFR' and number fragments recur on the negative end.",
+   "confidence": "medium"
+  },
+  {
+   "pc": 3,
+   "label": "time/percent units (year, month) ↔ comparative/function-word continuations",
+   "rationale": "Real-logit negative tokens are '-year', ' year', ' oct', ' Percent', ' pct', and the Jacobian lens adds month names (' October', ' November', ' September'). Real-logit positive tokens are function words such as ' more', ' less', ' instead', ' or'. Jacobian positive tokens (backtick code fragments) and the logit/tuned lenses look like noise.",
+   "confidence": "medium"
+  }
+ ]
+}

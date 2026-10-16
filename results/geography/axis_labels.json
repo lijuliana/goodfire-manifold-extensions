@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:59:17+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "Europe (Baltic/Central) ↔ tropical Africa & Central America",
+   "rationale": "All readouts put European countries on the negative end (Latvia, Lithuania, Slovenia, Germany, Europe, Belgium). The positive end gathers tropical and Global South places: Guinea, Nicaragua, Liberia, Cameroon, Africa, Equ, Sierra, plus 'tropical' and 'cocoa'.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "Southern/sub-Saharan Africa ↔ Central America & Caribbean",
+   "rationale": "All four readouts agree on both ends. Positive: Honduras, Nicaragua, Guatemala, Belize, Panama, Mexico. Negative: Madagascar, Sahara, Zimbabwe, Mozambique (Moz), Botswana (Bot), Africa.",
+   "confidence": "high"
+  },
+  {
+   "pc": 3,
+   "label": "South America ↔ Middle East / Caucasus",
+   "rationale": "The negative end is consistently South American: Uruguay, Argentina, Buenos, Brazil, Chile, Bolivia. The positive end has Iraq, Kurdistan, Mosul, Armenia, Azerbaijan, Turkey in the Jacobian and real-logit readouts, while the logit and tuned lenses add 'mountain' tokens.",
+   "confidence": "high"
+  }
+ ]
+}

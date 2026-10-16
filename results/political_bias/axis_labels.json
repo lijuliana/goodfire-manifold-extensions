@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:59:53+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "conservative/Republican right ↔ progressive/socialist left",
+   "rationale": "All four readouts agree: the negative end holds conservative, GOP, Republican, Tea and right, and the positive end holds progressive, socialist, leftist, Communist, Corbyn and liberal.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "hedged/assertive descriptors ↔ neutral/no-lean labels",
+   "rationale": "The positive end consistently shows Neutral, -neutral, neutrality and impartial in the lenses, with No, Lean, Half and Center in the real-logit readout. The negative end mixes blanks (____) with qualifiers like obviously, pretty, fairly and probably. Both ends carry a lot of multilingual noise.",
+   "confidence": "medium"
+  },
+  {
+   "pc": 3,
+   "label": "neutral/balanced/bipartisan ↔ extreme/extremist intensity",
+   "rationale": "All four readouts agree: the negative end has neutral, balanced, bipartisan, neither and independent, and the positive end has extremist, extreme, ultra, very, staunch and hateful.",
+   "confidence": "high"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "_provenance": {
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-10-16T05:59:49+00:00",
+  "note": "LLM reading of the lens token tables; not a measurement"
+ },
+ "axes": [
+  {
+   "pc": 1,
+   "label": "'among'/'last' low-rank continuation ↔ 'ahead/despite' prepositional continuation",
+   "rationale": "The logit and tuned lenses put ' among'/' amongst'/' среди' at the negative end, and real-logit correlation adds ' among', ' last', ' out' and ' of' there. The Jacobian negative end carries pejoratives (' worse', ' useless', ' crappy') that fit a poor or last rank. The positive end favours ' ahead', ' following', ' despite', ' behind', ' to' and ' for'.",
+   "confidence": "high"
+  },
+  {
+   "pc": 2,
+   "label": "'while/with' clause continuation ↔ 'last/this/among' ranking qualifier",
+   "rationale": "Real-logit correlation splits ' while', ' with', ' after', ' overall' (negative) from ' last', ' this', ' among', ' behind', ' Sunday' (positive). The Jacobian partly agrees, with ' whilst'/' Whilst' negative and emphatic ' EVERY', ' ONLY', ' honored' positive. The logit and tuned lenses look like noise.",
+   "confidence": "medium"
+  },
+  {
+   "pc": 3,
+   "label": "'that/despite/behind' ↔ 'of/from/after' function-word continuation",
+   "rationale": "Only real-logit correlation shows any structure, contrasting ' that', ' behind', ' despite', ' out' with ' of', ' from', ' but', ' after'. The lenses give subword fragments (uset, irth, odelist) and, in the Jacobian, dash tokens, with no clear concept.",
+   "confidence": "low"
+  }
+ ]
+}

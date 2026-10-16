@@ -93,6 +93,9 @@ pre{white-space:pre-wrap;background:var(--soft);padding:10px 12px;border-radius:
 .small{font-size:13px;color:var(--muted)}
 .back{display:inline-block;margin-bottom:18px;font-size:14px;color:var(--muted);text-decoration:none}
 footer{margin-top:50px;font-size:13px;color:var(--muted)}
+.axes-summary{display:grid;gap:10px;margin:6px 0 12px}
+.axis-line{border-left:3px solid var(--line);padding:4px 10px}
+details>summary{cursor:pointer;margin:6px 0}
 a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 """
@@ -236,9 +239,16 @@ examples: {% for e in r.examples %}<pre>{{ e }}</pre>{% endfor %}
 <h2>What the axes mean</h2>
 <div class="box">
 <p class="small">Each principal axis of the plot above, decoded four ways. Three lenses project the axis direction through the model's output head (↑ tokens it promotes, ↓ tokens it suppresses): the logit lens (direct), the tuned lens (learned per-layer translator) and the Jacobian lens (Gurnee et al. 2026: transport by the corpus-averaged Jacobian of the final residual with respect to block 19, pre-fitted lens from Neuronpedia). The fourth is lens-free: the real next-token log-probabilities whose variation across these prompts correlates most with the coordinate. Agreement across the four is the evidence; a single lens can be fooled.</p>
+{% if r.depth.label_model %}
+<div class="axes-summary">
+{% for pc in r.depth.pcs %}{% if pc.label %}<div class="axis-line"><span class="mono">PC{{ pc.pc }}</span> <b>{{ pc.label }}</b> <span class="badge badge-{{ 'matches' if pc.confidence == 'high' else ('partial' if pc.confidence == 'medium' else 'pending') }}">{{ pc.confidence }} confidence</span><div class="small">{{ pc.rationale }}</div></div>{% endif %}{% endfor %}
+<p class="small">Readings by {{ r.depth.label_model }} from the token tables below; a guess to orient you, not a measurement.</p>
+</div>
+{% endif %}
+<details><summary class="small mono">token tables (the evidence)</summary>
 <div class="tablewrap"><table><thead><tr><th>axis</th><th>readout</th><th>↑ promoted</th><th>↓ suppressed</th></tr></thead><tbody>
 {% for pc in r.depth.pcs %}{% for row in pc.rows %}<tr>{% if loop.first %}<td class="mono" rowspan="{{ pc.rows|length }}">PC{{ pc.pc }}<br><span class="small">{{ pc.var }} of variance</span></td>{% endif %}<td class="small">{{ row.name }}</td><td class="mono small">{{ row.up }}</td><td class="mono small">{{ row.down }}</td></tr>{% endfor %}{% endfor %}
-</tbody></table></div>
+</tbody></table></div></details>
 </div>
 {% endif %}
 {% endif %}
@@ -452,6 +462,13 @@ def _depth_payload(d: Path) -> dict[str, Any] | None:
     status_line = ", ".join(f"{li}: {sc[str(li)]['status']}" for li in layers)
     lens_json = ((d / "lens_figure.json").read_text(encoding="utf-8")
                  if (d / "lens_figure.json").exists() else '{"data":[],"layout":{}}')
+    labels_by_pc: dict[int, dict[str, Any]] = {}
+    lab_path = d / "axis_labels.json"
+    label_model = ""
+    if lab_path.exists():
+        lj = json.loads(lab_path.read_text(encoding="utf-8"))
+        label_model = lj.get("_provenance", {}).get("model", "")
+        labels_by_pc = {int(x["pc"]): x for x in lj.get("axes", [])}
     pcs = []
     for e in dj.get("pc_readouts", []):
         rows = []
@@ -466,12 +483,16 @@ def _depth_payload(d: Path) -> dict[str, Any] | None:
             rows.append({"name": "real logits (correlation)",
                          "up": _clean_text(" · ".join(repr(t) for t in emp["positive"])),
                          "down": _clean_text(" · ".join(repr(t) for t in emp["negative"]))})
+        lab = labels_by_pc.get(int(e["pc"]))
         pcs.append({"pc": e["pc"], "rows": rows,
-                    "var": f"{100 * e.get('explained_variance_ratio', 0):.0f}%"})
+                    "var": f"{100 * e.get('explained_variance_ratio', 0):.0f}%",
+                    "label": _clean_text(lab["label"]) if lab else "",
+                    "rationale": _clean_text(lab.get("rationale", "")) if lab else "",
+                    "confidence": lab.get("confidence", "") if lab else ""})
     agr = dj.get("lens_top1_agreement_with_model_at_layer") or {}
     agreement = ", ".join(f"{k} {v:.0%}" for k, v in agr.items())
     return {
-        "pcs": pcs, "agreement": agreement,
+        "pcs": pcs, "agreement": agreement, "label_model": label_model,
         "depth_json": _safe_json(_compact_depth_figure((d / "depth_figure.json").read_text(encoding="utf-8"))),
         "scores_json": _safe_json((d / "depth_scores.json").read_text(encoding="utf-8")),
         "lens_json": _safe_json(lens_json),
