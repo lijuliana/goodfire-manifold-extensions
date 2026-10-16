@@ -106,6 +106,6 @@ transitions for days and temperature.
 ## Compute
 
 GPU ledger: `logs/gpu_ledger.jsonl` (`uv run manifolds ledger summary`). Billed Azure T4 uptime,
-reconciled against the Azure activity log: 1.86 GPU-hours over three sessions (one of them
+reconciled against the Azure activity log: 3.59 GPU-hours over three sessions (one of them
 ran ~2 h longer than needed because a cycle script died after a crash without deallocating). Actual
 model computation inside those sessions was well under an hour. No AWS or GCP GPU time was used.
