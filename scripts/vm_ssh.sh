@@ -13,12 +13,13 @@ if [ "${1:-}" = "--sync" ]; then
     ./ "$HOST:~/goodfire-manifold-replication/"
   echo "synced"
 elif [ "${1:-}" = "--pull" ]; then
-  rsync -az -e "ssh ${OPTS[*]}" \
+  rsync -az -e "ssh ${OPTS[*]}" --exclude 'depth_states.npy' \
     "$HOST:~/goodfire-manifold-replication/results/" results/
   mkdir -p logs/vm
   rsync -az -e "ssh ${OPTS[*]}" "$HOST:~/goodfire-manifold-replication/logs/" logs/vm/
   uv run manifolds ledger merge --from logs/vm/gpu_ledger.jsonl
-  echo "pulled results + logs (VM logs under logs/vm/, ledger merged)"
+  uv run manifolds analyze --tier core >/dev/null 2>&1 || true   # reports always under the local rubric
+  echo "pulled results + logs (VM logs under logs/vm/, ledger merged, reports re-analysed)"
 else
   ssh "${OPTS[@]}" "$HOST" "$@"
 fi

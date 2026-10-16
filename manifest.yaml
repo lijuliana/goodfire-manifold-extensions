@@ -169,6 +169,20 @@ manifolds:
     replication_mode: exact-template         # dataset exact; augmentation NOT reproduced unless we generate our own (flagged)
     status: pending
 
+  - name: political_bias_aug
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: 1D continuous         # same claim as political_bias
+    intrinsic_coords: [left-right lean]
+    prompt_template: "Statement: \"{text}\"\nThe political leaning of this statement is"
+    dataset: data/political_bias_aug.jsonl   # ~800 Claude-generated statements, 5 levels x 40 topics, balanced (our stand-in for the paper's GPT-5 augmentation)
+    n_paper: varies
+    labels: [bias_label, topic]
+    source: [bhalla2026 Table 1 (augmentation step)]
+    replication_mode: supervised-approx      # augmentation and template are ours
+    status: pending
+
   # ───────────────────────── TIER: extended (found by the unsupervised Ising pipeline; no templates published) ─────────────────────────
   # Source for all eight: blog-saes figure "Examples of manifolds discovered via our unsupervised pipeline" (Llama 3.1 8B),
   # https://static.goodfire.ai/capturing-manifolds/unsupervised-manifolds.webp . Captions give the variable each manifold is ordered by.

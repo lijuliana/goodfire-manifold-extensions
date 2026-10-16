@@ -23,10 +23,18 @@ uv run pytest -q
 uv run manifolds prompts --tier core
 uv run manifolds extract --tier core --provider azure --instance <vm> --precision-check
 uv run manifolds analyze --tier core
+uv run manifolds sae --tier core            # Llama Scope SAE tiling (Sec. 5 of the paper)
+uv run manifolds depth --tier core          # full model: all-layer sweep + logit/tuned lens + steering
 uv run manifolds site
 uv run manifolds status
 uv run manifolds ledger summary
 ```
+
+Extensions beyond the paper (on every manifold page): a layer slider showing the manifold at all 33
+residual-stream positions with a shape-metric-by-layer chart; logit-lens and tuned-lens readouts
+(what the model would say next from each point at each depth); and the paper's own steering
+experiment (App. B.1). `data/political_bias_aug.jsonl` is our Claude-generated stand-in for the
+paper's unreleased GPT-5 augmentation (`scripts/augment_political_bias.py`, provenance in the file).
 
 Model access: the pipeline tries `meta-llama/Llama-3.1-8B` (gated; set `HF_TOKEN`) and falls back to
 the ungated mirror `unsloth/Llama-3.1-8B` of the same weights. The mirror actually used is recorded

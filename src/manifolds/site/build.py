@@ -17,6 +17,7 @@ from typing import Any
 from jinja2 import DictLoader, Environment, select_autoescape
 
 from manifolds.manifest import load_manifest
+from manifolds.steer import STEER_TASKS
 
 PLOTLY_CDN = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.1/plotly.min.js"
 FONTS = "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap"
@@ -196,6 +197,41 @@ examples: {% for e in r.examples %}<pre>{{ e }}</pre>{% endfor %}
 </div>
 </div>
 </div>
+{% if r.depth %}
+<h2>Across the layers</h2>
+<div class="box">
+<p class="small">The paper looks at one depth. Here the same prompts are read out at every residual-stream position: 0 is the token embedding, i is the output of block i−1, so the paper's layer 19 is position 20. Drag the slider to watch the manifold form. Hover shows what the model would say next from that point at that depth (logit lens: the output head applied directly; tuned lens: Belrose et al. 2023's learned per-layer translator, {{ r.depth.tuned_repo }}).</p>
+<div class="fig eager-fig" id="fig-depth" data-fig="json-depth" style="height:560px"></div>
+<script type="application/json" id="json-depth">{{ r.depth.depth_json|safe }}</script>
+<div class="two">
+<div><div class="small mono" style="margin:12px 0 4px">shape metric by layer (critical checks of the rubric)</div><div class="fig2d eager-fig" id="fig-depth-scores" data-fig="json-depth-scores"></div>
+<script type="application/json" id="json-depth-scores">{{ r.depth.scores_json|safe }}</script>
+<p class="small">Status by layer: {{ r.depth.status_line }}.</p></div>
+<div><div class="small mono" style="margin:12px 0 4px">most common next token at position 20 (paper's layer 19)</div><div class="fig2d eager-fig" id="fig-lens" data-fig="json-lens"></div>
+<script type="application/json" id="json-lens">{{ r.depth.lens_json|safe }}</script>
+<p class="small">Top-1 token of the logit lens and of the tuned lens over the {{ r.depth.n_plotted }} plotted prompts.</p></div>
+</div>
+<p class="small">Consistency check: block-19 output of the full model vs the truncated-model extraction used above, cosine ≥ {{ '%.5f'|format(r.depth.cos_min) }}. Full-model run: {{ r.depth.model_id }}.{% if r.depth.agreement %} Share of prompts where each lens' top-1 token at position 20 equals the model's real next token: {{ r.depth.agreement }}.{% endif %}</p>
+</div>
+{% if r.depth.pcs %}
+<h2>What the axes mean</h2>
+<div class="box">
+<p class="small">Each principal axis of the plot above, decoded four ways. Three lenses project the axis direction through the model's output head (↑ tokens it promotes, ↓ tokens it suppresses): the logit lens (direct), the tuned lens (learned per-layer translator) and the Jacobian lens (Gurnee et al. 2026: transport by the corpus-averaged Jacobian of the final residual with respect to block 19, pre-fitted lens from Neuronpedia). The fourth is lens-free: the real next-token log-probabilities whose variation across these prompts correlates most with the coordinate. Agreement across the four is the evidence; a single lens can be fooled.</p>
+<div class="tablewrap"><table><thead><tr><th>axis</th><th>readout</th><th>↑ promoted</th><th>↓ suppressed</th></tr></thead><tbody>
+{% for pc in r.depth.pcs %}{% for row in pc.rows %}<tr>{% if loop.first %}<td class="mono" rowspan="{{ pc.rows|length }}">PC{{ pc.pc }}<br><span class="small">{{ pc.var }} of variance</span></td>{% endif %}<td class="small">{{ row.name }}</td><td class="mono small">{{ row.up }}</td><td class="mono small">{{ row.down }}</td></tr>{% endfor %}{% endfor %}
+</tbody></table></div>
+</div>
+{% endif %}
+{% endif %}
+{% if r.steer %}
+<h2>Steering along the manifold</h2>
+<div class="box">
+<p class="small">Bhalla et al. 2026 App. B.1 / Fig. 2 right. PCA on the layer-19 activations ({{ r.steer.k }} components for 90% variance), centroids of {{ r.steer.n_bins }} bins of <code>{{ r.steer.label }}</code>, straight-line interpolation between consecutive centroids, and each interpolated point added to the base prompt's layer-19 activation during a forward pass. The curves are the next-token probabilities of the paper's diagnostic tokens.</p>
+<p class="small">Base prompt: <code>{{ r.steer.base_prompt }}</code> (label {{ r.steer.base_label }})</p>
+<div class="fig2d eager-fig" id="fig-steer" data-fig="json-steer" style="height:340px"></div>
+<script type="application/json" id="json-steer">{{ r.steer.figure_json|safe }}</script>
+</div>
+{% endif %}
 {% if r.sae %}
 <h2>SAE tiling · {{ r.sae.repo }}</h2>
 <div class="box">
@@ -275,6 +311,60 @@ def _sae_payload(d: Path) -> dict[str, Any] | None:
         "curves_json": _safe_json((d / "sae_curves.json").read_text(encoding="utf-8")),
         "tuning_json": _safe_json((d / "sae_tuning.json").read_text(encoding="utf-8")),
         "partial_json": _safe_json((d / "sae_partial.json").read_text(encoding="utf-8")),
+    }
+
+
+def _depth_payload(d: Path) -> dict[str, Any] | None:
+    if not (d / "depth.json").exists() or not (d / "depth_figure.json").exists():
+        return None
+    dj = json.loads((d / "depth.json").read_text(encoding="utf-8"))
+    sc = dj["scores"]
+    layers = sorted(int(k) for k in sc)
+    status_line = ", ".join(f"{li}: {sc[str(li)]['status']}" for li in layers)
+    lens_json = ((d / "lens_figure.json").read_text(encoding="utf-8")
+                 if (d / "lens_figure.json").exists() else '{"data":[],"layout":{}}')
+    pcs = []
+    for e in dj.get("pc_readouts", []):
+        rows = []
+        for key, name in (("jacobian_lens", "Jacobian lens"), ("logit_lens", "logit lens"),
+                          ("tuned_lens", "tuned lens")):
+            if key in e:
+                rows.append({"name": name, "up": " · ".join(repr(t) for t in e[key]["up"]),
+                             "down": " · ".join(repr(t) for t in e[key]["down"])})
+        emp = e.get("empirical", {})
+        if emp.get("positive"):
+            rows.append({"name": "real logits (correlation)",
+                         "up": " · ".join(repr(t) for t in emp["positive"]),
+                         "down": " · ".join(repr(t) for t in emp["negative"])})
+        pcs.append({"pc": e["pc"], "rows": rows,
+                    "var": f"{100 * e.get('explained_variance_ratio', 0):.0f}%"})
+    agr = dj.get("lens_top1_agreement_with_model_at_layer") or {}
+    agreement = ", ".join(f"{k} {v:.0%}" for k, v in agr.items())
+    return {
+        "pcs": pcs, "agreement": agreement,
+        "depth_json": _safe_json((d / "depth_figure.json").read_text(encoding="utf-8")),
+        "scores_json": _safe_json((d / "depth_scores.json").read_text(encoding="utf-8")),
+        "lens_json": _safe_json(lens_json),
+        "status_line": status_line, "n_plotted": dj["n_points_plotted"],
+        "cos_min": dj["consistency_block19_vs_truncated"]["cosine_min"],
+        "model_id": dj.get("model_id", ""),
+        "tuned_repo": (dj.get("tuned_lens") or {}).get("repo", "none"),
+    }
+
+
+def _steer_payload(d: Path) -> dict[str, Any] | None:
+    if not (d / "depth.json").exists() or not (d / "steer_figure.json").exists():
+        return None
+    dj = json.loads((d / "depth.json").read_text(encoding="utf-8"))
+    st = dj.get("steering")
+    if not st:
+        return None
+    return {
+        "figure_json": _safe_json((d / "steer_figure.json").read_text(encoding="utf-8")),
+        "k": st["pca_components_used"], "n_bins": st["extras"].get("n_bins_used"),
+        "label": STEER_TASKS.get(dj.get("name", ""), {}).get("label", ""),
+        "base_prompt": st["base_prompt"],
+        "base_label": st["extras"].get("base_label"),
     }
 
 
@@ -366,6 +456,8 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
             "precision": rep.get("precision_check"),
             "figure_json": _safe_json(fig_path.read_text(encoding="utf-8")),
             "sae": _sae_payload(results_dir / name),
+            "depth": _depth_payload(results_dir / name),
+            "steer": _steer_payload(results_dir / name),
         }
         page = env.get_template("detail").render(
             title=f"{name.replace('_', ' ')} manifold", root="../", r=r, artifact=False,

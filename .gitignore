@@ -12,3 +12,5 @@ results/*/activations_*.npy
 site/_build/
 .claude/
 logs/vm/
+results/*/depth_states.npy
+data/_probe.jsonl

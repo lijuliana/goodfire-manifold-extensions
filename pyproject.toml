@@ -28,6 +28,7 @@ dev = [
     "mypy>=1.8",
     "types-PyYAML",
     "matplotlib>=3.8",
+    "anthropic>=1.0",
 ]
 
 [project.scripts]

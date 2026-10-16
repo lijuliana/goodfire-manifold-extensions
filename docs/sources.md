@@ -47,6 +47,14 @@ Facts extracted from the sources on 2026-10-15. Each bullet names where it came 
 
 - Llama Scope inference semantics reproduced from `OpenMOSS/Language-Model-SAEs` v1.0.0 `src/lm_saes/sae.py` (`from_pretrained`: dataset-wise standardisation, unit decoder norm, JumpReLU). https://github.com/OpenMOSS/Language-Model-SAEs/blob/v1.0.0/src/lm_saes/sae.py ; Llama Scope paper: He et al. 2024, arXiv 2410.20526.
 
+## Extensions beyond the sources (methods from other papers)
+
+- Logit lens: nostalgebraist 2020, "interpreting GPT: the logit lens". Final norm + output head applied to an intermediate residual.
+- Tuned lens: Belrose et al. 2023, arXiv 2303.08112. Per-layer affine translator; pre-fitted Llama-3.1-8B lens `kdhole/Llama-3.1-8B-tuned-lens` (translator i is trained on hidden_states[i]; checked against `tuned_lens/scripts/train_loop.py`).
+- Jacobian lens: Gurnee et al. 2026, "Verbalizable Representations Form a Global Workspace in Language Models", https://transformer-circuits.pub/2026/workspace/ (arXiv 2607.15495); code https://github.com/anthropics/jacobian-lens (Apache 2.0). lens_l(h) = unembed(J_l h), J_l = E[sum_{p'>=p} dh_final[p']/dh_l[p]] over corpus prompts and valid source positions. Lens index = block output (reference `ActivationRecorder` hooks block outputs). Pre-fitted base Llama-3.1-8B lens: `neuronpedia/jacobian-lens` `llama3.1-8b/jlens/Salesforce-wikitext/` (539 wikitext prompts, 128 tokens, bf16, converged; config.yaml in the repo). The same paper's appendix defines a "template lens" for multi-token concepts (not used here). "Activation oracles" (Pan et al. 2024 LatentQA; Karvonen et al. 2025) need a trained oracle model and are not used.
+- Vocabulary projection of principal directions has precedent (Dar et al. 2022 "Analyzing Transformers in Embedding Space"; a 2026 sycophancy paper projects PCA directions through W_U, arXiv 2608.16650); the Query Lens paper (arXiv 2606.07617) warns that the logit lens captures only direct effects. Our axis table reports three lenses plus a lens-free correlation with the model's real next-token log-probabilities.
+- Manifold steering recipe: Bhalla et al. 2026 App. B.1 / Table 2 (this is a replication, not an extension).
+
 ## Datasets (verified public)
 
 - `burkelibbey/colors` (colors.jsonl: hex + description), `jamescalam/world-cities-geo` (train.jsonl), `osyvokon/pavlick-formality-scores` (train.csv: domain, avg_score, sentence), `cajcodes/political-bias` (political_bias.csv: text, label 0-4; 658 rows), `wikitext` wikitext-103-raw-v1.

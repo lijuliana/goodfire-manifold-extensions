@@ -132,6 +132,42 @@ def cmd_sae(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_depth(args: argparse.Namespace) -> int:
+    import torch
+
+    from manifolds.depth import DepthConfig, FullModel
+    from manifolds.depth_report import run_depth
+    from manifolds.lens import TunedLens
+
+    cfg = load_config(args.config)
+    manifest = load_manifest()
+    fm = FullModel(DepthConfig(model_id=cfg.model.id, fallback_model_id=cfg.model.fallback_id,
+                               dtype=cfg.model.dtype, device=args.device,
+                               batch_size=args.batch_size, gpu_memory_gib=args.gpu_gib,
+                               seed=cfg.seed))
+    print(f"full model {fm.model_id} ({fm.resolution}), {fm.n_layers} blocks")
+    tuned = None if args.no_tuned_lens else TunedLens.from_hf(device="cpu", dtype=torch.float32)
+    jlens = None
+    if not args.no_jlens:
+        from manifolds.jlens import JacobianLensFull
+
+        jlens = JacobianLensFull.from_hf()
+        print(f"jacobian lens: {jlens.info.get('repo')} ({jlens.n_prompts} prompts)")
+    for name in _select(args):
+        if not (RESULTS_DIR / name / "activations.npy").exists():
+            print(f"{name}: no activations, skipping", file=sys.stderr)
+            continue
+        rep = run_depth(manifest.get(name), cfg, fm, tuned, jlens=jlens,
+                        max_points=args.max_points, do_steer=not args.no_steer,
+                        provider=args.provider, instance=args.instance)
+        c = rep["consistency_block19_vs_truncated"]
+        s19 = rep["scores"][str(cfg.model.layer + 1)]
+        print(f"{name:18s} n={rep['n_points']} cos19={c['cosine_min']:.5f} "
+              f"status@19={s19['status']} steer={'yes' if rep['steering'] else 'no'} "
+              f"({rep['elapsed_s']}s)")
+    return 0
+
+
 def cmd_site(args: argparse.Namespace) -> int:
     from manifolds.site.build import build_site
 
@@ -203,6 +239,18 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--max-k", type=int, default=64)
     sp.add_argument("--max-points", type=int, default=2000)
     sp.set_defaults(fn=cmd_sae)
+    sp = sub.add_parser("depth", help="all-layer sweep + logit/tuned lens + steering (full model)")
+    add_select(sp)
+    sp.add_argument("--device", default="auto")
+    sp.add_argument("--provider", default="unknown")
+    sp.add_argument("--instance", default="unknown")
+    sp.add_argument("--batch-size", type=int, default=8)
+    sp.add_argument("--gpu-gib", type=float, default=12.0)
+    sp.add_argument("--max-points", type=int, default=800)
+    sp.add_argument("--no-tuned-lens", action="store_true")
+    sp.add_argument("--no-jlens", action="store_true")
+    sp.add_argument("--no-steer", action="store_true")
+    sp.set_defaults(fn=cmd_depth)
     sp = sub.add_parser("site", help="build the static site")
     sp.add_argument("--out", default=str(SITE_DIR))
     sp.set_defaults(fn=cmd_site)
