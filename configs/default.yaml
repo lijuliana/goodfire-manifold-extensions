@@ -1,0 +1,18 @@
+# Default run configuration. Every run writes a copy of the resolved config into results/<manifold>/meta.json.
+seed: 0
+model:
+  id: meta-llama/Llama-3.1-8B            # paper + released code (base model)
+  fallback_id: unsloth/Llama-3.1-8B       # ungated mirror of the same weights; used only if the gated repo is inaccessible
+  layer: 19                               # residual stream output of decoder block 19 (0-indexed)
+  dtype: float16                          # Azure T4 has no bf16; validated against float32 on a prompt subset
+  truncate_to_layer: true                 # load only blocks 0..layer (identical layer-19 output, ~10 GB in fp16)
+  batch_size: 16
+  max_length: 1024
+analysis:
+  outlier_n_std: 3.0                      # sae-manifold data.py:load_manifold_data default
+  pca_components: 3
+precision_check:
+  n_prompts: 16
+  min_cosine: 0.999
+site:
+  preview_max_points: 1500

@@ -1,0 +1,57 @@
+[project]
+name = "goodfire-manifold-replication"
+version = "0.1.0"
+description = "Replication of Goodfire's concept manifolds (Neural Geometry series): 3-D PCA of Llama-3.1-8B layer-19 activations, shape checks, static site."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "pandas>=2.1",
+    "pyyaml>=6.0",
+    "pydantic>=2.5",
+    "plotly>=5.18",
+    "jinja2>=3.1",
+    "tqdm>=4.66",
+    "torch>=2.2",
+    "transformers>=4.44",
+    "datasets>=2.18",
+    "safetensors>=0.4",
+    "accelerate>=0.30",
+    "huggingface-hub>=0.23",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "types-PyYAML",
+    "matplotlib>=3.8",
+]
+
+[project.scripts]
+manifolds = "manifolds.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/manifolds"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["gpu: needs a CUDA device", "slow: downloads data or models"]

@@ -1,0 +1,449 @@
+# manifest.yaml — Goodfire concept-manifold replication manifest (Step 0)
+# One entry per manifold reported in the sources. Every claim cites its source.
+#
+# Field key
+#   tier              core | extended | cyclic | vision
+#   replication_mode  exact-template      : prompt template / dataset published, run as-is
+#                     supervised-approx   : manifold was found unsupervised (no template published);
+#                                           we design a labeled prompt set for the same variable
+#                     probe-based         : geometry is only visible via a published probe, not raw PCA
+#                     requires-bsf        : needs a Block-Sparse Featurizer trained on model activations
+#   status            pending | matches | partial | failed  (filled in by the pipeline, never by hand)
+#
+# Sources (short keys used below)
+#   bhalla2026   arXiv 2604.28119 "Do Sparse Autoencoders Capture Concept Manifolds?"            https://arxiv.org/abs/2604.28119
+#   sae-manifold github.com/goodfire-ai/sae-manifold (data.py = exact templates)                 https://github.com/goodfire-ai/sae-manifold
+#   blog-saes    "Can SAEs Capture Neural Geometry?" (May 21 2026)                               https://www.goodfire.ai/research/can-saes-capture-neural-geometry
+#   blog-world   "The World Inside Neural Networks" (May 7 2026)                                 https://www.goodfire.ai/research/the-world-inside-neural-networks
+#   blog-calc    "A Geometric Calculator Inside a Neural Network" (May 14 2026)                  https://www.goodfire.ai/research/a-geometric-calculator
+#   blog-steer   "Steering Along Manifolds to Control Neural Networks" (May 7 2026)              https://www.goodfire.ai/research/manifold-steering
+#   blog-stories "Meandering on Manifolds: The Neural Geometry of Stories Over Time" (Jun 23 2026) https://www.goodfire.ai/research/stories-in-space
+#   blog-bsf     "Uncovering Neural Geometry in Vision Models With Block-Sparse Featurizers"     https://www.goodfire.ai/research/bsf-vision
+#   feucht2026   arXiv 2605.01148 "Arithmetic in the Wild: Llama uses Base-10 Addition ..."     https://arxiv.org/abs/2605.01148
+#   fel2026bsf   arXiv 2606.25234 "Structuring Sparsity: Block-Sparse Featurizers ..."           https://arxiv.org/abs/2606.25234
+#   bsf-code     github.com/goodfire-ai/block-sparse-featurizer                                  https://github.com/goodfire-ai/block-sparse-featurizer
+#   fel2025hull  arXiv 2510.08638 "Into the Rabbit Hull: ... DINO to Minkowski Geometry"        https://arxiv.org/abs/2510.08638
+
+version: 0.1
+
+defaults:
+  llm:
+    model: meta-llama/Llama-3.1-8B          # BASE model. Source: sae-manifold/data.py:32 MODEL_NAME; bhalla2026 App. B ("Llama-3.1-8B")
+    layer: 19                                # residual stream, output of decoder block index 19, d_model=4096. Source: data.py:33,221; bhalla2026 App. B
+    token_position: last                     # Source: data.py:225; bhalla2026 Table 1 caption
+    outlier_filter: "drop samples with activation norm > mean + 3*std (attention-sink rows)"  # data.py:260-288
+  analysis:
+    pca_components: 3
+    center: true
+  sae_checkpoints:                           # public SAEs for layer 19 (the paper trained its own; not released)
+    - id: OpenMOSS-Team/Llama3_1-8B-Base-LXR-8x/Llama3_1-8B-Base-L19R-8x   # Llama Scope, BASE model, hook blocks.19.hook_resid_post, JumpReLU, d_sae=32768
+    - id: Goodfire/Llama-3.1-8B-Instruct-SAE-l19                          # Goodfire, INSTRUCT model, layer 19, L0=91. Only valid with the Instruct model.
+
+manifolds:
+
+  # ───────────────────────── TIER: core (bhalla2026 Table 1 + sae-manifold/data.py) ─────────────────────────
+
+  - name: colors
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: paraboloid            # "colors organized along a paraboloid with circular hue and lightness dimensions" — bhalla2026 Sec. 3; Table 1
+    intrinsic_coords: ["hue (circular)", lightness, saturation]
+    prompt_template: "The hex code {hex} is for the color"
+    dataset: burkelibbey/colors              # every 10th row; keep 0.2 < lightness < 0.8 and 0.2 < saturation < 0.8 — data.py:51-65
+    n_paper: ~900
+    labels: [hex, hue, lightness, saturation]
+    source: [bhalla2026 Table 1, sae-manifold data.py build_colors]
+    replication_mode: exact-template
+    status: pending
+
+  - name: temperature
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: line
+    intrinsic_coords: [fahrenheit]
+    prompt_template: "Today it's {f} degrees Fahrenheit outside"
+    dataset: synthetic, f in range(-30, 120)
+    n_paper: 150
+    labels: [fahrenheit, celsius]
+    source: [bhalla2026 Table 1, sae-manifold data.py build_temperature]
+    replication_mode: exact-template
+    status: pending
+
+  - name: age
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: line
+    intrinsic_coords: [age]
+    prompt_template: "They are {age} years old. "
+    dataset: synthetic, age in range(1, 100)
+    n_paper: 99
+    labels: [age]
+    source: [bhalla2026 Table 1, sae-manifold data.py build_age]
+    replication_mode: exact-template
+    status: pending
+
+  - name: geography
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: hierarchical tree      # "hierarchical tree (lat/long + continent)" — bhalla2026 Table 1; sae-manifold README
+    intrinsic_coords: [latitude, longitude, continent]
+    prompt_template: "The geographical coordinates latitude {latitude} and longitude {longitude} are in the country of"
+    dataset: jamescalam/world-cities-geo     # every 3rd row — data.py:84-100
+    n_paper: ~4000
+    labels: [latitude, longitude, country, region, continent]
+    source: [bhalla2026 Table 1, sae-manifold data.py build_geography]
+    replication_mode: exact-template
+    status: pending
+
+  - name: days
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: circle                # Table 1 says "circle"; data.py docstring says "2D discrete grid: day_idx (cyclic) x time_idx (ordinal)"
+    intrinsic_coords: ["day_idx (cyclic, 7)", "time_idx (ordinal, 8)"]
+    prompt_template: "It's {time} on {day}"
+    dataset: synthetic, 7 days x 8 times-of-day ["the crack of dawn","early morning","late morning","noon","afternoon","evening","night","midnight"]
+    n_paper: 420                             # DISCREPANCY: Table 1 reports n=420; released data.py produces 56 prompts. We run the released code (56) first.
+    labels: [day, day_idx, time, time_idx]
+    source: [bhalla2026 Table 1 + Fig. 8, sae-manifold data.py build_days]
+    replication_mode: exact-template
+    status: pending
+
+  - name: years
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: helix                 # "helical manifold (linear century + periodic decade)" — data.py:125; Table 1 "helix"; Fig. 7 ones-digit periodicity
+    intrinsic_coords: [year (linear), year mod 10 (periodic)]
+    prompt_template: "The date is {year}"
+    dataset: synthetic, year in range(1800, 1999)
+    n_paper: 199
+    labels: [year, decade_digit, decade]
+    source: [bhalla2026 Table 1 + Fig. 7, sae-manifold data.py build_years]
+    replication_mode: exact-template
+    status: pending
+
+  - name: formality
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: line
+    intrinsic_coords: [formality score]
+    prompt_template: "{sentence}"            # raw sentence, no template — data.py:137-150
+    dataset: osyvokon/pavlick-formality-scores   # first 1000 non-empty sentences, label avg_score
+    n_paper: 1000
+    labels: [formality]
+    source: [bhalla2026 Table 1 (pavlick2016empirical), sae-manifold data.py build_formality]
+    replication_mode: exact-template
+    status: pending
+
+  - name: sent_length
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: line
+    intrinsic_coords: [whitespace token count]
+    prompt_template: "{sentence}"
+    dataset: wikitext-103-raw-v1 train, sentences with 3-80 whitespace tokens, first 5000 unique   # data.py:153-179
+    n_paper: 5000
+    labels: [n_tokens, n_chars]
+    source: [bhalla2026 Table 1 + Fig. 12, sae-manifold data.py build_sent_length]
+    replication_mode: exact-template
+    status: pending
+
+  - name: political_bias
+    tier: core
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: 1D continuous         # Table 1 "1D continuous"; blog-saes figure "POLITICAL BIAS by left-right lean"
+    intrinsic_coords: [left-right lean]
+    prompt_template: "{statement}"
+    dataset: cajcodes/political-bias         # 658 GPT-4 statements, label 0 (conservative) .. 4 (liberal). Paper used "GPT-5 augmentations" of this set (not released).
+    n_paper: varies
+    labels: [bias_label]
+    source: [bhalla2026 Table 1 + Fig. 10, blog-saes]
+    replication_mode: exact-template         # dataset exact; augmentation NOT reproduced unless we generate our own (flagged)
+    status: pending
+
+  # ───────────────────────── TIER: extended (found by the unsupervised Ising pipeline; no templates published) ─────────────────────────
+  # Source for all eight: blog-saes figure "Examples of manifolds discovered via our unsupervised pipeline" (Llama 3.1 8B),
+  # https://static.goodfire.ai/capturing-manifolds/unsupervised-manifolds.webp . Captions give the variable each manifold is ordered by.
+  # Epistemic/statistical uncertainty is also bhalla2026 Fig. 10 (right): cluster 357, "+/-" measurement strings.
+
+  - name: ordinals
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: 1D ordered curve      # caption "ORDINALS by order"; figure shows an arc
+    intrinsic_coords: [ordinal rank]
+    prompt_template: TBD (supervised approximation, e.g. "She finished in {ordinal} place")
+    dataset: synthetic, first..hundredth
+    source: [blog-saes figure]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: classical_composers
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: 1D curve by year (era clusters)   # caption "CLASSICAL COMPOSERS by year"
+    intrinsic_coords: [birth year]
+    prompt_template: TBD
+    dataset: curated list of composers with birth years
+    source: [blog-saes figure]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: scotus_cases
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: 1D curve by year      # caption "SCOTUS CASES by year"
+    intrinsic_coords: [decision year]
+    prompt_template: TBD
+    dataset: curated list of landmark Supreme Court cases with years
+    source: [blog-saes figure]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: chemical_bonds
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: ordered clusters by bond length   # caption "CHEMICAL BONDS by length"
+    intrinsic_coords: [bond length (pm)]
+    prompt_template: TBD
+    dataset: table of covalent bonds with lengths
+    source: [blog-saes figure]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: adverbs_pace
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: 1D curve by speed     # caption "ADVERBS INDICATING PACE by speed"
+    intrinsic_coords: [speed rank]
+    prompt_template: TBD
+    dataset: adverbs from "glacially" to "instantly", ranked
+    source: [blog-saes figure]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: statistical_uncertainty
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: 1D curve by ln(std/mean)   # caption "STATISTICAL UNCERTAINTY by ln(std./mean)"; bhalla2026 Fig. 10 right "epistemic uncertainty"
+    intrinsic_coords: [ln(std/mean)]
+    prompt_template: TBD (e.g. "... was {mean} +/- {std} ...", mirroring Fig. 10 activating examples)
+    dataset: synthetic measurement strings
+    source: [bhalla2026 Sec. 6 + Fig. 10, blog-saes figure]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: bible_verses
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: curve by book & chapter   # caption "BIBLE VERSES by book & chapter"
+    intrinsic_coords: [book order, chapter]
+    prompt_template: TBD (verse reference strings, e.g. "Genesis 1:1")
+    dataset: synthetic references
+    source: [blog-saes figure]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: slant_rhymes_ore
+    tier: extended
+    model: meta-llama/Llama-3.1-8B           # model not stated explicitly in blog-world; assumed same Llama pipeline
+    layer: 19
+    expected_geometry: 1D curve from perfect rhyme to poor rhyme   # blog-world "A subspace of slant rhymes with '-ore'"
+    intrinsic_coords: [rhyme quality with "-ore"]
+    prompt_template: TBD
+    dataset: words graded by rhyme distance to "-ore"
+    source: [blog-world]
+    replication_mode: supervised-approx
+    status: pending
+
+  # ───────────────────────── TIER: cyclic (feucht2026 / blog-calc / blog-steer) ─────────────────────────
+
+  - name: weekdays_circle
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 19                                 # circle is reported across mid layers (Engels et al. 2024 via blog-steer); feucht2026 Fig. 3 says NOT at layer 18 last token
+    token_position: concept token (and last token for comparison)
+    expected_geometry: circle (period 7)
+    intrinsic_coords: [day index mod 7]
+    prompt_template: "Q: What day is {offset} days after {concept}?\nA:"   # feucht2026 Table 1; blog-steer uses "What day comes five days after Sunday?"
+    dataset: Monday..Sunday x offsets one..fourteen (n=98)
+    source: [feucht2026 App. A Table 1, blog-steer, blog-calc]
+    replication_mode: exact-template
+    status: pending
+
+  - name: months_circle
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    token_position: concept token (and last token)
+    expected_geometry: circle (period 12)
+    intrinsic_coords: [month index mod 12]
+    prompt_template: "Q: What month is {offset} months after {concept}?\nA:"   # feucht2026 Table 1
+    dataset: January..December x offsets one..twenty-four (n=288)
+    source: [feucht2026 App. A Table 1, blog-calc]
+    replication_mode: exact-template
+    status: pending
+
+  - name: hours_circle
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    token_position: concept token (and last token)
+    expected_geometry: circle (period 24)
+    intrinsic_coords: [hour mod 24]
+    prompt_template: "Q: In 24-hour time, it is now {concept}:00. What time will it be in {offset} hours?\n A: In 24-hour time, it will be"   # feucht2026 Table 1
+    dataset: 00..23 x offsets one..forty-eight (n=1152)
+    source: [feucht2026 App. A Table 1]
+    replication_mode: exact-template
+    status: pending
+
+  - name: addition_sum_fourier
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 18                                 # feucht2026: addition module at layer 18, last token
+    token_position: last
+    expected_geometry: circles of the SUM with periods 2, 5, 10 (Fourier features)   # feucht2026 Sec. 4 + Fig. 6; blog-calc "Numbers as circles"
+    intrinsic_coords: ["(a+b) mod 2", "(a+b) mod 5", "(a+b) mod 10"]
+    prompt_template: "{a}+{b}="
+    dataset: a, b in 1..100 (paper n=10k; we subsample)
+    source: [feucht2026 Sec. 4, App. G, blog-calc]
+    replication_mode: probe-based            # Fourier probes (feucht2026 App. G); raw PCA colored by sum mod 10 as a sanity check
+    status: pending
+
+  - name: numbers_1_100
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 19
+    expected_geometry: helix / mod-10 circle + magnitude   # blog-calc: number = (mod-2, mod-5, mod-10, mod-100 circles); Kantamneni & Tegmark 2025 cited there
+    intrinsic_coords: [n, n mod 10]
+    prompt_template: TBD (e.g. "The number is {n}")
+    dataset: n in 1..100
+    source: [blog-calc (citing Kantamneni & Tegmark 2025)]
+    replication_mode: supervised-approx
+    status: pending
+
+  - name: emotions_valence_arousal
+    tier: extended
+    model: meta-llama/Llama-3.1-8B
+    layer: TBD (blog-stories does not state the layer; paper to be checked)
+    token_position: last token of each sentence
+    expected_geometry: 2D valence-arousal arrangement of six basic emotions   # blog-stories figure (UMAP of emotion centroids)
+    intrinsic_coords: [valence, arousal]
+    prompt_template: partial stories (SimpleStories prefills)
+    dataset: SimpleStories
+    source: [blog-stories]
+    replication_mode: supervised-approx
+    status: pending
+
+  # ───────────────────────── TIER: vision (fel2026bsf / bsf-code / fel2025hull) ─────────────────────────
+
+  - name: dinov3_rabbit_parts
+    tier: vision
+    model: facebook/dinov3-vitb16-pretrain-lvd1689m (gated)
+    layer: final layer patch tokens (196 x 768), CLS + 4 registers dropped   # bsf-code bsf/data.py
+    expected_geometry: per-block 3D manifolds (ear concept varies smoothly along the ear; face resolves into facial features)   # bsf-code README Fig. 1
+    prompt_template: n/a
+    dataset: bsf-code rabbit.npz (300 images, 224x224)
+    recipe: GrassmannianBSF(d=768, n_groups=256, group_size=3, l0=16), 60 epochs, POS_MEAN centering   # bsf-code README quickstart
+    source: [bsf-code README + starters/01_grassmannian.ipynb, fel2026bsf Fig. 1]
+    replication_mode: requires-bsf           # fully scripted in the released repo; cheapest vision item
+    status: pending
+
+  - name: inceptionv1_curve_orientation
+    tier: vision
+    model: InceptionV1 (GoogLeNet), layer mixed3b curve detectors (Cammarata et al. 2020)
+    layer: mixed3b
+    expected_geometry: closed loop over orientation 0-360 deg with Fourier modes w=1,2,3 carrying 59/18/12 pct of variance   # fel2026bsf Sec. 4 + Fig. 11, App. E Table 1
+    intrinsic_coords: [curve orientation theta]
+    prompt_template: n/a
+    dataset: synthetic oriented curve stimuli following Cammarata et al. 2020, n_theta=1800   # fel2026bsf App. E
+    recipe: Grassmannian BSF block b=16 on InceptionV1 activations; cheap check = PCA of raw curve-neuron population over theta
+    source: [fel2026bsf Sec. 4, App. E, blog-bsf]
+    replication_mode: requires-bsf           # raw-activation PCA loop is a cheap partial replication
+    status: pending
+
+  - name: dinov3_lighting
+    tier: vision
+    model: facebook/dinov3-vitb16-pretrain-lvd1689m
+    layer: final layer patch tokens
+    expected_geometry: block norm tracks scene luminance vs sun azimuth at every elevation 15-90 deg   # fel2026bsf Sec. 5.2 + Fig. 13
+    intrinsic_coords: [sun azimuth, sun elevation]
+    dataset: twelve Blender models rendered under a sun sweep (NOT released; must re-render)
+    recipe: Grassmannian BSF b=3 trained on ImageNet-1k DINOv3 activations; rank blocks by covariance with lighting params
+    source: [fel2026bsf Sec. 5.2, blog-bsf]
+    replication_mode: requires-bsf           # heavy: ImageNet-scale activations + Blender renders
+    status: pending
+
+  - name: dinov3_shadow
+    tier: vision
+    model: facebook/dinov3-vitb16-pretrain-lvd1689m
+    layer: final layer patch tokens
+    expected_geometry: block tracks volume of cast shadow, consistent across objects (bunny, monkey, cow, teapot)   # fel2026bsf Fig. 13 bottom
+    intrinsic_coords: [shadow volume]
+    dataset: same Blender sweep as dinov3_lighting
+    source: [fel2026bsf Sec. 5.2]
+    replication_mode: requires-bsf
+    status: pending
+
+  - name: sdxl_pretzel
+    tier: vision
+    model: stabilityai/stable-diffusion-xl-base-1.0
+    layer: down.2.1 (down_blocks.2.attentions.1)   # fel2026bsf Fig. 15 caption
+    expected_geometry: curved low-dim manifold inside a b=16 block; steering waypoints generate different pretzels   # fel2026bsf Sec. 6 + Fig. 14-15, blog-bsf "Pretzel Manifold"
+    intrinsic_coords: [block subspace coords (Kohonen grid)]
+    dataset: SDXL activations on pretzel/hat/coffee prompts (prompt set not released)
+    recipe: Grassmannian BSF b=16 on SDXL down.2.1 activations; fix block to grid waypoints during 4 diffusion steps
+    source: [fel2026bsf Sec. 6, blog-bsf]
+    replication_mode: requires-bsf           # heaviest item; Goodfire/SDXL-Turbo-SAE-ldown.attns.2.1 exists as a partial SAE substitute
+    status: pending
+
+  - name: sdxl_hat_coffee_grids
+    tier: vision
+    model: stabilityai/stable-diffusion-xl-base-1.0
+    layer: down.2.1
+    expected_geometry: 2D Kohonen grid over block manifold; brim angle / crown shape / milk pattern vary smoothly   # fel2026bsf Fig. 15; blog-bsf
+    source: [fel2026bsf Sec. 6, blog-bsf]
+    replication_mode: requires-bsf
+    status: pending
+
+  - name: dinov2_position_sheet
+    tier: vision
+    model: facebook/dinov2-base
+    layer: all layers (position-decoder vectors per layer)
+    expected_geometry: positional subspace collapses from high rank to a 2D sheet in final layers   # fel2025hull Sec. 6 + Fig. 14-15
+    intrinsic_coords: [patch row, patch col]
+    dataset: ImageNet-1k val tokens (subset)
+    recipe: linear position decoders per layer -> PCA of decoder vectors
+    source: [fel2025hull Sec. 6, App. I]
+    replication_mode: exact-template         # procedure fully described; no featurizer needed
+    status: pending
+
+  - name: dinov2_image_pca_maps
+    tier: vision
+    model: facebook/dinov2-base
+    layer: final layer patch tokens
+    expected_geometry: per-image PCA->RGB maps are smooth and delineate objects; smoothness survives removing positional components   # fel2025hull Fig. 12-13, Fig. 27
+    dataset: ImageNet-1k val images (handful)
+    source: [fel2025hull Sec. 6]
+    replication_mode: exact-template
+    status: pending
+
+skipped_candidates:                          # mentioned in sources but outside the listed papers/posts or not a manifold claim
+  - name: evo2_tree_of_life            # blog-world cites Pearce et al. 2025 (separate Goodfire post "phylogeny-manifold")
+  - name: alzheimers_biomarker_curve   # blog-world cites Wang et al. 2026 (separate post)
+  - name: mountain_car_position_string # blog-world demo on a custom image-action model (weights not released)
+  - name: synthetic_manifold_zoo       # bhalla2026 Sec. 4.2 / App. E synthetic benchmark (circles, spheres, tori, Mobius, Swiss roll, helix, disk, segment) — synthetic, no LLM
