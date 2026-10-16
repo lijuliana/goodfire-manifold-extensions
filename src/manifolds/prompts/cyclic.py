@@ -1,3 +1,4 @@
+# ruff: noqa: E501  (reference tables and verbatim templates are long by nature)
 """Cyclic tier: the task templates of Feucht et al. 2026 (arXiv 2605.01148, App. A Table 1).
 
 For weekdays / months / hours the circle is read at the *concept token* (Engels et al. 2024;

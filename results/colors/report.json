@@ -14,6 +14,7 @@
   "dataset": "burkelibbey/colors",
   "n_paper": "~900"
  },
+ "preprocessing": "none",
  "prompt_set": {
   "template": "The hex code {hex} is for the color",
   "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
@@ -51,7 +52,8 @@
     "critical": true,
     "passed": true,
     "note": "",
-    "partial_threshold": 0.5
+    "partial_threshold": 0.5,
+    "informative": false
    },
    {
     "name": "hue_cyclic_order",
@@ -60,8 +62,9 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "12 hue bins in cyclic order",
-    "partial_threshold": null
+    "note": "fraction of adjacent hue bins that are angular neighbours",
+    "partial_threshold": 0.75,
+    "informative": false
    },
    {
     "name": "height_vs_lightness_or_saturation",
@@ -71,7 +74,8 @@
     "critical": true,
     "passed": true,
     "note": "best = lightness; |spearman| lightness=0.83 saturation=0.00",
-    "partial_threshold": 0.25
+    "partial_threshold": 0.25,
+    "informative": false
    },
    {
     "name": "height_vs_radius2_r2",
@@ -81,12 +85,13 @@
     "critical": false,
     "passed": false,
     "note": "paraboloid signature: height ~ radius^2",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    }
   ],
   "extras": {
    "height_axis_variable": "lightness",
-   "rubric_version": 2
+   "rubric_version": 2.1
   }
  },
  "status": "partial",

@@ -13,14 +13,14 @@ import torch
 
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
-from manifolds.analysis.shapes import ROLES, run_shape_check
+from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check
 from manifolds.config import RunConfig
 from manifolds.jlens import JacobianLensFull, pc_readouts
 from manifolds.lens import TunedLens, lens_readout
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
 from manifolds.steer import STEER_TASKS, run_steering
-from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, _floor_traces, subsample
+from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, _floor_traces, colorscale_for, subsample
 
 LENS_LAYERS_DEFAULT = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 19, 20, 22, 24, 26, 28, 30, 32]
 
@@ -44,7 +44,7 @@ def depth_figure(coords_by_layer: dict[int, np.ndarray], color_values: list[Any]
                                 for c in color_values]
     else:
         base_marker["color"] = [float(c) for c in color_values]
-        base_marker["colorscale"] = "Viridis"
+        base_marker["colorscale"] = colorscale_for(color_mode)
 
     def traces(li: int) -> list[go.BaseTraceType]:
         c = np.round(coords_by_layer[li], 3)
@@ -183,12 +183,15 @@ def run_depth(
     evr: dict[int, list[float]] = {}
     scores: dict[int, dict[str, Any]] = {}
     metric_names: list[str] = []
+    nuisance = roles.get("nuisance_group")
     for li in range(n_layers + 1):
-        pca = fit_pca(states[:, li].astype(np.float32), 3)
+        xl = states[:, li].astype(np.float32)
+        if nuisance:
+            xl = center_by_group(xl, labels, nuisance)
+        pca = fit_pca(xl, 3)
         coords_by_layer[li] = pca.coords[sub]
         evr[li] = [float(v) for v in pca.explained_variance_ratio]
-        rep = run_shape_check(spec.name, pca.coords, labels,
-                              acts=states[:, li].astype(np.float32)).to_dict()
+        rep = run_shape_check(spec.name, pca.coords, labels, acts=xl).to_dict()
         crit = _critical_metrics(rep)
         metric_names = list(crit)
         scores[li] = {"status": rep["status"], "metrics": crit}

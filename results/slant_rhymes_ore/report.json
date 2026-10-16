@@ -1,0 +1,138 @@
+{
+ "name": "slant_rhymes_ore",
+ "spec": {
+  "tier": "extended",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "1D curve from perfect rhyme to poor rhyme",
+  "replication_mode": "supervised-approx",
+  "sources": [
+   "blog-world"
+  ],
+  "prompt_template": "TBD",
+  "dataset": "words graded by rhyme distance to \"-ore\"",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "A word that sounds like it could rhyme with door is {word}",
+  "source": "goodfire.ai/research/the-world-inside-neural-networks (slant-rhyme subspace)",
+  "deviations": [
+   "prompt template and item list are ours (no template published)",
+   "three rhyme grades assigned by us"
+  ],
+  "n_total": 75,
+  "n_kept": 75,
+  "n_outliers_removed": 0,
+  "examples": [
+   "A word that sounds like it could rhyme with door is door",
+   "A word that sounds like it could rhyme with door is more",
+   "A word that sounds like it could rhyme with door is floor",
+   "A word that sounds like it could rhyme with door is shore",
+   "A word that sounds like it could rhyme with door is core"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.09569228902051155,
+   0.06444247250071544,
+   0.04076828542592621
+  ],
+  "n_points": 75,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "ordinal",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "spearman_best_direction",
+    "value": 0.8229568864675431,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "rank correlation along the best linear direction in PCA-3",
+    "partial_threshold": 0.4,
+    "informative": false
+   },
+   {
+    "name": "knn_r2",
+    "value": 0.7534973491533824,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "cross-validated 10-NN R^2 of the label from PCA-3",
+    "partial_threshold": 0.3,
+    "informative": false
+   },
+   {
+    "name": "centroid_path_adjacency",
+    "value": 1.0,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "fraction of class centroids whose nearest centroid is an adjacent class",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "class_centroid_distances": [
+    [
+     Infinity,
+     5.147,
+     6.608
+    ],
+    [
+     5.147,
+     Infinity,
+     5.093
+    ],
+    [
+     6.608,
+     5.093,
+     Infinity
+    ]
+   ],
+   "rubric_version": 2.1
+  }
+ },
+ "status": "matches",
+ "status_v1": null,
+ "color": {
+  "color_by": "grade_name",
+  "color_mode": "categorical",
+  "category_order": [
+   "none",
+   "perfect -ore",
+   "slant (r-ending)"
+  ]
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "slant_rhymes_ore",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 75,
+  "elapsed_s": 0.48,
+  "started": "2026-10-16T03:41:12+00:00",
+  "finished": "2026-10-16T03:41:13+00:00"
+ },
+ "precision_check": null
+}

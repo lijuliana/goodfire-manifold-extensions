@@ -14,6 +14,7 @@
   "dataset": "jamescalam/world-cities-geo",
   "n_paper": "~4000"
  },
+ "preprocessing": "none",
  "prompt_set": {
   "template": "The geographical coordinates latitude {latitude} and longitude {longitude} are in the country of",
   "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
@@ -51,7 +52,8 @@
     "critical": true,
     "passed": true,
     "note": "5-NN continent accuracy 0.93 vs majority baseline 0.31",
-    "partial_threshold": 0.08
+    "partial_threshold": 0.08,
+    "informative": false
    },
    {
     "name": "silhouette_by_group",
@@ -61,7 +63,8 @@
     "critical": false,
     "passed": true,
     "note": "",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    },
    {
     "name": "within_group_lat_r2",
@@ -71,7 +74,8 @@
     "critical": false,
     "passed": true,
     "note": "latitude linearly readable inside each continent cluster",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    },
    {
     "name": "within_group_lon_r2",
@@ -81,13 +85,14 @@
     "critical": false,
     "passed": true,
     "note": "longitude linearly readable inside each continent cluster",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    }
   ],
   "extras": {
    "knn_acc": 0.9275012299545056,
    "baseline": 0.3145992683737945,
-   "rubric_version": 2
+   "rubric_version": 2.1
   }
  },
  "status": "matches",

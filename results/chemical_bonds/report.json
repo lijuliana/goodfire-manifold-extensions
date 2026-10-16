@@ -1,0 +1,116 @@
+{
+ "name": "chemical_bonds",
+ "spec": {
+  "tier": "extended",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "ordered clusters by bond length",
+  "replication_mode": "supervised-approx",
+  "sources": [
+   "blog-saes figure"
+  ],
+  "prompt_template": "TBD",
+  "dataset": "table of covalent bonds with lengths",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "The length of a {bond} bond is about",
+  "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+  "deviations": [
+   "prompt template and item list are ours (no template published)",
+   "typical covalent bond lengths from reference tables"
+  ],
+  "n_total": 47,
+  "n_kept": 47,
+  "n_outliers_removed": 0,
+  "examples": [
+   "The length of a hydrogen-hydrogen single bond is about",
+   "The length of a carbon-hydrogen single bond is about",
+   "The length of a nitrogen-hydrogen single bond is about",
+   "The length of a oxygen-hydrogen single bond is about",
+   "The length of a fluorine-hydrogen single bond is about"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.21523906472062151,
+   0.15258315144430465,
+   0.11003824341629287
+  ],
+  "n_points": 47,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "failed",
+  "reason": "failed: spearman_best_direction=0.494 (>=0.8); knn_r2=-0.054 (>=0.6); linear_r2_from_pcs=0.258 (>=0.5)",
+  "checks": [
+   {
+    "name": "spearman_best_direction",
+    "value": 0.49418774838111945,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "label monotone along the best linear direction in PCA-3",
+    "partial_threshold": 0.6,
+    "informative": false
+   },
+   {
+    "name": "knn_r2",
+    "value": -0.05358213890915571,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "cross-validated 10-NN R^2 of the label from PCA-3 (nonlinear readability)",
+    "partial_threshold": 0.4,
+    "informative": false
+   },
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.25781284589562825,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "R^2 of label regressed on the 3 PCs (share of top-3 variance)",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "rubric_version": 2.1
+  }
+ },
+ "status": "failed",
+ "status_v1": null,
+ "color": {
+  "color_by": "length_pm",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "chemical_bonds",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 47,
+  "elapsed_s": 0.31,
+  "started": "2026-10-16T03:41:07+00:00",
+  "finished": "2026-10-16T03:41:08+00:00"
+ },
+ "precision_check": null
+}

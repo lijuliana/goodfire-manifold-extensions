@@ -14,6 +14,7 @@
   "dataset": "synthetic, age in range(1, 100)",
   "n_paper": 99
  },
+ "preprocessing": "none",
  "prompt_set": {
   "template": "They are {age} years old. ",
   "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
@@ -51,17 +52,19 @@
     "critical": true,
     "passed": true,
     "note": "label monotone along the best linear direction in PCA-3",
-    "partial_threshold": 0.6
+    "partial_threshold": 0.6,
+    "informative": false
    },
    {
     "name": "knn_r2",
-    "value": 0.971490543049487,
+    "value": 0.9791177615991538,
     "threshold": 0.6,
     "op": ">=",
     "critical": true,
     "passed": true,
     "note": "cross-validated 10-NN R^2 of the label from PCA-3 (nonlinear readability)",
-    "partial_threshold": 0.4
+    "partial_threshold": 0.4,
+    "informative": false
    },
    {
     "name": "linear_r2_from_pcs",
@@ -71,11 +74,12 @@
     "critical": false,
     "passed": true,
     "note": "R^2 of label regressed on the 3 PCs (share of top-3 variance)",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    }
   ],
   "extras": {
-   "rubric_version": 2
+   "rubric_version": 2.1
   }
  },
  "status": "matches",

@@ -18,7 +18,7 @@ class PromptSet:
     template: str
     source: str
     deviations: list[str] = field(default_factory=list)
-    spans: list[tuple[int, int]] | None = None   # char span whose last token is read; None = last token
+    spans: list[tuple[int, int]] | None = None   # char span to read (last token of it); None = last
 
     def __post_init__(self) -> None:
         if len(self.prompts) != len(self.labels):

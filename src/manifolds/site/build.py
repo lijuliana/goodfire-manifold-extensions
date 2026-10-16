@@ -180,9 +180,9 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 <h2>Replication status</h2>
 <div class="box"><span class="badge badge-{{ r.status }}">{{ r.badge }}</span> <span class="small">{{ r.reason }}</span>
 <table style="margin:10px 0 0"><thead><tr><th>check</th><th>value</th><th>threshold</th><th>critical</th><th>result</th></tr></thead><tbody>
-{% for c in r.checks %}<tr><td class="mono" title="{{ c.note }}">{{ c.name }}</td><td class="mono">{{ '%.3f'|format(c.value) }}</td><td class="mono">{{ c.op }} {{ c.threshold }}</td><td>{{ 'yes' if c.critical else 'no' }}</td><td class="{{ 'check-pass' if c.passed else 'check-fail' }}">{{ 'pass' if c.passed else 'fail' }}</td></tr>{% endfor %}
+{% for c in r.checks %}<tr><td class="mono" title="{{ c.note }}">{{ c.name }}</td><td class="mono">{{ '%.3f'|format(c.value) }}</td><td class="mono">{{ c.op }} {{ c.threshold }}</td><td>{{ 'info only' if c.informative else ('yes' if c.critical else 'no') }}</td><td class="{{ 'check-pass' if c.passed else ('small' if c.informative else 'check-fail') }}">{{ 'pass' if c.passed else 'fail' }}</td></tr>{% endfor %}
 </tbody></table>
-<p class="small">Thresholds are ours; the sources describe shapes qualitatively. PCA explained variance: {{ r.evr }}.</p></div>
+<p class="small">Thresholds are ours; the sources describe shapes qualitatively. PCA explained variance: {{ r.evr }}.{% if r.preprocessing and r.preprocessing != 'none' %} Preprocessing: {{ r.preprocessing }}.{% endif %}</p></div>
 </div>
 <div>
 <h2>Prompts</h2>
@@ -474,6 +474,8 @@ def _by_label(report: dict[str, Any]) -> str:
     color = report.get("color", {})
     if color.get("color_mode") == "hex":
         return "hue (each point drawn in its own colour)"
+    if color.get("color_mode") == "diverging":
+        return str(color.get("color_by", "")).replace("_", " ") + " (red = conservative, blue = liberal)"
     return str(color.get("color_by", "")).replace("_", " ")
 
 
@@ -550,7 +552,7 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
             "badge": BADGE_TEXT[rep["status"]], "reason": rep["shape"]["reason"],
             "geometry": spec["expected_geometry"], "model": spec["model"], "layer": spec["layer"],
             "replication_mode": spec["replication_mode"], "sources": _source_links(spec["sources"]),
-            "checks": rep["shape"]["checks"],
+            "checks": rep["shape"]["checks"], "preprocessing": rep.get("preprocessing", "none"),
             "evr": ", ".join(f"{v:.1%}" for v in rep["pca"]["explained_variance_ratio"]),
             "template": ps["template"], "n_kept": ps["n_kept"], "n_total": ps["n_total"],
             "n_outliers": ps["n_outliers_removed"], "examples": ps["examples"],

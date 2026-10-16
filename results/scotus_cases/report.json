@@ -1,0 +1,116 @@
+{
+ "name": "scotus_cases",
+ "spec": {
+  "tier": "extended",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "1D curve by year",
+  "replication_mode": "supervised-approx",
+  "sources": [
+   "blog-saes figure"
+  ],
+  "prompt_template": "TBD",
+  "dataset": "curated list of landmark Supreme Court cases with years",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "The Supreme Court decided {case} in the year",
+  "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+  "deviations": [
+   "prompt template and item list are ours (no template published)",
+   "decision years from general knowledge"
+  ],
+  "n_total": 57,
+  "n_kept": 56,
+  "n_outliers_removed": 1,
+  "examples": [
+   "The Supreme Court decided Marbury v. Madison in the year",
+   "The Supreme Court decided McCulloch v. Maryland in the year",
+   "The Supreme Court decided Gibbons v. Ogden in the year",
+   "The Supreme Court decided Dred Scott v. Sandford in the year",
+   "The Supreme Court decided Plessy v. Ferguson in the year"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.3528025579892712,
+   0.21961948295893233,
+   0.05976604263078734
+  ],
+  "n_points": 56,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "failed",
+  "reason": "failed: knn_r2=-0.183 (>=0.6); linear_r2_from_pcs=0.458 (>=0.5)",
+  "checks": [
+   {
+    "name": "spearman_best_direction",
+    "value": 0.8941602784747695,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "label monotone along the best linear direction in PCA-3",
+    "partial_threshold": 0.6,
+    "informative": false
+   },
+   {
+    "name": "knn_r2",
+    "value": -0.18300551498900058,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "cross-validated 10-NN R^2 of the label from PCA-3 (nonlinear readability)",
+    "partial_threshold": 0.4,
+    "informative": false
+   },
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.4583007461627192,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "R^2 of label regressed on the 3 PCs (share of top-3 variance)",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "rubric_version": 2.1
+  }
+ },
+ "status": "failed",
+ "status_v1": null,
+ "color": {
+  "color_by": "year",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "scotus_cases",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 57,
+  "elapsed_s": 0.45,
+  "started": "2026-10-16T03:41:07+00:00",
+  "finished": "2026-10-16T03:41:07+00:00"
+ },
+ "precision_check": null
+}

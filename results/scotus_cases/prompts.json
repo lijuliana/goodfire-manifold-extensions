@@ -1,0 +1,300 @@
+{
+ "name": "scotus_cases",
+ "template": "The Supreme Court decided {case} in the year",
+ "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)",
+  "decision years from general knowledge"
+ ],
+ "n": 57,
+ "prompts": [
+  "The Supreme Court decided Marbury v. Madison in the year",
+  "The Supreme Court decided McCulloch v. Maryland in the year",
+  "The Supreme Court decided Gibbons v. Ogden in the year",
+  "The Supreme Court decided Dred Scott v. Sandford in the year",
+  "The Supreme Court decided Plessy v. Ferguson in the year",
+  "The Supreme Court decided Lochner v. New York in the year",
+  "The Supreme Court decided Schenck v. United States in the year",
+  "The Supreme Court decided Gitlow v. New York in the year",
+  "The Supreme Court decided Buck v. Bell in the year",
+  "The Supreme Court decided Near v. Minnesota in the year",
+  "The Supreme Court decided West Coast Hotel v. Parrish in the year",
+  "The Supreme Court decided United States v. Carolene Products in the year",
+  "The Supreme Court decided Korematsu v. United States in the year",
+  "The Supreme Court decided Brown v. Board of Education in the year",
+  "The Supreme Court decided Mapp v. Ohio in the year",
+  "The Supreme Court decided Engel v. Vitale in the year",
+  "The Supreme Court decided Gideon v. Wainwright in the year",
+  "The Supreme Court decided New York Times v. Sullivan in the year",
+  "The Supreme Court decided Griswold v. Connecticut in the year",
+  "The Supreme Court decided Miranda v. Arizona in the year",
+  "The Supreme Court decided Loving v. Virginia in the year",
+  "The Supreme Court decided Terry v. Ohio in the year",
+  "The Supreme Court decided Tinker v. Des Moines in the year",
+  "The Supreme Court decided Brandenburg v. Ohio in the year",
+  "The Supreme Court decided Lemon v. Kurtzman in the year",
+  "The Supreme Court decided New York Times v. United States in the year",
+  "The Supreme Court decided Furman v. Georgia in the year",
+  "The Supreme Court decided Roe v. Wade in the year",
+  "The Supreme Court decided Miller v. California in the year",
+  "The Supreme Court decided United States v. Nixon in the year",
+  "The Supreme Court decided Gregg v. Georgia in the year",
+  "The Supreme Court decided Buckley v. Valeo in the year",
+  "The Supreme Court decided Regents of the University of California v. Bakke in the year",
+  "The Supreme Court decided Chevron v. NRDC in the year",
+  "The Supreme Court decided Bowers v. Hardwick in the year",
+  "The Supreme Court decided Texas v. Johnson in the year",
+  "The Supreme Court decided Cruzan v. Missouri in the year",
+  "The Supreme Court decided Planned Parenthood v. Casey in the year",
+  "The Supreme Court decided Lucas v. South Carolina Coastal Council in the year",
+  "The Supreme Court decided Romer v. Evans in the year",
+  "The Supreme Court decided Clinton v. Jones in the year",
+  "The Supreme Court decided Bush v. Gore in the year",
+  "The Supreme Court decided Lawrence v. Texas in the year",
+  "The Supreme Court decided Grutter v. Bollinger in the year",
+  "The Supreme Court decided Kelo v. City of New London in the year",
+  "The Supreme Court decided District of Columbia v. Heller in the year",
+  "The Supreme Court decided Citizens United v. FEC in the year",
+  "The Supreme Court decided McDonald v. Chicago in the year",
+  "The Supreme Court decided National Federation of Independent Business v. Sebelius in the year",
+  "The Supreme Court decided Shelby County v. Holder in the year",
+  "The Supreme Court decided Obergefell v. Hodges in the year",
+  "The Supreme Court decided King v. Burwell in the year",
+  "The Supreme Court decided Trump v. Hawaii in the year",
+  "The Supreme Court decided Bostock v. Clayton County in the year",
+  "The Supreme Court decided Dobbs v. Jackson Women's Health Organization in the year",
+  "The Supreme Court decided Students for Fair Admissions v. Harvard in the year",
+  "The Supreme Court decided Trump v. United States in the year"
+ ],
+ "labels": [
+  {
+   "year": 1803.0,
+   "case": "Marbury v. Madison"
+  },
+  {
+   "year": 1819.0,
+   "case": "McCulloch v. Maryland"
+  },
+  {
+   "year": 1824.0,
+   "case": "Gibbons v. Ogden"
+  },
+  {
+   "year": 1857.0,
+   "case": "Dred Scott v. Sandford"
+  },
+  {
+   "year": 1896.0,
+   "case": "Plessy v. Ferguson"
+  },
+  {
+   "year": 1905.0,
+   "case": "Lochner v. New York"
+  },
+  {
+   "year": 1919.0,
+   "case": "Schenck v. United States"
+  },
+  {
+   "year": 1925.0,
+   "case": "Gitlow v. New York"
+  },
+  {
+   "year": 1927.0,
+   "case": "Buck v. Bell"
+  },
+  {
+   "year": 1931.0,
+   "case": "Near v. Minnesota"
+  },
+  {
+   "year": 1937.0,
+   "case": "West Coast Hotel v. Parrish"
+  },
+  {
+   "year": 1938.0,
+   "case": "United States v. Carolene Products"
+  },
+  {
+   "year": 1944.0,
+   "case": "Korematsu v. United States"
+  },
+  {
+   "year": 1954.0,
+   "case": "Brown v. Board of Education"
+  },
+  {
+   "year": 1961.0,
+   "case": "Mapp v. Ohio"
+  },
+  {
+   "year": 1962.0,
+   "case": "Engel v. Vitale"
+  },
+  {
+   "year": 1963.0,
+   "case": "Gideon v. Wainwright"
+  },
+  {
+   "year": 1964.0,
+   "case": "New York Times v. Sullivan"
+  },
+  {
+   "year": 1965.0,
+   "case": "Griswold v. Connecticut"
+  },
+  {
+   "year": 1966.0,
+   "case": "Miranda v. Arizona"
+  },
+  {
+   "year": 1967.0,
+   "case": "Loving v. Virginia"
+  },
+  {
+   "year": 1968.0,
+   "case": "Terry v. Ohio"
+  },
+  {
+   "year": 1969.0,
+   "case": "Tinker v. Des Moines"
+  },
+  {
+   "year": 1969.0,
+   "case": "Brandenburg v. Ohio"
+  },
+  {
+   "year": 1971.0,
+   "case": "Lemon v. Kurtzman"
+  },
+  {
+   "year": 1971.0,
+   "case": "New York Times v. United States"
+  },
+  {
+   "year": 1972.0,
+   "case": "Furman v. Georgia"
+  },
+  {
+   "year": 1973.0,
+   "case": "Roe v. Wade"
+  },
+  {
+   "year": 1973.0,
+   "case": "Miller v. California"
+  },
+  {
+   "year": 1974.0,
+   "case": "United States v. Nixon"
+  },
+  {
+   "year": 1976.0,
+   "case": "Gregg v. Georgia"
+  },
+  {
+   "year": 1976.0,
+   "case": "Buckley v. Valeo"
+  },
+  {
+   "year": 1978.0,
+   "case": "Regents of the University of California v. Bakke"
+  },
+  {
+   "year": 1984.0,
+   "case": "Chevron v. NRDC"
+  },
+  {
+   "year": 1986.0,
+   "case": "Bowers v. Hardwick"
+  },
+  {
+   "year": 1989.0,
+   "case": "Texas v. Johnson"
+  },
+  {
+   "year": 1990.0,
+   "case": "Cruzan v. Missouri"
+  },
+  {
+   "year": 1992.0,
+   "case": "Planned Parenthood v. Casey"
+  },
+  {
+   "year": 1992.0,
+   "case": "Lucas v. South Carolina Coastal Council"
+  },
+  {
+   "year": 1996.0,
+   "case": "Romer v. Evans"
+  },
+  {
+   "year": 1997.0,
+   "case": "Clinton v. Jones"
+  },
+  {
+   "year": 2000.0,
+   "case": "Bush v. Gore"
+  },
+  {
+   "year": 2003.0,
+   "case": "Lawrence v. Texas"
+  },
+  {
+   "year": 2003.0,
+   "case": "Grutter v. Bollinger"
+  },
+  {
+   "year": 2005.0,
+   "case": "Kelo v. City of New London"
+  },
+  {
+   "year": 2008.0,
+   "case": "District of Columbia v. Heller"
+  },
+  {
+   "year": 2010.0,
+   "case": "Citizens United v. FEC"
+  },
+  {
+   "year": 2010.0,
+   "case": "McDonald v. Chicago"
+  },
+  {
+   "year": 2012.0,
+   "case": "National Federation of Independent Business v. Sebelius"
+  },
+  {
+   "year": 2013.0,
+   "case": "Shelby County v. Holder"
+  },
+  {
+   "year": 2015.0,
+   "case": "Obergefell v. Hodges"
+  },
+  {
+   "year": 2015.0,
+   "case": "King v. Burwell"
+  },
+  {
+   "year": 2018.0,
+   "case": "Trump v. Hawaii"
+  },
+  {
+   "year": 2020.0,
+   "case": "Bostock v. Clayton County"
+  },
+  {
+   "year": 2022.0,
+   "case": "Dobbs v. Jackson Women's Health Organization"
+  },
+  {
+   "year": 2023.0,
+   "case": "Students for Fair Admissions v. Harvard"
+  },
+  {
+   "year": 2024.0,
+   "case": "Trump v. United States"
+  }
+ ],
+ "spans": null
+}

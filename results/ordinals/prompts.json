@@ -1,0 +1,514 @@
+{
+ "name": "ordinals",
+ "template": "She finished the race in {ordinal} place",
+ "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)"
+ ],
+ "n": 100,
+ "prompts": [
+  "She finished the race in first place",
+  "She finished the race in second place",
+  "She finished the race in third place",
+  "She finished the race in fourth place",
+  "She finished the race in fifth place",
+  "She finished the race in sixth place",
+  "She finished the race in seventh place",
+  "She finished the race in eighth place",
+  "She finished the race in ninth place",
+  "She finished the race in tenth place",
+  "She finished the race in eleventh place",
+  "She finished the race in twelfth place",
+  "She finished the race in thirteenth place",
+  "She finished the race in fourteenth place",
+  "She finished the race in fifteenth place",
+  "She finished the race in sixteenth place",
+  "She finished the race in seventeenth place",
+  "She finished the race in eighteenth place",
+  "She finished the race in nineteenth place",
+  "She finished the race in twentieth place",
+  "She finished the race in twenty-first place",
+  "She finished the race in twenty-second place",
+  "She finished the race in twenty-third place",
+  "She finished the race in twenty-fourth place",
+  "She finished the race in twenty-fifth place",
+  "She finished the race in twenty-sixth place",
+  "She finished the race in twenty-seventh place",
+  "She finished the race in twenty-eighth place",
+  "She finished the race in twenty-ninth place",
+  "She finished the race in thirtieth place",
+  "She finished the race in thirty-first place",
+  "She finished the race in thirty-second place",
+  "She finished the race in thirty-third place",
+  "She finished the race in thirty-fourth place",
+  "She finished the race in thirty-fifth place",
+  "She finished the race in thirty-sixth place",
+  "She finished the race in thirty-seventh place",
+  "She finished the race in thirty-eighth place",
+  "She finished the race in thirty-ninth place",
+  "She finished the race in fortieth place",
+  "She finished the race in forty-first place",
+  "She finished the race in forty-second place",
+  "She finished the race in forty-third place",
+  "She finished the race in forty-fourth place",
+  "She finished the race in forty-fifth place",
+  "She finished the race in forty-sixth place",
+  "She finished the race in forty-seventh place",
+  "She finished the race in forty-eighth place",
+  "She finished the race in forty-ninth place",
+  "She finished the race in fiftieth place",
+  "She finished the race in fifty-first place",
+  "She finished the race in fifty-second place",
+  "She finished the race in fifty-third place",
+  "She finished the race in fifty-fourth place",
+  "She finished the race in fifty-fifth place",
+  "She finished the race in fifty-sixth place",
+  "She finished the race in fifty-seventh place",
+  "She finished the race in fifty-eighth place",
+  "She finished the race in fifty-ninth place",
+  "She finished the race in sixtieth place",
+  "She finished the race in sixty-first place",
+  "She finished the race in sixty-second place",
+  "She finished the race in sixty-third place",
+  "She finished the race in sixty-fourth place",
+  "She finished the race in sixty-fifth place",
+  "She finished the race in sixty-sixth place",
+  "She finished the race in sixty-seventh place",
+  "She finished the race in sixty-eighth place",
+  "She finished the race in sixty-ninth place",
+  "She finished the race in seventieth place",
+  "She finished the race in seventy-first place",
+  "She finished the race in seventy-second place",
+  "She finished the race in seventy-third place",
+  "She finished the race in seventy-fourth place",
+  "She finished the race in seventy-fifth place",
+  "She finished the race in seventy-sixth place",
+  "She finished the race in seventy-seventh place",
+  "She finished the race in seventy-eighth place",
+  "She finished the race in seventy-ninth place",
+  "She finished the race in eightieth place",
+  "She finished the race in eighty-first place",
+  "She finished the race in eighty-second place",
+  "She finished the race in eighty-third place",
+  "She finished the race in eighty-fourth place",
+  "She finished the race in eighty-fifth place",
+  "She finished the race in eighty-sixth place",
+  "She finished the race in eighty-seventh place",
+  "She finished the race in eighty-eighth place",
+  "She finished the race in eighty-ninth place",
+  "She finished the race in ninetieth place",
+  "She finished the race in ninety-first place",
+  "She finished the race in ninety-second place",
+  "She finished the race in ninety-third place",
+  "She finished the race in ninety-fourth place",
+  "She finished the race in ninety-fifth place",
+  "She finished the race in ninety-sixth place",
+  "She finished the race in ninety-seventh place",
+  "She finished the race in ninety-eighth place",
+  "She finished the race in ninety-ninth place",
+  "She finished the race in one hundredth place"
+ ],
+ "labels": [
+  {
+   "rank": 1.0,
+   "ordinal": "first"
+  },
+  {
+   "rank": 2.0,
+   "ordinal": "second"
+  },
+  {
+   "rank": 3.0,
+   "ordinal": "third"
+  },
+  {
+   "rank": 4.0,
+   "ordinal": "fourth"
+  },
+  {
+   "rank": 5.0,
+   "ordinal": "fifth"
+  },
+  {
+   "rank": 6.0,
+   "ordinal": "sixth"
+  },
+  {
+   "rank": 7.0,
+   "ordinal": "seventh"
+  },
+  {
+   "rank": 8.0,
+   "ordinal": "eighth"
+  },
+  {
+   "rank": 9.0,
+   "ordinal": "ninth"
+  },
+  {
+   "rank": 10.0,
+   "ordinal": "tenth"
+  },
+  {
+   "rank": 11.0,
+   "ordinal": "eleventh"
+  },
+  {
+   "rank": 12.0,
+   "ordinal": "twelfth"
+  },
+  {
+   "rank": 13.0,
+   "ordinal": "thirteenth"
+  },
+  {
+   "rank": 14.0,
+   "ordinal": "fourteenth"
+  },
+  {
+   "rank": 15.0,
+   "ordinal": "fifteenth"
+  },
+  {
+   "rank": 16.0,
+   "ordinal": "sixteenth"
+  },
+  {
+   "rank": 17.0,
+   "ordinal": "seventeenth"
+  },
+  {
+   "rank": 18.0,
+   "ordinal": "eighteenth"
+  },
+  {
+   "rank": 19.0,
+   "ordinal": "nineteenth"
+  },
+  {
+   "rank": 20.0,
+   "ordinal": "twentieth"
+  },
+  {
+   "rank": 21.0,
+   "ordinal": "twenty-first"
+  },
+  {
+   "rank": 22.0,
+   "ordinal": "twenty-second"
+  },
+  {
+   "rank": 23.0,
+   "ordinal": "twenty-third"
+  },
+  {
+   "rank": 24.0,
+   "ordinal": "twenty-fourth"
+  },
+  {
+   "rank": 25.0,
+   "ordinal": "twenty-fifth"
+  },
+  {
+   "rank": 26.0,
+   "ordinal": "twenty-sixth"
+  },
+  {
+   "rank": 27.0,
+   "ordinal": "twenty-seventh"
+  },
+  {
+   "rank": 28.0,
+   "ordinal": "twenty-eighth"
+  },
+  {
+   "rank": 29.0,
+   "ordinal": "twenty-ninth"
+  },
+  {
+   "rank": 30.0,
+   "ordinal": "thirtieth"
+  },
+  {
+   "rank": 31.0,
+   "ordinal": "thirty-first"
+  },
+  {
+   "rank": 32.0,
+   "ordinal": "thirty-second"
+  },
+  {
+   "rank": 33.0,
+   "ordinal": "thirty-third"
+  },
+  {
+   "rank": 34.0,
+   "ordinal": "thirty-fourth"
+  },
+  {
+   "rank": 35.0,
+   "ordinal": "thirty-fifth"
+  },
+  {
+   "rank": 36.0,
+   "ordinal": "thirty-sixth"
+  },
+  {
+   "rank": 37.0,
+   "ordinal": "thirty-seventh"
+  },
+  {
+   "rank": 38.0,
+   "ordinal": "thirty-eighth"
+  },
+  {
+   "rank": 39.0,
+   "ordinal": "thirty-ninth"
+  },
+  {
+   "rank": 40.0,
+   "ordinal": "fortieth"
+  },
+  {
+   "rank": 41.0,
+   "ordinal": "forty-first"
+  },
+  {
+   "rank": 42.0,
+   "ordinal": "forty-second"
+  },
+  {
+   "rank": 43.0,
+   "ordinal": "forty-third"
+  },
+  {
+   "rank": 44.0,
+   "ordinal": "forty-fourth"
+  },
+  {
+   "rank": 45.0,
+   "ordinal": "forty-fifth"
+  },
+  {
+   "rank": 46.0,
+   "ordinal": "forty-sixth"
+  },
+  {
+   "rank": 47.0,
+   "ordinal": "forty-seventh"
+  },
+  {
+   "rank": 48.0,
+   "ordinal": "forty-eighth"
+  },
+  {
+   "rank": 49.0,
+   "ordinal": "forty-ninth"
+  },
+  {
+   "rank": 50.0,
+   "ordinal": "fiftieth"
+  },
+  {
+   "rank": 51.0,
+   "ordinal": "fifty-first"
+  },
+  {
+   "rank": 52.0,
+   "ordinal": "fifty-second"
+  },
+  {
+   "rank": 53.0,
+   "ordinal": "fifty-third"
+  },
+  {
+   "rank": 54.0,
+   "ordinal": "fifty-fourth"
+  },
+  {
+   "rank": 55.0,
+   "ordinal": "fifty-fifth"
+  },
+  {
+   "rank": 56.0,
+   "ordinal": "fifty-sixth"
+  },
+  {
+   "rank": 57.0,
+   "ordinal": "fifty-seventh"
+  },
+  {
+   "rank": 58.0,
+   "ordinal": "fifty-eighth"
+  },
+  {
+   "rank": 59.0,
+   "ordinal": "fifty-ninth"
+  },
+  {
+   "rank": 60.0,
+   "ordinal": "sixtieth"
+  },
+  {
+   "rank": 61.0,
+   "ordinal": "sixty-first"
+  },
+  {
+   "rank": 62.0,
+   "ordinal": "sixty-second"
+  },
+  {
+   "rank": 63.0,
+   "ordinal": "sixty-third"
+  },
+  {
+   "rank": 64.0,
+   "ordinal": "sixty-fourth"
+  },
+  {
+   "rank": 65.0,
+   "ordinal": "sixty-fifth"
+  },
+  {
+   "rank": 66.0,
+   "ordinal": "sixty-sixth"
+  },
+  {
+   "rank": 67.0,
+   "ordinal": "sixty-seventh"
+  },
+  {
+   "rank": 68.0,
+   "ordinal": "sixty-eighth"
+  },
+  {
+   "rank": 69.0,
+   "ordinal": "sixty-ninth"
+  },
+  {
+   "rank": 70.0,
+   "ordinal": "seventieth"
+  },
+  {
+   "rank": 71.0,
+   "ordinal": "seventy-first"
+  },
+  {
+   "rank": 72.0,
+   "ordinal": "seventy-second"
+  },
+  {
+   "rank": 73.0,
+   "ordinal": "seventy-third"
+  },
+  {
+   "rank": 74.0,
+   "ordinal": "seventy-fourth"
+  },
+  {
+   "rank": 75.0,
+   "ordinal": "seventy-fifth"
+  },
+  {
+   "rank": 76.0,
+   "ordinal": "seventy-sixth"
+  },
+  {
+   "rank": 77.0,
+   "ordinal": "seventy-seventh"
+  },
+  {
+   "rank": 78.0,
+   "ordinal": "seventy-eighth"
+  },
+  {
+   "rank": 79.0,
+   "ordinal": "seventy-ninth"
+  },
+  {
+   "rank": 80.0,
+   "ordinal": "eightieth"
+  },
+  {
+   "rank": 81.0,
+   "ordinal": "eighty-first"
+  },
+  {
+   "rank": 82.0,
+   "ordinal": "eighty-second"
+  },
+  {
+   "rank": 83.0,
+   "ordinal": "eighty-third"
+  },
+  {
+   "rank": 84.0,
+   "ordinal": "eighty-fourth"
+  },
+  {
+   "rank": 85.0,
+   "ordinal": "eighty-fifth"
+  },
+  {
+   "rank": 86.0,
+   "ordinal": "eighty-sixth"
+  },
+  {
+   "rank": 87.0,
+   "ordinal": "eighty-seventh"
+  },
+  {
+   "rank": 88.0,
+   "ordinal": "eighty-eighth"
+  },
+  {
+   "rank": 89.0,
+   "ordinal": "eighty-ninth"
+  },
+  {
+   "rank": 90.0,
+   "ordinal": "ninetieth"
+  },
+  {
+   "rank": 91.0,
+   "ordinal": "ninety-first"
+  },
+  {
+   "rank": 92.0,
+   "ordinal": "ninety-second"
+  },
+  {
+   "rank": 93.0,
+   "ordinal": "ninety-third"
+  },
+  {
+   "rank": 94.0,
+   "ordinal": "ninety-fourth"
+  },
+  {
+   "rank": 95.0,
+   "ordinal": "ninety-fifth"
+  },
+  {
+   "rank": 96.0,
+   "ordinal": "ninety-sixth"
+  },
+  {
+   "rank": 97.0,
+   "ordinal": "ninety-seventh"
+  },
+  {
+   "rank": 98.0,
+   "ordinal": "ninety-eighth"
+  },
+  {
+   "rank": 99.0,
+   "ordinal": "ninety-ninth"
+  },
+  {
+   "rank": 100.0,
+   "ordinal": "one hundredth"
+  }
+ ],
+ "spans": null
+}

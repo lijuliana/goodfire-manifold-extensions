@@ -61,7 +61,7 @@ def test_span_token_and_layer_selection(tmp_path):
     prompts = ["abcdef", "xy"]
     spans = [(0, 3), (0, 1)]           # read the 3rd and 1st characters
     acts = ext.extract(prompts, progress=False, spans=spans, layer=1)
-    for i, (p, (a, b)) in enumerate(zip(prompts, spans, strict=True)):
+    for i, (p, (_a, b)) in enumerate(zip(prompts, spans, strict=True)):
         enc = tok([p])
         with torch.no_grad():
             hs = full(**enc, output_hidden_states=True).hidden_states

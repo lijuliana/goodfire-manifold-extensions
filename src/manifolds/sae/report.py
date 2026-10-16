@@ -27,7 +27,7 @@ from manifolds.sae.capture import (
     tuning_curves,
 )
 from manifolds.sae.llama_scope import LlamaScopeSAE
-from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, subsample
+from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, colorscale_for, subsample
 
 PARTIAL_KS = [1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64]
 
@@ -93,7 +93,7 @@ def partial_figure(gt: np.ndarray, partial: Any, color_values: list[Any], color_
         marker["color"] = [CATEGORICAL[cats.index(c) % len(CATEGORICAL)] for c in color_values]
     else:
         marker["color"] = [float(c) for c in color_values]
-        marker["colorscale"] = "Viridis"
+        marker["colorscale"] = colorscale_for(color_mode)
     for i, k in enumerate(partial.ks):
         c = partial.coords[k]
         fig.add_trace(go.Scatter3d(x=c[:, 0], y=c[:, 1], z=c[:, 2], mode="markers", marker=marker,

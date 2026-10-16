@@ -1,0 +1,146 @@
+{
+ "name": "weekdays_circle",
+ "spec": {
+  "tier": "cyclic",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "circle (period 7)",
+  "replication_mode": "exact-template",
+  "sources": [
+   "feucht2026 App. A Table 1",
+   "blog-steer",
+   "blog-calc"
+  ],
+  "prompt_template": "Q: What day is {offset} days after {concept}?\nA:",
+  "dataset": "Monday..Sunday x offsets one..fourteen (n=98)",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "Q: What day is {offset} days after {concept}?\\nA:",
+  "source": "arXiv 2605.01148 App. A Table 1",
+  "deviations": [
+   "read at the concept token (paper's circle claim); offsets one..fourteen"
+  ],
+  "n_total": 98,
+  "n_kept": 98,
+  "n_outliers_removed": 0,
+  "examples": [
+   "Q: What day is one days after Monday?\nA:",
+   "Q: What day is two days after Monday?\nA:",
+   "Q: What day is three days after Monday?\nA:",
+   "Q: What day is four days after Monday?\nA:",
+   "Q: What day is five days after Monday?\nA:"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.244957451677478,
+   0.21124106509949198,
+   0.12355760922986836
+  ],
+  "n_points": 98,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "circle",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "cyclic_order",
+    "value": 1.0,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "fraction of expected neighbours adjacent around the circle",
+    "partial_threshold": 0.75,
+    "informative": false
+   },
+   {
+    "name": "circular_corr",
+    "value": 0.9789591950836185,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "angle in best-fit plane vs ground-truth phase",
+    "partial_threshold": 0.6,
+    "informative": false
+   },
+   {
+    "name": "circle_fit_r2",
+    "value": 0.6471296598924927,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "variance of PCA-3 explained by cos/sin(phase)",
+    "partial_threshold": null,
+    "informative": false
+   },
+   {
+    "name": "roundness_cv",
+    "value": 0.14086462723628512,
+    "threshold": 0.35,
+    "op": "<=",
+    "critical": false,
+    "passed": true,
+    "note": "std/mean of radii in the fitted plane",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "centroid_angles": {
+    "0": -0.17789703668427995,
+    "1": -1.1170908999353502,
+    "2": -1.7753978080008872,
+    "3": -2.543326310005888,
+    "4": 2.7963181113363555,
+    "5": 1.8287713553086364,
+    "6": 0.898191658950153
+   },
+   "rubric_version": 2.1
+  }
+ },
+ "status": "matches",
+ "status_v1": null,
+ "color": {
+  "color_by": "day",
+  "color_mode": "categorical",
+  "category_order": [
+   "Friday",
+   "Monday",
+   "Saturday",
+   "Sunday",
+   "Thursday",
+   "Tuesday",
+   "Wednesday"
+  ]
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "concept span (last token of span)",
+  "manifold": "weekdays_circle",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 98,
+  "elapsed_s": 0.8,
+  "started": "2026-10-16T03:41:30+00:00",
+  "finished": "2026-10-16T03:41:31+00:00"
+ },
+ "precision_check": null
+}

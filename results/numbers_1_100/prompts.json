@@ -1,0 +1,714 @@
+{
+ "name": "numbers_1_100",
+ "template": "The number is {n}",
+ "source": "goodfire.ai/research/a-geometric-calculator (numbers as circles)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)"
+ ],
+ "n": 100,
+ "prompts": [
+  "The number is 1",
+  "The number is 2",
+  "The number is 3",
+  "The number is 4",
+  "The number is 5",
+  "The number is 6",
+  "The number is 7",
+  "The number is 8",
+  "The number is 9",
+  "The number is 10",
+  "The number is 11",
+  "The number is 12",
+  "The number is 13",
+  "The number is 14",
+  "The number is 15",
+  "The number is 16",
+  "The number is 17",
+  "The number is 18",
+  "The number is 19",
+  "The number is 20",
+  "The number is 21",
+  "The number is 22",
+  "The number is 23",
+  "The number is 24",
+  "The number is 25",
+  "The number is 26",
+  "The number is 27",
+  "The number is 28",
+  "The number is 29",
+  "The number is 30",
+  "The number is 31",
+  "The number is 32",
+  "The number is 33",
+  "The number is 34",
+  "The number is 35",
+  "The number is 36",
+  "The number is 37",
+  "The number is 38",
+  "The number is 39",
+  "The number is 40",
+  "The number is 41",
+  "The number is 42",
+  "The number is 43",
+  "The number is 44",
+  "The number is 45",
+  "The number is 46",
+  "The number is 47",
+  "The number is 48",
+  "The number is 49",
+  "The number is 50",
+  "The number is 51",
+  "The number is 52",
+  "The number is 53",
+  "The number is 54",
+  "The number is 55",
+  "The number is 56",
+  "The number is 57",
+  "The number is 58",
+  "The number is 59",
+  "The number is 60",
+  "The number is 61",
+  "The number is 62",
+  "The number is 63",
+  "The number is 64",
+  "The number is 65",
+  "The number is 66",
+  "The number is 67",
+  "The number is 68",
+  "The number is 69",
+  "The number is 70",
+  "The number is 71",
+  "The number is 72",
+  "The number is 73",
+  "The number is 74",
+  "The number is 75",
+  "The number is 76",
+  "The number is 77",
+  "The number is 78",
+  "The number is 79",
+  "The number is 80",
+  "The number is 81",
+  "The number is 82",
+  "The number is 83",
+  "The number is 84",
+  "The number is 85",
+  "The number is 86",
+  "The number is 87",
+  "The number is 88",
+  "The number is 89",
+  "The number is 90",
+  "The number is 91",
+  "The number is 92",
+  "The number is 93",
+  "The number is 94",
+  "The number is 95",
+  "The number is 96",
+  "The number is 97",
+  "The number is 98",
+  "The number is 99",
+  "The number is 100"
+ ],
+ "labels": [
+  {
+   "n": 1.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 2.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 3.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 4.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 5.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 6.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 7.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 8.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 9.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 10.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 11.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 12.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 13.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 14.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 15.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 16.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 17.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 18.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 19.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 20.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 21.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 22.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 23.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 24.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 25.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 26.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 27.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 28.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 29.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 30.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 31.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 32.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 33.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 34.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 35.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 36.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 37.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 38.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 39.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 40.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 41.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 42.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 43.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 44.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 45.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 46.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 47.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 48.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 49.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 50.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 51.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 52.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 53.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 54.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 55.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 56.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 57.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 58.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 59.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 60.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 61.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 62.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 63.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 64.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 65.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 66.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 67.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 68.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 69.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 70.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 71.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 72.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 73.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 74.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 75.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 76.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 77.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 78.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 79.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 80.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 81.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 82.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 83.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 84.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 85.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 86.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 87.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 88.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 89.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 90.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 91.0,
+   "ones_digit": 1.0,
+   "mod5": 1.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 92.0,
+   "ones_digit": 2.0,
+   "mod5": 2.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 93.0,
+   "ones_digit": 3.0,
+   "mod5": 3.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 94.0,
+   "ones_digit": 4.0,
+   "mod5": 4.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 95.0,
+   "ones_digit": 5.0,
+   "mod5": 0.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 96.0,
+   "ones_digit": 6.0,
+   "mod5": 1.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 97.0,
+   "ones_digit": 7.0,
+   "mod5": 2.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 98.0,
+   "ones_digit": 8.0,
+   "mod5": 3.0,
+   "mod2": 0.0
+  },
+  {
+   "n": 99.0,
+   "ones_digit": 9.0,
+   "mod5": 4.0,
+   "mod2": 1.0
+  },
+  {
+   "n": 100.0,
+   "ones_digit": 0.0,
+   "mod5": 0.0,
+   "mod2": 0.0
+  }
+ ],
+ "spans": null
+}

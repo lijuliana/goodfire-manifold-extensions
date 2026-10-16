@@ -1,0 +1,465 @@
+{
+ "name": "slant_rhymes_ore",
+ "template": "A word that sounds like it could rhyme with door is {word}",
+ "source": "goodfire.ai/research/the-world-inside-neural-networks (slant-rhyme subspace)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)",
+  "three rhyme grades assigned by us"
+ ],
+ "n": 75,
+ "prompts": [
+  "A word that sounds like it could rhyme with door is door",
+  "A word that sounds like it could rhyme with door is more",
+  "A word that sounds like it could rhyme with door is floor",
+  "A word that sounds like it could rhyme with door is shore",
+  "A word that sounds like it could rhyme with door is core",
+  "A word that sounds like it could rhyme with door is store",
+  "A word that sounds like it could rhyme with door is score",
+  "A word that sounds like it could rhyme with door is bore",
+  "A word that sounds like it could rhyme with door is pour",
+  "A word that sounds like it could rhyme with door is four",
+  "A word that sounds like it could rhyme with door is roar",
+  "A word that sounds like it could rhyme with door is war",
+  "A word that sounds like it could rhyme with door is oar",
+  "A word that sounds like it could rhyme with door is soar",
+  "A word that sounds like it could rhyme with door is snore",
+  "A word that sounds like it could rhyme with door is chore",
+  "A word that sounds like it could rhyme with door is lore",
+  "A word that sounds like it could rhyme with door is ignore",
+  "A word that sounds like it could rhyme with door is before",
+  "A word that sounds like it could rhyme with door is explore",
+  "A word that sounds like it could rhyme with door is restore",
+  "A word that sounds like it could rhyme with door is adore",
+  "A word that sounds like it could rhyme with door is tore",
+  "A word that sounds like it could rhyme with door is wore",
+  "A word that sounds like it could rhyme with door is sore",
+  "A word that sounds like it could rhyme with door is car",
+  "A word that sounds like it could rhyme with door is far",
+  "A word that sounds like it could rhyme with door is star",
+  "A word that sounds like it could rhyme with door is bar",
+  "A word that sounds like it could rhyme with door is jar",
+  "A word that sounds like it could rhyme with door is scar",
+  "A word that sounds like it could rhyme with door is tar",
+  "A word that sounds like it could rhyme with door is fire",
+  "A word that sounds like it could rhyme with door is wire",
+  "A word that sounds like it could rhyme with door is hire",
+  "A word that sounds like it could rhyme with door is tire",
+  "A word that sounds like it could rhyme with door is dire",
+  "A word that sounds like it could rhyme with door is here",
+  "A word that sounds like it could rhyme with door is near",
+  "A word that sounds like it could rhyme with door is dear",
+  "A word that sounds like it could rhyme with door is fear",
+  "A word that sounds like it could rhyme with door is clear",
+  "A word that sounds like it could rhyme with door is year",
+  "A word that sounds like it could rhyme with door is hair",
+  "A word that sounds like it could rhyme with door is bear",
+  "A word that sounds like it could rhyme with door is care",
+  "A word that sounds like it could rhyme with door is wear",
+  "A word that sounds like it could rhyme with door is pure",
+  "A word that sounds like it could rhyme with door is sure",
+  "A word that sounds like it could rhyme with door is cure",
+  "A word that sounds like it could rhyme with door is cat",
+  "A word that sounds like it could rhyme with door is tree",
+  "A word that sounds like it could rhyme with door is sky",
+  "A word that sounds like it could rhyme with door is book",
+  "A word that sounds like it could rhyme with door is run",
+  "A word that sounds like it could rhyme with door is hope",
+  "A word that sounds like it could rhyme with door is light",
+  "A word that sounds like it could rhyme with door is time",
+  "A word that sounds like it could rhyme with door is song",
+  "A word that sounds like it could rhyme with door is road",
+  "A word that sounds like it could rhyme with door is milk",
+  "A word that sounds like it could rhyme with door is stone",
+  "A word that sounds like it could rhyme with door is glass",
+  "A word that sounds like it could rhyme with door is wind",
+  "A word that sounds like it could rhyme with door is green",
+  "A word that sounds like it could rhyme with door is hand",
+  "A word that sounds like it could rhyme with door is bell",
+  "A word that sounds like it could rhyme with door is ship",
+  "A word that sounds like it could rhyme with door is rain",
+  "A word that sounds like it could rhyme with door is fish",
+  "A word that sounds like it could rhyme with door is moon",
+  "A word that sounds like it could rhyme with door is gold",
+  "A word that sounds like it could rhyme with door is lamp",
+  "A word that sounds like it could rhyme with door is coat",
+  "A word that sounds like it could rhyme with door is dust"
+ ],
+ "labels": [
+  {
+   "rhyme_grade": 0.0,
+   "word": "door",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "more",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "floor",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "shore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "core",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "store",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "score",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "bore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "pour",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "four",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "roar",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "war",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "oar",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "soar",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "snore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "chore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "lore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "ignore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "before",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "explore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "restore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "adore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "tore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "wore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 0.0,
+   "word": "sore",
+   "grade_name": "perfect -ore"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "car",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "far",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "star",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "bar",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "jar",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "scar",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "tar",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "fire",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "wire",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "hire",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "tire",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "dire",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "here",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "near",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "dear",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "fear",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "clear",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "year",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "hair",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "bear",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "care",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "wear",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "pure",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "sure",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 1.0,
+   "word": "cure",
+   "grade_name": "slant (r-ending)"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "cat",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "tree",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "sky",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "book",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "run",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "hope",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "light",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "time",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "song",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "road",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "milk",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "stone",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "glass",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "wind",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "green",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "hand",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "bell",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "ship",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "rain",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "fish",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "moon",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "gold",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "lamp",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "coat",
+   "grade_name": "none"
+  },
+  {
+   "rhyme_grade": 2.0,
+   "word": "dust",
+   "grade_name": "none"
+  }
+ ],
+ "spans": null
+}

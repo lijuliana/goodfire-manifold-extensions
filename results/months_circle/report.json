@@ -1,0 +1,155 @@
+{
+ "name": "months_circle",
+ "spec": {
+  "tier": "cyclic",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "circle (period 12)",
+  "replication_mode": "exact-template",
+  "sources": [
+   "feucht2026 App. A Table 1",
+   "blog-calc"
+  ],
+  "prompt_template": "Q: What month is {offset} months after {concept}?\nA:",
+  "dataset": "January..December x offsets one..twenty-four (n=288)",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "Q: What month is {offset} months after {concept}?\\nA:",
+  "source": "arXiv 2605.01148 App. A Table 1",
+  "deviations": [
+   "read at the concept token; offsets one..twenty-four"
+  ],
+  "n_total": 288,
+  "n_kept": 288,
+  "n_outliers_removed": 0,
+  "examples": [
+   "Q: What month is one months after January?\nA:",
+   "Q: What month is two months after January?\nA:",
+   "Q: What month is three months after January?\nA:",
+   "Q: What month is four months after January?\nA:",
+   "Q: What month is five months after January?\nA:"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.15244022429665088,
+   0.13418323377616484,
+   0.11838011752672614
+  ],
+  "n_points": 288,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "circle",
+  "status": "partial",
+  "reason": "failed: cyclic_order=0.833 (>=1.0)",
+  "checks": [
+   {
+    "name": "cyclic_order",
+    "value": 0.8333333333333334,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "fraction of expected neighbours adjacent around the circle",
+    "partial_threshold": 0.75,
+    "informative": false
+   },
+   {
+    "name": "circular_corr",
+    "value": 0.8931318375984294,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "angle in best-fit plane vs ground-truth phase",
+    "partial_threshold": 0.6,
+    "informative": false
+   },
+   {
+    "name": "circle_fit_r2",
+    "value": 0.5438286885550148,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "variance of PCA-3 explained by cos/sin(phase)",
+    "partial_threshold": null,
+    "informative": false
+   },
+   {
+    "name": "roundness_cv",
+    "value": 0.334065123250549,
+    "threshold": 0.35,
+    "op": "<=",
+    "critical": false,
+    "passed": true,
+    "note": "std/mean of radii in the fitted plane",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "centroid_angles": {
+    "0": -2.8149577624552546,
+    "1": -2.852071835029198,
+    "2": -1.5184500336842792,
+    "3": -1.0550396464803176,
+    "4": -0.8659817268615341,
+    "5": -0.6076831738206713,
+    "6": -0.19029149870334633,
+    "7": 0.5155009039515758,
+    "8": 1.1018272817620354,
+    "9": 1.3306383146080423,
+    "10": 1.6575062818982464,
+    "11": 2.2432831241372653
+   },
+   "rubric_version": 2.1
+  }
+ },
+ "status": "partial",
+ "status_v1": null,
+ "color": {
+  "color_by": "month",
+  "color_mode": "categorical",
+  "category_order": [
+   "April",
+   "August",
+   "December",
+   "February",
+   "January",
+   "July",
+   "June",
+   "March",
+   "May",
+   "November",
+   "October",
+   "September"
+  ]
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "concept span (last token of span)",
+  "manifold": "months_circle",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 288,
+  "elapsed_s": 1.84,
+  "started": "2026-10-16T03:41:31+00:00",
+  "finished": "2026-10-16T03:41:33+00:00"
+ },
+ "precision_check": null
+}

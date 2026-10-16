@@ -1,0 +1,1455 @@
+{
+ "name": "bible_verses",
+ "template": "The passage is found in {book} {chapter}:1",
+ "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)",
+  "canonical Protestant book order; 1-3 chapters per book"
+ ],
+ "n": 180,
+ "prompts": [
+  "The passage is found in Genesis 1:1",
+  "The passage is found in Genesis 25:1",
+  "The passage is found in Genesis 50:1",
+  "The passage is found in Exodus 1:1",
+  "The passage is found in Exodus 20:1",
+  "The passage is found in Exodus 40:1",
+  "The passage is found in Leviticus 1:1",
+  "The passage is found in Leviticus 13:1",
+  "The passage is found in Leviticus 27:1",
+  "The passage is found in Numbers 1:1",
+  "The passage is found in Numbers 18:1",
+  "The passage is found in Numbers 36:1",
+  "The passage is found in Deuteronomy 1:1",
+  "The passage is found in Deuteronomy 17:1",
+  "The passage is found in Deuteronomy 34:1",
+  "The passage is found in Joshua 1:1",
+  "The passage is found in Joshua 12:1",
+  "The passage is found in Joshua 24:1",
+  "The passage is found in Judges 1:1",
+  "The passage is found in Judges 10:1",
+  "The passage is found in Judges 21:1",
+  "The passage is found in Ruth 1:1",
+  "The passage is found in Ruth 2:1",
+  "The passage is found in Ruth 4:1",
+  "The passage is found in 1 Samuel 1:1",
+  "The passage is found in 1 Samuel 15:1",
+  "The passage is found in 1 Samuel 31:1",
+  "The passage is found in 2 Samuel 1:1",
+  "The passage is found in 2 Samuel 12:1",
+  "The passage is found in 2 Samuel 24:1",
+  "The passage is found in 1 Kings 1:1",
+  "The passage is found in 1 Kings 11:1",
+  "The passage is found in 1 Kings 22:1",
+  "The passage is found in 2 Kings 1:1",
+  "The passage is found in 2 Kings 12:1",
+  "The passage is found in 2 Kings 25:1",
+  "The passage is found in 1 Chronicles 1:1",
+  "The passage is found in 1 Chronicles 14:1",
+  "The passage is found in 1 Chronicles 29:1",
+  "The passage is found in 2 Chronicles 1:1",
+  "The passage is found in 2 Chronicles 18:1",
+  "The passage is found in 2 Chronicles 36:1",
+  "The passage is found in Ezra 1:1",
+  "The passage is found in Ezra 5:1",
+  "The passage is found in Ezra 10:1",
+  "The passage is found in Nehemiah 1:1",
+  "The passage is found in Nehemiah 6:1",
+  "The passage is found in Nehemiah 13:1",
+  "The passage is found in Esther 1:1",
+  "The passage is found in Esther 5:1",
+  "The passage is found in Esther 10:1",
+  "The passage is found in Job 1:1",
+  "The passage is found in Job 21:1",
+  "The passage is found in Job 42:1",
+  "The passage is found in Psalms 1:1",
+  "The passage is found in Psalms 75:1",
+  "The passage is found in Psalms 150:1",
+  "The passage is found in Proverbs 1:1",
+  "The passage is found in Proverbs 15:1",
+  "The passage is found in Proverbs 31:1",
+  "The passage is found in Ecclesiastes 1:1",
+  "The passage is found in Ecclesiastes 6:1",
+  "The passage is found in Ecclesiastes 12:1",
+  "The passage is found in Song of Solomon 1:1",
+  "The passage is found in Song of Solomon 4:1",
+  "The passage is found in Song of Solomon 8:1",
+  "The passage is found in Isaiah 1:1",
+  "The passage is found in Isaiah 33:1",
+  "The passage is found in Isaiah 66:1",
+  "The passage is found in Jeremiah 1:1",
+  "The passage is found in Jeremiah 26:1",
+  "The passage is found in Jeremiah 52:1",
+  "The passage is found in Lamentations 1:1",
+  "The passage is found in Lamentations 2:1",
+  "The passage is found in Lamentations 5:1",
+  "The passage is found in Ezekiel 1:1",
+  "The passage is found in Ezekiel 24:1",
+  "The passage is found in Ezekiel 48:1",
+  "The passage is found in Daniel 1:1",
+  "The passage is found in Daniel 6:1",
+  "The passage is found in Daniel 12:1",
+  "The passage is found in Hosea 1:1",
+  "The passage is found in Hosea 7:1",
+  "The passage is found in Hosea 14:1",
+  "The passage is found in Joel 1:1",
+  "The passage is found in Joel 3:1",
+  "The passage is found in Amos 1:1",
+  "The passage is found in Amos 4:1",
+  "The passage is found in Amos 9:1",
+  "The passage is found in Obadiah 1:1",
+  "The passage is found in Jonah 1:1",
+  "The passage is found in Jonah 2:1",
+  "The passage is found in Jonah 4:1",
+  "The passage is found in Micah 1:1",
+  "The passage is found in Micah 3:1",
+  "The passage is found in Micah 7:1",
+  "The passage is found in Nahum 1:1",
+  "The passage is found in Nahum 3:1",
+  "The passage is found in Habakkuk 1:1",
+  "The passage is found in Habakkuk 3:1",
+  "The passage is found in Zephaniah 1:1",
+  "The passage is found in Zephaniah 3:1",
+  "The passage is found in Haggai 1:1",
+  "The passage is found in Haggai 2:1",
+  "The passage is found in Zechariah 1:1",
+  "The passage is found in Zechariah 7:1",
+  "The passage is found in Zechariah 14:1",
+  "The passage is found in Malachi 1:1",
+  "The passage is found in Malachi 2:1",
+  "The passage is found in Malachi 4:1",
+  "The passage is found in Matthew 1:1",
+  "The passage is found in Matthew 14:1",
+  "The passage is found in Matthew 28:1",
+  "The passage is found in Mark 1:1",
+  "The passage is found in Mark 8:1",
+  "The passage is found in Mark 16:1",
+  "The passage is found in Luke 1:1",
+  "The passage is found in Luke 12:1",
+  "The passage is found in Luke 24:1",
+  "The passage is found in John 1:1",
+  "The passage is found in John 10:1",
+  "The passage is found in John 21:1",
+  "The passage is found in Acts 1:1",
+  "The passage is found in Acts 14:1",
+  "The passage is found in Acts 28:1",
+  "The passage is found in Romans 1:1",
+  "The passage is found in Romans 8:1",
+  "The passage is found in Romans 16:1",
+  "The passage is found in 1 Corinthians 1:1",
+  "The passage is found in 1 Corinthians 8:1",
+  "The passage is found in 1 Corinthians 16:1",
+  "The passage is found in 2 Corinthians 1:1",
+  "The passage is found in 2 Corinthians 6:1",
+  "The passage is found in 2 Corinthians 13:1",
+  "The passage is found in Galatians 1:1",
+  "The passage is found in Galatians 3:1",
+  "The passage is found in Galatians 6:1",
+  "The passage is found in Ephesians 1:1",
+  "The passage is found in Ephesians 3:1",
+  "The passage is found in Ephesians 6:1",
+  "The passage is found in Philippians 1:1",
+  "The passage is found in Philippians 2:1",
+  "The passage is found in Philippians 4:1",
+  "The passage is found in Colossians 1:1",
+  "The passage is found in Colossians 2:1",
+  "The passage is found in Colossians 4:1",
+  "The passage is found in 1 Thessalonians 1:1",
+  "The passage is found in 1 Thessalonians 2:1",
+  "The passage is found in 1 Thessalonians 5:1",
+  "The passage is found in 2 Thessalonians 1:1",
+  "The passage is found in 2 Thessalonians 3:1",
+  "The passage is found in 1 Timothy 1:1",
+  "The passage is found in 1 Timothy 3:1",
+  "The passage is found in 1 Timothy 6:1",
+  "The passage is found in 2 Timothy 1:1",
+  "The passage is found in 2 Timothy 2:1",
+  "The passage is found in 2 Timothy 4:1",
+  "The passage is found in Titus 1:1",
+  "The passage is found in Titus 3:1",
+  "The passage is found in Philemon 1:1",
+  "The passage is found in Hebrews 1:1",
+  "The passage is found in Hebrews 6:1",
+  "The passage is found in Hebrews 13:1",
+  "The passage is found in James 1:1",
+  "The passage is found in James 2:1",
+  "The passage is found in James 5:1",
+  "The passage is found in 1 Peter 1:1",
+  "The passage is found in 1 Peter 2:1",
+  "The passage is found in 1 Peter 5:1",
+  "The passage is found in 2 Peter 1:1",
+  "The passage is found in 2 Peter 3:1",
+  "The passage is found in 1 John 1:1",
+  "The passage is found in 1 John 2:1",
+  "The passage is found in 1 John 5:1",
+  "The passage is found in 2 John 1:1",
+  "The passage is found in 3 John 1:1",
+  "The passage is found in Jude 1:1",
+  "The passage is found in Revelation 1:1",
+  "The passage is found in Revelation 11:1",
+  "The passage is found in Revelation 22:1"
+ ],
+ "labels": [
+  {
+   "book_index": 1.0,
+   "chapter": 1.0,
+   "book": "Genesis",
+   "testament": "Old",
+   "position": 1.0
+  },
+  {
+   "book_index": 1.0,
+   "chapter": 25.0,
+   "book": "Genesis",
+   "testament": "Old",
+   "position": 1.48
+  },
+  {
+   "book_index": 1.0,
+   "chapter": 50.0,
+   "book": "Genesis",
+   "testament": "Old",
+   "position": 1.98
+  },
+  {
+   "book_index": 2.0,
+   "chapter": 1.0,
+   "book": "Exodus",
+   "testament": "Old",
+   "position": 2.0
+  },
+  {
+   "book_index": 2.0,
+   "chapter": 20.0,
+   "book": "Exodus",
+   "testament": "Old",
+   "position": 2.475
+  },
+  {
+   "book_index": 2.0,
+   "chapter": 40.0,
+   "book": "Exodus",
+   "testament": "Old",
+   "position": 2.975
+  },
+  {
+   "book_index": 3.0,
+   "chapter": 1.0,
+   "book": "Leviticus",
+   "testament": "Old",
+   "position": 3.0
+  },
+  {
+   "book_index": 3.0,
+   "chapter": 13.0,
+   "book": "Leviticus",
+   "testament": "Old",
+   "position": 3.4444444444444446
+  },
+  {
+   "book_index": 3.0,
+   "chapter": 27.0,
+   "book": "Leviticus",
+   "testament": "Old",
+   "position": 3.962962962962963
+  },
+  {
+   "book_index": 4.0,
+   "chapter": 1.0,
+   "book": "Numbers",
+   "testament": "Old",
+   "position": 4.0
+  },
+  {
+   "book_index": 4.0,
+   "chapter": 18.0,
+   "book": "Numbers",
+   "testament": "Old",
+   "position": 4.472222222222222
+  },
+  {
+   "book_index": 4.0,
+   "chapter": 36.0,
+   "book": "Numbers",
+   "testament": "Old",
+   "position": 4.972222222222222
+  },
+  {
+   "book_index": 5.0,
+   "chapter": 1.0,
+   "book": "Deuteronomy",
+   "testament": "Old",
+   "position": 5.0
+  },
+  {
+   "book_index": 5.0,
+   "chapter": 17.0,
+   "book": "Deuteronomy",
+   "testament": "Old",
+   "position": 5.470588235294118
+  },
+  {
+   "book_index": 5.0,
+   "chapter": 34.0,
+   "book": "Deuteronomy",
+   "testament": "Old",
+   "position": 5.970588235294118
+  },
+  {
+   "book_index": 6.0,
+   "chapter": 1.0,
+   "book": "Joshua",
+   "testament": "Old",
+   "position": 6.0
+  },
+  {
+   "book_index": 6.0,
+   "chapter": 12.0,
+   "book": "Joshua",
+   "testament": "Old",
+   "position": 6.458333333333333
+  },
+  {
+   "book_index": 6.0,
+   "chapter": 24.0,
+   "book": "Joshua",
+   "testament": "Old",
+   "position": 6.958333333333333
+  },
+  {
+   "book_index": 7.0,
+   "chapter": 1.0,
+   "book": "Judges",
+   "testament": "Old",
+   "position": 7.0
+  },
+  {
+   "book_index": 7.0,
+   "chapter": 10.0,
+   "book": "Judges",
+   "testament": "Old",
+   "position": 7.428571428571429
+  },
+  {
+   "book_index": 7.0,
+   "chapter": 21.0,
+   "book": "Judges",
+   "testament": "Old",
+   "position": 7.9523809523809526
+  },
+  {
+   "book_index": 8.0,
+   "chapter": 1.0,
+   "book": "Ruth",
+   "testament": "Old",
+   "position": 8.0
+  },
+  {
+   "book_index": 8.0,
+   "chapter": 2.0,
+   "book": "Ruth",
+   "testament": "Old",
+   "position": 8.25
+  },
+  {
+   "book_index": 8.0,
+   "chapter": 4.0,
+   "book": "Ruth",
+   "testament": "Old",
+   "position": 8.75
+  },
+  {
+   "book_index": 9.0,
+   "chapter": 1.0,
+   "book": "1 Samuel",
+   "testament": "Old",
+   "position": 9.0
+  },
+  {
+   "book_index": 9.0,
+   "chapter": 15.0,
+   "book": "1 Samuel",
+   "testament": "Old",
+   "position": 9.451612903225806
+  },
+  {
+   "book_index": 9.0,
+   "chapter": 31.0,
+   "book": "1 Samuel",
+   "testament": "Old",
+   "position": 9.967741935483872
+  },
+  {
+   "book_index": 10.0,
+   "chapter": 1.0,
+   "book": "2 Samuel",
+   "testament": "Old",
+   "position": 10.0
+  },
+  {
+   "book_index": 10.0,
+   "chapter": 12.0,
+   "book": "2 Samuel",
+   "testament": "Old",
+   "position": 10.458333333333334
+  },
+  {
+   "book_index": 10.0,
+   "chapter": 24.0,
+   "book": "2 Samuel",
+   "testament": "Old",
+   "position": 10.958333333333334
+  },
+  {
+   "book_index": 11.0,
+   "chapter": 1.0,
+   "book": "1 Kings",
+   "testament": "Old",
+   "position": 11.0
+  },
+  {
+   "book_index": 11.0,
+   "chapter": 11.0,
+   "book": "1 Kings",
+   "testament": "Old",
+   "position": 11.454545454545455
+  },
+  {
+   "book_index": 11.0,
+   "chapter": 22.0,
+   "book": "1 Kings",
+   "testament": "Old",
+   "position": 11.954545454545455
+  },
+  {
+   "book_index": 12.0,
+   "chapter": 1.0,
+   "book": "2 Kings",
+   "testament": "Old",
+   "position": 12.0
+  },
+  {
+   "book_index": 12.0,
+   "chapter": 12.0,
+   "book": "2 Kings",
+   "testament": "Old",
+   "position": 12.44
+  },
+  {
+   "book_index": 12.0,
+   "chapter": 25.0,
+   "book": "2 Kings",
+   "testament": "Old",
+   "position": 12.96
+  },
+  {
+   "book_index": 13.0,
+   "chapter": 1.0,
+   "book": "1 Chronicles",
+   "testament": "Old",
+   "position": 13.0
+  },
+  {
+   "book_index": 13.0,
+   "chapter": 14.0,
+   "book": "1 Chronicles",
+   "testament": "Old",
+   "position": 13.448275862068966
+  },
+  {
+   "book_index": 13.0,
+   "chapter": 29.0,
+   "book": "1 Chronicles",
+   "testament": "Old",
+   "position": 13.96551724137931
+  },
+  {
+   "book_index": 14.0,
+   "chapter": 1.0,
+   "book": "2 Chronicles",
+   "testament": "Old",
+   "position": 14.0
+  },
+  {
+   "book_index": 14.0,
+   "chapter": 18.0,
+   "book": "2 Chronicles",
+   "testament": "Old",
+   "position": 14.472222222222221
+  },
+  {
+   "book_index": 14.0,
+   "chapter": 36.0,
+   "book": "2 Chronicles",
+   "testament": "Old",
+   "position": 14.972222222222221
+  },
+  {
+   "book_index": 15.0,
+   "chapter": 1.0,
+   "book": "Ezra",
+   "testament": "Old",
+   "position": 15.0
+  },
+  {
+   "book_index": 15.0,
+   "chapter": 5.0,
+   "book": "Ezra",
+   "testament": "Old",
+   "position": 15.4
+  },
+  {
+   "book_index": 15.0,
+   "chapter": 10.0,
+   "book": "Ezra",
+   "testament": "Old",
+   "position": 15.9
+  },
+  {
+   "book_index": 16.0,
+   "chapter": 1.0,
+   "book": "Nehemiah",
+   "testament": "Old",
+   "position": 16.0
+  },
+  {
+   "book_index": 16.0,
+   "chapter": 6.0,
+   "book": "Nehemiah",
+   "testament": "Old",
+   "position": 16.384615384615383
+  },
+  {
+   "book_index": 16.0,
+   "chapter": 13.0,
+   "book": "Nehemiah",
+   "testament": "Old",
+   "position": 16.923076923076923
+  },
+  {
+   "book_index": 17.0,
+   "chapter": 1.0,
+   "book": "Esther",
+   "testament": "Old",
+   "position": 17.0
+  },
+  {
+   "book_index": 17.0,
+   "chapter": 5.0,
+   "book": "Esther",
+   "testament": "Old",
+   "position": 17.4
+  },
+  {
+   "book_index": 17.0,
+   "chapter": 10.0,
+   "book": "Esther",
+   "testament": "Old",
+   "position": 17.9
+  },
+  {
+   "book_index": 18.0,
+   "chapter": 1.0,
+   "book": "Job",
+   "testament": "Old",
+   "position": 18.0
+  },
+  {
+   "book_index": 18.0,
+   "chapter": 21.0,
+   "book": "Job",
+   "testament": "Old",
+   "position": 18.476190476190474
+  },
+  {
+   "book_index": 18.0,
+   "chapter": 42.0,
+   "book": "Job",
+   "testament": "Old",
+   "position": 18.976190476190474
+  },
+  {
+   "book_index": 19.0,
+   "chapter": 1.0,
+   "book": "Psalms",
+   "testament": "Old",
+   "position": 19.0
+  },
+  {
+   "book_index": 19.0,
+   "chapter": 75.0,
+   "book": "Psalms",
+   "testament": "Old",
+   "position": 19.493333333333332
+  },
+  {
+   "book_index": 19.0,
+   "chapter": 150.0,
+   "book": "Psalms",
+   "testament": "Old",
+   "position": 19.993333333333332
+  },
+  {
+   "book_index": 20.0,
+   "chapter": 1.0,
+   "book": "Proverbs",
+   "testament": "Old",
+   "position": 20.0
+  },
+  {
+   "book_index": 20.0,
+   "chapter": 15.0,
+   "book": "Proverbs",
+   "testament": "Old",
+   "position": 20.451612903225808
+  },
+  {
+   "book_index": 20.0,
+   "chapter": 31.0,
+   "book": "Proverbs",
+   "testament": "Old",
+   "position": 20.967741935483872
+  },
+  {
+   "book_index": 21.0,
+   "chapter": 1.0,
+   "book": "Ecclesiastes",
+   "testament": "Old",
+   "position": 21.0
+  },
+  {
+   "book_index": 21.0,
+   "chapter": 6.0,
+   "book": "Ecclesiastes",
+   "testament": "Old",
+   "position": 21.416666666666668
+  },
+  {
+   "book_index": 21.0,
+   "chapter": 12.0,
+   "book": "Ecclesiastes",
+   "testament": "Old",
+   "position": 21.916666666666668
+  },
+  {
+   "book_index": 22.0,
+   "chapter": 1.0,
+   "book": "Song of Solomon",
+   "testament": "Old",
+   "position": 22.0
+  },
+  {
+   "book_index": 22.0,
+   "chapter": 4.0,
+   "book": "Song of Solomon",
+   "testament": "Old",
+   "position": 22.375
+  },
+  {
+   "book_index": 22.0,
+   "chapter": 8.0,
+   "book": "Song of Solomon",
+   "testament": "Old",
+   "position": 22.875
+  },
+  {
+   "book_index": 23.0,
+   "chapter": 1.0,
+   "book": "Isaiah",
+   "testament": "Old",
+   "position": 23.0
+  },
+  {
+   "book_index": 23.0,
+   "chapter": 33.0,
+   "book": "Isaiah",
+   "testament": "Old",
+   "position": 23.484848484848484
+  },
+  {
+   "book_index": 23.0,
+   "chapter": 66.0,
+   "book": "Isaiah",
+   "testament": "Old",
+   "position": 23.984848484848484
+  },
+  {
+   "book_index": 24.0,
+   "chapter": 1.0,
+   "book": "Jeremiah",
+   "testament": "Old",
+   "position": 24.0
+  },
+  {
+   "book_index": 24.0,
+   "chapter": 26.0,
+   "book": "Jeremiah",
+   "testament": "Old",
+   "position": 24.48076923076923
+  },
+  {
+   "book_index": 24.0,
+   "chapter": 52.0,
+   "book": "Jeremiah",
+   "testament": "Old",
+   "position": 24.98076923076923
+  },
+  {
+   "book_index": 25.0,
+   "chapter": 1.0,
+   "book": "Lamentations",
+   "testament": "Old",
+   "position": 25.0
+  },
+  {
+   "book_index": 25.0,
+   "chapter": 2.0,
+   "book": "Lamentations",
+   "testament": "Old",
+   "position": 25.2
+  },
+  {
+   "book_index": 25.0,
+   "chapter": 5.0,
+   "book": "Lamentations",
+   "testament": "Old",
+   "position": 25.8
+  },
+  {
+   "book_index": 26.0,
+   "chapter": 1.0,
+   "book": "Ezekiel",
+   "testament": "Old",
+   "position": 26.0
+  },
+  {
+   "book_index": 26.0,
+   "chapter": 24.0,
+   "book": "Ezekiel",
+   "testament": "Old",
+   "position": 26.479166666666668
+  },
+  {
+   "book_index": 26.0,
+   "chapter": 48.0,
+   "book": "Ezekiel",
+   "testament": "Old",
+   "position": 26.979166666666668
+  },
+  {
+   "book_index": 27.0,
+   "chapter": 1.0,
+   "book": "Daniel",
+   "testament": "Old",
+   "position": 27.0
+  },
+  {
+   "book_index": 27.0,
+   "chapter": 6.0,
+   "book": "Daniel",
+   "testament": "Old",
+   "position": 27.416666666666668
+  },
+  {
+   "book_index": 27.0,
+   "chapter": 12.0,
+   "book": "Daniel",
+   "testament": "Old",
+   "position": 27.916666666666668
+  },
+  {
+   "book_index": 28.0,
+   "chapter": 1.0,
+   "book": "Hosea",
+   "testament": "Old",
+   "position": 28.0
+  },
+  {
+   "book_index": 28.0,
+   "chapter": 7.0,
+   "book": "Hosea",
+   "testament": "Old",
+   "position": 28.428571428571427
+  },
+  {
+   "book_index": 28.0,
+   "chapter": 14.0,
+   "book": "Hosea",
+   "testament": "Old",
+   "position": 28.928571428571427
+  },
+  {
+   "book_index": 29.0,
+   "chapter": 1.0,
+   "book": "Joel",
+   "testament": "Old",
+   "position": 29.0
+  },
+  {
+   "book_index": 29.0,
+   "chapter": 3.0,
+   "book": "Joel",
+   "testament": "Old",
+   "position": 29.666666666666668
+  },
+  {
+   "book_index": 30.0,
+   "chapter": 1.0,
+   "book": "Amos",
+   "testament": "Old",
+   "position": 30.0
+  },
+  {
+   "book_index": 30.0,
+   "chapter": 4.0,
+   "book": "Amos",
+   "testament": "Old",
+   "position": 30.333333333333332
+  },
+  {
+   "book_index": 30.0,
+   "chapter": 9.0,
+   "book": "Amos",
+   "testament": "Old",
+   "position": 30.88888888888889
+  },
+  {
+   "book_index": 31.0,
+   "chapter": 1.0,
+   "book": "Obadiah",
+   "testament": "Old",
+   "position": 31.0
+  },
+  {
+   "book_index": 32.0,
+   "chapter": 1.0,
+   "book": "Jonah",
+   "testament": "Old",
+   "position": 32.0
+  },
+  {
+   "book_index": 32.0,
+   "chapter": 2.0,
+   "book": "Jonah",
+   "testament": "Old",
+   "position": 32.25
+  },
+  {
+   "book_index": 32.0,
+   "chapter": 4.0,
+   "book": "Jonah",
+   "testament": "Old",
+   "position": 32.75
+  },
+  {
+   "book_index": 33.0,
+   "chapter": 1.0,
+   "book": "Micah",
+   "testament": "Old",
+   "position": 33.0
+  },
+  {
+   "book_index": 33.0,
+   "chapter": 3.0,
+   "book": "Micah",
+   "testament": "Old",
+   "position": 33.285714285714285
+  },
+  {
+   "book_index": 33.0,
+   "chapter": 7.0,
+   "book": "Micah",
+   "testament": "Old",
+   "position": 33.857142857142854
+  },
+  {
+   "book_index": 34.0,
+   "chapter": 1.0,
+   "book": "Nahum",
+   "testament": "Old",
+   "position": 34.0
+  },
+  {
+   "book_index": 34.0,
+   "chapter": 3.0,
+   "book": "Nahum",
+   "testament": "Old",
+   "position": 34.666666666666664
+  },
+  {
+   "book_index": 35.0,
+   "chapter": 1.0,
+   "book": "Habakkuk",
+   "testament": "Old",
+   "position": 35.0
+  },
+  {
+   "book_index": 35.0,
+   "chapter": 3.0,
+   "book": "Habakkuk",
+   "testament": "Old",
+   "position": 35.666666666666664
+  },
+  {
+   "book_index": 36.0,
+   "chapter": 1.0,
+   "book": "Zephaniah",
+   "testament": "Old",
+   "position": 36.0
+  },
+  {
+   "book_index": 36.0,
+   "chapter": 3.0,
+   "book": "Zephaniah",
+   "testament": "Old",
+   "position": 36.666666666666664
+  },
+  {
+   "book_index": 37.0,
+   "chapter": 1.0,
+   "book": "Haggai",
+   "testament": "Old",
+   "position": 37.0
+  },
+  {
+   "book_index": 37.0,
+   "chapter": 2.0,
+   "book": "Haggai",
+   "testament": "Old",
+   "position": 37.5
+  },
+  {
+   "book_index": 38.0,
+   "chapter": 1.0,
+   "book": "Zechariah",
+   "testament": "Old",
+   "position": 38.0
+  },
+  {
+   "book_index": 38.0,
+   "chapter": 7.0,
+   "book": "Zechariah",
+   "testament": "Old",
+   "position": 38.42857142857143
+  },
+  {
+   "book_index": 38.0,
+   "chapter": 14.0,
+   "book": "Zechariah",
+   "testament": "Old",
+   "position": 38.92857142857143
+  },
+  {
+   "book_index": 39.0,
+   "chapter": 1.0,
+   "book": "Malachi",
+   "testament": "Old",
+   "position": 39.0
+  },
+  {
+   "book_index": 39.0,
+   "chapter": 2.0,
+   "book": "Malachi",
+   "testament": "Old",
+   "position": 39.25
+  },
+  {
+   "book_index": 39.0,
+   "chapter": 4.0,
+   "book": "Malachi",
+   "testament": "Old",
+   "position": 39.75
+  },
+  {
+   "book_index": 40.0,
+   "chapter": 1.0,
+   "book": "Matthew",
+   "testament": "New",
+   "position": 40.0
+  },
+  {
+   "book_index": 40.0,
+   "chapter": 14.0,
+   "book": "Matthew",
+   "testament": "New",
+   "position": 40.464285714285715
+  },
+  {
+   "book_index": 40.0,
+   "chapter": 28.0,
+   "book": "Matthew",
+   "testament": "New",
+   "position": 40.964285714285715
+  },
+  {
+   "book_index": 41.0,
+   "chapter": 1.0,
+   "book": "Mark",
+   "testament": "New",
+   "position": 41.0
+  },
+  {
+   "book_index": 41.0,
+   "chapter": 8.0,
+   "book": "Mark",
+   "testament": "New",
+   "position": 41.4375
+  },
+  {
+   "book_index": 41.0,
+   "chapter": 16.0,
+   "book": "Mark",
+   "testament": "New",
+   "position": 41.9375
+  },
+  {
+   "book_index": 42.0,
+   "chapter": 1.0,
+   "book": "Luke",
+   "testament": "New",
+   "position": 42.0
+  },
+  {
+   "book_index": 42.0,
+   "chapter": 12.0,
+   "book": "Luke",
+   "testament": "New",
+   "position": 42.458333333333336
+  },
+  {
+   "book_index": 42.0,
+   "chapter": 24.0,
+   "book": "Luke",
+   "testament": "New",
+   "position": 42.958333333333336
+  },
+  {
+   "book_index": 43.0,
+   "chapter": 1.0,
+   "book": "John",
+   "testament": "New",
+   "position": 43.0
+  },
+  {
+   "book_index": 43.0,
+   "chapter": 10.0,
+   "book": "John",
+   "testament": "New",
+   "position": 43.42857142857143
+  },
+  {
+   "book_index": 43.0,
+   "chapter": 21.0,
+   "book": "John",
+   "testament": "New",
+   "position": 43.95238095238095
+  },
+  {
+   "book_index": 44.0,
+   "chapter": 1.0,
+   "book": "Acts",
+   "testament": "New",
+   "position": 44.0
+  },
+  {
+   "book_index": 44.0,
+   "chapter": 14.0,
+   "book": "Acts",
+   "testament": "New",
+   "position": 44.464285714285715
+  },
+  {
+   "book_index": 44.0,
+   "chapter": 28.0,
+   "book": "Acts",
+   "testament": "New",
+   "position": 44.964285714285715
+  },
+  {
+   "book_index": 45.0,
+   "chapter": 1.0,
+   "book": "Romans",
+   "testament": "New",
+   "position": 45.0
+  },
+  {
+   "book_index": 45.0,
+   "chapter": 8.0,
+   "book": "Romans",
+   "testament": "New",
+   "position": 45.4375
+  },
+  {
+   "book_index": 45.0,
+   "chapter": 16.0,
+   "book": "Romans",
+   "testament": "New",
+   "position": 45.9375
+  },
+  {
+   "book_index": 46.0,
+   "chapter": 1.0,
+   "book": "1 Corinthians",
+   "testament": "New",
+   "position": 46.0
+  },
+  {
+   "book_index": 46.0,
+   "chapter": 8.0,
+   "book": "1 Corinthians",
+   "testament": "New",
+   "position": 46.4375
+  },
+  {
+   "book_index": 46.0,
+   "chapter": 16.0,
+   "book": "1 Corinthians",
+   "testament": "New",
+   "position": 46.9375
+  },
+  {
+   "book_index": 47.0,
+   "chapter": 1.0,
+   "book": "2 Corinthians",
+   "testament": "New",
+   "position": 47.0
+  },
+  {
+   "book_index": 47.0,
+   "chapter": 6.0,
+   "book": "2 Corinthians",
+   "testament": "New",
+   "position": 47.38461538461539
+  },
+  {
+   "book_index": 47.0,
+   "chapter": 13.0,
+   "book": "2 Corinthians",
+   "testament": "New",
+   "position": 47.92307692307692
+  },
+  {
+   "book_index": 48.0,
+   "chapter": 1.0,
+   "book": "Galatians",
+   "testament": "New",
+   "position": 48.0
+  },
+  {
+   "book_index": 48.0,
+   "chapter": 3.0,
+   "book": "Galatians",
+   "testament": "New",
+   "position": 48.333333333333336
+  },
+  {
+   "book_index": 48.0,
+   "chapter": 6.0,
+   "book": "Galatians",
+   "testament": "New",
+   "position": 48.833333333333336
+  },
+  {
+   "book_index": 49.0,
+   "chapter": 1.0,
+   "book": "Ephesians",
+   "testament": "New",
+   "position": 49.0
+  },
+  {
+   "book_index": 49.0,
+   "chapter": 3.0,
+   "book": "Ephesians",
+   "testament": "New",
+   "position": 49.333333333333336
+  },
+  {
+   "book_index": 49.0,
+   "chapter": 6.0,
+   "book": "Ephesians",
+   "testament": "New",
+   "position": 49.833333333333336
+  },
+  {
+   "book_index": 50.0,
+   "chapter": 1.0,
+   "book": "Philippians",
+   "testament": "New",
+   "position": 50.0
+  },
+  {
+   "book_index": 50.0,
+   "chapter": 2.0,
+   "book": "Philippians",
+   "testament": "New",
+   "position": 50.25
+  },
+  {
+   "book_index": 50.0,
+   "chapter": 4.0,
+   "book": "Philippians",
+   "testament": "New",
+   "position": 50.75
+  },
+  {
+   "book_index": 51.0,
+   "chapter": 1.0,
+   "book": "Colossians",
+   "testament": "New",
+   "position": 51.0
+  },
+  {
+   "book_index": 51.0,
+   "chapter": 2.0,
+   "book": "Colossians",
+   "testament": "New",
+   "position": 51.25
+  },
+  {
+   "book_index": 51.0,
+   "chapter": 4.0,
+   "book": "Colossians",
+   "testament": "New",
+   "position": 51.75
+  },
+  {
+   "book_index": 52.0,
+   "chapter": 1.0,
+   "book": "1 Thessalonians",
+   "testament": "New",
+   "position": 52.0
+  },
+  {
+   "book_index": 52.0,
+   "chapter": 2.0,
+   "book": "1 Thessalonians",
+   "testament": "New",
+   "position": 52.2
+  },
+  {
+   "book_index": 52.0,
+   "chapter": 5.0,
+   "book": "1 Thessalonians",
+   "testament": "New",
+   "position": 52.8
+  },
+  {
+   "book_index": 53.0,
+   "chapter": 1.0,
+   "book": "2 Thessalonians",
+   "testament": "New",
+   "position": 53.0
+  },
+  {
+   "book_index": 53.0,
+   "chapter": 3.0,
+   "book": "2 Thessalonians",
+   "testament": "New",
+   "position": 53.666666666666664
+  },
+  {
+   "book_index": 54.0,
+   "chapter": 1.0,
+   "book": "1 Timothy",
+   "testament": "New",
+   "position": 54.0
+  },
+  {
+   "book_index": 54.0,
+   "chapter": 3.0,
+   "book": "1 Timothy",
+   "testament": "New",
+   "position": 54.333333333333336
+  },
+  {
+   "book_index": 54.0,
+   "chapter": 6.0,
+   "book": "1 Timothy",
+   "testament": "New",
+   "position": 54.833333333333336
+  },
+  {
+   "book_index": 55.0,
+   "chapter": 1.0,
+   "book": "2 Timothy",
+   "testament": "New",
+   "position": 55.0
+  },
+  {
+   "book_index": 55.0,
+   "chapter": 2.0,
+   "book": "2 Timothy",
+   "testament": "New",
+   "position": 55.25
+  },
+  {
+   "book_index": 55.0,
+   "chapter": 4.0,
+   "book": "2 Timothy",
+   "testament": "New",
+   "position": 55.75
+  },
+  {
+   "book_index": 56.0,
+   "chapter": 1.0,
+   "book": "Titus",
+   "testament": "New",
+   "position": 56.0
+  },
+  {
+   "book_index": 56.0,
+   "chapter": 3.0,
+   "book": "Titus",
+   "testament": "New",
+   "position": 56.666666666666664
+  },
+  {
+   "book_index": 57.0,
+   "chapter": 1.0,
+   "book": "Philemon",
+   "testament": "New",
+   "position": 57.0
+  },
+  {
+   "book_index": 58.0,
+   "chapter": 1.0,
+   "book": "Hebrews",
+   "testament": "New",
+   "position": 58.0
+  },
+  {
+   "book_index": 58.0,
+   "chapter": 6.0,
+   "book": "Hebrews",
+   "testament": "New",
+   "position": 58.38461538461539
+  },
+  {
+   "book_index": 58.0,
+   "chapter": 13.0,
+   "book": "Hebrews",
+   "testament": "New",
+   "position": 58.92307692307692
+  },
+  {
+   "book_index": 59.0,
+   "chapter": 1.0,
+   "book": "James",
+   "testament": "New",
+   "position": 59.0
+  },
+  {
+   "book_index": 59.0,
+   "chapter": 2.0,
+   "book": "James",
+   "testament": "New",
+   "position": 59.2
+  },
+  {
+   "book_index": 59.0,
+   "chapter": 5.0,
+   "book": "James",
+   "testament": "New",
+   "position": 59.8
+  },
+  {
+   "book_index": 60.0,
+   "chapter": 1.0,
+   "book": "1 Peter",
+   "testament": "New",
+   "position": 60.0
+  },
+  {
+   "book_index": 60.0,
+   "chapter": 2.0,
+   "book": "1 Peter",
+   "testament": "New",
+   "position": 60.2
+  },
+  {
+   "book_index": 60.0,
+   "chapter": 5.0,
+   "book": "1 Peter",
+   "testament": "New",
+   "position": 60.8
+  },
+  {
+   "book_index": 61.0,
+   "chapter": 1.0,
+   "book": "2 Peter",
+   "testament": "New",
+   "position": 61.0
+  },
+  {
+   "book_index": 61.0,
+   "chapter": 3.0,
+   "book": "2 Peter",
+   "testament": "New",
+   "position": 61.666666666666664
+  },
+  {
+   "book_index": 62.0,
+   "chapter": 1.0,
+   "book": "1 John",
+   "testament": "New",
+   "position": 62.0
+  },
+  {
+   "book_index": 62.0,
+   "chapter": 2.0,
+   "book": "1 John",
+   "testament": "New",
+   "position": 62.2
+  },
+  {
+   "book_index": 62.0,
+   "chapter": 5.0,
+   "book": "1 John",
+   "testament": "New",
+   "position": 62.8
+  },
+  {
+   "book_index": 63.0,
+   "chapter": 1.0,
+   "book": "2 John",
+   "testament": "New",
+   "position": 63.0
+  },
+  {
+   "book_index": 64.0,
+   "chapter": 1.0,
+   "book": "3 John",
+   "testament": "New",
+   "position": 64.0
+  },
+  {
+   "book_index": 65.0,
+   "chapter": 1.0,
+   "book": "Jude",
+   "testament": "New",
+   "position": 65.0
+  },
+  {
+   "book_index": 66.0,
+   "chapter": 1.0,
+   "book": "Revelation",
+   "testament": "New",
+   "position": 66.0
+  },
+  {
+   "book_index": 66.0,
+   "chapter": 11.0,
+   "book": "Revelation",
+   "testament": "New",
+   "position": 66.45454545454545
+  },
+  {
+   "book_index": 66.0,
+   "chapter": 22.0,
+   "book": "Revelation",
+   "testament": "New",
+   "position": 66.95454545454545
+  }
+ ],
+ "spans": null
+}

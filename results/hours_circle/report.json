@@ -1,0 +1,152 @@
+{
+ "name": "hours_circle",
+ "spec": {
+  "tier": "cyclic",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "circle (period 24)",
+  "replication_mode": "exact-template",
+  "sources": [
+   "feucht2026 App. A Table 1"
+  ],
+  "prompt_template": "Q: In 24-hour time, it is now {concept}:00. What time will it be in {offset} hours?\n A: In 24-hour time, it will be",
+  "dataset": "00..23 x offsets one..forty-eight (n=1152)",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "Q: In 24-hour time, it is now {concept}:00. What time will it be in {offset} hours?\\n A: In 24-hour time, it will be",
+  "source": "arXiv 2605.01148 App. A Table 1",
+  "deviations": [
+   "read at the hour token; offsets one..forty-eight"
+  ],
+  "n_total": 1152,
+  "n_kept": 1152,
+  "n_outliers_removed": 0,
+  "examples": [
+   "Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+   "Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+   "Q: In 24-hour time, it is now 00:00. What time will it be in four hours?\n A: In 24-hour time, it will be",
+   "Q: In 24-hour time, it is now 00:00. What time will it be in five hours?\n A: In 24-hour time, it will be"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.4225881599802456,
+   0.1187331952013357,
+   0.07780520248659023
+  ],
+  "n_points": 1152,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "circle",
+  "status": "partial",
+  "reason": "failed: cyclic_order=0.917 (>=1.0)",
+  "checks": [
+   {
+    "name": "cyclic_order",
+    "value": 0.9166666666666666,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "fraction of expected neighbours adjacent around the circle",
+    "partial_threshold": 0.75,
+    "informative": false
+   },
+   {
+    "name": "circular_corr",
+    "value": 0.8346239660611539,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "angle in best-fit plane vs ground-truth phase",
+    "partial_threshold": 0.6,
+    "informative": false
+   },
+   {
+    "name": "circle_fit_r2",
+    "value": 0.5529372608626361,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "variance of PCA-3 explained by cos/sin(phase)",
+    "partial_threshold": null,
+    "informative": false
+   },
+   {
+    "name": "roundness_cv",
+    "value": 0.14555029519497012,
+    "threshold": 0.35,
+    "op": "<=",
+    "critical": false,
+    "passed": true,
+    "note": "std/mean of radii in the fitted plane",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "centroid_angles": {
+    "0.0": -0.29695032094722873,
+    "1.0": -0.6302542049633864,
+    "2.0": -0.6532544336016246,
+    "3.0": -0.7535420269067343,
+    "4.0": -0.8358084473272281,
+    "5.0": -1.0129230030015048,
+    "6.0": -1.1324949863267573,
+    "7.0": -1.222938707913411,
+    "8.0": -1.2911527559671863,
+    "9.0": -1.3755393499817161,
+    "10.0": -3.012432549743525,
+    "11.0": -3.021982921274873,
+    "12.0": -3.1182478722612648,
+    "13.0": 2.3926572255925804,
+    "14.0": 2.157008889813191,
+    "15.0": 2.1354996945133045,
+    "16.0": 2.0441562448882244,
+    "17.0": 1.9416845086182228,
+    "18.0": 1.9103049498784541,
+    "19.0": 1.8584593923196124,
+    "20.0": 1.8134027087257976,
+    "21.0": 1.709769848014996,
+    "22.0": 1.6834692611410198,
+    "23.0": 1.698420988970669
+   },
+   "rubric_version": 2.1
+  }
+ },
+ "status": "partial",
+ "status_v1": null,
+ "color": {
+  "color_by": "hour",
+  "color_mode": "cyclic"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "concept span (last token of span)",
+  "manifold": "hours_circle",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 1152,
+  "elapsed_s": 17.43,
+  "started": "2026-10-16T03:41:33+00:00",
+  "finished": "2026-10-16T03:41:50+00:00"
+ },
+ "precision_check": null
+}

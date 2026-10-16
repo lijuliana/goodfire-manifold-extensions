@@ -1,0 +1,435 @@
+{
+ "name": "classical_composers",
+ "template": "The composer {name} was born in the year",
+ "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)",
+  "birth years from general knowledge (Wikipedia)"
+ ],
+ "n": 84,
+ "prompts": [
+  "The composer Hildegard of Bingen was born in the year",
+  "The composer Guillaume de Machaut was born in the year",
+  "The composer Guillaume Dufay was born in the year",
+  "The composer Josquin des Prez was born in the year",
+  "The composer Giovanni Pierluigi da Palestrina was born in the year",
+  "The composer William Byrd was born in the year",
+  "The composer Claudio Monteverdi was born in the year",
+  "The composer Heinrich Sch\u00fctz was born in the year",
+  "The composer Jean-Baptiste Lully was born in the year",
+  "The composer Henry Purcell was born in the year",
+  "The composer Antonio Vivaldi was born in the year",
+  "The composer Georg Philipp Telemann was born in the year",
+  "The composer Jean-Philippe Rameau was born in the year",
+  "The composer Johann Sebastian Bach was born in the year",
+  "The composer George Frideric Handel was born in the year",
+  "The composer Domenico Scarlatti was born in the year",
+  "The composer Christoph Willibald Gluck was born in the year",
+  "The composer Carl Philipp Emanuel Bach was born in the year",
+  "The composer Joseph Haydn was born in the year",
+  "The composer Luigi Boccherini was born in the year",
+  "The composer Antonio Salieri was born in the year",
+  "The composer Muzio Clementi was born in the year",
+  "The composer Wolfgang Amadeus Mozart was born in the year",
+  "The composer Ludwig van Beethoven was born in the year",
+  "The composer Johann Nepomuk Hummel was born in the year",
+  "The composer Niccol\u00f2 Paganini was born in the year",
+  "The composer Carl Maria von Weber was born in the year",
+  "The composer Gioachino Rossini was born in the year",
+  "The composer Franz Schubert was born in the year",
+  "The composer Gaetano Donizetti was born in the year",
+  "The composer Hector Berlioz was born in the year",
+  "The composer Felix Mendelssohn was born in the year",
+  "The composer Fr\u00e9d\u00e9ric Chopin was born in the year",
+  "The composer Robert Schumann was born in the year",
+  "The composer Franz Liszt was born in the year",
+  "The composer Richard Wagner was born in the year",
+  "The composer Giuseppe Verdi was born in the year",
+  "The composer Jacques Offenbach was born in the year",
+  "The composer C\u00e9sar Franck was born in the year",
+  "The composer Bed\u0159ich Smetana was born in the year",
+  "The composer Anton Bruckner was born in the year",
+  "The composer Johannes Brahms was born in the year",
+  "The composer Alexander Borodin was born in the year",
+  "The composer Camille Saint-Sa\u00ebns was born in the year",
+  "The composer Georges Bizet was born in the year",
+  "The composer Modest Mussorgsky was born in the year",
+  "The composer Pyotr Ilyich Tchaikovsky was born in the year",
+  "The composer Anton\u00edn Dvo\u0159\u00e1k was born in the year",
+  "The composer Edvard Grieg was born in the year",
+  "The composer Nikolai Rimsky-Korsakov was born in the year",
+  "The composer Gabriel Faur\u00e9 was born in the year",
+  "The composer Leo\u0161 Jan\u00e1\u010dek was born in the year",
+  "The composer Edward Elgar was born in the year",
+  "The composer Giacomo Puccini was born in the year",
+  "The composer Gustav Mahler was born in the year",
+  "The composer Claude Debussy was born in the year",
+  "The composer Richard Strauss was born in the year",
+  "The composer Jean Sibelius was born in the year",
+  "The composer Erik Satie was born in the year",
+  "The composer Alexander Scriabin was born in the year",
+  "The composer Sergei Rachmaninoff was born in the year",
+  "The composer Arnold Schoenberg was born in the year",
+  "The composer Charles Ives was born in the year",
+  "The composer Maurice Ravel was born in the year",
+  "The composer B\u00e9la Bart\u00f3k was born in the year",
+  "The composer Igor Stravinsky was born in the year",
+  "The composer Anton Webern was born in the year",
+  "The composer Alban Berg was born in the year",
+  "The composer Sergei Prokofiev was born in the year",
+  "The composer Paul Hindemith was born in the year",
+  "The composer George Gershwin was born in the year",
+  "The composer Aaron Copland was born in the year",
+  "The composer Olivier Messiaen was born in the year",
+  "The composer Samuel Barber was born in the year",
+  "The composer John Cage was born in the year",
+  "The composer Benjamin Britten was born in the year",
+  "The composer Leonard Bernstein was born in the year",
+  "The composer Gy\u00f6rgy Ligeti was born in the year",
+  "The composer Pierre Boulez was born in the year",
+  "The composer Karlheinz Stockhausen was born in the year",
+  "The composer Arvo P\u00e4rt was born in the year",
+  "The composer Steve Reich was born in the year",
+  "The composer Philip Glass was born in the year",
+  "The composer John Adams was born in the year"
+ ],
+ "labels": [
+  {
+   "birth_year": 1098.0,
+   "composer": "Hildegard of Bingen"
+  },
+  {
+   "birth_year": 1300.0,
+   "composer": "Guillaume de Machaut"
+  },
+  {
+   "birth_year": 1397.0,
+   "composer": "Guillaume Dufay"
+  },
+  {
+   "birth_year": 1450.0,
+   "composer": "Josquin des Prez"
+  },
+  {
+   "birth_year": 1525.0,
+   "composer": "Giovanni Pierluigi da Palestrina"
+  },
+  {
+   "birth_year": 1540.0,
+   "composer": "William Byrd"
+  },
+  {
+   "birth_year": 1567.0,
+   "composer": "Claudio Monteverdi"
+  },
+  {
+   "birth_year": 1585.0,
+   "composer": "Heinrich Sch\u00fctz"
+  },
+  {
+   "birth_year": 1632.0,
+   "composer": "Jean-Baptiste Lully"
+  },
+  {
+   "birth_year": 1659.0,
+   "composer": "Henry Purcell"
+  },
+  {
+   "birth_year": 1678.0,
+   "composer": "Antonio Vivaldi"
+  },
+  {
+   "birth_year": 1681.0,
+   "composer": "Georg Philipp Telemann"
+  },
+  {
+   "birth_year": 1683.0,
+   "composer": "Jean-Philippe Rameau"
+  },
+  {
+   "birth_year": 1685.0,
+   "composer": "Johann Sebastian Bach"
+  },
+  {
+   "birth_year": 1685.0,
+   "composer": "George Frideric Handel"
+  },
+  {
+   "birth_year": 1685.0,
+   "composer": "Domenico Scarlatti"
+  },
+  {
+   "birth_year": 1714.0,
+   "composer": "Christoph Willibald Gluck"
+  },
+  {
+   "birth_year": 1714.0,
+   "composer": "Carl Philipp Emanuel Bach"
+  },
+  {
+   "birth_year": 1732.0,
+   "composer": "Joseph Haydn"
+  },
+  {
+   "birth_year": 1743.0,
+   "composer": "Luigi Boccherini"
+  },
+  {
+   "birth_year": 1750.0,
+   "composer": "Antonio Salieri"
+  },
+  {
+   "birth_year": 1752.0,
+   "composer": "Muzio Clementi"
+  },
+  {
+   "birth_year": 1756.0,
+   "composer": "Wolfgang Amadeus Mozart"
+  },
+  {
+   "birth_year": 1770.0,
+   "composer": "Ludwig van Beethoven"
+  },
+  {
+   "birth_year": 1778.0,
+   "composer": "Johann Nepomuk Hummel"
+  },
+  {
+   "birth_year": 1782.0,
+   "composer": "Niccol\u00f2 Paganini"
+  },
+  {
+   "birth_year": 1786.0,
+   "composer": "Carl Maria von Weber"
+  },
+  {
+   "birth_year": 1792.0,
+   "composer": "Gioachino Rossini"
+  },
+  {
+   "birth_year": 1797.0,
+   "composer": "Franz Schubert"
+  },
+  {
+   "birth_year": 1797.0,
+   "composer": "Gaetano Donizetti"
+  },
+  {
+   "birth_year": 1803.0,
+   "composer": "Hector Berlioz"
+  },
+  {
+   "birth_year": 1809.0,
+   "composer": "Felix Mendelssohn"
+  },
+  {
+   "birth_year": 1810.0,
+   "composer": "Fr\u00e9d\u00e9ric Chopin"
+  },
+  {
+   "birth_year": 1810.0,
+   "composer": "Robert Schumann"
+  },
+  {
+   "birth_year": 1811.0,
+   "composer": "Franz Liszt"
+  },
+  {
+   "birth_year": 1813.0,
+   "composer": "Richard Wagner"
+  },
+  {
+   "birth_year": 1813.0,
+   "composer": "Giuseppe Verdi"
+  },
+  {
+   "birth_year": 1819.0,
+   "composer": "Jacques Offenbach"
+  },
+  {
+   "birth_year": 1822.0,
+   "composer": "C\u00e9sar Franck"
+  },
+  {
+   "birth_year": 1824.0,
+   "composer": "Bed\u0159ich Smetana"
+  },
+  {
+   "birth_year": 1824.0,
+   "composer": "Anton Bruckner"
+  },
+  {
+   "birth_year": 1833.0,
+   "composer": "Johannes Brahms"
+  },
+  {
+   "birth_year": 1833.0,
+   "composer": "Alexander Borodin"
+  },
+  {
+   "birth_year": 1835.0,
+   "composer": "Camille Saint-Sa\u00ebns"
+  },
+  {
+   "birth_year": 1838.0,
+   "composer": "Georges Bizet"
+  },
+  {
+   "birth_year": 1839.0,
+   "composer": "Modest Mussorgsky"
+  },
+  {
+   "birth_year": 1840.0,
+   "composer": "Pyotr Ilyich Tchaikovsky"
+  },
+  {
+   "birth_year": 1841.0,
+   "composer": "Anton\u00edn Dvo\u0159\u00e1k"
+  },
+  {
+   "birth_year": 1843.0,
+   "composer": "Edvard Grieg"
+  },
+  {
+   "birth_year": 1844.0,
+   "composer": "Nikolai Rimsky-Korsakov"
+  },
+  {
+   "birth_year": 1845.0,
+   "composer": "Gabriel Faur\u00e9"
+  },
+  {
+   "birth_year": 1854.0,
+   "composer": "Leo\u0161 Jan\u00e1\u010dek"
+  },
+  {
+   "birth_year": 1857.0,
+   "composer": "Edward Elgar"
+  },
+  {
+   "birth_year": 1858.0,
+   "composer": "Giacomo Puccini"
+  },
+  {
+   "birth_year": 1860.0,
+   "composer": "Gustav Mahler"
+  },
+  {
+   "birth_year": 1862.0,
+   "composer": "Claude Debussy"
+  },
+  {
+   "birth_year": 1864.0,
+   "composer": "Richard Strauss"
+  },
+  {
+   "birth_year": 1865.0,
+   "composer": "Jean Sibelius"
+  },
+  {
+   "birth_year": 1866.0,
+   "composer": "Erik Satie"
+  },
+  {
+   "birth_year": 1872.0,
+   "composer": "Alexander Scriabin"
+  },
+  {
+   "birth_year": 1873.0,
+   "composer": "Sergei Rachmaninoff"
+  },
+  {
+   "birth_year": 1874.0,
+   "composer": "Arnold Schoenberg"
+  },
+  {
+   "birth_year": 1874.0,
+   "composer": "Charles Ives"
+  },
+  {
+   "birth_year": 1875.0,
+   "composer": "Maurice Ravel"
+  },
+  {
+   "birth_year": 1881.0,
+   "composer": "B\u00e9la Bart\u00f3k"
+  },
+  {
+   "birth_year": 1882.0,
+   "composer": "Igor Stravinsky"
+  },
+  {
+   "birth_year": 1883.0,
+   "composer": "Anton Webern"
+  },
+  {
+   "birth_year": 1885.0,
+   "composer": "Alban Berg"
+  },
+  {
+   "birth_year": 1891.0,
+   "composer": "Sergei Prokofiev"
+  },
+  {
+   "birth_year": 1895.0,
+   "composer": "Paul Hindemith"
+  },
+  {
+   "birth_year": 1898.0,
+   "composer": "George Gershwin"
+  },
+  {
+   "birth_year": 1900.0,
+   "composer": "Aaron Copland"
+  },
+  {
+   "birth_year": 1908.0,
+   "composer": "Olivier Messiaen"
+  },
+  {
+   "birth_year": 1910.0,
+   "composer": "Samuel Barber"
+  },
+  {
+   "birth_year": 1912.0,
+   "composer": "John Cage"
+  },
+  {
+   "birth_year": 1913.0,
+   "composer": "Benjamin Britten"
+  },
+  {
+   "birth_year": 1918.0,
+   "composer": "Leonard Bernstein"
+  },
+  {
+   "birth_year": 1923.0,
+   "composer": "Gy\u00f6rgy Ligeti"
+  },
+  {
+   "birth_year": 1925.0,
+   "composer": "Pierre Boulez"
+  },
+  {
+   "birth_year": 1928.0,
+   "composer": "Karlheinz Stockhausen"
+  },
+  {
+   "birth_year": 1935.0,
+   "composer": "Arvo P\u00e4rt"
+  },
+  {
+   "birth_year": 1936.0,
+   "composer": "Steve Reich"
+  },
+  {
+   "birth_year": 1937.0,
+   "composer": "Philip Glass"
+  },
+  {
+   "birth_year": 1947.0,
+   "composer": "John Adams"
+  }
+ ],
+ "spans": null
+}

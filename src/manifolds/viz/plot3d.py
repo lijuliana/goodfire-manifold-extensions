@@ -19,6 +19,12 @@ FLOOR = "#EDEDED"
 SHADOW = "#555555"
 CONTINUOUS_SCALE = "Viridis"
 CYCLIC_SCALE = "Phase"
+DIVERGING_SCALE = [[0.0, "#C0392B"], [0.5, "#D9D9D9"], [1.0, "#2E5BFF"]]   # red -> grey -> blue
+
+
+def colorscale_for(mode: str) -> Any:
+    return {"continuous": CONTINUOUS_SCALE, "cyclic": CYCLIC_SCALE,
+            "diverging": DIVERGING_SCALE}[mode]
 CATEGORICAL = [
     "#2E5BFF", "#FF6B2E", "#2EB872", "#D62E8C", "#8E2EFF",
     "#FFB02E", "#2EC4E8", "#A3A3A3", "#6B4226", "#1D272A",
@@ -78,8 +84,9 @@ def build_figure(
 ) -> go.Figure:
     """Build the figure.
 
-    color_mode: "continuous" (Viridis), "cyclic" (Phase), "categorical" (one trace per class with a
-    legend) or "hex" (each point drawn in its own hex colour, e.g. the colors manifold).
+    color_mode: "continuous" (Viridis), "cyclic" (Phase), "diverging" (red-grey-blue),
+    "categorical" (one trace per class with a legend) or "hex" (each point drawn in its own hex
+    colour, e.g. the colors manifold).
     """
     coords = np.asarray(coords, dtype=float)
     if coords.ndim != 2 or coords.shape[1] != 3:
@@ -91,11 +98,11 @@ def build_figure(
     base_marker = {"size": point_size, "opacity": 0.95, "line": {"width": 0}}
     showlegend = False
 
-    if color_mode in ("continuous", "cyclic"):
+    if color_mode in ("continuous", "cyclic", "diverging"):
         vals = np.asarray(color_values, dtype=float)
         marker = base_marker | {
             "color": vals,
-            "colorscale": CONTINUOUS_SCALE if color_mode == "continuous" else CYCLIC_SCALE,
+            "colorscale": colorscale_for(color_mode),
             "showscale": True,
             "colorbar": _colorbar(color_title),
         }

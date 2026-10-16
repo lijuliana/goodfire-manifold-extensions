@@ -14,6 +14,7 @@
   "dataset": "synthetic, year in range(1800, 1999)",
   "n_paper": 199
  },
+ "preprocessing": "none",
  "prompt_set": {
   "template": "The date is {year}",
   "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
@@ -51,7 +52,8 @@
     "critical": true,
     "passed": true,
     "note": "linear axis (e.g. year)",
-    "partial_threshold": 0.7
+    "partial_threshold": 0.7,
+    "informative": false
    },
    {
     "name": "periodic_circular_corr",
@@ -61,7 +63,8 @@
     "critical": true,
     "passed": true,
     "note": "after removing the linear trend, angle vs periodic phase",
-    "partial_threshold": 0.4
+    "partial_threshold": 0.4,
+    "informative": false
    },
    {
     "name": "periodic_fit_r2",
@@ -71,7 +74,8 @@
     "critical": false,
     "passed": true,
     "note": "residual variance explained by cos/sin(phase)",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    },
    {
     "name": "periodic_cyclic_order",
@@ -81,11 +85,12 @@
     "critical": false,
     "passed": true,
     "note": "",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    }
   ],
   "extras": {
-   "rubric_version": 2
+   "rubric_version": 2.1
   }
  },
  "status": "matches",

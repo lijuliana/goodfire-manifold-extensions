@@ -1,0 +1,2115 @@
+{
+ "name": "statistical_uncertainty",
+ "template": "The mean value was {m} +/- {s} | The patients' mean age was {m} +/- {s} years | Mean heart rate increased to {m} +/- {s} beats per minute | The average concentration was {m} +/- {s} mg per litre | Mean observation time was {m} +/- {s} months",
+ "source": "arXiv 2604.28119 Fig. 10 (right) + goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)",
+  "synthetic measurement strings mirroring the Fig. 10 examples"
+ ],
+ "n": 300,
+ "prompts": [
+  "The mean value was 540 +/- 16.0",
+  "The patients' mean age was 120 +/- 1.01 years",
+  "Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+  "The average concentration was 3.2 +/- 3.27 mg per litre",
+  "Mean observation time was 68 +/- 25.3 months",
+  "The mean value was 86.2 +/- 11.5",
+  "The patients' mean age was 86.2 +/- 51.6 years",
+  "Mean heart rate increased to 870 +/- 5.95 beats per minute",
+  "The average concentration was 45.7 +/- 0.37 mg per litre",
+  "Mean observation time was 540 +/- 201.3 months",
+  "The mean value was 540 +/- 419.5",
+  "The patients' mean age was 8.5 +/- 1.13 years",
+  "Mean heart rate increased to 3.2 +/- 0.22 beats per minute",
+  "The average concentration was 25 +/- 0.197 mg per litre",
+  "Mean observation time was 3.2 +/- 0.862 months",
+  "The mean value was 8.5 +/- 2.01",
+  "The patients' mean age was 12.4 +/- 0.689 years",
+  "Mean heart rate increased to 86.2 +/- 140.0 beats per minute",
+  "The average concentration was 250 +/- 73.1 mg per litre",
+  "Mean observation time was 870 +/- 209.8 months",
+  "The mean value was 540 +/- 30.9",
+  "The patients' mean age was 120 +/- 1.7 years",
+  "Mean heart rate increased to 86.2 +/- 10.4 beats per minute",
+  "The average concentration was 120 +/- 4.45 mg per litre",
+  "Mean observation time was 45.7 +/- 41.0 months",
+  "The mean value was 68 +/- 78.0",
+  "The patients' mean age was 68 +/- 10.6 years",
+  "Mean heart rate increased to 25 +/- 0.989 beats per minute",
+  "The average concentration was 120 +/- 5.19 mg per litre",
+  "Mean observation time was 86.2 +/- 5.01 months",
+  "The mean value was 25 +/- 0.588",
+  "The patients' mean age was 540 +/- 112.1 years",
+  "Mean heart rate increased to 3.2 +/- 2.1 beats per minute",
+  "The average concentration was 3.2 +/- 1.64 mg per litre",
+  "Mean observation time was 25 +/- 20.9 months",
+  "The mean value was 12.4 +/- 0.115",
+  "The patients' mean age was 120 +/- 1.85 years",
+  "Mean heart rate increased to 25 +/- 2.01 beats per minute",
+  "The average concentration was 540 +/- 12.9 mg per litre",
+  "Mean observation time was 250 +/- 2.24 months",
+  "The mean value was 86.2 +/- 1.73",
+  "The patients' mean age was 45.7 +/- 0.507 years",
+  "Mean heart rate increased to 86.2 +/- 3 beats per minute",
+  "The average concentration was 86.2 +/- 23.4 mg per litre",
+  "Mean observation time was 540 +/- 647.5 months",
+  "The mean value was 12.4 +/- 0.622",
+  "The patients' mean age was 120 +/- 25.7 years",
+  "Mean heart rate increased to 8.5 +/- 9.39 beats per minute",
+  "The average concentration was 45.7 +/- 58.7 mg per litre",
+  "Mean observation time was 45.7 +/- 4.81 months",
+  "The mean value was 3.2 +/- 0.653",
+  "The patients' mean age was 45.7 +/- 73.3 years",
+  "Mean heart rate increased to 86.2 +/- 7.29 beats per minute",
+  "The average concentration was 870 +/- 378.4 mg per litre",
+  "Mean observation time was 45.7 +/- 5.66 months",
+  "The mean value was 68 +/- 34.5",
+  "The patients' mean age was 3.2 +/- 1.22 years",
+  "Mean heart rate increased to 45.7 +/- 15.4 beats per minute",
+  "The average concentration was 870 +/- 11.0 mg per litre",
+  "Mean observation time was 870 +/- 323.1 months",
+  "The mean value was 870 +/- 1202.4",
+  "The patients' mean age was 870 +/- 6.36 years",
+  "Mean heart rate increased to 8.5 +/- 12.6 beats per minute",
+  "The average concentration was 540 +/- 703.6 mg per litre",
+  "Mean observation time was 25 +/- 35.5 months",
+  "The mean value was 8.5 +/- 7.65",
+  "The patients' mean age was 45.7 +/- 4.31 years",
+  "Mean heart rate increased to 540 +/- 13.1 beats per minute",
+  "The average concentration was 540 +/- 584.6 mg per litre",
+  "Mean observation time was 250 +/- 7.28 months",
+  "The mean value was 45.7 +/- 3.52",
+  "The patients' mean age was 68 +/- 76.7 years",
+  "Mean heart rate increased to 120 +/- 45.3 beats per minute",
+  "The average concentration was 3.2 +/- 0.633 mg per litre",
+  "Mean observation time was 68 +/- 23.9 months",
+  "The mean value was 3.2 +/- 0.0235",
+  "The patients' mean age was 8.5 +/- 0.961 years",
+  "Mean heart rate increased to 250 +/- 279.1 beats per minute",
+  "The average concentration was 12.4 +/- 8.54 mg per litre",
+  "Mean observation time was 3.2 +/- 0.0311 months",
+  "The mean value was 120 +/- 8.62",
+  "The patients' mean age was 25 +/- 34.2 years",
+  "Mean heart rate increased to 8.5 +/- 0.238 beats per minute",
+  "The average concentration was 86.2 +/- 2.19 mg per litre",
+  "Mean observation time was 12.4 +/- 0.289 months",
+  "The mean value was 540 +/- 7.22",
+  "The patients' mean age was 250 +/- 42.3 years",
+  "Mean heart rate increased to 25 +/- 3.55 beats per minute",
+  "The average concentration was 250 +/- 36.7 mg per litre",
+  "Mean observation time was 250 +/- 8.23 months",
+  "The mean value was 45.7 +/- 27.7",
+  "The patients' mean age was 45.7 +/- 9.66 years",
+  "Mean heart rate increased to 120 +/- 6.17 beats per minute",
+  "The average concentration was 870 +/- 122.5 mg per litre",
+  "Mean observation time was 12.4 +/- 8.88 months",
+  "The mean value was 86.2 +/- 1.29",
+  "The patients' mean age was 540 +/- 542.6 years",
+  "Mean heart rate increased to 45.7 +/- 0.39 beats per minute",
+  "The average concentration was 86.2 +/- 5.7 mg per litre",
+  "Mean observation time was 540 +/- 349.1 months",
+  "The mean value was 8.5 +/- 0.426",
+  "The patients' mean age was 3.2 +/- 0.0332 years",
+  "Mean heart rate increased to 12.4 +/- 0.377 beats per minute",
+  "The average concentration was 120 +/- 38.6 mg per litre",
+  "Mean observation time was 86.2 +/- 1.17 months",
+  "The mean value was 870 +/- 681.8",
+  "The patients' mean age was 45.7 +/- 2.5 years",
+  "Mean heart rate increased to 3.2 +/- 0.229 beats per minute",
+  "The average concentration was 25 +/- 36.2 mg per litre",
+  "Mean observation time was 68 +/- 32.6 months",
+  "The mean value was 3.2 +/- 0.0951",
+  "The patients' mean age was 25 +/- 19.4 years",
+  "Mean heart rate increased to 120 +/- 13.4 beats per minute",
+  "The average concentration was 540 +/- 24.2 mg per litre",
+  "Mean observation time was 86.2 +/- 3.3 months",
+  "The mean value was 870 +/- 16.0",
+  "The patients' mean age was 12.4 +/- 7.28 years",
+  "Mean heart rate increased to 540 +/- 143.3 beats per minute",
+  "The average concentration was 68 +/- 74.5 mg per litre",
+  "Mean observation time was 870 +/- 359.2 months",
+  "The mean value was 86.2 +/- 2.26",
+  "The patients' mean age was 540 +/- 7.91 years",
+  "Mean heart rate increased to 8.5 +/- 2.92 beats per minute",
+  "The average concentration was 120 +/- 2.03 mg per litre",
+  "Mean observation time was 120 +/- 120.8 months",
+  "The mean value was 45.7 +/- 6.75",
+  "The patients' mean age was 120 +/- 2.35 years",
+  "Mean heart rate increased to 86.2 +/- 10.5 beats per minute",
+  "The average concentration was 250 +/- 2.75 mg per litre",
+  "Mean observation time was 68 +/- 101.5 months",
+  "The mean value was 3.2 +/- 0.0223",
+  "The patients' mean age was 86.2 +/- 40.7 years",
+  "Mean heart rate increased to 250 +/- 43.2 beats per minute",
+  "The average concentration was 870 +/- 34.0 mg per litre",
+  "Mean observation time was 250 +/- 68.1 months",
+  "The mean value was 12.4 +/- 0.244",
+  "The patients' mean age was 120 +/- 22.2 years",
+  "Mean heart rate increased to 86.2 +/- 115.6 beats per minute",
+  "The average concentration was 3.2 +/- 0.337 mg per litre",
+  "Mean observation time was 3.2 +/- 1.29 months",
+  "The mean value was 25 +/- 1.42",
+  "The patients' mean age was 8.5 +/- 0.0809 years",
+  "Mean heart rate increased to 120 +/- 1.31 beats per minute",
+  "The average concentration was 120 +/- 7.1 mg per litre",
+  "Mean observation time was 870 +/- 78.7 months",
+  "The mean value was 540 +/- 550.6",
+  "The patients' mean age was 8.5 +/- 8.8 years",
+  "Mean heart rate increased to 250 +/- 3.39 beats per minute",
+  "The average concentration was 86.2 +/- 0.855 mg per litre",
+  "Mean observation time was 3.2 +/- 2.56 months",
+  "The mean value was 120 +/- 12.4",
+  "The patients' mean age was 86.2 +/- 1.43 years",
+  "Mean heart rate increased to 12.4 +/- 0.48 beats per minute",
+  "The average concentration was 120 +/- 40.3 mg per litre",
+  "Mean observation time was 3.2 +/- 0.351 months",
+  "The mean value was 68 +/- 35.3",
+  "The patients' mean age was 12.4 +/- 2.02 years",
+  "Mean heart rate increased to 8.5 +/- 0.169 beats per minute",
+  "The average concentration was 250 +/- 24.8 mg per litre",
+  "Mean observation time was 250 +/- 387.3 months",
+  "The mean value was 68 +/- 91.5",
+  "The patients' mean age was 12.4 +/- 6.84 years",
+  "Mean heart rate increased to 120 +/- 70.9 beats per minute",
+  "The average concentration was 68 +/- 12.6 mg per litre",
+  "Mean observation time was 250 +/- 256.4 months",
+  "The mean value was 120 +/- 1.16",
+  "The patients' mean age was 86.2 +/- 4.74 years",
+  "Mean heart rate increased to 540 +/- 21.8 beats per minute",
+  "The average concentration was 120 +/- 59.4 mg per litre",
+  "Mean observation time was 870 +/- 84.7 months",
+  "The mean value was 3.2 +/- 2.69",
+  "The patients' mean age was 45.7 +/- 0.496 years",
+  "Mean heart rate increased to 250 +/- 129.3 beats per minute",
+  "The average concentration was 120 +/- 65.6 mg per litre",
+  "Mean observation time was 120 +/- 64.7 months",
+  "The mean value was 25 +/- 0.582",
+  "The patients' mean age was 45.7 +/- 3.06 years",
+  "Mean heart rate increased to 25 +/- 3.31 beats per minute",
+  "The average concentration was 86.2 +/- 5.45 mg per litre",
+  "Mean observation time was 8.5 +/- 0.0574 months",
+  "The mean value was 45.7 +/- 33.4",
+  "The patients' mean age was 250 +/- 3.62 years",
+  "Mean heart rate increased to 45.7 +/- 28.2 beats per minute",
+  "The average concentration was 120 +/- 179.0 mg per litre",
+  "Mean observation time was 3.2 +/- 0.222 months",
+  "The mean value was 540 +/- 796.2",
+  "The patients' mean age was 120 +/- 12.9 years",
+  "Mean heart rate increased to 870 +/- 369.6 beats per minute",
+  "The average concentration was 68 +/- 6.29 mg per litre",
+  "Mean observation time was 870 +/- 678.1 months",
+  "The mean value was 8.5 +/- 0.288",
+  "The patients' mean age was 120 +/- 55.1 years",
+  "Mean heart rate increased to 86.2 +/- 0.973 beats per minute",
+  "The average concentration was 86.2 +/- 5 mg per litre",
+  "Mean observation time was 870 +/- 80.4 months",
+  "The mean value was 3.2 +/- 0.228",
+  "The patients' mean age was 120 +/- 20.3 years",
+  "Mean heart rate increased to 45.7 +/- 0.605 beats per minute",
+  "The average concentration was 25 +/- 7.25 mg per litre",
+  "Mean observation time was 870 +/- 544.2 months",
+  "The mean value was 86.2 +/- 14.4",
+  "The patients' mean age was 540 +/- 4.54 years",
+  "Mean heart rate increased to 8.5 +/- 1.31 beats per minute",
+  "The average concentration was 120 +/- 76.0 mg per litre",
+  "Mean observation time was 250 +/- 147.6 months",
+  "The mean value was 68 +/- 110.3",
+  "The patients' mean age was 25 +/- 0.431 years",
+  "Mean heart rate increased to 25 +/- 1.45 beats per minute",
+  "The average concentration was 120 +/- 9.05 mg per litre",
+  "Mean observation time was 250 +/- 42.8 months",
+  "The mean value was 250 +/- 91.4",
+  "The patients' mean age was 8.5 +/- 0.267 years",
+  "Mean heart rate increased to 870 +/- 675.0 beats per minute",
+  "The average concentration was 12.4 +/- 1.86 mg per litre",
+  "Mean observation time was 25 +/- 23.6 months",
+  "The mean value was 68 +/- 0.735",
+  "The patients' mean age was 8.5 +/- 0.348 years",
+  "Mean heart rate increased to 120 +/- 2.12 beats per minute",
+  "The average concentration was 870 +/- 43.1 mg per litre",
+  "Mean observation time was 120 +/- 4.96 months",
+  "The mean value was 86.2 +/- 1.74",
+  "The patients' mean age was 870 +/- 98.0 years",
+  "Mean heart rate increased to 86.2 +/- 1.43 beats per minute",
+  "The average concentration was 3.2 +/- 2.78 mg per litre",
+  "Mean observation time was 12.4 +/- 1.79 months",
+  "The mean value was 250 +/- 5.73",
+  "The patients' mean age was 250 +/- 1.8 years",
+  "Mean heart rate increased to 86.2 +/- 29.3 beats per minute",
+  "The average concentration was 45.7 +/- 10.8 mg per litre",
+  "Mean observation time was 120 +/- 23.3 months",
+  "The mean value was 25 +/- 0.653",
+  "The patients' mean age was 3.2 +/- 0.508 years",
+  "Mean heart rate increased to 86.2 +/- 136.0 beats per minute",
+  "The average concentration was 45.7 +/- 49.5 mg per litre",
+  "Mean observation time was 3.2 +/- 0.553 months",
+  "The mean value was 8.5 +/- 2.64",
+  "The patients' mean age was 540 +/- 20.3 years",
+  "Mean heart rate increased to 8.5 +/- 2.94 beats per minute",
+  "The average concentration was 45.7 +/- 2.02 mg per litre",
+  "Mean observation time was 540 +/- 13.5 months",
+  "The mean value was 540 +/- 90.8",
+  "The patients' mean age was 540 +/- 50.0 years",
+  "Mean heart rate increased to 540 +/- 5.43 beats per minute",
+  "The average concentration was 12.4 +/- 0.0922 mg per litre",
+  "Mean observation time was 8.5 +/- 0.164 months",
+  "The mean value was 86.2 +/- 124.2",
+  "The patients' mean age was 870 +/- 70.5 years",
+  "Mean heart rate increased to 8.5 +/- 0.502 beats per minute",
+  "The average concentration was 540 +/- 223.6 mg per litre",
+  "Mean observation time was 12.4 +/- 2.88 months",
+  "The mean value was 8.5 +/- 0.0903",
+  "The patients' mean age was 120 +/- 5.63 years",
+  "Mean heart rate increased to 120 +/- 8.45 beats per minute",
+  "The average concentration was 68 +/- 0.573 mg per litre",
+  "Mean observation time was 25 +/- 30.5 months",
+  "The mean value was 12.4 +/- 0.204",
+  "The patients' mean age was 45.7 +/- 28.3 years",
+  "Mean heart rate increased to 540 +/- 31.3 beats per minute",
+  "The average concentration was 3.2 +/- 2 mg per litre",
+  "Mean observation time was 68 +/- 19.4 months",
+  "The mean value was 86.2 +/- 37.5",
+  "The patients' mean age was 540 +/- 163.0 years",
+  "Mean heart rate increased to 45.7 +/- 28.4 beats per minute",
+  "The average concentration was 870 +/- 15.7 mg per litre",
+  "Mean observation time was 86.2 +/- 0.936 months",
+  "The mean value was 250 +/- 17.5",
+  "The patients' mean age was 870 +/- 17.8 years",
+  "Mean heart rate increased to 45.7 +/- 53.5 beats per minute",
+  "The average concentration was 870 +/- 6.02 mg per litre",
+  "Mean observation time was 8.5 +/- 0.338 months",
+  "The mean value was 68 +/- 1.96",
+  "The patients' mean age was 870 +/- 565.3 years",
+  "Mean heart rate increased to 68 +/- 11.5 beats per minute",
+  "The average concentration was 8.5 +/- 11.1 mg per litre",
+  "Mean observation time was 86.2 +/- 127.7 months",
+  "The mean value was 120 +/- 19.1",
+  "The patients' mean age was 120 +/- 80.7 years",
+  "Mean heart rate increased to 870 +/- 423.6 beats per minute",
+  "The average concentration was 8.5 +/- 1.85 mg per litre",
+  "Mean observation time was 540 +/- 25.8 months",
+  "The mean value was 8.5 +/- 0.199",
+  "The patients' mean age was 68 +/- 33.0 years",
+  "Mean heart rate increased to 12.4 +/- 2 beats per minute",
+  "The average concentration was 8.5 +/- 1.09 mg per litre",
+  "Mean observation time was 3.2 +/- 1.41 months",
+  "The mean value was 120 +/- 1.48",
+  "The patients' mean age was 25 +/- 1.64 years",
+  "Mean heart rate increased to 86.2 +/- 17.0 beats per minute",
+  "The average concentration was 250 +/- 42.2 mg per litre",
+  "Mean observation time was 120 +/- 45.5 months",
+  "The mean value was 250 +/- 21.5",
+  "The patients' mean age was 68 +/- 2.22 years",
+  "Mean heart rate increased to 68 +/- 21.0 beats per minute",
+  "The average concentration was 12.4 +/- 3.83 mg per litre",
+  "Mean observation time was 8.5 +/- 12.0 months",
+  "The mean value was 12.4 +/- 3.35",
+  "The patients' mean age was 25 +/- 17.2 years",
+  "Mean heart rate increased to 68 +/- 6.66 beats per minute",
+  "The average concentration was 250 +/- 6.97 mg per litre",
+  "Mean observation time was 68 +/- 1.08 months"
+ ],
+ "labels": [
+  {
+   "ln_std_over_mean": -3.516173074298713,
+   "mean": 540.0,
+   "std": 16.04498059675772,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.774645618350929,
+   "mean": 120.0,
+   "std": 1.012928990342657,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.5270136843985015,
+   "mean": 3.2,
+   "std": 1.889169142753212,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.0201556750274693,
+   "mean": 3.2,
+   "std": 3.2651525512357575,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.9877689145880089,
+   "mean": 68.0,
+   "std": 25.32365123789866,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.010062546940174,
+   "mean": 86.2,
+   "std": 11.549101372907149,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.5128054523315733,
+   "mean": 86.2,
+   "std": 51.61770456371564,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.984938249064186,
+   "mean": 870.0,
+   "std": 5.950974350779482,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.815279335819946,
+   "mean": 45.7,
+   "std": 0.3703965694786228,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.9868950446353075,
+   "mean": 540.0,
+   "std": 201.27539505027096,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.2525159270756241,
+   "mean": 540.0,
+   "std": 419.49567354070535,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.0219632886299954,
+   "mean": 8.5,
+   "std": 1.1253598766593937,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.6752202834128784,
+   "mean": 3.2,
+   "std": 0.22045328331217542,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.8442418086999535,
+   "mean": 25.0,
+   "std": 0.19683962190076226,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.3115657191850332,
+   "mean": 3.2,
+   "std": 0.8620733584068141,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.4404576863416247,
+   "mean": 8.5,
+   "std": 2.012964431604683,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.889773451559641,
+   "mean": 12.4,
+   "std": 0.6893011788018065,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": 0.48465464684066095,
+   "mean": 86.2,
+   "std": 139.95554332619182,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.2295190853561793,
+   "mean": 250.0,
+   "std": 73.10829481692936,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.4224739805270104,
+   "mean": 870.0,
+   "std": 209.77158140135072,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.860932168114929,
+   "mean": 540.0,
+   "std": 30.89631655453712,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.256969222376738,
+   "mean": 120.0,
+   "std": 1.6998202673851248,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.1105512263835076,
+   "mean": 86.2,
+   "std": 10.444953585422772,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.293669684425744,
+   "mean": 120.0,
+   "std": 4.454086807173008,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.10781691108049855,
+   "mean": 45.7,
+   "std": 41.02909244143663,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": 0.13723933775937341,
+   "mean": 68.0,
+   "std": 78.0029809241388,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.8565859309863146,
+   "mean": 68.0,
+   "std": 10.621941071321231,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.2297183490823183,
+   "mean": 25.0,
+   "std": 0.9892160440843644,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.141488259710767,
+   "mean": 120.0,
+   "std": 5.186211572137241,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.846095497095113,
+   "mean": 86.2,
+   "std": 5.00568707253118,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.7506332355664114,
+   "mean": 25.0,
+   "std": 0.5875714574263663,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.5724707042267667,
+   "mean": 540.0,
+   "std": 112.0671713068211,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.4204571879063126,
+   "mean": 3.2,
+   "std": 2.10158878276132,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.6709593088122414,
+   "mean": 3.2,
+   "std": 1.6358973651814221,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.1793367305411292,
+   "mean": 25.0,
+   "std": 20.89561011004328,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.677875808571431,
+   "mean": 12.4,
+   "std": 0.11530444095111535,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.173462932078385,
+   "mean": 120.0,
+   "std": 1.847861104890662,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.5231334834289214,
+   "mean": 25.0,
+   "std": 2.0051970624484547,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.731467850534389,
+   "mean": 540.0,
+   "std": 12.93712763821225,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -4.713882844145747,
+   "mean": 250.0,
+   "std": 2.2424703067286376,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.9081782551990956,
+   "mean": 86.2,
+   "std": 1.7306411079146773,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.500858249094829,
+   "mean": 45.7,
+   "std": 0.5072456118405934,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.3571712694959257,
+   "mean": 86.2,
+   "std": 3.002661038006618,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.3040281712400237,
+   "mean": 86.2,
+   "std": 23.39780013055666,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.18162210778573762,
+   "mean": 540.0,
+   "std": 647.5469155158937,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.991894074653443,
+   "mean": 12.4,
+   "std": 0.6223842560157236,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.5399051665315993,
+   "mean": 120.0,
+   "std": 25.728171947330686,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": 0.09935004187327054,
+   "mean": 8.5,
+   "std": 9.387849111463204,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.2502477152990545,
+   "mean": 45.7,
+   "std": 58.69449926738591,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.2505730247179416,
+   "mean": 45.7,
+   "std": 4.813985239438547,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.5888260139154222,
+   "mean": 3.2,
+   "std": 0.6533285060775826,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": 0.4730307787942829,
+   "mean": 45.7,
+   "std": 73.34168053577342,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.4697517337999715,
+   "mean": 86.2,
+   "std": 7.293025232857911,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.8324913508043972,
+   "mean": 870.0,
+   "std": 378.4189294288628,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.0887831189177626,
+   "mean": 45.7,
+   "std": 5.659384716548279,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.6781786460740592,
+   "mean": 68.0,
+   "std": 34.51275821816827,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.960340355161988,
+   "mean": 3.2,
+   "std": 1.2248402834554728,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.0887141710563757,
+   "mean": 45.7,
+   "std": 15.384863352110386,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.367870516955021,
+   "mean": 870.0,
+   "std": 11.03004259163525,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.990416856080298,
+   "mean": 870.0,
+   "std": 323.1369914900118,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": 0.3235940445855557,
+   "mean": 870.0,
+   "std": 1202.4149312499198,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.919115322690469,
+   "mean": 870.0,
+   "std": 6.355864239093053,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": 0.3965727203648938,
+   "mean": 8.5,
+   "std": 12.637124665689273,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.26465598786029965,
+   "mean": 540.0,
+   "std": 703.6106346814195,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.34945847602625246,
+   "mean": 25.0,
+   "std": 35.45748243818215,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.10535444353713605,
+   "mean": 8.5,
+   "std": 7.650046451864311,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.360066419056923,
+   "mean": 45.7,
+   "std": 4.314717611079019,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.721948941983829,
+   "mean": 540.0,
+   "std": 13.060862951373144,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.07941587880908235,
+   "mean": 540.0,
+   "std": 584.6334200177542,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.536283502392391,
+   "mean": 250.0,
+   "std": 7.2803389156307325,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.5648594406400766,
+   "mean": 45.7,
+   "std": 3.5157007218068705,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": 0.12059523789635228,
+   "mean": 68.0,
+   "std": 76.71543625453529,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.9739659238889152,
+   "mean": 120.0,
+   "std": 45.30991210838538,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.6209471417805186,
+   "mean": 3.2,
+   "std": 0.6326763190227995,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.0442912494529284,
+   "mean": 68.0,
+   "std": 23.93199952603615,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.912045487620354,
+   "mean": 3.2,
+   "std": 0.023543754913798915,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.1798270220585705,
+   "mean": 8.5,
+   "std": 0.961019231195434,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": 0.11007321438353386,
+   "mean": 250.0,
+   "std": 279.08995026538594,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.37275496213189213,
+   "mean": 12.4,
+   "std": 8.541541632005588,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -4.633204951780942,
+   "mean": 3.2,
+   "std": 0.031115345969163294,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.633356974286917,
+   "mean": 120.0,
+   "std": 8.620428285163658,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": 0.31334144431238625,
+   "mean": 25.0,
+   "std": 34.19971358003071,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.5762447375598727,
+   "mean": 8.5,
+   "std": 0.23783489273306865,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.6707835724811027,
+   "mean": 86.2,
+   "std": 2.194351602048291,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.757718143704716,
+   "mean": 12.4,
+   "std": 0.28937794673449346,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.3149491179059405,
+   "mean": 540.0,
+   "std": 7.218303995588015,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.7763231435299698,
+   "mean": 250.0,
+   "std": 42.31483671562496,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.952502238047027,
+   "mean": 25.0,
+   "std": 3.547962825577137,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.9173822639659779,
+   "mean": 250.0,
+   "std": 36.7478108029331,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.4136833206283423,
+   "mean": 250.0,
+   "std": 8.229930724636299,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.5003346596599928,
+   "mean": 45.7,
+   "std": 27.70917645345011,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.5542144566913558,
+   "mean": 45.7,
+   "std": 9.658939322465061,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.968275738995755,
+   "mean": 120.0,
+   "std": 6.1670216324983,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.9606366921329204,
+   "mean": 870.0,
+   "std": 122.46882643470623,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.3343983544871704,
+   "mean": 12.4,
+   "std": 8.875530587875625,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.199895539974076,
+   "mean": 86.2,
+   "std": 1.2927537559630875,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": 0.004774289142632842,
+   "mean": 540.0,
+   "std": 542.5842802788568,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.763132112874877,
+   "mean": 45.7,
+   "std": 0.3902242071271896,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.7153877944582643,
+   "mean": 86.2,
+   "std": 5.704654286889579,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.43607808097043493,
+   "mean": 540.0,
+   "std": 349.1463092581497,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.9922461323295115,
+   "mean": 8.5,
+   "std": 0.4264841955749522,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.567534795588981,
+   "mean": 3.2,
+   "std": 0.03322728225710095,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.4938299577024354,
+   "mean": 12.4,
+   "std": 0.3767650538684522,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.1354136113711752,
+   "mean": 120.0,
+   "std": 38.55470459757755,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -4.302505937563137,
+   "mean": 86.2,
+   "std": 1.166682487099725,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.24371937529574247,
+   "mean": 870.0,
+   "std": 681.8255520581454,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.905762204290108,
+   "mean": 45.7,
+   "std": 2.5001134069118875,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.6362426635178284,
+   "mean": 3.2,
+   "std": 0.22921568708322884,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.3705427706482451,
+   "mean": 25.0,
+   "std": 36.21301539521228,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.733698465439944,
+   "mean": 68.0,
+   "std": 32.64883715875604,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.515897679745599,
+   "mean": 3.2,
+   "std": 0.09510755499566066,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.25283887695875246,
+   "mean": 25.0,
+   "std": 19.414824969240726,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.191114219509951,
+   "mean": 120.0,
+   "std": 13.415054188586764,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.1063734797072113,
+   "mean": 540.0,
+   "std": 24.172017436521916,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.262310500477649,
+   "mean": 86.2,
+   "std": 3.3014431042204477,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.9950819159039064,
+   "mean": 870.0,
+   "std": 16.013166590580944,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.5321553103881032,
+   "mean": 12.4,
+   "std": 7.282987596967684,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.326608269357568,
+   "mean": 540.0,
+   "std": 143.3029427482526,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.09143017467930285,
+   "mean": 68.0,
+   "std": 74.51033792520731,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.8846332318403524,
+   "mean": 870.0,
+   "std": 359.1930471694714,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.640692928228409,
+   "mean": 86.2,
+   "std": 2.26138452963965,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.223143937044326,
+   "mean": 540.0,
+   "std": 7.912352947899755,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.06959804839886,
+   "mean": 8.5,
+   "std": 2.9167445526115636,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.081208891697503,
+   "mean": 120.0,
+   "std": 2.0264446448786333,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.0064067141883014924,
+   "mean": 120.0,
+   "std": 120.7712737296304,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.9122957784737737,
+   "mean": 45.7,
+   "std": 6.7517553263534404,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -3.932286249100635,
+   "mean": 120.0,
+   "std": 2.351857622802653,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.1068776326016865,
+   "mean": 86.2,
+   "std": 10.483394667193949,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.510853978645504,
+   "mean": 250.0,
+   "std": 2.747267933754463,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.40068481219688395,
+   "mean": 68.0,
+   "std": 101.51357337493968,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.964751145346294,
+   "mean": 3.2,
+   "std": 0.022334999746217273,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.7504293932603624,
+   "mean": 86.2,
+   "std": 40.700516566080054,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.7557148442347725,
+   "mean": 250.0,
+   "std": 43.195921178471586,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.2417510004453423,
+   "mean": 870.0,
+   "std": 34.01297982091647,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.3011035134572189,
+   "mean": 250.0,
+   "std": 68.0578041021393,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.9269093084875726,
+   "mean": 12.4,
+   "std": 0.2443355396456884,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.6876845299120582,
+   "mean": 120.0,
+   "std": 22.193672214609695,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": 0.29332701218409524,
+   "mean": 86.2,
+   "std": 115.58395971889946,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.250149469877598,
+   "mean": 3.2,
+   "std": 0.33722710953595647,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.9074638639454343,
+   "mean": 3.2,
+   "std": 1.2913484026918332,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.8656329751851444,
+   "mean": 25.0,
+   "std": 1.4236768409252332,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.654074758497658,
+   "mean": 8.5,
+   "std": 0.08094311985462975,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.5172766228228225,
+   "mean": 120.0,
+   "std": 1.3102462805449953,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.826995604031178,
+   "mean": 120.0,
+   "std": 7.102850190325933,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.4023481478749367,
+   "mean": 870.0,
+   "std": 78.7395101015669,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": 0.01942063502487122,
+   "mean": 540.0,
+   "std": 550.5896388376904,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": 0.03428178061471245,
+   "mean": 8.5,
+   "std": 8.796447476378631,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.299283450231015,
+   "mean": 250.0,
+   "std": 3.3945712610508565,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.6132056053693,
+   "mean": 86.2,
+   "std": 0.8551012228969779,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.22130138108974412,
+   "mean": 3.2,
+   "std": 2.5647203022398526,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.2688556841063083,
+   "mean": 120.0,
+   "std": 12.411656342413766,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.100511210919358,
+   "mean": 86.2,
+   "std": 1.427834508435563,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.250904366848111,
+   "mean": 12.4,
+   "std": 0.4803655539316268,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.0901607520373031,
+   "mean": 120.0,
+   "std": 40.339494067714085,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.2089157670051005,
+   "mean": 3.2,
+   "std": 0.35142289306053176,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.6568384714707127,
+   "mean": 68.0,
+   "std": 35.25718131316873,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.816828231720736,
+   "mean": 12.4,
+   "std": 2.015501889159614,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.915207789872723,
+   "mean": 8.5,
+   "std": 0.16945944787232076,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.3113468012890706,
+   "mean": 250.0,
+   "std": 24.78191409034418,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.4378243335230083,
+   "mean": 250.0,
+   "std": 387.3331794231746,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": 0.2966052706834698,
+   "mean": 68.0,
+   "std": 91.47932366387323,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.5949562986526499,
+   "mean": 12.4,
+   "std": 6.839674713230357,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.5255626470120047,
+   "mean": 120.0,
+   "std": 70.94671453510703,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.6843310211738602,
+   "mean": 68.0,
+   "std": 12.61866016646985,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.025299194890639122,
+   "mean": 250.0,
+   "std": 256.4054838665569,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.641012709737898,
+   "mean": 120.0,
+   "std": 1.1577506560570805,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.9000187101856865,
+   "mean": 86.2,
+   "std": 4.742912827252427,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -3.2094991114461258,
+   "mean": 540.0,
+   "std": 21.803489550572237,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.7034522385799198,
+   "mean": 120.0,
+   "std": 59.38487143018434,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.3295567367122674,
+   "mean": 870.0,
+   "std": 84.68482932545369,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.17359101770512098,
+   "mean": 3.2,
+   "std": 2.6900500303947683,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.522518202818082,
+   "mean": 45.7,
+   "std": 0.4963768289530473,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.6596495696216973,
+   "mean": 250.0,
+   "std": 129.25812165978135,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.6044199115613684,
+   "mean": 120.0,
+   "std": 65.5669547996082,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.6184844948967001,
+   "mean": 120.0,
+   "std": 64.65123758529785,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.7606935696838417,
+   "mean": 25.0,
+   "std": 0.5816899269336138,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.7040353828759107,
+   "mean": 45.7,
+   "std": 3.0589230666753653,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.0222450900340947,
+   "mean": 25.0,
+   "std": 3.3089493921923356,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.7617870964838165,
+   "mean": 86.2,
+   "std": 5.446009187051746,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -4.998346204411924,
+   "mean": 8.5,
+   "std": 0.0573673449464408,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.31468248271158655,
+   "mean": 45.7,
+   "std": 33.36194286617964,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.235875764838913,
+   "mean": 250.0,
+   "std": 3.616783710060176,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.4839330138294874,
+   "mean": 45.7,
+   "std": 28.167400090462774,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.40005577579486584,
+   "mean": 120.0,
+   "std": 179.02894892041354,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.6674143300579294,
+   "mean": 3.2,
+   "std": 0.22218086529865003,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": 0.388287896803111,
+   "mean": 540.0,
+   "std": 796.2052754756266,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.229776614396816,
+   "mean": 120.0,
+   "std": 12.906294374653804,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.8560440377885215,
+   "mean": 870.0,
+   "std": 369.6102876237898,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.381191104171858,
+   "mean": 68.0,
+   "std": 6.28594759150357,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.24917567396603327,
+   "mean": 870.0,
+   "std": 678.115439151676,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.383416592139933,
+   "mean": 8.5,
+   "std": 0.28841627917657725,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.777912515090895,
+   "mean": 120.0,
+   "std": 55.123671168584785,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.483851656116816,
+   "mean": 86.2,
+   "std": 0.973184613465269,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.847407655324347,
+   "mean": 86.2,
+   "std": 4.999123126455713,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -2.381081702306524,
+   "mean": 870.0,
+   "std": 80.43195193319852,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.643032155213919,
+   "mean": 3.2,
+   "std": 0.22766470024330646,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.775348055250686,
+   "mean": 120.0,
+   "std": 20.330936419151676,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.325201369031596,
+   "mean": 45.7,
+   "std": 0.6046514690711642,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.2377225355873183,
+   "mean": 25.0,
+   "std": 7.25110078156211,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.4692025288397561,
+   "mean": 870.0,
+   "std": 544.1857728713582,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.7917397419208823,
+   "mean": 86.2,
+   "std": 14.36695008510858,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.778799785024696,
+   "mean": 540.0,
+   "std": 4.539284291280781,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.8703578015515303,
+   "mean": 8.5,
+   "std": 1.3095824709510042,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.4572352780628038,
+   "mean": 120.0,
+   "std": 75.9637660971194,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.5271574754969421,
+   "mean": 250.0,
+   "std": 147.5701184825169,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": 0.4835566118987051,
+   "mean": 68.0,
+   "std": 110.28460218179708,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.0593820798862925,
+   "mean": 25.0,
+   "std": 0.4314920231233355,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.8457886030035344,
+   "mean": 25.0,
+   "std": 1.4522109988601861,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.584240874779314,
+   "mean": 120.0,
+   "std": 9.054400367577948,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.7639093981393184,
+   "mean": 250.0,
+   "std": 42.843396238917585,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.0063206898631085,
+   "mean": 250.0,
+   "std": 91.39038061409894,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -3.4595467897342527,
+   "mean": 8.5,
+   "std": 0.2672740810685929,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.25377500779242995,
+   "mean": 870.0,
+   "std": 675.0037212742346,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.8957294838367327,
+   "mean": 12.4,
+   "std": 1.8625881309337946,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.05646929113333513,
+   "mean": 25.0,
+   "std": 23.627387671535708,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.526931601664486,
+   "mean": 68.0,
+   "std": 0.7353388272853951,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -3.196097406294686,
+   "mean": 8.5,
+   "std": 0.3478335414541057,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.035246375082054,
+   "mean": 120.0,
+   "std": 2.1217588006815244,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.004479270253851,
+   "mean": 870.0,
+   "std": 43.121164893653464,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.185572921283353,
+   "mean": 120.0,
+   "std": 4.962545533555116,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.903859126262826,
+   "mean": 86.2,
+   "std": 1.7381321357142896,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.183044881892457,
+   "mean": 870.0,
+   "std": 98.04713473787558,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.101475498746741,
+   "mean": 86.2,
+   "std": 1.4264583286229187,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.14119696501540968,
+   "mean": 3.2,
+   "std": 2.7786184529040514,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.9374048047030534,
+   "mean": 12.4,
+   "std": 1.7865594368193485,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.776506322047519,
+   "mean": 250.0,
+   "std": 5.725641501431863,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -4.933194106375131,
+   "mean": 250.0,
+   "std": 1.800864471372874,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.0785350298414365,
+   "mean": 86.2,
+   "std": 29.316050006237877,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.4467523703850487,
+   "mean": 45.7,
+   "std": 10.754732900691458,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.6376372364863934,
+   "mean": 120.0,
+   "std": 23.33266957744375,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.6447671702196347,
+   "mean": 25.0,
+   "std": 0.6531873101027322,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.8409207354613746,
+   "mean": 3.2,
+   "std": 0.5077480466214432,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": 0.45612775719794735,
+   "mean": 86.2,
+   "std": 136.01945607344385,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.08059946556349647,
+   "mean": 45.7,
+   "std": 49.53590516324014,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.755216740427581,
+   "mean": 3.2,
+   "std": 0.5531832651618491,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.1708169164309887,
+   "mean": 8.5,
+   "std": 2.6359647580359415,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -3.280723940943558,
+   "mean": 540.0,
+   "std": 20.304554055857402,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.0624518419097813,
+   "mean": 8.5,
+   "std": 2.937662865731142,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.1204154238662563,
+   "mean": 45.7,
+   "std": 2.017144452752142,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.6858095856979567,
+   "mean": 540.0,
+   "std": 13.541506901381457,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.7825952587587692,
+   "mean": 540.0,
+   "std": 90.82856973717648,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.378763680618263,
+   "mean": 540.0,
+   "std": 50.03913798542583,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -4.600379082434235,
+   "mean": 540.0,
+   "std": 5.425934035907702,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.901597185066636,
+   "mean": 12.4,
+   "std": 0.09219026750958513,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.9488934959695885,
+   "mean": 8.5,
+   "std": 0.16384616126295906,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": 0.3654313813475119,
+   "mean": 86.2,
+   "std": 124.22588467506219,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.513511664200904,
+   "mean": 870.0,
+   "std": 70.45551709232537,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.82937111610972,
+   "mean": 8.5,
+   "std": 0.5019248093834999,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.8818435124783575,
+   "mean": 540.0,
+   "std": 223.5702376456005,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.4596238085582929,
+   "mean": 12.4,
+   "std": 2.8808133401519367,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.544552832569279,
+   "mean": 8.5,
+   "std": 0.09031184357522533,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -3.059911213669772,
+   "mean": 120.0,
+   "std": 5.627023006943223,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.6530337094836742,
+   "mean": 120.0,
+   "std": 8.452464311071644,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.776603409699901,
+   "mean": 68.0,
+   "std": 0.5728704351376819,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.19763556567544605,
+   "mean": 25.0,
+   "std": 30.462956075545193,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.10586651385675,
+   "mean": 12.4,
+   "std": 0.2042991288488428,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.47824562514558006,
+   "mean": 45.7,
+   "std": 28.32805546471959,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.8478843360704063,
+   "mean": 540.0,
+   "std": 31.30208796561762,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -0.4679900579254444,
+   "mean": 3.2,
+   "std": 2.004031199832736,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -1.2562252093638313,
+   "mean": 68.0,
+   "std": 19.361421346512728,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -0.833218777923319,
+   "mean": 86.2,
+   "std": 37.46665733577611,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -1.1980068630766745,
+   "mean": 540.0,
+   "std": 162.96937121304316,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.4745607679797619,
+   "mean": 45.7,
+   "std": 28.432632860945592,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.015155218293537,
+   "mean": 870.0,
+   "std": 15.694934129183377,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -4.523252722870015,
+   "mean": 86.2,
+   "std": 0.9355856845610454,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.6577906783828813,
+   "mean": 250.0,
+   "std": 17.525732675256624,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -3.8880754831348345,
+   "mean": 870.0,
+   "std": 17.8217162639579,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": 0.15847809749794095,
+   "mean": 45.7,
+   "std": 53.54789009147458,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -4.973053217562835,
+   "mean": 870.0,
+   "std": 6.022123837839391,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.223935579848119,
+   "mean": 8.5,
+   "std": 0.33828402816624203,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.5441767938635804,
+   "mean": 68.0,
+   "std": 1.9646830042446934,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.43118153965247963,
+   "mean": 870.0,
+   "std": 565.2746233000213,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.7749190486089224,
+   "mean": 68.0,
+   "std": 11.525807558355083,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": 0.2712513434866555,
+   "mean": 8.5,
+   "std": 11.148639884168883,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.3927938634816748,
+   "mean": 86.2,
+   "std": 127.6719445973141,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.8399384300102817,
+   "mean": 120.0,
+   "std": 19.059264575429637,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.3962413255399789,
+   "mean": 120.0,
+   "std": 80.74131621945493,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -0.7196347564393948,
+   "mean": 870.0,
+   "std": 423.629162255543,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.5267966550611085,
+   "mean": 8.5,
+   "std": 1.8464585523099115,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -3.039994994928857,
+   "mean": 540.0,
+   "std": 25.830969612384173,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -3.7542478237470003,
+   "mean": 8.5,
+   "std": 0.19905349719691698,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.7235073186506201,
+   "mean": 68.0,
+   "std": 32.98326747046572,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.8254112805737512,
+   "mean": 12.4,
+   "std": 1.998276765765356,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -2.0525558873148713,
+   "mean": 8.5,
+   "std": 1.0914534803592766,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.8173237073411244,
+   "mean": 3.2,
+   "std": 1.4131582631134119,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -4.3959466266485006,
+   "mean": 120.0,
+   "std": 1.4792646647046612,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -2.72324264644144,
+   "mean": 25.0,
+   "std": 1.6415372960706824,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.6218921038262546,
+   "mean": 86.2,
+   "std": 17.026621228465007,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.7798622783165796,
+   "mean": 250.0,
+   "std": 42.1653434993754,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -0.9691265772770663,
+   "mean": 120.0,
+   "std": 45.52971389758581,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -2.4542270497890053,
+   "mean": 250.0,
+   "std": 21.482397268094953,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -3.4227712400330566,
+   "mean": 68.0,
+   "std": 2.2182896369540295,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -1.1758384164949987,
+   "mean": 68.0,
+   "std": 20.98209151050296,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -1.1735875595314829,
+   "mean": 12.4,
+   "std": 3.83476790615164,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": 0.3451057913611164,
+   "mean": 8.5,
+   "std": 12.003184083190671,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  },
+  {
+   "ln_std_over_mean": -1.308670708408322,
+   "mean": 12.4,
+   "std": 3.3502191586934993,
+   "frame": "The mean value was {m} +/- {s}"
+  },
+  {
+   "ln_std_over_mean": -0.3735355665026782,
+   "mean": 25.0,
+   "std": 17.20741263903724,
+   "frame": "The patients' mean age was {m} +/- {s} years"
+  },
+  {
+   "ln_std_over_mean": -2.3241376168326484,
+   "mean": 68.0,
+   "std": 6.655010890892343,
+   "frame": "Mean heart rate increased to {m} +/- {s} beats per minute"
+  },
+  {
+   "ln_std_over_mean": -3.579490799573547,
+   "mean": 250.0,
+   "std": 6.972474046793995,
+   "frame": "The average concentration was {m} +/- {s} mg per litre"
+  },
+  {
+   "ln_std_over_mean": -4.141254852351192,
+   "mean": 68.0,
+   "std": 1.0813960581518658,
+   "frame": "Mean observation time was {m} +/- {s} months"
+  }
+ ],
+ "spans": null
+}

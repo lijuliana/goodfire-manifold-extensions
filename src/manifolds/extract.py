@@ -132,7 +132,8 @@ class ActivationExtractor:
             return None
         end = int(span[1])
         full = self.tokenizer(prompt, truncation=True, max_length=self.cfg.max_length)["input_ids"]
-        pre = self.tokenizer(prompt[:end], truncation=True, max_length=self.cfg.max_length)["input_ids"]
+        pre = self.tokenizer(prompt[:end], truncation=True,
+                             max_length=self.cfg.max_length)["input_ids"]
         if list(full[: len(pre)]) != list(pre):
             self.n_span_mismatch += 1
         return min(len(pre), len(full)) - 1
@@ -146,7 +147,8 @@ class ActivationExtractor:
         token, or for the token ending each character span when `spans` is given."""
         layer = self.cfg.layer if layer is None else int(layer)
         if layer >= int(self.model.config.num_hidden_layers):
-            raise ValueError(f"block {layer} not loaded (loaded {self.model.config.num_hidden_layers})")
+            raise ValueError(f"block {layer} not loaded "
+                             f"(loaded {self.model.config.num_hidden_layers})")
         d = int(self.model.config.hidden_size)
         out = np.empty((len(prompts), d), dtype=np.float32)
         bs = self.cfg.batch_size

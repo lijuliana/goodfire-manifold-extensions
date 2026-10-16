@@ -1,0 +1,3183 @@
+{
+ "name": "months_circle",
+ "template": "Q: What month is {offset} months after {concept}?\\nA:",
+ "source": "arXiv 2605.01148 App. A Table 1",
+ "deviations": [
+  "read at the concept token; offsets one..twenty-four"
+ ],
+ "n": 288,
+ "prompts": [
+  "Q: What month is one months after January?\nA:",
+  "Q: What month is two months after January?\nA:",
+  "Q: What month is three months after January?\nA:",
+  "Q: What month is four months after January?\nA:",
+  "Q: What month is five months after January?\nA:",
+  "Q: What month is six months after January?\nA:",
+  "Q: What month is seven months after January?\nA:",
+  "Q: What month is eight months after January?\nA:",
+  "Q: What month is nine months after January?\nA:",
+  "Q: What month is ten months after January?\nA:",
+  "Q: What month is eleven months after January?\nA:",
+  "Q: What month is twelve months after January?\nA:",
+  "Q: What month is thirteen months after January?\nA:",
+  "Q: What month is fourteen months after January?\nA:",
+  "Q: What month is fifteen months after January?\nA:",
+  "Q: What month is sixteen months after January?\nA:",
+  "Q: What month is seventeen months after January?\nA:",
+  "Q: What month is eighteen months after January?\nA:",
+  "Q: What month is nineteen months after January?\nA:",
+  "Q: What month is twenty months after January?\nA:",
+  "Q: What month is twenty-one months after January?\nA:",
+  "Q: What month is twenty-two months after January?\nA:",
+  "Q: What month is twenty-three months after January?\nA:",
+  "Q: What month is twenty-four months after January?\nA:",
+  "Q: What month is one months after February?\nA:",
+  "Q: What month is two months after February?\nA:",
+  "Q: What month is three months after February?\nA:",
+  "Q: What month is four months after February?\nA:",
+  "Q: What month is five months after February?\nA:",
+  "Q: What month is six months after February?\nA:",
+  "Q: What month is seven months after February?\nA:",
+  "Q: What month is eight months after February?\nA:",
+  "Q: What month is nine months after February?\nA:",
+  "Q: What month is ten months after February?\nA:",
+  "Q: What month is eleven months after February?\nA:",
+  "Q: What month is twelve months after February?\nA:",
+  "Q: What month is thirteen months after February?\nA:",
+  "Q: What month is fourteen months after February?\nA:",
+  "Q: What month is fifteen months after February?\nA:",
+  "Q: What month is sixteen months after February?\nA:",
+  "Q: What month is seventeen months after February?\nA:",
+  "Q: What month is eighteen months after February?\nA:",
+  "Q: What month is nineteen months after February?\nA:",
+  "Q: What month is twenty months after February?\nA:",
+  "Q: What month is twenty-one months after February?\nA:",
+  "Q: What month is twenty-two months after February?\nA:",
+  "Q: What month is twenty-three months after February?\nA:",
+  "Q: What month is twenty-four months after February?\nA:",
+  "Q: What month is one months after March?\nA:",
+  "Q: What month is two months after March?\nA:",
+  "Q: What month is three months after March?\nA:",
+  "Q: What month is four months after March?\nA:",
+  "Q: What month is five months after March?\nA:",
+  "Q: What month is six months after March?\nA:",
+  "Q: What month is seven months after March?\nA:",
+  "Q: What month is eight months after March?\nA:",
+  "Q: What month is nine months after March?\nA:",
+  "Q: What month is ten months after March?\nA:",
+  "Q: What month is eleven months after March?\nA:",
+  "Q: What month is twelve months after March?\nA:",
+  "Q: What month is thirteen months after March?\nA:",
+  "Q: What month is fourteen months after March?\nA:",
+  "Q: What month is fifteen months after March?\nA:",
+  "Q: What month is sixteen months after March?\nA:",
+  "Q: What month is seventeen months after March?\nA:",
+  "Q: What month is eighteen months after March?\nA:",
+  "Q: What month is nineteen months after March?\nA:",
+  "Q: What month is twenty months after March?\nA:",
+  "Q: What month is twenty-one months after March?\nA:",
+  "Q: What month is twenty-two months after March?\nA:",
+  "Q: What month is twenty-three months after March?\nA:",
+  "Q: What month is twenty-four months after March?\nA:",
+  "Q: What month is one months after April?\nA:",
+  "Q: What month is two months after April?\nA:",
+  "Q: What month is three months after April?\nA:",
+  "Q: What month is four months after April?\nA:",
+  "Q: What month is five months after April?\nA:",
+  "Q: What month is six months after April?\nA:",
+  "Q: What month is seven months after April?\nA:",
+  "Q: What month is eight months after April?\nA:",
+  "Q: What month is nine months after April?\nA:",
+  "Q: What month is ten months after April?\nA:",
+  "Q: What month is eleven months after April?\nA:",
+  "Q: What month is twelve months after April?\nA:",
+  "Q: What month is thirteen months after April?\nA:",
+  "Q: What month is fourteen months after April?\nA:",
+  "Q: What month is fifteen months after April?\nA:",
+  "Q: What month is sixteen months after April?\nA:",
+  "Q: What month is seventeen months after April?\nA:",
+  "Q: What month is eighteen months after April?\nA:",
+  "Q: What month is nineteen months after April?\nA:",
+  "Q: What month is twenty months after April?\nA:",
+  "Q: What month is twenty-one months after April?\nA:",
+  "Q: What month is twenty-two months after April?\nA:",
+  "Q: What month is twenty-three months after April?\nA:",
+  "Q: What month is twenty-four months after April?\nA:",
+  "Q: What month is one months after May?\nA:",
+  "Q: What month is two months after May?\nA:",
+  "Q: What month is three months after May?\nA:",
+  "Q: What month is four months after May?\nA:",
+  "Q: What month is five months after May?\nA:",
+  "Q: What month is six months after May?\nA:",
+  "Q: What month is seven months after May?\nA:",
+  "Q: What month is eight months after May?\nA:",
+  "Q: What month is nine months after May?\nA:",
+  "Q: What month is ten months after May?\nA:",
+  "Q: What month is eleven months after May?\nA:",
+  "Q: What month is twelve months after May?\nA:",
+  "Q: What month is thirteen months after May?\nA:",
+  "Q: What month is fourteen months after May?\nA:",
+  "Q: What month is fifteen months after May?\nA:",
+  "Q: What month is sixteen months after May?\nA:",
+  "Q: What month is seventeen months after May?\nA:",
+  "Q: What month is eighteen months after May?\nA:",
+  "Q: What month is nineteen months after May?\nA:",
+  "Q: What month is twenty months after May?\nA:",
+  "Q: What month is twenty-one months after May?\nA:",
+  "Q: What month is twenty-two months after May?\nA:",
+  "Q: What month is twenty-three months after May?\nA:",
+  "Q: What month is twenty-four months after May?\nA:",
+  "Q: What month is one months after June?\nA:",
+  "Q: What month is two months after June?\nA:",
+  "Q: What month is three months after June?\nA:",
+  "Q: What month is four months after June?\nA:",
+  "Q: What month is five months after June?\nA:",
+  "Q: What month is six months after June?\nA:",
+  "Q: What month is seven months after June?\nA:",
+  "Q: What month is eight months after June?\nA:",
+  "Q: What month is nine months after June?\nA:",
+  "Q: What month is ten months after June?\nA:",
+  "Q: What month is eleven months after June?\nA:",
+  "Q: What month is twelve months after June?\nA:",
+  "Q: What month is thirteen months after June?\nA:",
+  "Q: What month is fourteen months after June?\nA:",
+  "Q: What month is fifteen months after June?\nA:",
+  "Q: What month is sixteen months after June?\nA:",
+  "Q: What month is seventeen months after June?\nA:",
+  "Q: What month is eighteen months after June?\nA:",
+  "Q: What month is nineteen months after June?\nA:",
+  "Q: What month is twenty months after June?\nA:",
+  "Q: What month is twenty-one months after June?\nA:",
+  "Q: What month is twenty-two months after June?\nA:",
+  "Q: What month is twenty-three months after June?\nA:",
+  "Q: What month is twenty-four months after June?\nA:",
+  "Q: What month is one months after July?\nA:",
+  "Q: What month is two months after July?\nA:",
+  "Q: What month is three months after July?\nA:",
+  "Q: What month is four months after July?\nA:",
+  "Q: What month is five months after July?\nA:",
+  "Q: What month is six months after July?\nA:",
+  "Q: What month is seven months after July?\nA:",
+  "Q: What month is eight months after July?\nA:",
+  "Q: What month is nine months after July?\nA:",
+  "Q: What month is ten months after July?\nA:",
+  "Q: What month is eleven months after July?\nA:",
+  "Q: What month is twelve months after July?\nA:",
+  "Q: What month is thirteen months after July?\nA:",
+  "Q: What month is fourteen months after July?\nA:",
+  "Q: What month is fifteen months after July?\nA:",
+  "Q: What month is sixteen months after July?\nA:",
+  "Q: What month is seventeen months after July?\nA:",
+  "Q: What month is eighteen months after July?\nA:",
+  "Q: What month is nineteen months after July?\nA:",
+  "Q: What month is twenty months after July?\nA:",
+  "Q: What month is twenty-one months after July?\nA:",
+  "Q: What month is twenty-two months after July?\nA:",
+  "Q: What month is twenty-three months after July?\nA:",
+  "Q: What month is twenty-four months after July?\nA:",
+  "Q: What month is one months after August?\nA:",
+  "Q: What month is two months after August?\nA:",
+  "Q: What month is three months after August?\nA:",
+  "Q: What month is four months after August?\nA:",
+  "Q: What month is five months after August?\nA:",
+  "Q: What month is six months after August?\nA:",
+  "Q: What month is seven months after August?\nA:",
+  "Q: What month is eight months after August?\nA:",
+  "Q: What month is nine months after August?\nA:",
+  "Q: What month is ten months after August?\nA:",
+  "Q: What month is eleven months after August?\nA:",
+  "Q: What month is twelve months after August?\nA:",
+  "Q: What month is thirteen months after August?\nA:",
+  "Q: What month is fourteen months after August?\nA:",
+  "Q: What month is fifteen months after August?\nA:",
+  "Q: What month is sixteen months after August?\nA:",
+  "Q: What month is seventeen months after August?\nA:",
+  "Q: What month is eighteen months after August?\nA:",
+  "Q: What month is nineteen months after August?\nA:",
+  "Q: What month is twenty months after August?\nA:",
+  "Q: What month is twenty-one months after August?\nA:",
+  "Q: What month is twenty-two months after August?\nA:",
+  "Q: What month is twenty-three months after August?\nA:",
+  "Q: What month is twenty-four months after August?\nA:",
+  "Q: What month is one months after September?\nA:",
+  "Q: What month is two months after September?\nA:",
+  "Q: What month is three months after September?\nA:",
+  "Q: What month is four months after September?\nA:",
+  "Q: What month is five months after September?\nA:",
+  "Q: What month is six months after September?\nA:",
+  "Q: What month is seven months after September?\nA:",
+  "Q: What month is eight months after September?\nA:",
+  "Q: What month is nine months after September?\nA:",
+  "Q: What month is ten months after September?\nA:",
+  "Q: What month is eleven months after September?\nA:",
+  "Q: What month is twelve months after September?\nA:",
+  "Q: What month is thirteen months after September?\nA:",
+  "Q: What month is fourteen months after September?\nA:",
+  "Q: What month is fifteen months after September?\nA:",
+  "Q: What month is sixteen months after September?\nA:",
+  "Q: What month is seventeen months after September?\nA:",
+  "Q: What month is eighteen months after September?\nA:",
+  "Q: What month is nineteen months after September?\nA:",
+  "Q: What month is twenty months after September?\nA:",
+  "Q: What month is twenty-one months after September?\nA:",
+  "Q: What month is twenty-two months after September?\nA:",
+  "Q: What month is twenty-three months after September?\nA:",
+  "Q: What month is twenty-four months after September?\nA:",
+  "Q: What month is one months after October?\nA:",
+  "Q: What month is two months after October?\nA:",
+  "Q: What month is three months after October?\nA:",
+  "Q: What month is four months after October?\nA:",
+  "Q: What month is five months after October?\nA:",
+  "Q: What month is six months after October?\nA:",
+  "Q: What month is seven months after October?\nA:",
+  "Q: What month is eight months after October?\nA:",
+  "Q: What month is nine months after October?\nA:",
+  "Q: What month is ten months after October?\nA:",
+  "Q: What month is eleven months after October?\nA:",
+  "Q: What month is twelve months after October?\nA:",
+  "Q: What month is thirteen months after October?\nA:",
+  "Q: What month is fourteen months after October?\nA:",
+  "Q: What month is fifteen months after October?\nA:",
+  "Q: What month is sixteen months after October?\nA:",
+  "Q: What month is seventeen months after October?\nA:",
+  "Q: What month is eighteen months after October?\nA:",
+  "Q: What month is nineteen months after October?\nA:",
+  "Q: What month is twenty months after October?\nA:",
+  "Q: What month is twenty-one months after October?\nA:",
+  "Q: What month is twenty-two months after October?\nA:",
+  "Q: What month is twenty-three months after October?\nA:",
+  "Q: What month is twenty-four months after October?\nA:",
+  "Q: What month is one months after November?\nA:",
+  "Q: What month is two months after November?\nA:",
+  "Q: What month is three months after November?\nA:",
+  "Q: What month is four months after November?\nA:",
+  "Q: What month is five months after November?\nA:",
+  "Q: What month is six months after November?\nA:",
+  "Q: What month is seven months after November?\nA:",
+  "Q: What month is eight months after November?\nA:",
+  "Q: What month is nine months after November?\nA:",
+  "Q: What month is ten months after November?\nA:",
+  "Q: What month is eleven months after November?\nA:",
+  "Q: What month is twelve months after November?\nA:",
+  "Q: What month is thirteen months after November?\nA:",
+  "Q: What month is fourteen months after November?\nA:",
+  "Q: What month is fifteen months after November?\nA:",
+  "Q: What month is sixteen months after November?\nA:",
+  "Q: What month is seventeen months after November?\nA:",
+  "Q: What month is eighteen months after November?\nA:",
+  "Q: What month is nineteen months after November?\nA:",
+  "Q: What month is twenty months after November?\nA:",
+  "Q: What month is twenty-one months after November?\nA:",
+  "Q: What month is twenty-two months after November?\nA:",
+  "Q: What month is twenty-three months after November?\nA:",
+  "Q: What month is twenty-four months after November?\nA:",
+  "Q: What month is one months after December?\nA:",
+  "Q: What month is two months after December?\nA:",
+  "Q: What month is three months after December?\nA:",
+  "Q: What month is four months after December?\nA:",
+  "Q: What month is five months after December?\nA:",
+  "Q: What month is six months after December?\nA:",
+  "Q: What month is seven months after December?\nA:",
+  "Q: What month is eight months after December?\nA:",
+  "Q: What month is nine months after December?\nA:",
+  "Q: What month is ten months after December?\nA:",
+  "Q: What month is eleven months after December?\nA:",
+  "Q: What month is twelve months after December?\nA:",
+  "Q: What month is thirteen months after December?\nA:",
+  "Q: What month is fourteen months after December?\nA:",
+  "Q: What month is fifteen months after December?\nA:",
+  "Q: What month is sixteen months after December?\nA:",
+  "Q: What month is seventeen months after December?\nA:",
+  "Q: What month is eighteen months after December?\nA:",
+  "Q: What month is nineteen months after December?\nA:",
+  "Q: What month is twenty months after December?\nA:",
+  "Q: What month is twenty-one months after December?\nA:",
+  "Q: What month is twenty-two months after December?\nA:",
+  "Q: What month is twenty-three months after December?\nA:",
+  "Q: What month is twenty-four months after December?\nA:"
+ ],
+ "labels": [
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 1.0,
+   "answer": "February"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 2.0,
+   "answer": "March"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 3.0,
+   "answer": "April"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 4.0,
+   "answer": "May"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 5.0,
+   "answer": "June"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 6.0,
+   "answer": "July"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 7.0,
+   "answer": "August"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 8.0,
+   "answer": "September"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 9.0,
+   "answer": "October"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 10.0,
+   "answer": "November"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 11.0,
+   "answer": "December"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 12.0,
+   "answer": "January"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 13.0,
+   "answer": "February"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 14.0,
+   "answer": "March"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 15.0,
+   "answer": "April"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 16.0,
+   "answer": "May"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 17.0,
+   "answer": "June"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 18.0,
+   "answer": "July"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 19.0,
+   "answer": "August"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 20.0,
+   "answer": "September"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 21.0,
+   "answer": "October"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 22.0,
+   "answer": "November"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 23.0,
+   "answer": "December"
+  },
+  {
+   "month": "January",
+   "month_idx": 0.0,
+   "offset": 24.0,
+   "answer": "January"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 1.0,
+   "answer": "March"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 2.0,
+   "answer": "April"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 3.0,
+   "answer": "May"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 4.0,
+   "answer": "June"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 5.0,
+   "answer": "July"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 6.0,
+   "answer": "August"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 7.0,
+   "answer": "September"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 8.0,
+   "answer": "October"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 9.0,
+   "answer": "November"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 10.0,
+   "answer": "December"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 11.0,
+   "answer": "January"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 12.0,
+   "answer": "February"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 13.0,
+   "answer": "March"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 14.0,
+   "answer": "April"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 15.0,
+   "answer": "May"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 16.0,
+   "answer": "June"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 17.0,
+   "answer": "July"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 18.0,
+   "answer": "August"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 19.0,
+   "answer": "September"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 20.0,
+   "answer": "October"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 21.0,
+   "answer": "November"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 22.0,
+   "answer": "December"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 23.0,
+   "answer": "January"
+  },
+  {
+   "month": "February",
+   "month_idx": 1.0,
+   "offset": 24.0,
+   "answer": "February"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 1.0,
+   "answer": "April"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 2.0,
+   "answer": "May"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 3.0,
+   "answer": "June"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 4.0,
+   "answer": "July"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 5.0,
+   "answer": "August"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 6.0,
+   "answer": "September"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 7.0,
+   "answer": "October"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 8.0,
+   "answer": "November"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 9.0,
+   "answer": "December"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 10.0,
+   "answer": "January"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 11.0,
+   "answer": "February"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 12.0,
+   "answer": "March"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 13.0,
+   "answer": "April"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 14.0,
+   "answer": "May"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 15.0,
+   "answer": "June"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 16.0,
+   "answer": "July"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 17.0,
+   "answer": "August"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 18.0,
+   "answer": "September"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 19.0,
+   "answer": "October"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 20.0,
+   "answer": "November"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 21.0,
+   "answer": "December"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 22.0,
+   "answer": "January"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 23.0,
+   "answer": "February"
+  },
+  {
+   "month": "March",
+   "month_idx": 2.0,
+   "offset": 24.0,
+   "answer": "March"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 1.0,
+   "answer": "May"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 2.0,
+   "answer": "June"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 3.0,
+   "answer": "July"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 4.0,
+   "answer": "August"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 5.0,
+   "answer": "September"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 6.0,
+   "answer": "October"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 7.0,
+   "answer": "November"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 8.0,
+   "answer": "December"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 9.0,
+   "answer": "January"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 10.0,
+   "answer": "February"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 11.0,
+   "answer": "March"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 12.0,
+   "answer": "April"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 13.0,
+   "answer": "May"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 14.0,
+   "answer": "June"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 15.0,
+   "answer": "July"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 16.0,
+   "answer": "August"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 17.0,
+   "answer": "September"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 18.0,
+   "answer": "October"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 19.0,
+   "answer": "November"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 20.0,
+   "answer": "December"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 21.0,
+   "answer": "January"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 22.0,
+   "answer": "February"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 23.0,
+   "answer": "March"
+  },
+  {
+   "month": "April",
+   "month_idx": 3.0,
+   "offset": 24.0,
+   "answer": "April"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 1.0,
+   "answer": "June"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 2.0,
+   "answer": "July"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 3.0,
+   "answer": "August"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 4.0,
+   "answer": "September"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 5.0,
+   "answer": "October"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 6.0,
+   "answer": "November"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 7.0,
+   "answer": "December"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 8.0,
+   "answer": "January"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 9.0,
+   "answer": "February"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 10.0,
+   "answer": "March"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 11.0,
+   "answer": "April"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 12.0,
+   "answer": "May"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 13.0,
+   "answer": "June"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 14.0,
+   "answer": "July"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 15.0,
+   "answer": "August"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 16.0,
+   "answer": "September"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 17.0,
+   "answer": "October"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 18.0,
+   "answer": "November"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 19.0,
+   "answer": "December"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 20.0,
+   "answer": "January"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 21.0,
+   "answer": "February"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 22.0,
+   "answer": "March"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 23.0,
+   "answer": "April"
+  },
+  {
+   "month": "May",
+   "month_idx": 4.0,
+   "offset": 24.0,
+   "answer": "May"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 1.0,
+   "answer": "July"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 2.0,
+   "answer": "August"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 3.0,
+   "answer": "September"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 4.0,
+   "answer": "October"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 5.0,
+   "answer": "November"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 6.0,
+   "answer": "December"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 7.0,
+   "answer": "January"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 8.0,
+   "answer": "February"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 9.0,
+   "answer": "March"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 10.0,
+   "answer": "April"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 11.0,
+   "answer": "May"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 12.0,
+   "answer": "June"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 13.0,
+   "answer": "July"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 14.0,
+   "answer": "August"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 15.0,
+   "answer": "September"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 16.0,
+   "answer": "October"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 17.0,
+   "answer": "November"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 18.0,
+   "answer": "December"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 19.0,
+   "answer": "January"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 20.0,
+   "answer": "February"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 21.0,
+   "answer": "March"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 22.0,
+   "answer": "April"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 23.0,
+   "answer": "May"
+  },
+  {
+   "month": "June",
+   "month_idx": 5.0,
+   "offset": 24.0,
+   "answer": "June"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 1.0,
+   "answer": "August"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 2.0,
+   "answer": "September"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 3.0,
+   "answer": "October"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 4.0,
+   "answer": "November"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 5.0,
+   "answer": "December"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 6.0,
+   "answer": "January"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 7.0,
+   "answer": "February"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 8.0,
+   "answer": "March"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 9.0,
+   "answer": "April"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 10.0,
+   "answer": "May"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 11.0,
+   "answer": "June"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 12.0,
+   "answer": "July"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 13.0,
+   "answer": "August"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 14.0,
+   "answer": "September"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 15.0,
+   "answer": "October"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 16.0,
+   "answer": "November"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 17.0,
+   "answer": "December"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 18.0,
+   "answer": "January"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 19.0,
+   "answer": "February"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 20.0,
+   "answer": "March"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 21.0,
+   "answer": "April"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 22.0,
+   "answer": "May"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 23.0,
+   "answer": "June"
+  },
+  {
+   "month": "July",
+   "month_idx": 6.0,
+   "offset": 24.0,
+   "answer": "July"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 1.0,
+   "answer": "September"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 2.0,
+   "answer": "October"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 3.0,
+   "answer": "November"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 4.0,
+   "answer": "December"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 5.0,
+   "answer": "January"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 6.0,
+   "answer": "February"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 7.0,
+   "answer": "March"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 8.0,
+   "answer": "April"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 9.0,
+   "answer": "May"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 10.0,
+   "answer": "June"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 11.0,
+   "answer": "July"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 12.0,
+   "answer": "August"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 13.0,
+   "answer": "September"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 14.0,
+   "answer": "October"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 15.0,
+   "answer": "November"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 16.0,
+   "answer": "December"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 17.0,
+   "answer": "January"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 18.0,
+   "answer": "February"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 19.0,
+   "answer": "March"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 20.0,
+   "answer": "April"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 21.0,
+   "answer": "May"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 22.0,
+   "answer": "June"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 23.0,
+   "answer": "July"
+  },
+  {
+   "month": "August",
+   "month_idx": 7.0,
+   "offset": 24.0,
+   "answer": "August"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 1.0,
+   "answer": "October"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 2.0,
+   "answer": "November"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 3.0,
+   "answer": "December"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 4.0,
+   "answer": "January"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 5.0,
+   "answer": "February"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 6.0,
+   "answer": "March"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 7.0,
+   "answer": "April"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 8.0,
+   "answer": "May"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 9.0,
+   "answer": "June"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 10.0,
+   "answer": "July"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 11.0,
+   "answer": "August"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 12.0,
+   "answer": "September"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 13.0,
+   "answer": "October"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 14.0,
+   "answer": "November"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 15.0,
+   "answer": "December"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 16.0,
+   "answer": "January"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 17.0,
+   "answer": "February"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 18.0,
+   "answer": "March"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 19.0,
+   "answer": "April"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 20.0,
+   "answer": "May"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 21.0,
+   "answer": "June"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 22.0,
+   "answer": "July"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 23.0,
+   "answer": "August"
+  },
+  {
+   "month": "September",
+   "month_idx": 8.0,
+   "offset": 24.0,
+   "answer": "September"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 1.0,
+   "answer": "November"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 2.0,
+   "answer": "December"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 3.0,
+   "answer": "January"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 4.0,
+   "answer": "February"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 5.0,
+   "answer": "March"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 6.0,
+   "answer": "April"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 7.0,
+   "answer": "May"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 8.0,
+   "answer": "June"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 9.0,
+   "answer": "July"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 10.0,
+   "answer": "August"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 11.0,
+   "answer": "September"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 12.0,
+   "answer": "October"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 13.0,
+   "answer": "November"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 14.0,
+   "answer": "December"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 15.0,
+   "answer": "January"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 16.0,
+   "answer": "February"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 17.0,
+   "answer": "March"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 18.0,
+   "answer": "April"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 19.0,
+   "answer": "May"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 20.0,
+   "answer": "June"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 21.0,
+   "answer": "July"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 22.0,
+   "answer": "August"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 23.0,
+   "answer": "September"
+  },
+  {
+   "month": "October",
+   "month_idx": 9.0,
+   "offset": 24.0,
+   "answer": "October"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 1.0,
+   "answer": "December"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 2.0,
+   "answer": "January"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 3.0,
+   "answer": "February"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 4.0,
+   "answer": "March"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 5.0,
+   "answer": "April"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 6.0,
+   "answer": "May"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 7.0,
+   "answer": "June"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 8.0,
+   "answer": "July"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 9.0,
+   "answer": "August"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 10.0,
+   "answer": "September"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 11.0,
+   "answer": "October"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 12.0,
+   "answer": "November"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 13.0,
+   "answer": "December"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 14.0,
+   "answer": "January"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 15.0,
+   "answer": "February"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 16.0,
+   "answer": "March"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 17.0,
+   "answer": "April"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 18.0,
+   "answer": "May"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 19.0,
+   "answer": "June"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 20.0,
+   "answer": "July"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 21.0,
+   "answer": "August"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 22.0,
+   "answer": "September"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 23.0,
+   "answer": "October"
+  },
+  {
+   "month": "November",
+   "month_idx": 10.0,
+   "offset": 24.0,
+   "answer": "November"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 1.0,
+   "answer": "January"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 2.0,
+   "answer": "February"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 3.0,
+   "answer": "March"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 4.0,
+   "answer": "April"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 5.0,
+   "answer": "May"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 6.0,
+   "answer": "June"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 7.0,
+   "answer": "July"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 8.0,
+   "answer": "August"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 9.0,
+   "answer": "September"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 10.0,
+   "answer": "October"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 11.0,
+   "answer": "November"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 12.0,
+   "answer": "December"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 13.0,
+   "answer": "January"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 14.0,
+   "answer": "February"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 15.0,
+   "answer": "March"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 16.0,
+   "answer": "April"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 17.0,
+   "answer": "May"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 18.0,
+   "answer": "June"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 19.0,
+   "answer": "July"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 20.0,
+   "answer": "August"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 21.0,
+   "answer": "September"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 22.0,
+   "answer": "October"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 23.0,
+   "answer": "November"
+  },
+  {
+   "month": "December",
+   "month_idx": 11.0,
+   "offset": 24.0,
+   "answer": "December"
+  }
+ ],
+ "spans": [
+  [
+   34,
+   41
+  ],
+  [
+   34,
+   41
+  ],
+  [
+   36,
+   43
+  ],
+  [
+   35,
+   42
+  ],
+  [
+   35,
+   42
+  ],
+  [
+   34,
+   41
+  ],
+  [
+   36,
+   43
+  ],
+  [
+   36,
+   43
+  ],
+  [
+   35,
+   42
+  ],
+  [
+   34,
+   41
+  ],
+  [
+   37,
+   44
+  ],
+  [
+   37,
+   44
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   38,
+   45
+  ],
+  [
+   38,
+   45
+  ],
+  [
+   40,
+   47
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   37,
+   44
+  ],
+  [
+   41,
+   48
+  ],
+  [
+   41,
+   48
+  ],
+  [
+   43,
+   50
+  ],
+  [
+   42,
+   49
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   38,
+   46
+  ],
+  [
+   38,
+   46
+  ],
+  [
+   40,
+   48
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   41,
+   49
+  ],
+  [
+   41,
+   49
+  ],
+  [
+   43,
+   51
+  ],
+  [
+   42,
+   50
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   36,
+   41
+  ],
+  [
+   35,
+   40
+  ],
+  [
+   35,
+   40
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   36,
+   41
+  ],
+  [
+   36,
+   41
+  ],
+  [
+   35,
+   40
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   37,
+   42
+  ],
+  [
+   37,
+   42
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   38,
+   43
+  ],
+  [
+   38,
+   43
+  ],
+  [
+   40,
+   45
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   37,
+   42
+  ],
+  [
+   41,
+   46
+  ],
+  [
+   41,
+   46
+  ],
+  [
+   43,
+   48
+  ],
+  [
+   42,
+   47
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   36,
+   41
+  ],
+  [
+   35,
+   40
+  ],
+  [
+   35,
+   40
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   36,
+   41
+  ],
+  [
+   36,
+   41
+  ],
+  [
+   35,
+   40
+  ],
+  [
+   34,
+   39
+  ],
+  [
+   37,
+   42
+  ],
+  [
+   37,
+   42
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   38,
+   43
+  ],
+  [
+   38,
+   43
+  ],
+  [
+   40,
+   45
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   39,
+   44
+  ],
+  [
+   37,
+   42
+  ],
+  [
+   41,
+   46
+  ],
+  [
+   41,
+   46
+  ],
+  [
+   43,
+   48
+  ],
+  [
+   42,
+   47
+  ],
+  [
+   34,
+   37
+  ],
+  [
+   34,
+   37
+  ],
+  [
+   36,
+   39
+  ],
+  [
+   35,
+   38
+  ],
+  [
+   35,
+   38
+  ],
+  [
+   34,
+   37
+  ],
+  [
+   36,
+   39
+  ],
+  [
+   36,
+   39
+  ],
+  [
+   35,
+   38
+  ],
+  [
+   34,
+   37
+  ],
+  [
+   37,
+   40
+  ],
+  [
+   37,
+   40
+  ],
+  [
+   39,
+   42
+  ],
+  [
+   39,
+   42
+  ],
+  [
+   38,
+   41
+  ],
+  [
+   38,
+   41
+  ],
+  [
+   40,
+   43
+  ],
+  [
+   39,
+   42
+  ],
+  [
+   39,
+   42
+  ],
+  [
+   37,
+   40
+  ],
+  [
+   41,
+   44
+  ],
+  [
+   41,
+   44
+  ],
+  [
+   43,
+   46
+  ],
+  [
+   42,
+   45
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   36,
+   40
+  ],
+  [
+   35,
+   39
+  ],
+  [
+   35,
+   39
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   36,
+   40
+  ],
+  [
+   36,
+   40
+  ],
+  [
+   35,
+   39
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   37,
+   41
+  ],
+  [
+   37,
+   41
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   38,
+   42
+  ],
+  [
+   38,
+   42
+  ],
+  [
+   40,
+   44
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   37,
+   41
+  ],
+  [
+   41,
+   45
+  ],
+  [
+   41,
+   45
+  ],
+  [
+   43,
+   47
+  ],
+  [
+   42,
+   46
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   36,
+   40
+  ],
+  [
+   35,
+   39
+  ],
+  [
+   35,
+   39
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   36,
+   40
+  ],
+  [
+   36,
+   40
+  ],
+  [
+   35,
+   39
+  ],
+  [
+   34,
+   38
+  ],
+  [
+   37,
+   41
+  ],
+  [
+   37,
+   41
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   38,
+   42
+  ],
+  [
+   38,
+   42
+  ],
+  [
+   40,
+   44
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   39,
+   43
+  ],
+  [
+   37,
+   41
+  ],
+  [
+   41,
+   45
+  ],
+  [
+   41,
+   45
+  ],
+  [
+   43,
+   47
+  ],
+  [
+   42,
+   46
+  ],
+  [
+   34,
+   40
+  ],
+  [
+   34,
+   40
+  ],
+  [
+   36,
+   42
+  ],
+  [
+   35,
+   41
+  ],
+  [
+   35,
+   41
+  ],
+  [
+   34,
+   40
+  ],
+  [
+   36,
+   42
+  ],
+  [
+   36,
+   42
+  ],
+  [
+   35,
+   41
+  ],
+  [
+   34,
+   40
+  ],
+  [
+   37,
+   43
+  ],
+  [
+   37,
+   43
+  ],
+  [
+   39,
+   45
+  ],
+  [
+   39,
+   45
+  ],
+  [
+   38,
+   44
+  ],
+  [
+   38,
+   44
+  ],
+  [
+   40,
+   46
+  ],
+  [
+   39,
+   45
+  ],
+  [
+   39,
+   45
+  ],
+  [
+   37,
+   43
+  ],
+  [
+   41,
+   47
+  ],
+  [
+   41,
+   47
+  ],
+  [
+   43,
+   49
+  ],
+  [
+   42,
+   48
+  ],
+  [
+   34,
+   43
+  ],
+  [
+   34,
+   43
+  ],
+  [
+   36,
+   45
+  ],
+  [
+   35,
+   44
+  ],
+  [
+   35,
+   44
+  ],
+  [
+   34,
+   43
+  ],
+  [
+   36,
+   45
+  ],
+  [
+   36,
+   45
+  ],
+  [
+   35,
+   44
+  ],
+  [
+   34,
+   43
+  ],
+  [
+   37,
+   46
+  ],
+  [
+   37,
+   46
+  ],
+  [
+   39,
+   48
+  ],
+  [
+   39,
+   48
+  ],
+  [
+   38,
+   47
+  ],
+  [
+   38,
+   47
+  ],
+  [
+   40,
+   49
+  ],
+  [
+   39,
+   48
+  ],
+  [
+   39,
+   48
+  ],
+  [
+   37,
+   46
+  ],
+  [
+   41,
+   50
+  ],
+  [
+   41,
+   50
+  ],
+  [
+   43,
+   52
+  ],
+  [
+   42,
+   51
+  ],
+  [
+   34,
+   41
+  ],
+  [
+   34,
+   41
+  ],
+  [
+   36,
+   43
+  ],
+  [
+   35,
+   42
+  ],
+  [
+   35,
+   42
+  ],
+  [
+   34,
+   41
+  ],
+  [
+   36,
+   43
+  ],
+  [
+   36,
+   43
+  ],
+  [
+   35,
+   42
+  ],
+  [
+   34,
+   41
+  ],
+  [
+   37,
+   44
+  ],
+  [
+   37,
+   44
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   38,
+   45
+  ],
+  [
+   38,
+   45
+  ],
+  [
+   40,
+   47
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   39,
+   46
+  ],
+  [
+   37,
+   44
+  ],
+  [
+   41,
+   48
+  ],
+  [
+   41,
+   48
+  ],
+  [
+   43,
+   50
+  ],
+  [
+   42,
+   49
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   38,
+   46
+  ],
+  [
+   38,
+   46
+  ],
+  [
+   40,
+   48
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   41,
+   49
+  ],
+  [
+   41,
+   49
+  ],
+  [
+   43,
+   51
+  ],
+  [
+   42,
+   50
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   36,
+   44
+  ],
+  [
+   35,
+   43
+  ],
+  [
+   34,
+   42
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   38,
+   46
+  ],
+  [
+   38,
+   46
+  ],
+  [
+   40,
+   48
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   39,
+   47
+  ],
+  [
+   37,
+   45
+  ],
+  [
+   41,
+   49
+  ],
+  [
+   41,
+   49
+  ],
+  [
+   43,
+   51
+  ],
+  [
+   42,
+   50
+  ]
+ ]
+}

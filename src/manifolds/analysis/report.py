@@ -10,7 +10,7 @@ import numpy as np
 
 from manifolds import RESULTS_DIR
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
-from manifolds.analysis.shapes import ROLES, run_shape_check
+from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
@@ -77,8 +77,12 @@ def analyze_manifold(
     idx = np.flatnonzero(keep)
     labels = [prompt_set.labels[i] for i in idx]
     prompts = [prompt_set.prompts[i] for i in idx]
-    pca = fit_pca(acts[idx], cfg.analysis.pca_components)
-    shape = run_shape_check(spec.name, pca.coords, labels, acts=acts[idx])
+    x = acts[idx]
+    nuisance = ROLES[spec.name].get("nuisance_group")
+    if nuisance:
+        x = center_by_group(x, labels, nuisance)
+    pca = fit_pca(x, cfg.analysis.pca_components)
+    shape = run_shape_check(spec.name, pca.coords, labels, acts=x)
 
     color = _color_config(spec.name, labels)
     color_values = [lab[color["color_by"]] for lab in labels]
@@ -109,6 +113,8 @@ def analyze_manifold(
             "dataset": spec.dataset,
             "n_paper": spec.n_paper,
         },
+        "preprocessing": (f"activations centred per '{nuisance}' before PCA" if nuisance
+                          else "none"),
         "prompt_set": {
             "template": prompt_set.template,
             "source": prompt_set.source,

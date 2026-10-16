@@ -1,3 +1,4 @@
+# ruff: noqa: E501  (reference tables and verbatim templates are long by nature)
 """Extended tier: manifolds Goodfire found with the unsupervised Ising pipeline (blog figure in
 "Can SAEs Capture Neural Geometry?"), the slant-rhyme subspace ("The World Inside Neural
 Networks"), numbers ("A Geometric Calculator") and emotions ("Meandering on Manifolds").

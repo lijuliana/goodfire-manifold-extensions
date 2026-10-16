@@ -27,7 +27,7 @@ def test_line(rng):
     coords = _embed(np.c_[3 * t, 0.3 * t**2, np.zeros_like(t)], rng)
     rep = check_line(coords, t)
     assert rep.status == "matches", rep.reason
-    assert rep.extras["rubric_version"] == 2
+    assert rep.extras["rubric_version"] >= 2
     assert check_line(coords, rng.permutation(t)).status == "failed"
     # weak but real ordering -> partial
     noisy = _embed(np.c_[3 * t, np.zeros_like(t), np.zeros_like(t)], rng, noise=2.0)
@@ -59,6 +59,10 @@ def test_circle_with_classes(rng):
     assert bad.status in ("failed", "partial")
     # reversed orientation is still a valid cyclic order
     assert cyclic_order_ok(-phase, cls, list(range(k)))
+    from manifolds.analysis.shapes import cyclic_order_score
+    swapped = cls.copy()
+    swapped[cls == 2], swapped[cls == 3] = 3, 2   # one adjacent swap
+    assert 0.5 <= cyclic_order_score(phase, swapped, list(range(k))) < 1.0
 
 
 def test_helix(rng):

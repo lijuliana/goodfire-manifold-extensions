@@ -1,0 +1,22 @@
+{
+ "model_id": "unsloth/Llama-3.1-8B",
+ "model_id_resolution": "fallback:OSError",
+ "commit_sha": null,
+ "layer": 19,
+ "n_layers_loaded": 20,
+ "n_layers_full": 32,
+ "dtype": "float16",
+ "device": "Tesla T4",
+ "batch_size": 16,
+ "max_length": 1024,
+ "seed": 0,
+ "torch": "2.14.1+cu130",
+ "transformers": "5.20.0",
+ "token_position": "concept span (last token of span)",
+ "manifold": "months_circle",
+ "n_span_tokenisation_mismatches": 0,
+ "n_prompts": 288,
+ "elapsed_s": 1.84,
+ "started": "2026-10-16T03:41:31+00:00",
+ "finished": "2026-10-16T03:41:33+00:00"
+}

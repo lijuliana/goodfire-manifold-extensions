@@ -1,0 +1,555 @@
+{
+ "name": "adverbs_pace",
+ "template": "She walked {adverb} towards the door | The river moved {adverb} past the town | He answered the question {adverb} | The project advanced {adverb} all year | The clouds drifted {adverb} across the sky",
+ "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)",
+  "speed ranking of the 18 adverbs is our judgement"
+ ],
+ "n": 90,
+ "prompts": [
+  "She walked glacially towards the door",
+  "She walked sluggishly towards the door",
+  "She walked slowly towards the door",
+  "She walked lazily towards the door",
+  "She walked leisurely towards the door",
+  "She walked gradually towards the door",
+  "She walked unhurriedly towards the door",
+  "She walked steadily towards the door",
+  "She walked moderately towards the door",
+  "She walked briskly towards the door",
+  "She walked quickly towards the door",
+  "She walked rapidly towards the door",
+  "She walked swiftly towards the door",
+  "She walked speedily towards the door",
+  "She walked hastily towards the door",
+  "She walked hurriedly towards the door",
+  "She walked immediately towards the door",
+  "She walked instantly towards the door",
+  "The river moved glacially past the town",
+  "The river moved sluggishly past the town",
+  "The river moved slowly past the town",
+  "The river moved lazily past the town",
+  "The river moved leisurely past the town",
+  "The river moved gradually past the town",
+  "The river moved unhurriedly past the town",
+  "The river moved steadily past the town",
+  "The river moved moderately past the town",
+  "The river moved briskly past the town",
+  "The river moved quickly past the town",
+  "The river moved rapidly past the town",
+  "The river moved swiftly past the town",
+  "The river moved speedily past the town",
+  "The river moved hastily past the town",
+  "The river moved hurriedly past the town",
+  "The river moved immediately past the town",
+  "The river moved instantly past the town",
+  "He answered the question glacially",
+  "He answered the question sluggishly",
+  "He answered the question slowly",
+  "He answered the question lazily",
+  "He answered the question leisurely",
+  "He answered the question gradually",
+  "He answered the question unhurriedly",
+  "He answered the question steadily",
+  "He answered the question moderately",
+  "He answered the question briskly",
+  "He answered the question quickly",
+  "He answered the question rapidly",
+  "He answered the question swiftly",
+  "He answered the question speedily",
+  "He answered the question hastily",
+  "He answered the question hurriedly",
+  "He answered the question immediately",
+  "He answered the question instantly",
+  "The project advanced glacially all year",
+  "The project advanced sluggishly all year",
+  "The project advanced slowly all year",
+  "The project advanced lazily all year",
+  "The project advanced leisurely all year",
+  "The project advanced gradually all year",
+  "The project advanced unhurriedly all year",
+  "The project advanced steadily all year",
+  "The project advanced moderately all year",
+  "The project advanced briskly all year",
+  "The project advanced quickly all year",
+  "The project advanced rapidly all year",
+  "The project advanced swiftly all year",
+  "The project advanced speedily all year",
+  "The project advanced hastily all year",
+  "The project advanced hurriedly all year",
+  "The project advanced immediately all year",
+  "The project advanced instantly all year",
+  "The clouds drifted glacially across the sky",
+  "The clouds drifted sluggishly across the sky",
+  "The clouds drifted slowly across the sky",
+  "The clouds drifted lazily across the sky",
+  "The clouds drifted leisurely across the sky",
+  "The clouds drifted gradually across the sky",
+  "The clouds drifted unhurriedly across the sky",
+  "The clouds drifted steadily across the sky",
+  "The clouds drifted moderately across the sky",
+  "The clouds drifted briskly across the sky",
+  "The clouds drifted quickly across the sky",
+  "The clouds drifted rapidly across the sky",
+  "The clouds drifted swiftly across the sky",
+  "The clouds drifted speedily across the sky",
+  "The clouds drifted hastily across the sky",
+  "The clouds drifted hurriedly across the sky",
+  "The clouds drifted immediately across the sky",
+  "The clouds drifted instantly across the sky"
+ ],
+ "labels": [
+  {
+   "speed_rank": 0.0,
+   "adverb": "glacially",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 1.0,
+   "adverb": "sluggishly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 2.0,
+   "adverb": "slowly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 3.0,
+   "adverb": "lazily",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 4.0,
+   "adverb": "leisurely",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 5.0,
+   "adverb": "gradually",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 6.0,
+   "adverb": "unhurriedly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 7.0,
+   "adverb": "steadily",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 8.0,
+   "adverb": "moderately",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 9.0,
+   "adverb": "briskly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 10.0,
+   "adverb": "quickly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 11.0,
+   "adverb": "rapidly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 12.0,
+   "adverb": "swiftly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 13.0,
+   "adverb": "speedily",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 14.0,
+   "adverb": "hastily",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 15.0,
+   "adverb": "hurriedly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 16.0,
+   "adverb": "immediately",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 17.0,
+   "adverb": "instantly",
+   "frame": "She walked {adverb} towards the door"
+  },
+  {
+   "speed_rank": 0.0,
+   "adverb": "glacially",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 1.0,
+   "adverb": "sluggishly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 2.0,
+   "adverb": "slowly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 3.0,
+   "adverb": "lazily",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 4.0,
+   "adverb": "leisurely",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 5.0,
+   "adverb": "gradually",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 6.0,
+   "adverb": "unhurriedly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 7.0,
+   "adverb": "steadily",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 8.0,
+   "adverb": "moderately",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 9.0,
+   "adverb": "briskly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 10.0,
+   "adverb": "quickly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 11.0,
+   "adverb": "rapidly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 12.0,
+   "adverb": "swiftly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 13.0,
+   "adverb": "speedily",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 14.0,
+   "adverb": "hastily",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 15.0,
+   "adverb": "hurriedly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 16.0,
+   "adverb": "immediately",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 17.0,
+   "adverb": "instantly",
+   "frame": "The river moved {adverb} past the town"
+  },
+  {
+   "speed_rank": 0.0,
+   "adverb": "glacially",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 1.0,
+   "adverb": "sluggishly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 2.0,
+   "adverb": "slowly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 3.0,
+   "adverb": "lazily",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 4.0,
+   "adverb": "leisurely",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 5.0,
+   "adverb": "gradually",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 6.0,
+   "adverb": "unhurriedly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 7.0,
+   "adverb": "steadily",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 8.0,
+   "adverb": "moderately",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 9.0,
+   "adverb": "briskly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 10.0,
+   "adverb": "quickly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 11.0,
+   "adverb": "rapidly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 12.0,
+   "adverb": "swiftly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 13.0,
+   "adverb": "speedily",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 14.0,
+   "adverb": "hastily",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 15.0,
+   "adverb": "hurriedly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 16.0,
+   "adverb": "immediately",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 17.0,
+   "adverb": "instantly",
+   "frame": "He answered the question {adverb}"
+  },
+  {
+   "speed_rank": 0.0,
+   "adverb": "glacially",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 1.0,
+   "adverb": "sluggishly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 2.0,
+   "adverb": "slowly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 3.0,
+   "adverb": "lazily",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 4.0,
+   "adverb": "leisurely",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 5.0,
+   "adverb": "gradually",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 6.0,
+   "adverb": "unhurriedly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 7.0,
+   "adverb": "steadily",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 8.0,
+   "adverb": "moderately",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 9.0,
+   "adverb": "briskly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 10.0,
+   "adverb": "quickly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 11.0,
+   "adverb": "rapidly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 12.0,
+   "adverb": "swiftly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 13.0,
+   "adverb": "speedily",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 14.0,
+   "adverb": "hastily",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 15.0,
+   "adverb": "hurriedly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 16.0,
+   "adverb": "immediately",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 17.0,
+   "adverb": "instantly",
+   "frame": "The project advanced {adverb} all year"
+  },
+  {
+   "speed_rank": 0.0,
+   "adverb": "glacially",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 1.0,
+   "adverb": "sluggishly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 2.0,
+   "adverb": "slowly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 3.0,
+   "adverb": "lazily",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 4.0,
+   "adverb": "leisurely",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 5.0,
+   "adverb": "gradually",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 6.0,
+   "adverb": "unhurriedly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 7.0,
+   "adverb": "steadily",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 8.0,
+   "adverb": "moderately",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 9.0,
+   "adverb": "briskly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 10.0,
+   "adverb": "quickly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 11.0,
+   "adverb": "rapidly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 12.0,
+   "adverb": "swiftly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 13.0,
+   "adverb": "speedily",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 14.0,
+   "adverb": "hastily",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 15.0,
+   "adverb": "hurriedly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 16.0,
+   "adverb": "immediately",
+   "frame": "The clouds drifted {adverb} across the sky"
+  },
+  {
+   "speed_rank": 17.0,
+   "adverb": "instantly",
+   "frame": "The clouds drifted {adverb} across the sky"
+  }
+ ],
+ "spans": null
+}

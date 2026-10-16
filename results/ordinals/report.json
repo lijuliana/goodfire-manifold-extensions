@@ -1,0 +1,115 @@
+{
+ "name": "ordinals",
+ "spec": {
+  "tier": "extended",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "1D ordered curve",
+  "replication_mode": "supervised-approx",
+  "sources": [
+   "blog-saes figure"
+  ],
+  "prompt_template": "TBD (supervised approximation, e.g. \"She finished in {ordinal} place\")",
+  "dataset": "synthetic, first..hundredth",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "She finished the race in {ordinal} place",
+  "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+  "deviations": [
+   "prompt template and item list are ours (no template published)"
+  ],
+  "n_total": 100,
+  "n_kept": 98,
+  "n_outliers_removed": 2,
+  "examples": [
+   "She finished the race in first place",
+   "She finished the race in second place",
+   "She finished the race in third place",
+   "She finished the race in fourth place",
+   "She finished the race in fifth place"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.49037714078878736,
+   0.10697436480579128,
+   0.08062516151941908
+  ],
+  "n_points": 98,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "spearman_best_direction",
+    "value": 0.8923678187301161,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "label monotone along the best linear direction in PCA-3",
+    "partial_threshold": 0.6,
+    "informative": false
+   },
+   {
+    "name": "knn_r2",
+    "value": 0.7940183913615206,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "cross-validated 10-NN R^2 of the label from PCA-3 (nonlinear readability)",
+    "partial_threshold": 0.4,
+    "informative": false
+   },
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.7494783907940884,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "R^2 of label regressed on the 3 PCs (share of top-3 variance)",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "rubric_version": 2.1
+  }
+ },
+ "status": "matches",
+ "status_v1": null,
+ "color": {
+  "color_by": "rank",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "ordinals",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 100,
+  "elapsed_s": 1.89,
+  "started": "2026-10-16T03:41:04+00:00",
+  "finished": "2026-10-16T03:41:06+00:00"
+ },
+ "precision_check": null
+}

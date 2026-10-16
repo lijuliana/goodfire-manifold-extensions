@@ -38,5 +38,61 @@
  "political_bias_aug": {
   "status": "matches",
   "reason": "all checks passed"
+ },
+ "ordinals": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "classical_composers": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "scotus_cases": {
+  "status": "failed",
+  "reason": "failed: knn_r2=-0.183 (>=0.6); linear_r2_from_pcs=0.458 (>=0.5)"
+ },
+ "chemical_bonds": {
+  "status": "failed",
+  "reason": "failed: spearman_best_direction=0.494 (>=0.8); knn_r2=-0.054 (>=0.6); linear_r2_from_pcs=0.258 (>=0.5)"
+ },
+ "adverbs_pace": {
+  "status": "partial",
+  "reason": "failed: centroid_path_adjacency=0.278 (>=1.0)"
+ },
+ "statistical_uncertainty": {
+  "status": "partial",
+  "reason": "failed: spearman_best_direction=0.617 (>=0.8); knn_r2=0.469 (>=0.6); linear_r2_from_pcs=0.208 (>=0.5)"
+ },
+ "bible_verses": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "slant_rhymes_ore": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "emotions_valence_arousal": {
+  "status": "partial",
+  "reason": "failed: centroid_distance_vs_valence_arousal=-0.204 (>=0.5)"
+ },
+ "weekdays_circle": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "months_circle": {
+  "status": "partial",
+  "reason": "failed: cyclic_order=0.833 (>=1.0)"
+ },
+ "hours_circle": {
+  "status": "partial",
+  "reason": "failed: cyclic_order=0.917 (>=1.0)"
+ },
+ "addition_sum_fourier": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "numbers_1_100": {
+  "status": "matches",
+  "reason": "all checks passed"
  }
 }

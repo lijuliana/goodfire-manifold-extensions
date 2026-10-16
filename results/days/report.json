@@ -14,6 +14,7 @@
   "dataset": "synthetic, 7 days x 8 times-of-day [\"the crack of dawn\",\"early morning\",\"late morning\",\"noon\",\"afternoon\",\"evening\",\"night\",\"midnight\"]",
   "n_paper": 420
  },
+ "preprocessing": "none",
  "prompt_set": {
   "template": "It's {time} on {day}",
   "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
@@ -52,8 +53,9 @@
     "op": ">=",
     "critical": true,
     "passed": true,
-    "note": "class centroids appear in cyclic order",
-    "partial_threshold": null
+    "note": "fraction of expected neighbours adjacent around the circle",
+    "partial_threshold": 0.75,
+    "informative": false
    },
    {
     "name": "circular_corr",
@@ -63,7 +65,8 @@
     "critical": true,
     "passed": true,
     "note": "angle in best-fit plane vs ground-truth phase",
-    "partial_threshold": 0.6
+    "partial_threshold": 0.6,
+    "informative": false
    },
    {
     "name": "circle_fit_r2",
@@ -73,7 +76,8 @@
     "critical": false,
     "passed": true,
     "note": "variance of PCA-3 explained by cos/sin(phase)",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    },
    {
     "name": "roundness_cv",
@@ -83,7 +87,8 @@
     "critical": false,
     "passed": true,
     "note": "std/mean of radii in the fitted plane",
-    "partial_threshold": null
+    "partial_threshold": null,
+    "informative": false
    }
   ],
   "extras": {
@@ -96,7 +101,7 @@
     "5": -1.4402380243666877,
     "6": -2.232180820758807
    },
-   "rubric_version": 2
+   "rubric_version": 2.1
   }
  },
  "status": "matches",

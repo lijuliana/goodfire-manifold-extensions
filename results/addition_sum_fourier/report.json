@@ -1,0 +1,145 @@
+{
+ "name": "addition_sum_fourier",
+ "spec": {
+  "tier": "cyclic",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 18,
+  "expected_geometry": "circles of the SUM with periods 2, 5, 10 (Fourier features)",
+  "replication_mode": "probe-based",
+  "sources": [
+   "feucht2026 Sec. 4",
+   "App. G",
+   "blog-calc"
+  ],
+  "prompt_template": "{a}+{b}=",
+  "dataset": "a, b in 1..100 (paper n=10k; we subsample)",
+  "n_paper": null
+ },
+ "preprocessing": "none",
+ "prompt_set": {
+  "template": "{a}+{b}=",
+  "source": "arXiv 2605.01148 App. A Table 1",
+  "deviations": [
+   "1200 random (a, b) pairs from 1..100 instead of all 10k; last token; layer 18"
+  ],
+  "n_total": 1200,
+  "n_kept": 1200,
+  "n_outliers_removed": 0,
+  "examples": [
+   "1+5=",
+   "1+7=",
+   "1+9=",
+   "1+11=",
+   "1+19="
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.11833378532737518,
+   0.05786829705870845,
+   0.050137484880838905
+  ],
+  "n_points": 1200,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "fourier_probe",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "probe_r2_period_10",
+    "value": 0.9137920077033825,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "cross-validated ridge probe to cos/sin(2 pi sum/10)",
+    "partial_threshold": 0.3,
+    "informative": false
+   },
+   {
+    "name": "probe_r2_period_5",
+    "value": 0.9313230191990385,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "",
+    "partial_threshold": 0.3,
+    "informative": false
+   },
+   {
+    "name": "probe_r2_period_2",
+    "value": 0.9810456373907144,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "",
+    "partial_threshold": 0.3,
+    "informative": false
+   },
+   {
+    "name": "probe_r2_period_10_minus_control_7",
+    "value": 0.9305822579932168,
+    "threshold": 0.2,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "control period 7 probe R^2 = -0.02",
+    "partial_threshold": null,
+    "informative": false
+   },
+   {
+    "name": "raw_pca_circular_corr_mod10",
+    "value": 9.999957852280452e-05,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "is the mod-10 circle visible in the raw 3-D PCA (not claimed by the paper)",
+    "partial_threshold": null,
+    "informative": true
+   }
+  ],
+  "extras": {
+   "probe_r2": {
+    "2": 0.9810456373907144,
+    "5": 0.9313230191990385,
+    "10": 0.9137920077033825
+   },
+   "control_r2": -0.016790250289834264,
+   "rubric_version": 2.1
+  }
+ },
+ "status": "matches",
+ "status_v1": null,
+ "color": {
+  "color_by": "sum_mod10",
+  "color_mode": "cyclic"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 18,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "addition_sum_fourier",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 1200,
+  "elapsed_s": 3.98,
+  "started": "2026-10-16T03:41:50+00:00",
+  "finished": "2026-10-16T03:41:54+00:00"
+ },
+ "precision_check": null
+}

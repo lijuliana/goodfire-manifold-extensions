@@ -32,6 +32,7 @@ class Check:
     passed: bool
     note: str = ""
     partial_threshold: float | None = None   # weaker bound that still counts as "partial"
+    informative: bool = False                # reported only; never gates the status
 
     @property
     def partial(self) -> bool:
@@ -63,7 +64,7 @@ class ShapeReport:
 
 # ---------------------------------------------------------------- primitives ------------------
 
-RUBRIC_VERSION = 2
+RUBRIC_VERSION = 2.1
 """Rubric history (kept for transparency; v1 verdicts are stored in each report as status_v1).
 
 v1 (first core run, 2026-10-15): "line" required R^2 >= 0.9 of the label from the 3 PCs. That
@@ -73,26 +74,33 @@ v2: ordering (Spearman along the best direction) and nonlinear readability (cros
     R^2) are the critical tests for 1-D manifolds; linear R^2 is informative only. Every critical
     check carries a weaker "partial" bound. Status: matches = all checks pass; partial = every
     critical check clears at least its partial bound; failed = otherwise.
+v2.1 (extended/cyclic tiers, 2026-10-16): k-NN neighbour count scales with n (k = n/12, 2..10)
+    so small sets are not over-smoothed; cyclic order is graded (fraction of expected neighbours
+    adjacent in angle, partial >= 0.75) instead of all-or-nothing for 12- and 24-class circles;
+    checks marked `informative` are reported but never gate the status; multi-frame prompt sets
+    are centred per frame before PCA (nuisance_group role).
 """
 
 
 def _mk(name: str, value: float, thr: float, op: str = ">=", critical: bool = True,
-        note: str = "", partial: float | None = None) -> Check:
+        note: str = "", partial: float | None = None, informative: bool = False) -> Check:
     v = float(value) if np.isfinite(value) else (-np.inf if op == ">=" else np.inf)
     passed = bool(v >= thr) if op == ">=" else bool(v <= thr)
-    return Check(name, float(value), thr, op, critical, passed, note, partial)
+    return Check(name, float(value), thr, op, critical and not informative, passed, note, partial,
+                 informative)
 
 
 def _finalize(geometry: str, checks: list[Check], extras: dict[str, Any] | None = None
               ) -> ShapeReport:
-    crit = [c for c in checks if c.critical]
-    if all(c.passed for c in checks):
+    gating = [c for c in checks if not c.informative]
+    crit = [c for c in gating if c.critical]
+    if all(c.passed for c in gating):
         status = "matches"
     elif all(c.partial for c in crit):
         status = "partial"
     else:
         status = "failed"
-    failed = [f"{c.name}={c.value:.3f} ({c.op}{c.threshold})" for c in checks if not c.passed]
+    failed = [f"{c.name}={c.value:.3f} ({c.op}{c.threshold})" for c in gating if not c.passed]
     reason = "all checks passed" if not failed else "failed: " + "; ".join(failed)
     ex = dict(extras or {})
     ex["rubric_version"] = RUBRIC_VERSION
@@ -105,7 +113,7 @@ def knn_r2(x: np.ndarray, y: np.ndarray, k: int = 10, seed: int = 0) -> float:
     from sklearn.neighbors import KNeighborsRegressor
 
     cv = KFold(n_splits=5, shuffle=True, random_state=seed)
-    k = max(1, min(k, len(y) // 5))
+    k = int(max(2, min(k, len(y) // 12)))
     return float(cross_val_score(KNeighborsRegressor(k), x, y, cv=cv, scoring="r2").mean())
 
 
@@ -181,13 +189,26 @@ def fit_circle_plane(coords: np.ndarray, phase: np.ndarray) -> dict[str, Any]:
 
 def cyclic_order_ok(angles: np.ndarray, classes: np.ndarray, order: Sequence[Any]) -> bool:
     """True if class centroids, sorted by angle, follow `order` cyclically (either direction)."""
+    return cyclic_order_score(angles, classes, order) >= 1.0
+
+
+def cyclic_order_score(angles: np.ndarray, classes: np.ndarray, order: Sequence[Any]) -> float:
+    """Fraction of consecutive classes in `order` whose centroids are angular neighbours
+    (1.0 = perfect cyclic order in either direction)."""
     order = list(order)
-    cents = {c: circ_mean(angles[classes == c]) for c in order}
-    seq = sorted(order, key=lambda c: cents[c])
-    k = len(order)
-    rev = order[::-1]
-    valid = [order[i:] + order[:i] for i in range(k)] + [rev[i:] + rev[:i] for i in range(k)]
-    return seq in valid
+    present = [c for c in order if np.any(classes == c)]
+    if len(present) < 3:
+        return 0.0
+    cents = {c: circ_mean(angles[classes == c]) for c in present}
+    seq = sorted(present, key=lambda c: cents[c])
+    pos = {c: i for i, c in enumerate(seq)}
+    k = len(present)
+    good = 0
+    for i, c in enumerate(present):
+        nxt = present[(i + 1) % k]
+        if (pos[nxt] - pos[c]) % k in (1, k - 1):
+            good += 1
+    return good / k
 
 
 # ---------------------------------------------------------------- checks ----------------------
@@ -242,9 +263,9 @@ def check_circle(coords: np.ndarray, phase: np.ndarray, classes: np.ndarray | No
     ]
     extras: dict[str, Any] = {}
     if classes is not None and order is not None:
-        ok = cyclic_order_ok(f["angles"], np.asarray(classes), order)
-        checks.insert(0, _mk("cyclic_order", float(ok), 1.0, critical=True,
-                             note="class centroids appear in cyclic order"))
+        sc = cyclic_order_score(f["angles"], np.asarray(classes), order)
+        checks.insert(0, _mk("cyclic_order", sc, 1.0, critical=True, partial=0.75,
+                             note="fraction of expected neighbours adjacent around the circle"))
         extras["centroid_angles"] = {
             str(c): circ_mean(f["angles"][np.asarray(classes) == c]) for c in order
         }
@@ -262,7 +283,7 @@ def check_helix(coords: np.ndarray, linear_label: np.ndarray, periodic_label: np
     f = fit_circle_plane(resid, phase)
     digits = np.round(per % period).astype(int)
     order = list(range(int(period)))
-    cyc = float(cyclic_order_ok(f["angles"], digits, order))
+    cyc = cyclic_order_score(f["angles"], digits, order)
     checks = [
         _mk("linear_r2_from_pcs", r2_lin, 0.90, critical=True, partial=0.70,
             note="linear axis (e.g. year)"),
@@ -281,7 +302,7 @@ def check_paraboloid(coords: np.ndarray, hue: np.ndarray, lightness: np.ndarray,
     phase = 2 * np.pi * hue
     f = fit_circle_plane(coords, phase)
     bins = np.floor(hue * 12).astype(int) % 12
-    cyc = float(cyclic_order_ok(f["angles"], bins, list(range(12))))
+    cyc = cyclic_order_score(f["angles"], bins, list(range(12)))
     h = f["height"]
     sp_l = spearman_abs(h, lightness)
     sp_s = spearman_abs(h, saturation)
@@ -289,7 +310,8 @@ def check_paraboloid(coords: np.ndarray, hue: np.ndarray, lightness: np.ndarray,
     r2_quad = ols_r2(f["radii"] ** 2, h)
     checks = [
         _mk("hue_circular_corr", f["circ_corr"], 0.70, critical=True, partial=0.50),
-        _mk("hue_cyclic_order", cyc, 1.0, critical=True, note="12 hue bins in cyclic order"),
+        _mk("hue_cyclic_order", cyc, 1.0, critical=True, partial=0.75,
+            note="fraction of adjacent hue bins that are angular neighbours"),
         _mk("height_vs_lightness_or_saturation", max(sp_l, sp_s), 0.40, critical=True,
             partial=0.25,
             note=f"best = {which}; |spearman| lightness={sp_l:.2f} saturation={sp_s:.2f}"),
@@ -407,8 +429,8 @@ def check_fourier_probe(acts: np.ndarray, coords: np.ndarray, value: np.ndarray,
         _mk("probe_r2_period_2", r2[2], 0.50, critical=False, partial=0.30),
         _mk("probe_r2_period_10_minus_control_7", r2[10] - r2_ctrl, 0.20, critical=False,
             note=f"control period 7 probe R^2 = {r2_ctrl:.2f}"),
-        _mk("raw_pca_circular_corr_mod10", f["circ_corr"], 0.60, critical=False, partial=0.40,
-            note="is the mod-10 circle visible in the raw 3-D PCA (not required by the paper)"),
+        _mk("raw_pca_circular_corr_mod10", f["circ_corr"], 0.60, informative=True,
+            note="is the mod-10 circle visible in the raw 3-D PCA (not claimed by the paper)"),
     ]
     return _finalize("fourier_probe", checks, {"probe_r2": r2, "control_r2": r2_ctrl})
 
@@ -437,8 +459,9 @@ ROLES: dict[str, dict[str, Any]] = {
                   "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "formality"},
     "sent_length": {"kind": "line", "label": "n_tokens", "color_by": "n_tokens",
                     "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "n_tokens"},
+    # political bias: diverging colours, red = conservative, blue = liberal
     "political_bias": {"kind": "ordinal", "label": "bias_label", "color_by": "bias_label",
-                       "color_mode": "continuous", "ambient_dim": 1,
+                       "color_mode": "diverging", "ambient_dim": 1,
                        "tuning_label": "bias_label"},
     # ---- extended tier (supervised approximations of the blog's unsupervised manifolds)
     "ordinals": {"kind": "line", "label": "rank", "color_by": "rank", "color_mode": "continuous",
@@ -451,18 +474,19 @@ ROLES: dict[str, dict[str, Any]] = {
     "chemical_bonds": {"kind": "line", "label": "length_pm", "color_by": "length_pm",
                        "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "length_pm"},
     "adverbs_pace": {"kind": "ordinal", "label": "speed_rank", "color_by": "speed_rank",
-                     "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "speed_rank"},
+                     "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "speed_rank",
+                     "nuisance_group": "frame"},
     "statistical_uncertainty": {"kind": "line", "label": "ln_std_over_mean",
                                 "color_by": "ln_std_over_mean", "color_mode": "continuous",
-                                "ambient_dim": 1, "tuning_label": "ln_std_over_mean"},
+                                "ambient_dim": 1, "tuning_label": "ln_std_over_mean",
+                                "nuisance_group": "frame"},
     "bible_verses": {"kind": "line", "label": "position", "color_by": "book_index",
                      "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "book_index"},
     "slant_rhymes_ore": {"kind": "ordinal", "label": "rhyme_grade", "color_by": "grade_name",
                          "color_mode": "categorical", "ambient_dim": 1,
                          "tuning_label": "rhyme_grade"},
-    "numbers_1_100": {"kind": "helix", "linear": "n", "periodic": "n", "period": 10,
-                      "color_by": "n", "color_mode": "continuous", "ambient_dim": 3,
-                      "tuning_label": "n"},
+    "numbers_1_100": {"kind": "fourier_probe", "value": "n", "color_by": "ones_digit",
+                      "color_mode": "cyclic", "ambient_dim": 2, "tuning_label": "n"},
     "emotions_valence_arousal": {"kind": "circumplex", "group": "emotion", "valence": "valence",
                                  "arousal": "arousal", "color_by": "emotion",
                                  "color_mode": "categorical", "ambient_dim": 2,
@@ -519,3 +543,14 @@ def run_shape_check(name: str, coords: np.ndarray, labels: list[dict[str, Any]],
         return check_tree(coords, _col(labels, r["lat"]).astype(float),
                           _col(labels, r["lon"]).astype(float), _col(labels, r["group"]))
     raise ValueError(kind)
+
+
+def center_by_group(acts: np.ndarray, labels: list[dict[str, Any]], key: str) -> np.ndarray:
+    """Subtract each group's mean activation (removes a known nuisance factor such as the
+    sentence frame of a multi-frame prompt set) before PCA."""
+    g = _col(labels, key)
+    out = acts.astype(np.float32).copy()
+    for v in np.unique(g):
+        m = g == v
+        out[m] -= out[m].mean(0, keepdims=True)
+    return out

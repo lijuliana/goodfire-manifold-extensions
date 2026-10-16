@@ -1,0 +1,117 @@
+{
+ "name": "statistical_uncertainty",
+ "spec": {
+  "tier": "extended",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "1D curve by ln(std/mean)",
+  "replication_mode": "supervised-approx",
+  "sources": [
+   "bhalla2026 Sec. 6 + Fig. 10",
+   "blog-saes figure"
+  ],
+  "prompt_template": "TBD (e.g. \"... was {mean} +/- {std} ...\", mirroring Fig. 10 activating examples)",
+  "dataset": "synthetic measurement strings",
+  "n_paper": null
+ },
+ "preprocessing": "activations centred per 'frame' before PCA",
+ "prompt_set": {
+  "template": "The mean value was {m} +/- {s} | The patients' mean age was {m} +/- {s} years | Mean heart rate increased to {m} +/- {s} beats per minute | The average concentration was {m} +/- {s} mg per litre | Mean observation time was {m} +/- {s} months",
+  "source": "arXiv 2604.28119 Fig. 10 (right) + goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+  "deviations": [
+   "prompt template and item list are ours (no template published)",
+   "synthetic measurement strings mirroring the Fig. 10 examples"
+  ],
+  "n_total": 300,
+  "n_kept": 300,
+  "n_outliers_removed": 0,
+  "examples": [
+   "The mean value was 540 +/- 16.0",
+   "The patients' mean age was 120 +/- 1.01 years",
+   "Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+   "The average concentration was 3.2 +/- 3.27 mg per litre",
+   "Mean observation time was 68 +/- 25.3 months"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.18412638335490014,
+   0.09077451572222031,
+   0.08131657717935602
+  ],
+  "n_points": 300,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "partial",
+  "reason": "failed: spearman_best_direction=0.617 (>=0.8); knn_r2=0.469 (>=0.6); linear_r2_from_pcs=0.208 (>=0.5)",
+  "checks": [
+   {
+    "name": "spearman_best_direction",
+    "value": 0.6166948521650241,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "label monotone along the best linear direction in PCA-3",
+    "partial_threshold": 0.6,
+    "informative": false
+   },
+   {
+    "name": "knn_r2",
+    "value": 0.4691568348505134,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "cross-validated 10-NN R^2 of the label from PCA-3 (nonlinear readability)",
+    "partial_threshold": 0.4,
+    "informative": false
+   },
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.20818955366327763,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "R^2 of label regressed on the 3 PCs (share of top-3 variance)",
+    "partial_threshold": null,
+    "informative": false
+   }
+  ],
+  "extras": {
+   "rubric_version": 2.1
+  }
+ },
+ "status": "partial",
+ "status_v1": null,
+ "color": {
+  "color_by": "ln_std_over_mean",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "statistical_uncertainty",
+  "n_span_tokenisation_mismatches": 0,
+  "n_prompts": 300,
+  "elapsed_s": 2.73,
+  "started": "2026-10-16T03:41:08+00:00",
+  "finished": "2026-10-16T03:41:11+00:00"
+ },
+ "precision_check": null
+}

@@ -1,0 +1,297 @@
+{
+ "name": "chemical_bonds",
+ "template": "The length of a {bond} bond is about",
+ "source": "goodfire.ai/research/can-saes-capture-neural-geometry (unsupervised-discovery figure)",
+ "deviations": [
+  "prompt template and item list are ours (no template published)",
+  "typical covalent bond lengths from reference tables"
+ ],
+ "n": 47,
+ "prompts": [
+  "The length of a hydrogen-hydrogen single bond is about",
+  "The length of a carbon-hydrogen single bond is about",
+  "The length of a nitrogen-hydrogen single bond is about",
+  "The length of a oxygen-hydrogen single bond is about",
+  "The length of a fluorine-hydrogen single bond is about",
+  "The length of a chlorine-hydrogen single bond is about",
+  "The length of a bromine-hydrogen single bond is about",
+  "The length of a iodine-hydrogen single bond is about",
+  "The length of a sulfur-hydrogen single bond is about",
+  "The length of a silicon-hydrogen single bond is about",
+  "The length of a phosphorus-hydrogen single bond is about",
+  "The length of a carbon-carbon single bond is about",
+  "The length of a carbon-carbon double bond is about",
+  "The length of a carbon-carbon triple bond is about",
+  "The length of a carbon-nitrogen single bond is about",
+  "The length of a carbon-nitrogen double bond is about",
+  "The length of a carbon-nitrogen triple bond is about",
+  "The length of a carbon-oxygen single bond is about",
+  "The length of a carbon-oxygen double bond is about",
+  "The length of a carbon-oxygen triple bond is about",
+  "The length of a carbon-fluorine single bond is about",
+  "The length of a carbon-chlorine single bond is about",
+  "The length of a carbon-bromine single bond is about",
+  "The length of a carbon-iodine single bond is about",
+  "The length of a carbon-sulfur single bond is about",
+  "The length of a carbon-silicon single bond is about",
+  "The length of a nitrogen-nitrogen single bond is about",
+  "The length of a nitrogen-nitrogen double bond is about",
+  "The length of a nitrogen-nitrogen triple bond is about",
+  "The length of a nitrogen-oxygen single bond is about",
+  "The length of a nitrogen-oxygen double bond is about",
+  "The length of a nitrogen-fluorine single bond is about",
+  "The length of a oxygen-oxygen single bond is about",
+  "The length of a oxygen-oxygen double bond is about",
+  "The length of a oxygen-fluorine single bond is about",
+  "The length of a fluorine-fluorine single bond is about",
+  "The length of a chlorine-chlorine single bond is about",
+  "The length of a bromine-bromine single bond is about",
+  "The length of a iodine-iodine single bond is about",
+  "The length of a chlorine-fluorine single bond is about",
+  "The length of a bromine-chlorine single bond is about",
+  "The length of a iodine-chlorine single bond is about",
+  "The length of a sulfur-sulfur single bond is about",
+  "The length of a sulfur-oxygen double bond is about",
+  "The length of a phosphorus-phosphorus single bond is about",
+  "The length of a silicon-silicon single bond is about",
+  "The length of a silicon-oxygen single bond is about"
+ ],
+ "labels": [
+  {
+   "length_pm": 74.0,
+   "bond": "hydrogen-hydrogen single",
+   "log_length": 4.30406509320417
+  },
+  {
+   "length_pm": 109.0,
+   "bond": "carbon-hydrogen single",
+   "log_length": 4.6913478822291435
+  },
+  {
+   "length_pm": 101.0,
+   "bond": "nitrogen-hydrogen single",
+   "log_length": 4.61512051684126
+  },
+  {
+   "length_pm": 96.0,
+   "bond": "oxygen-hydrogen single",
+   "log_length": 4.564348191467836
+  },
+  {
+   "length_pm": 92.0,
+   "bond": "fluorine-hydrogen single",
+   "log_length": 4.5217885770490405
+  },
+  {
+   "length_pm": 127.0,
+   "bond": "chlorine-hydrogen single",
+   "log_length": 4.844187086458591
+  },
+  {
+   "length_pm": 141.0,
+   "bond": "bromine-hydrogen single",
+   "log_length": 4.948759890378168
+  },
+  {
+   "length_pm": 161.0,
+   "bond": "iodine-hydrogen single",
+   "log_length": 5.081404364984463
+  },
+  {
+   "length_pm": 134.0,
+   "bond": "sulfur-hydrogen single",
+   "log_length": 4.897839799950911
+  },
+  {
+   "length_pm": 148.0,
+   "bond": "silicon-hydrogen single",
+   "log_length": 4.997212273764115
+  },
+  {
+   "length_pm": 142.0,
+   "bond": "phosphorus-hydrogen single",
+   "log_length": 4.955827057601261
+  },
+  {
+   "length_pm": 154.0,
+   "bond": "carbon-carbon single",
+   "log_length": 5.0369526024136295
+  },
+  {
+   "length_pm": 134.0,
+   "bond": "carbon-carbon double",
+   "log_length": 4.897839799950911
+  },
+  {
+   "length_pm": 120.0,
+   "bond": "carbon-carbon triple",
+   "log_length": 4.787491742782046
+  },
+  {
+   "length_pm": 147.0,
+   "bond": "carbon-nitrogen single",
+   "log_length": 4.990432586778736
+  },
+  {
+   "length_pm": 128.0,
+   "bond": "carbon-nitrogen double",
+   "log_length": 4.852030263919617
+  },
+  {
+   "length_pm": 116.0,
+   "bond": "carbon-nitrogen triple",
+   "log_length": 4.7535901911063645
+  },
+  {
+   "length_pm": 143.0,
+   "bond": "carbon-oxygen single",
+   "log_length": 4.962844630259907
+  },
+  {
+   "length_pm": 123.0,
+   "bond": "carbon-oxygen double",
+   "log_length": 4.812184355372417
+  },
+  {
+   "length_pm": 113.0,
+   "bond": "carbon-oxygen triple",
+   "log_length": 4.727387818712341
+  },
+  {
+   "length_pm": 135.0,
+   "bond": "carbon-fluorine single",
+   "log_length": 4.90527477843843
+  },
+  {
+   "length_pm": 177.0,
+   "bond": "carbon-chlorine single",
+   "log_length": 5.176149732573829
+  },
+  {
+   "length_pm": 194.0,
+   "bond": "carbon-bromine single",
+   "log_length": 5.267858159063328
+  },
+  {
+   "length_pm": 214.0,
+   "bond": "carbon-iodine single",
+   "log_length": 5.365976015021851
+  },
+  {
+   "length_pm": 182.0,
+   "bond": "carbon-sulfur single",
+   "log_length": 5.204006687076795
+  },
+  {
+   "length_pm": 185.0,
+   "bond": "carbon-silicon single",
+   "log_length": 5.220355825078324
+  },
+  {
+   "length_pm": 145.0,
+   "bond": "nitrogen-nitrogen single",
+   "log_length": 4.976733742420574
+  },
+  {
+   "length_pm": 125.0,
+   "bond": "nitrogen-nitrogen double",
+   "log_length": 4.8283137373023015
+  },
+  {
+   "length_pm": 110.0,
+   "bond": "nitrogen-nitrogen triple",
+   "log_length": 4.700480365792417
+  },
+  {
+   "length_pm": 140.0,
+   "bond": "nitrogen-oxygen single",
+   "log_length": 4.941642422609304
+  },
+  {
+   "length_pm": 121.0,
+   "bond": "nitrogen-oxygen double",
+   "log_length": 4.795790545596741
+  },
+  {
+   "length_pm": 136.0,
+   "bond": "nitrogen-fluorine single",
+   "log_length": 4.912654885736052
+  },
+  {
+   "length_pm": 148.0,
+   "bond": "oxygen-oxygen single",
+   "log_length": 4.997212273764115
+  },
+  {
+   "length_pm": 121.0,
+   "bond": "oxygen-oxygen double",
+   "log_length": 4.795790545596741
+  },
+  {
+   "length_pm": 142.0,
+   "bond": "oxygen-fluorine single",
+   "log_length": 4.955827057601261
+  },
+  {
+   "length_pm": 142.0,
+   "bond": "fluorine-fluorine single",
+   "log_length": 4.955827057601261
+  },
+  {
+   "length_pm": 199.0,
+   "bond": "chlorine-chlorine single",
+   "log_length": 5.293304824724492
+  },
+  {
+   "length_pm": 228.0,
+   "bond": "bromine-bromine single",
+   "log_length": 5.429345628954441
+  },
+  {
+   "length_pm": 267.0,
+   "bond": "iodine-iodine single",
+   "log_length": 5.58724865840025
+  },
+  {
+   "length_pm": 163.0,
+   "bond": "chlorine-fluorine single",
+   "log_length": 5.093750200806762
+  },
+  {
+   "length_pm": 214.0,
+   "bond": "bromine-chlorine single",
+   "log_length": 5.365976015021851
+  },
+  {
+   "length_pm": 232.0,
+   "bond": "iodine-chlorine single",
+   "log_length": 5.44673737166631
+  },
+  {
+   "length_pm": 205.0,
+   "bond": "sulfur-sulfur single",
+   "log_length": 5.3230099791384085
+  },
+  {
+   "length_pm": 143.0,
+   "bond": "sulfur-oxygen double",
+   "log_length": 4.962844630259907
+  },
+  {
+   "length_pm": 221.0,
+   "bond": "phosphorus-phosphorus single",
+   "log_length": 5.3981627015177525
+  },
+  {
+   "length_pm": 235.0,
+   "bond": "silicon-silicon single",
+   "log_length": 5.459585514144159
+  },
+  {
+   "length_pm": 163.0,
+   "bond": "silicon-oxygen single",
+   "log_length": 5.093750200806762
+  }
+ ],
+ "spans": null
+}
