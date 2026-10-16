@@ -14,3 +14,4 @@ site/_build/
 logs/vm/
 results/*/depth_states.npy
 data/_probe.jsonl
+site/
