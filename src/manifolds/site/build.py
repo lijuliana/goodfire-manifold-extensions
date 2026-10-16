@@ -173,16 +173,15 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 <div class="detail">
 <h1 class="mono">{{ r.title }}</h1>
 <div class="by mono">by {{ r.by }} · <span class="badge badge-{{ r.status }}">{{ r.badge }}</span></div>
+{% if r.probe %}
+<div class="fig eager-fig" id="fig-probe" data-fig="json-probe"></div>
+<script type="application/json" id="json-probe">{{ r.probe.figure_json|safe }}</script>
+<p class="small mono">Fourier-probe view · drag to rotate · scroll to zoom · hover for the value</p>
+<div class="box"><p class="small">The source's claim for this manifold is about linear <em>probes</em> (Feucht et al. 2026, Fig. 6), not the top principal components. Each point sits at the cross-validated predictions of ridge probes trained on the block activations: x and y are the predicted cos and sin of 2π·{{ r.probe.label }}/10 (the ones-digit circle, R² {{ '%.2f'|format(r.probe.r2_circle) }}), z is the predicted magnitude (R² {{ '%.2f'|format(r.probe.r2_linear) }}). Predictions are out-of-fold, so a visible circle cannot come from overfitting. The raw 3-D PCA of the same activations, shown further down, is a blob: the circle carries little variance, which is also what the paper reports.</p></div>
+{% else %}
 <div class="fig eager-fig" id="fig-main" data-fig="json-main"></div>
 <script type="application/json" id="json-main">{{ r.figure_json|safe }}</script>
 <p class="small mono">drag to rotate · scroll to zoom · hover for the prompt</p>
-{% if r.probe %}
-<h2>Fourier-probe view</h2>
-<div class="box">
-<p class="small">The source's claim for this manifold is about linear <em>probes</em>, not the top principal components: the raw PCA above is a blob because the circle carries little variance. Here each point is placed at the cross-validated predictions of ridge probes trained on the block activations: x and y are the predicted cos and sin of 2π·{{ r.probe.label }}/10 (the ones-digit circle, R² {{ '%.2f'|format(r.probe.r2_circle) }}), z is the predicted magnitude (R² {{ '%.2f'|format(r.probe.r2_linear) }}). Predictions are out-of-fold, so a visible circle cannot come from overfitting.</p>
-<div class="fig eager-fig" id="fig-probe" data-fig="json-probe"></div>
-<script type="application/json" id="json-probe">{{ r.probe.figure_json|safe }}</script>
-</div>
 {% endif %}
 <div class="two">
 <div>
@@ -211,6 +210,12 @@ examples: {% for e in r.examples %}<pre>{{ e }}</pre>{% endfor %}
 </div>
 </div>
 </div>
+{% if r.probe %}
+<h2>Raw PCA (reference)</h2>
+<div class="box"><p class="small">Top three principal components of the raw activations, the view used on every other page. For this manifold it is uninformative by design.</p>
+<div class="fig eager-fig" id="fig-main" data-fig="json-main" style="height:460px"></div>
+<script type="application/json" id="json-main">{{ r.figure_json|safe }}</script></div>
+{% endif %}
 {% if r.depth %}
 <h2>Across the layers</h2>
 <div class="box">
@@ -542,10 +547,15 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
     cards = []
     for name, rep in reports.items():
         prev = (results_dir / name / "figure_preview.json")
+        if rep.get("probe_view") and (results_dir / name / "probe_figure.json").exists():
+            prev = results_dir / name / "probe_figure.json"
         if not prev.exists():
             continue
+        by = _by_label(rep)
+        if rep.get("probe_view"):
+            by = f"{rep['probe_view']['label']} (Fourier-probe view)"
         cards.append({
-            "name": name, "title": name.replace("_", " "), "by": _by_label(rep),
+            "name": name, "title": name.replace("_", " "), "by": by,
             "status": rep["status"], "badge": BADGE_TEXT[rep["status"]],
             "preview_json": _safe_json(_compact_figure(prev.read_text(encoding="utf-8"))),
         })
