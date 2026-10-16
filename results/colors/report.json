@@ -1,0 +1,124 @@
+{
+ "name": "colors",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "paraboloid",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1",
+   "sae-manifold data.py build_colors"
+  ],
+  "prompt_template": "The hex code {hex} is for the color",
+  "dataset": "burkelibbey/colors",
+  "n_paper": "~900"
+ },
+ "prompt_set": {
+  "template": "The hex code {hex} is for the color",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [],
+  "n_total": 1850,
+  "n_kept": 1848,
+  "n_outliers_removed": 2,
+  "examples": [
+   "The hex code #0e277d is for the color",
+   "The hex code #0e475d is for the color",
+   "The hex code #0e673d is for the color",
+   "The hex code #0e777d is for the color",
+   "The hex code #101066 is for the color"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.33678207320078235,
+   0.20258651654187404,
+   0.18302879087434967
+  ],
+  "n_points": 1848,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "paraboloid",
+  "status": "partial",
+  "reason": "failed: height_vs_radius2_r2=0.143 (>=0.2)",
+  "checks": [
+   {
+    "name": "hue_circular_corr",
+    "value": 0.9627652505452531,
+    "threshold": 0.7,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": ""
+   },
+   {
+    "name": "hue_cyclic_order",
+    "value": 1.0,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "12 hue bins in cyclic order"
+   },
+   {
+    "name": "height_vs_lightness_or_saturation",
+    "value": 0.8268123222107656,
+    "threshold": 0.4,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "best = lightness; |spearman| lightness=0.83 saturation=0.00"
+   },
+   {
+    "name": "height_vs_radius2_r2",
+    "value": 0.14271393196632665,
+    "threshold": 0.2,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "paraboloid signature: height ~ radius^2"
+   }
+  ],
+  "extras": {
+   "height_axis_variable": "lightness"
+  }
+ },
+ "status": "partial",
+ "color": {
+  "color_by": "hex",
+  "color_mode": "hex"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "colors",
+  "n_prompts": 1850,
+  "elapsed_s": 11.53,
+  "started": "2026-10-15T21:34:47+00:00",
+  "finished": "2026-10-15T21:34:59+00:00"
+ },
+ "precision_check": {
+  "n": 16,
+  "dtype_test": "float16",
+  "dtype_ref": "float32",
+  "cosine_min": 0.9999958276748657,
+  "cosine_mean": 0.999997615814209,
+  "rel_err_max": 0.0029683406464755535,
+  "rel_err_mean": 0.0022874814458191395,
+  "manifold": "colors",
+  "passed": true
+ }
+}

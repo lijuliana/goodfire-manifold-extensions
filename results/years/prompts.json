@@ -1,0 +1,1205 @@
+{
+ "name": "years",
+ "template": "The date is {year}",
+ "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+ "deviations": [],
+ "n": 199,
+ "prompts": [
+  "The date is 1800",
+  "The date is 1801",
+  "The date is 1802",
+  "The date is 1803",
+  "The date is 1804",
+  "The date is 1805",
+  "The date is 1806",
+  "The date is 1807",
+  "The date is 1808",
+  "The date is 1809",
+  "The date is 1810",
+  "The date is 1811",
+  "The date is 1812",
+  "The date is 1813",
+  "The date is 1814",
+  "The date is 1815",
+  "The date is 1816",
+  "The date is 1817",
+  "The date is 1818",
+  "The date is 1819",
+  "The date is 1820",
+  "The date is 1821",
+  "The date is 1822",
+  "The date is 1823",
+  "The date is 1824",
+  "The date is 1825",
+  "The date is 1826",
+  "The date is 1827",
+  "The date is 1828",
+  "The date is 1829",
+  "The date is 1830",
+  "The date is 1831",
+  "The date is 1832",
+  "The date is 1833",
+  "The date is 1834",
+  "The date is 1835",
+  "The date is 1836",
+  "The date is 1837",
+  "The date is 1838",
+  "The date is 1839",
+  "The date is 1840",
+  "The date is 1841",
+  "The date is 1842",
+  "The date is 1843",
+  "The date is 1844",
+  "The date is 1845",
+  "The date is 1846",
+  "The date is 1847",
+  "The date is 1848",
+  "The date is 1849",
+  "The date is 1850",
+  "The date is 1851",
+  "The date is 1852",
+  "The date is 1853",
+  "The date is 1854",
+  "The date is 1855",
+  "The date is 1856",
+  "The date is 1857",
+  "The date is 1858",
+  "The date is 1859",
+  "The date is 1860",
+  "The date is 1861",
+  "The date is 1862",
+  "The date is 1863",
+  "The date is 1864",
+  "The date is 1865",
+  "The date is 1866",
+  "The date is 1867",
+  "The date is 1868",
+  "The date is 1869",
+  "The date is 1870",
+  "The date is 1871",
+  "The date is 1872",
+  "The date is 1873",
+  "The date is 1874",
+  "The date is 1875",
+  "The date is 1876",
+  "The date is 1877",
+  "The date is 1878",
+  "The date is 1879",
+  "The date is 1880",
+  "The date is 1881",
+  "The date is 1882",
+  "The date is 1883",
+  "The date is 1884",
+  "The date is 1885",
+  "The date is 1886",
+  "The date is 1887",
+  "The date is 1888",
+  "The date is 1889",
+  "The date is 1890",
+  "The date is 1891",
+  "The date is 1892",
+  "The date is 1893",
+  "The date is 1894",
+  "The date is 1895",
+  "The date is 1896",
+  "The date is 1897",
+  "The date is 1898",
+  "The date is 1899",
+  "The date is 1900",
+  "The date is 1901",
+  "The date is 1902",
+  "The date is 1903",
+  "The date is 1904",
+  "The date is 1905",
+  "The date is 1906",
+  "The date is 1907",
+  "The date is 1908",
+  "The date is 1909",
+  "The date is 1910",
+  "The date is 1911",
+  "The date is 1912",
+  "The date is 1913",
+  "The date is 1914",
+  "The date is 1915",
+  "The date is 1916",
+  "The date is 1917",
+  "The date is 1918",
+  "The date is 1919",
+  "The date is 1920",
+  "The date is 1921",
+  "The date is 1922",
+  "The date is 1923",
+  "The date is 1924",
+  "The date is 1925",
+  "The date is 1926",
+  "The date is 1927",
+  "The date is 1928",
+  "The date is 1929",
+  "The date is 1930",
+  "The date is 1931",
+  "The date is 1932",
+  "The date is 1933",
+  "The date is 1934",
+  "The date is 1935",
+  "The date is 1936",
+  "The date is 1937",
+  "The date is 1938",
+  "The date is 1939",
+  "The date is 1940",
+  "The date is 1941",
+  "The date is 1942",
+  "The date is 1943",
+  "The date is 1944",
+  "The date is 1945",
+  "The date is 1946",
+  "The date is 1947",
+  "The date is 1948",
+  "The date is 1949",
+  "The date is 1950",
+  "The date is 1951",
+  "The date is 1952",
+  "The date is 1953",
+  "The date is 1954",
+  "The date is 1955",
+  "The date is 1956",
+  "The date is 1957",
+  "The date is 1958",
+  "The date is 1959",
+  "The date is 1960",
+  "The date is 1961",
+  "The date is 1962",
+  "The date is 1963",
+  "The date is 1964",
+  "The date is 1965",
+  "The date is 1966",
+  "The date is 1967",
+  "The date is 1968",
+  "The date is 1969",
+  "The date is 1970",
+  "The date is 1971",
+  "The date is 1972",
+  "The date is 1973",
+  "The date is 1974",
+  "The date is 1975",
+  "The date is 1976",
+  "The date is 1977",
+  "The date is 1978",
+  "The date is 1979",
+  "The date is 1980",
+  "The date is 1981",
+  "The date is 1982",
+  "The date is 1983",
+  "The date is 1984",
+  "The date is 1985",
+  "The date is 1986",
+  "The date is 1987",
+  "The date is 1988",
+  "The date is 1989",
+  "The date is 1990",
+  "The date is 1991",
+  "The date is 1992",
+  "The date is 1993",
+  "The date is 1994",
+  "The date is 1995",
+  "The date is 1996",
+  "The date is 1997",
+  "The date is 1998"
+ ],
+ "labels": [
+  {
+   "year": 1800.0,
+   "decade_digit": 0.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1801.0,
+   "decade_digit": 1.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1802.0,
+   "decade_digit": 2.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1803.0,
+   "decade_digit": 3.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1804.0,
+   "decade_digit": 4.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1805.0,
+   "decade_digit": 5.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1806.0,
+   "decade_digit": 6.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1807.0,
+   "decade_digit": 7.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1808.0,
+   "decade_digit": 8.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1809.0,
+   "decade_digit": 9.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1810.0,
+   "decade_digit": 0.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1811.0,
+   "decade_digit": 1.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1812.0,
+   "decade_digit": 2.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1813.0,
+   "decade_digit": 3.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1814.0,
+   "decade_digit": 4.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1815.0,
+   "decade_digit": 5.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1816.0,
+   "decade_digit": 6.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1817.0,
+   "decade_digit": 7.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1818.0,
+   "decade_digit": 8.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1819.0,
+   "decade_digit": 9.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1820.0,
+   "decade_digit": 0.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1821.0,
+   "decade_digit": 1.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1822.0,
+   "decade_digit": 2.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1823.0,
+   "decade_digit": 3.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1824.0,
+   "decade_digit": 4.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1825.0,
+   "decade_digit": 5.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1826.0,
+   "decade_digit": 6.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1827.0,
+   "decade_digit": 7.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1828.0,
+   "decade_digit": 8.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1829.0,
+   "decade_digit": 9.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1830.0,
+   "decade_digit": 0.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1831.0,
+   "decade_digit": 1.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1832.0,
+   "decade_digit": 2.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1833.0,
+   "decade_digit": 3.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1834.0,
+   "decade_digit": 4.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1835.0,
+   "decade_digit": 5.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1836.0,
+   "decade_digit": 6.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1837.0,
+   "decade_digit": 7.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1838.0,
+   "decade_digit": 8.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1839.0,
+   "decade_digit": 9.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1840.0,
+   "decade_digit": 0.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1841.0,
+   "decade_digit": 1.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1842.0,
+   "decade_digit": 2.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1843.0,
+   "decade_digit": 3.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1844.0,
+   "decade_digit": 4.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1845.0,
+   "decade_digit": 5.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1846.0,
+   "decade_digit": 6.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1847.0,
+   "decade_digit": 7.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1848.0,
+   "decade_digit": 8.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1849.0,
+   "decade_digit": 9.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1850.0,
+   "decade_digit": 0.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1851.0,
+   "decade_digit": 1.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1852.0,
+   "decade_digit": 2.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1853.0,
+   "decade_digit": 3.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1854.0,
+   "decade_digit": 4.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1855.0,
+   "decade_digit": 5.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1856.0,
+   "decade_digit": 6.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1857.0,
+   "decade_digit": 7.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1858.0,
+   "decade_digit": 8.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1859.0,
+   "decade_digit": 9.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1860.0,
+   "decade_digit": 0.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1861.0,
+   "decade_digit": 1.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1862.0,
+   "decade_digit": 2.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1863.0,
+   "decade_digit": 3.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1864.0,
+   "decade_digit": 4.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1865.0,
+   "decade_digit": 5.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1866.0,
+   "decade_digit": 6.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1867.0,
+   "decade_digit": 7.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1868.0,
+   "decade_digit": 8.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1869.0,
+   "decade_digit": 9.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1870.0,
+   "decade_digit": 0.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1871.0,
+   "decade_digit": 1.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1872.0,
+   "decade_digit": 2.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1873.0,
+   "decade_digit": 3.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1874.0,
+   "decade_digit": 4.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1875.0,
+   "decade_digit": 5.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1876.0,
+   "decade_digit": 6.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1877.0,
+   "decade_digit": 7.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1878.0,
+   "decade_digit": 8.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1879.0,
+   "decade_digit": 9.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1880.0,
+   "decade_digit": 0.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1881.0,
+   "decade_digit": 1.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1882.0,
+   "decade_digit": 2.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1883.0,
+   "decade_digit": 3.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1884.0,
+   "decade_digit": 4.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1885.0,
+   "decade_digit": 5.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1886.0,
+   "decade_digit": 6.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1887.0,
+   "decade_digit": 7.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1888.0,
+   "decade_digit": 8.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1889.0,
+   "decade_digit": 9.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1890.0,
+   "decade_digit": 0.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1891.0,
+   "decade_digit": 1.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1892.0,
+   "decade_digit": 2.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1893.0,
+   "decade_digit": 3.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1894.0,
+   "decade_digit": 4.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1895.0,
+   "decade_digit": 5.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1896.0,
+   "decade_digit": 6.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1897.0,
+   "decade_digit": 7.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1898.0,
+   "decade_digit": 8.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1899.0,
+   "decade_digit": 9.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1900.0,
+   "decade_digit": 0.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1901.0,
+   "decade_digit": 1.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1902.0,
+   "decade_digit": 2.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1903.0,
+   "decade_digit": 3.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1904.0,
+   "decade_digit": 4.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1905.0,
+   "decade_digit": 5.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1906.0,
+   "decade_digit": 6.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1907.0,
+   "decade_digit": 7.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1908.0,
+   "decade_digit": 8.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1909.0,
+   "decade_digit": 9.0,
+   "decade": 0.0
+  },
+  {
+   "year": 1910.0,
+   "decade_digit": 0.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1911.0,
+   "decade_digit": 1.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1912.0,
+   "decade_digit": 2.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1913.0,
+   "decade_digit": 3.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1914.0,
+   "decade_digit": 4.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1915.0,
+   "decade_digit": 5.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1916.0,
+   "decade_digit": 6.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1917.0,
+   "decade_digit": 7.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1918.0,
+   "decade_digit": 8.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1919.0,
+   "decade_digit": 9.0,
+   "decade": 1.0
+  },
+  {
+   "year": 1920.0,
+   "decade_digit": 0.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1921.0,
+   "decade_digit": 1.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1922.0,
+   "decade_digit": 2.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1923.0,
+   "decade_digit": 3.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1924.0,
+   "decade_digit": 4.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1925.0,
+   "decade_digit": 5.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1926.0,
+   "decade_digit": 6.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1927.0,
+   "decade_digit": 7.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1928.0,
+   "decade_digit": 8.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1929.0,
+   "decade_digit": 9.0,
+   "decade": 2.0
+  },
+  {
+   "year": 1930.0,
+   "decade_digit": 0.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1931.0,
+   "decade_digit": 1.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1932.0,
+   "decade_digit": 2.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1933.0,
+   "decade_digit": 3.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1934.0,
+   "decade_digit": 4.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1935.0,
+   "decade_digit": 5.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1936.0,
+   "decade_digit": 6.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1937.0,
+   "decade_digit": 7.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1938.0,
+   "decade_digit": 8.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1939.0,
+   "decade_digit": 9.0,
+   "decade": 3.0
+  },
+  {
+   "year": 1940.0,
+   "decade_digit": 0.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1941.0,
+   "decade_digit": 1.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1942.0,
+   "decade_digit": 2.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1943.0,
+   "decade_digit": 3.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1944.0,
+   "decade_digit": 4.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1945.0,
+   "decade_digit": 5.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1946.0,
+   "decade_digit": 6.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1947.0,
+   "decade_digit": 7.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1948.0,
+   "decade_digit": 8.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1949.0,
+   "decade_digit": 9.0,
+   "decade": 4.0
+  },
+  {
+   "year": 1950.0,
+   "decade_digit": 0.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1951.0,
+   "decade_digit": 1.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1952.0,
+   "decade_digit": 2.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1953.0,
+   "decade_digit": 3.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1954.0,
+   "decade_digit": 4.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1955.0,
+   "decade_digit": 5.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1956.0,
+   "decade_digit": 6.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1957.0,
+   "decade_digit": 7.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1958.0,
+   "decade_digit": 8.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1959.0,
+   "decade_digit": 9.0,
+   "decade": 5.0
+  },
+  {
+   "year": 1960.0,
+   "decade_digit": 0.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1961.0,
+   "decade_digit": 1.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1962.0,
+   "decade_digit": 2.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1963.0,
+   "decade_digit": 3.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1964.0,
+   "decade_digit": 4.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1965.0,
+   "decade_digit": 5.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1966.0,
+   "decade_digit": 6.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1967.0,
+   "decade_digit": 7.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1968.0,
+   "decade_digit": 8.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1969.0,
+   "decade_digit": 9.0,
+   "decade": 6.0
+  },
+  {
+   "year": 1970.0,
+   "decade_digit": 0.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1971.0,
+   "decade_digit": 1.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1972.0,
+   "decade_digit": 2.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1973.0,
+   "decade_digit": 3.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1974.0,
+   "decade_digit": 4.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1975.0,
+   "decade_digit": 5.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1976.0,
+   "decade_digit": 6.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1977.0,
+   "decade_digit": 7.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1978.0,
+   "decade_digit": 8.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1979.0,
+   "decade_digit": 9.0,
+   "decade": 7.0
+  },
+  {
+   "year": 1980.0,
+   "decade_digit": 0.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1981.0,
+   "decade_digit": 1.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1982.0,
+   "decade_digit": 2.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1983.0,
+   "decade_digit": 3.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1984.0,
+   "decade_digit": 4.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1985.0,
+   "decade_digit": 5.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1986.0,
+   "decade_digit": 6.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1987.0,
+   "decade_digit": 7.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1988.0,
+   "decade_digit": 8.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1989.0,
+   "decade_digit": 9.0,
+   "decade": 8.0
+  },
+  {
+   "year": 1990.0,
+   "decade_digit": 0.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1991.0,
+   "decade_digit": 1.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1992.0,
+   "decade_digit": 2.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1993.0,
+   "decade_digit": 3.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1994.0,
+   "decade_digit": 4.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1995.0,
+   "decade_digit": 5.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1996.0,
+   "decade_digit": 6.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1997.0,
+   "decade_digit": 7.0,
+   "decade": 9.0
+  },
+  {
+   "year": 1998.0,
+   "decade_digit": 8.0,
+   "decade": 9.0
+  }
+ ]
+}

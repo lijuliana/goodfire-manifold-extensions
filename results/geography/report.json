@@ -1,0 +1,123 @@
+{
+ "name": "geography",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "hierarchical tree",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1",
+   "sae-manifold data.py build_geography"
+  ],
+  "prompt_template": "The geographical coordinates latitude {latitude} and longitude {longitude} are in the country of",
+  "dataset": "jamescalam/world-cities-geo",
+  "n_paper": "~4000"
+ },
+ "prompt_set": {
+  "template": "The geographical coordinates latitude {latitude} and longitude {longitude} are in the country of",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [],
+  "n_total": 3028,
+  "n_kept": 3007,
+  "n_outliers_removed": 21,
+  "examples": [
+   "The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "The geographical coordinates latitude 34.34 and longitude 62.1899986 are in the country of",
+   "The geographical coordinates latitude 33.5535554 and longitude 68.4268875 are in the country of",
+   "The geographical coordinates latitude 33.59 and longitude 69.2200012 are in the country of",
+   "The geographical coordinates latitude 36.6952778 and longitude 67.6980591 are in the country of"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.07693531534801389,
+   0.05954732889187692,
+   0.04492333278273289
+  ],
+  "n_points": 3007,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "tree",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "knn_group_acc_minus_baseline",
+    "value": 0.6129019615807111,
+    "threshold": 0.15,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "5-NN continent accuracy 0.93 vs majority baseline 0.31"
+   },
+   {
+    "name": "silhouette_by_group",
+    "value": 0.20650410940388794,
+    "threshold": 0.05,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": ""
+   },
+   {
+    "name": "within_group_lat_r2",
+    "value": 0.5916410893056346,
+    "threshold": 0.3,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "latitude linearly readable inside each continent cluster"
+   },
+   {
+    "name": "within_group_lon_r2",
+    "value": 0.4382332747025816,
+    "threshold": 0.2,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "longitude linearly readable inside each continent cluster"
+   }
+  ],
+  "extras": {
+   "knn_acc": 0.9275012299545056,
+   "baseline": 0.3145992683737945
+  }
+ },
+ "status": "matches",
+ "color": {
+  "color_by": "continent",
+  "color_mode": "categorical",
+  "category_order": [
+   "Africa",
+   "Asia",
+   "Europe",
+   "North America",
+   "Oceania",
+   "South America"
+  ]
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "geography",
+  "n_prompts": 3028,
+  "elapsed_s": 29.82,
+  "started": "2026-10-15T21:35:06+00:00",
+  "finished": "2026-10-15T21:35:35+00:00"
+ },
+ "precision_check": null
+}

@@ -1,0 +1,761 @@
+{
+ "name": "temperature",
+ "template": "Today it's {f} degrees Fahrenheit outside",
+ "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+ "deviations": [],
+ "n": 150,
+ "prompts": [
+  "Today it's -30 degrees Fahrenheit outside",
+  "Today it's -29 degrees Fahrenheit outside",
+  "Today it's -28 degrees Fahrenheit outside",
+  "Today it's -27 degrees Fahrenheit outside",
+  "Today it's -26 degrees Fahrenheit outside",
+  "Today it's -25 degrees Fahrenheit outside",
+  "Today it's -24 degrees Fahrenheit outside",
+  "Today it's -23 degrees Fahrenheit outside",
+  "Today it's -22 degrees Fahrenheit outside",
+  "Today it's -21 degrees Fahrenheit outside",
+  "Today it's -20 degrees Fahrenheit outside",
+  "Today it's -19 degrees Fahrenheit outside",
+  "Today it's -18 degrees Fahrenheit outside",
+  "Today it's -17 degrees Fahrenheit outside",
+  "Today it's -16 degrees Fahrenheit outside",
+  "Today it's -15 degrees Fahrenheit outside",
+  "Today it's -14 degrees Fahrenheit outside",
+  "Today it's -13 degrees Fahrenheit outside",
+  "Today it's -12 degrees Fahrenheit outside",
+  "Today it's -11 degrees Fahrenheit outside",
+  "Today it's -10 degrees Fahrenheit outside",
+  "Today it's -9 degrees Fahrenheit outside",
+  "Today it's -8 degrees Fahrenheit outside",
+  "Today it's -7 degrees Fahrenheit outside",
+  "Today it's -6 degrees Fahrenheit outside",
+  "Today it's -5 degrees Fahrenheit outside",
+  "Today it's -4 degrees Fahrenheit outside",
+  "Today it's -3 degrees Fahrenheit outside",
+  "Today it's -2 degrees Fahrenheit outside",
+  "Today it's -1 degrees Fahrenheit outside",
+  "Today it's 0 degrees Fahrenheit outside",
+  "Today it's 1 degrees Fahrenheit outside",
+  "Today it's 2 degrees Fahrenheit outside",
+  "Today it's 3 degrees Fahrenheit outside",
+  "Today it's 4 degrees Fahrenheit outside",
+  "Today it's 5 degrees Fahrenheit outside",
+  "Today it's 6 degrees Fahrenheit outside",
+  "Today it's 7 degrees Fahrenheit outside",
+  "Today it's 8 degrees Fahrenheit outside",
+  "Today it's 9 degrees Fahrenheit outside",
+  "Today it's 10 degrees Fahrenheit outside",
+  "Today it's 11 degrees Fahrenheit outside",
+  "Today it's 12 degrees Fahrenheit outside",
+  "Today it's 13 degrees Fahrenheit outside",
+  "Today it's 14 degrees Fahrenheit outside",
+  "Today it's 15 degrees Fahrenheit outside",
+  "Today it's 16 degrees Fahrenheit outside",
+  "Today it's 17 degrees Fahrenheit outside",
+  "Today it's 18 degrees Fahrenheit outside",
+  "Today it's 19 degrees Fahrenheit outside",
+  "Today it's 20 degrees Fahrenheit outside",
+  "Today it's 21 degrees Fahrenheit outside",
+  "Today it's 22 degrees Fahrenheit outside",
+  "Today it's 23 degrees Fahrenheit outside",
+  "Today it's 24 degrees Fahrenheit outside",
+  "Today it's 25 degrees Fahrenheit outside",
+  "Today it's 26 degrees Fahrenheit outside",
+  "Today it's 27 degrees Fahrenheit outside",
+  "Today it's 28 degrees Fahrenheit outside",
+  "Today it's 29 degrees Fahrenheit outside",
+  "Today it's 30 degrees Fahrenheit outside",
+  "Today it's 31 degrees Fahrenheit outside",
+  "Today it's 32 degrees Fahrenheit outside",
+  "Today it's 33 degrees Fahrenheit outside",
+  "Today it's 34 degrees Fahrenheit outside",
+  "Today it's 35 degrees Fahrenheit outside",
+  "Today it's 36 degrees Fahrenheit outside",
+  "Today it's 37 degrees Fahrenheit outside",
+  "Today it's 38 degrees Fahrenheit outside",
+  "Today it's 39 degrees Fahrenheit outside",
+  "Today it's 40 degrees Fahrenheit outside",
+  "Today it's 41 degrees Fahrenheit outside",
+  "Today it's 42 degrees Fahrenheit outside",
+  "Today it's 43 degrees Fahrenheit outside",
+  "Today it's 44 degrees Fahrenheit outside",
+  "Today it's 45 degrees Fahrenheit outside",
+  "Today it's 46 degrees Fahrenheit outside",
+  "Today it's 47 degrees Fahrenheit outside",
+  "Today it's 48 degrees Fahrenheit outside",
+  "Today it's 49 degrees Fahrenheit outside",
+  "Today it's 50 degrees Fahrenheit outside",
+  "Today it's 51 degrees Fahrenheit outside",
+  "Today it's 52 degrees Fahrenheit outside",
+  "Today it's 53 degrees Fahrenheit outside",
+  "Today it's 54 degrees Fahrenheit outside",
+  "Today it's 55 degrees Fahrenheit outside",
+  "Today it's 56 degrees Fahrenheit outside",
+  "Today it's 57 degrees Fahrenheit outside",
+  "Today it's 58 degrees Fahrenheit outside",
+  "Today it's 59 degrees Fahrenheit outside",
+  "Today it's 60 degrees Fahrenheit outside",
+  "Today it's 61 degrees Fahrenheit outside",
+  "Today it's 62 degrees Fahrenheit outside",
+  "Today it's 63 degrees Fahrenheit outside",
+  "Today it's 64 degrees Fahrenheit outside",
+  "Today it's 65 degrees Fahrenheit outside",
+  "Today it's 66 degrees Fahrenheit outside",
+  "Today it's 67 degrees Fahrenheit outside",
+  "Today it's 68 degrees Fahrenheit outside",
+  "Today it's 69 degrees Fahrenheit outside",
+  "Today it's 70 degrees Fahrenheit outside",
+  "Today it's 71 degrees Fahrenheit outside",
+  "Today it's 72 degrees Fahrenheit outside",
+  "Today it's 73 degrees Fahrenheit outside",
+  "Today it's 74 degrees Fahrenheit outside",
+  "Today it's 75 degrees Fahrenheit outside",
+  "Today it's 76 degrees Fahrenheit outside",
+  "Today it's 77 degrees Fahrenheit outside",
+  "Today it's 78 degrees Fahrenheit outside",
+  "Today it's 79 degrees Fahrenheit outside",
+  "Today it's 80 degrees Fahrenheit outside",
+  "Today it's 81 degrees Fahrenheit outside",
+  "Today it's 82 degrees Fahrenheit outside",
+  "Today it's 83 degrees Fahrenheit outside",
+  "Today it's 84 degrees Fahrenheit outside",
+  "Today it's 85 degrees Fahrenheit outside",
+  "Today it's 86 degrees Fahrenheit outside",
+  "Today it's 87 degrees Fahrenheit outside",
+  "Today it's 88 degrees Fahrenheit outside",
+  "Today it's 89 degrees Fahrenheit outside",
+  "Today it's 90 degrees Fahrenheit outside",
+  "Today it's 91 degrees Fahrenheit outside",
+  "Today it's 92 degrees Fahrenheit outside",
+  "Today it's 93 degrees Fahrenheit outside",
+  "Today it's 94 degrees Fahrenheit outside",
+  "Today it's 95 degrees Fahrenheit outside",
+  "Today it's 96 degrees Fahrenheit outside",
+  "Today it's 97 degrees Fahrenheit outside",
+  "Today it's 98 degrees Fahrenheit outside",
+  "Today it's 99 degrees Fahrenheit outside",
+  "Today it's 100 degrees Fahrenheit outside",
+  "Today it's 101 degrees Fahrenheit outside",
+  "Today it's 102 degrees Fahrenheit outside",
+  "Today it's 103 degrees Fahrenheit outside",
+  "Today it's 104 degrees Fahrenheit outside",
+  "Today it's 105 degrees Fahrenheit outside",
+  "Today it's 106 degrees Fahrenheit outside",
+  "Today it's 107 degrees Fahrenheit outside",
+  "Today it's 108 degrees Fahrenheit outside",
+  "Today it's 109 degrees Fahrenheit outside",
+  "Today it's 110 degrees Fahrenheit outside",
+  "Today it's 111 degrees Fahrenheit outside",
+  "Today it's 112 degrees Fahrenheit outside",
+  "Today it's 113 degrees Fahrenheit outside",
+  "Today it's 114 degrees Fahrenheit outside",
+  "Today it's 115 degrees Fahrenheit outside",
+  "Today it's 116 degrees Fahrenheit outside",
+  "Today it's 117 degrees Fahrenheit outside",
+  "Today it's 118 degrees Fahrenheit outside",
+  "Today it's 119 degrees Fahrenheit outside"
+ ],
+ "labels": [
+  {
+   "fahrenheit": -30.0,
+   "celsius": -34.44444444444444
+  },
+  {
+   "fahrenheit": -29.0,
+   "celsius": -33.888888888888886
+  },
+  {
+   "fahrenheit": -28.0,
+   "celsius": -33.333333333333336
+  },
+  {
+   "fahrenheit": -27.0,
+   "celsius": -32.77777777777778
+  },
+  {
+   "fahrenheit": -26.0,
+   "celsius": -32.22222222222222
+  },
+  {
+   "fahrenheit": -25.0,
+   "celsius": -31.666666666666668
+  },
+  {
+   "fahrenheit": -24.0,
+   "celsius": -31.11111111111111
+  },
+  {
+   "fahrenheit": -23.0,
+   "celsius": -30.555555555555557
+  },
+  {
+   "fahrenheit": -22.0,
+   "celsius": -30.0
+  },
+  {
+   "fahrenheit": -21.0,
+   "celsius": -29.444444444444443
+  },
+  {
+   "fahrenheit": -20.0,
+   "celsius": -28.88888888888889
+  },
+  {
+   "fahrenheit": -19.0,
+   "celsius": -28.333333333333332
+  },
+  {
+   "fahrenheit": -18.0,
+   "celsius": -27.77777777777778
+  },
+  {
+   "fahrenheit": -17.0,
+   "celsius": -27.22222222222222
+  },
+  {
+   "fahrenheit": -16.0,
+   "celsius": -26.666666666666668
+  },
+  {
+   "fahrenheit": -15.0,
+   "celsius": -26.11111111111111
+  },
+  {
+   "fahrenheit": -14.0,
+   "celsius": -25.555555555555557
+  },
+  {
+   "fahrenheit": -13.0,
+   "celsius": -25.0
+  },
+  {
+   "fahrenheit": -12.0,
+   "celsius": -24.444444444444443
+  },
+  {
+   "fahrenheit": -11.0,
+   "celsius": -23.88888888888889
+  },
+  {
+   "fahrenheit": -10.0,
+   "celsius": -23.333333333333332
+  },
+  {
+   "fahrenheit": -9.0,
+   "celsius": -22.77777777777778
+  },
+  {
+   "fahrenheit": -8.0,
+   "celsius": -22.22222222222222
+  },
+  {
+   "fahrenheit": -7.0,
+   "celsius": -21.666666666666668
+  },
+  {
+   "fahrenheit": -6.0,
+   "celsius": -21.11111111111111
+  },
+  {
+   "fahrenheit": -5.0,
+   "celsius": -20.555555555555557
+  },
+  {
+   "fahrenheit": -4.0,
+   "celsius": -20.0
+  },
+  {
+   "fahrenheit": -3.0,
+   "celsius": -19.444444444444443
+  },
+  {
+   "fahrenheit": -2.0,
+   "celsius": -18.88888888888889
+  },
+  {
+   "fahrenheit": -1.0,
+   "celsius": -18.333333333333332
+  },
+  {
+   "fahrenheit": 0.0,
+   "celsius": -17.77777777777778
+  },
+  {
+   "fahrenheit": 1.0,
+   "celsius": -17.22222222222222
+  },
+  {
+   "fahrenheit": 2.0,
+   "celsius": -16.666666666666668
+  },
+  {
+   "fahrenheit": 3.0,
+   "celsius": -16.11111111111111
+  },
+  {
+   "fahrenheit": 4.0,
+   "celsius": -15.555555555555555
+  },
+  {
+   "fahrenheit": 5.0,
+   "celsius": -15.0
+  },
+  {
+   "fahrenheit": 6.0,
+   "celsius": -14.444444444444445
+  },
+  {
+   "fahrenheit": 7.0,
+   "celsius": -13.88888888888889
+  },
+  {
+   "fahrenheit": 8.0,
+   "celsius": -13.333333333333334
+  },
+  {
+   "fahrenheit": 9.0,
+   "celsius": -12.777777777777779
+  },
+  {
+   "fahrenheit": 10.0,
+   "celsius": -12.222222222222221
+  },
+  {
+   "fahrenheit": 11.0,
+   "celsius": -11.666666666666666
+  },
+  {
+   "fahrenheit": 12.0,
+   "celsius": -11.11111111111111
+  },
+  {
+   "fahrenheit": 13.0,
+   "celsius": -10.555555555555555
+  },
+  {
+   "fahrenheit": 14.0,
+   "celsius": -10.0
+  },
+  {
+   "fahrenheit": 15.0,
+   "celsius": -9.444444444444445
+  },
+  {
+   "fahrenheit": 16.0,
+   "celsius": -8.88888888888889
+  },
+  {
+   "fahrenheit": 17.0,
+   "celsius": -8.333333333333334
+  },
+  {
+   "fahrenheit": 18.0,
+   "celsius": -7.777777777777778
+  },
+  {
+   "fahrenheit": 19.0,
+   "celsius": -7.222222222222222
+  },
+  {
+   "fahrenheit": 20.0,
+   "celsius": -6.666666666666667
+  },
+  {
+   "fahrenheit": 21.0,
+   "celsius": -6.111111111111111
+  },
+  {
+   "fahrenheit": 22.0,
+   "celsius": -5.555555555555555
+  },
+  {
+   "fahrenheit": 23.0,
+   "celsius": -5.0
+  },
+  {
+   "fahrenheit": 24.0,
+   "celsius": -4.444444444444445
+  },
+  {
+   "fahrenheit": 25.0,
+   "celsius": -3.888888888888889
+  },
+  {
+   "fahrenheit": 26.0,
+   "celsius": -3.3333333333333335
+  },
+  {
+   "fahrenheit": 27.0,
+   "celsius": -2.7777777777777777
+  },
+  {
+   "fahrenheit": 28.0,
+   "celsius": -2.2222222222222223
+  },
+  {
+   "fahrenheit": 29.0,
+   "celsius": -1.6666666666666667
+  },
+  {
+   "fahrenheit": 30.0,
+   "celsius": -1.1111111111111112
+  },
+  {
+   "fahrenheit": 31.0,
+   "celsius": -0.5555555555555556
+  },
+  {
+   "fahrenheit": 32.0,
+   "celsius": 0.0
+  },
+  {
+   "fahrenheit": 33.0,
+   "celsius": 0.5555555555555556
+  },
+  {
+   "fahrenheit": 34.0,
+   "celsius": 1.1111111111111112
+  },
+  {
+   "fahrenheit": 35.0,
+   "celsius": 1.6666666666666667
+  },
+  {
+   "fahrenheit": 36.0,
+   "celsius": 2.2222222222222223
+  },
+  {
+   "fahrenheit": 37.0,
+   "celsius": 2.7777777777777777
+  },
+  {
+   "fahrenheit": 38.0,
+   "celsius": 3.3333333333333335
+  },
+  {
+   "fahrenheit": 39.0,
+   "celsius": 3.888888888888889
+  },
+  {
+   "fahrenheit": 40.0,
+   "celsius": 4.444444444444445
+  },
+  {
+   "fahrenheit": 41.0,
+   "celsius": 5.0
+  },
+  {
+   "fahrenheit": 42.0,
+   "celsius": 5.555555555555555
+  },
+  {
+   "fahrenheit": 43.0,
+   "celsius": 6.111111111111111
+  },
+  {
+   "fahrenheit": 44.0,
+   "celsius": 6.666666666666667
+  },
+  {
+   "fahrenheit": 45.0,
+   "celsius": 7.222222222222222
+  },
+  {
+   "fahrenheit": 46.0,
+   "celsius": 7.777777777777778
+  },
+  {
+   "fahrenheit": 47.0,
+   "celsius": 8.333333333333334
+  },
+  {
+   "fahrenheit": 48.0,
+   "celsius": 8.88888888888889
+  },
+  {
+   "fahrenheit": 49.0,
+   "celsius": 9.444444444444445
+  },
+  {
+   "fahrenheit": 50.0,
+   "celsius": 10.0
+  },
+  {
+   "fahrenheit": 51.0,
+   "celsius": 10.555555555555555
+  },
+  {
+   "fahrenheit": 52.0,
+   "celsius": 11.11111111111111
+  },
+  {
+   "fahrenheit": 53.0,
+   "celsius": 11.666666666666666
+  },
+  {
+   "fahrenheit": 54.0,
+   "celsius": 12.222222222222221
+  },
+  {
+   "fahrenheit": 55.0,
+   "celsius": 12.777777777777779
+  },
+  {
+   "fahrenheit": 56.0,
+   "celsius": 13.333333333333334
+  },
+  {
+   "fahrenheit": 57.0,
+   "celsius": 13.88888888888889
+  },
+  {
+   "fahrenheit": 58.0,
+   "celsius": 14.444444444444445
+  },
+  {
+   "fahrenheit": 59.0,
+   "celsius": 15.0
+  },
+  {
+   "fahrenheit": 60.0,
+   "celsius": 15.555555555555555
+  },
+  {
+   "fahrenheit": 61.0,
+   "celsius": 16.11111111111111
+  },
+  {
+   "fahrenheit": 62.0,
+   "celsius": 16.666666666666668
+  },
+  {
+   "fahrenheit": 63.0,
+   "celsius": 17.22222222222222
+  },
+  {
+   "fahrenheit": 64.0,
+   "celsius": 17.77777777777778
+  },
+  {
+   "fahrenheit": 65.0,
+   "celsius": 18.333333333333332
+  },
+  {
+   "fahrenheit": 66.0,
+   "celsius": 18.88888888888889
+  },
+  {
+   "fahrenheit": 67.0,
+   "celsius": 19.444444444444443
+  },
+  {
+   "fahrenheit": 68.0,
+   "celsius": 20.0
+  },
+  {
+   "fahrenheit": 69.0,
+   "celsius": 20.555555555555557
+  },
+  {
+   "fahrenheit": 70.0,
+   "celsius": 21.11111111111111
+  },
+  {
+   "fahrenheit": 71.0,
+   "celsius": 21.666666666666668
+  },
+  {
+   "fahrenheit": 72.0,
+   "celsius": 22.22222222222222
+  },
+  {
+   "fahrenheit": 73.0,
+   "celsius": 22.77777777777778
+  },
+  {
+   "fahrenheit": 74.0,
+   "celsius": 23.333333333333332
+  },
+  {
+   "fahrenheit": 75.0,
+   "celsius": 23.88888888888889
+  },
+  {
+   "fahrenheit": 76.0,
+   "celsius": 24.444444444444443
+  },
+  {
+   "fahrenheit": 77.0,
+   "celsius": 25.0
+  },
+  {
+   "fahrenheit": 78.0,
+   "celsius": 25.555555555555557
+  },
+  {
+   "fahrenheit": 79.0,
+   "celsius": 26.11111111111111
+  },
+  {
+   "fahrenheit": 80.0,
+   "celsius": 26.666666666666668
+  },
+  {
+   "fahrenheit": 81.0,
+   "celsius": 27.22222222222222
+  },
+  {
+   "fahrenheit": 82.0,
+   "celsius": 27.77777777777778
+  },
+  {
+   "fahrenheit": 83.0,
+   "celsius": 28.333333333333332
+  },
+  {
+   "fahrenheit": 84.0,
+   "celsius": 28.88888888888889
+  },
+  {
+   "fahrenheit": 85.0,
+   "celsius": 29.444444444444443
+  },
+  {
+   "fahrenheit": 86.0,
+   "celsius": 30.0
+  },
+  {
+   "fahrenheit": 87.0,
+   "celsius": 30.555555555555557
+  },
+  {
+   "fahrenheit": 88.0,
+   "celsius": 31.11111111111111
+  },
+  {
+   "fahrenheit": 89.0,
+   "celsius": 31.666666666666668
+  },
+  {
+   "fahrenheit": 90.0,
+   "celsius": 32.22222222222222
+  },
+  {
+   "fahrenheit": 91.0,
+   "celsius": 32.77777777777778
+  },
+  {
+   "fahrenheit": 92.0,
+   "celsius": 33.333333333333336
+  },
+  {
+   "fahrenheit": 93.0,
+   "celsius": 33.888888888888886
+  },
+  {
+   "fahrenheit": 94.0,
+   "celsius": 34.44444444444444
+  },
+  {
+   "fahrenheit": 95.0,
+   "celsius": 35.0
+  },
+  {
+   "fahrenheit": 96.0,
+   "celsius": 35.55555555555556
+  },
+  {
+   "fahrenheit": 97.0,
+   "celsius": 36.111111111111114
+  },
+  {
+   "fahrenheit": 98.0,
+   "celsius": 36.666666666666664
+  },
+  {
+   "fahrenheit": 99.0,
+   "celsius": 37.22222222222222
+  },
+  {
+   "fahrenheit": 100.0,
+   "celsius": 37.77777777777778
+  },
+  {
+   "fahrenheit": 101.0,
+   "celsius": 38.333333333333336
+  },
+  {
+   "fahrenheit": 102.0,
+   "celsius": 38.888888888888886
+  },
+  {
+   "fahrenheit": 103.0,
+   "celsius": 39.44444444444444
+  },
+  {
+   "fahrenheit": 104.0,
+   "celsius": 40.0
+  },
+  {
+   "fahrenheit": 105.0,
+   "celsius": 40.55555555555556
+  },
+  {
+   "fahrenheit": 106.0,
+   "celsius": 41.111111111111114
+  },
+  {
+   "fahrenheit": 107.0,
+   "celsius": 41.666666666666664
+  },
+  {
+   "fahrenheit": 108.0,
+   "celsius": 42.22222222222222
+  },
+  {
+   "fahrenheit": 109.0,
+   "celsius": 42.77777777777778
+  },
+  {
+   "fahrenheit": 110.0,
+   "celsius": 43.333333333333336
+  },
+  {
+   "fahrenheit": 111.0,
+   "celsius": 43.888888888888886
+  },
+  {
+   "fahrenheit": 112.0,
+   "celsius": 44.44444444444444
+  },
+  {
+   "fahrenheit": 113.0,
+   "celsius": 45.0
+  },
+  {
+   "fahrenheit": 114.0,
+   "celsius": 45.55555555555556
+  },
+  {
+   "fahrenheit": 115.0,
+   "celsius": 46.111111111111114
+  },
+  {
+   "fahrenheit": 116.0,
+   "celsius": 46.666666666666664
+  },
+  {
+   "fahrenheit": 117.0,
+   "celsius": 47.22222222222222
+  },
+  {
+   "fahrenheit": 118.0,
+   "celsius": 47.77777777777778
+  },
+  {
+   "fahrenheit": 119.0,
+   "celsius": 48.333333333333336
+  }
+ ]
+}

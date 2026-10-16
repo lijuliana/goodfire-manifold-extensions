@@ -1,0 +1,114 @@
+{
+ "name": "political_bias",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "1D continuous",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1 + Fig. 10",
+   "blog-saes"
+  ],
+  "prompt_template": "{statement}",
+  "dataset": "cajcodes/political-bias",
+  "n_paper": "varies"
+ },
+ "prompt_set": {
+  "template": "{statement}",
+  "source": "arXiv 2604.28119 Table 1 (cajcodes_political_bias); not in released data.py",
+  "deviations": [
+   "paper used GPT-5 augmentations of the dataset (not released); raw 658 statements used",
+   "prompt template not published; raw statement used as prompt"
+  ],
+  "n_total": 657,
+  "n_kept": 656,
+  "n_outliers_removed": 1,
+  "examples": [
+   "The government should reduce taxes significantly because it will stimulate economic growth and allow businesses to thrive.",
+   "Cutting welfare programs is necessary to encourage personal responsibility and reduce dependency on the state.",
+   "A strong military is essential for national security and to protect our interests abroad.",
+   "Deregulation is crucial to promote free market competition and innovation.",
+   "Traditional family values should be upheld to maintain social order and stability."
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.12883437502632003,
+   0.09725470806511873,
+   0.07239925660329623
+  ],
+  "n_points": 656,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "ordinal",
+  "status": "failed",
+  "reason": "failed: spearman_best_direction=0.444 (>=0.5); class_centroids_monotone=0.000 (>=1.0); linear_r2_from_pcs=0.224 (>=0.3)",
+  "checks": [
+   {
+    "name": "spearman_best_direction",
+    "value": 0.44399497492713635,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "rank correlation along the OLS direction in PCA-3"
+   },
+   {
+    "name": "class_centroids_monotone",
+    "value": 0.0,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "class centroids ordered along that direction"
+   },
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.22448508510099052,
+    "threshold": 0.3,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": ""
+   }
+  ],
+  "extras": {
+   "class_centroids": [
+    -0.5338348530013048,
+    -0.07245645088410703,
+    -0.18744399398361009,
+    0.4004707826313541,
+    0.45045669741958205
+   ]
+  }
+ },
+ "status": "failed",
+ "color": {
+  "color_by": "bias_label",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "political_bias",
+  "n_prompts": 657,
+  "elapsed_s": 5.46,
+  "started": "2026-10-15T21:38:52+00:00",
+  "finished": "2026-10-15T21:38:58+00:00"
+ },
+ "precision_check": null
+}

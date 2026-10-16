@@ -1,0 +1,94 @@
+{
+ "name": "age",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "line",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1",
+   "sae-manifold data.py build_age"
+  ],
+  "prompt_template": "They are {age} years old. ",
+  "dataset": "synthetic, age in range(1, 100)",
+  "n_paper": 99
+ },
+ "prompt_set": {
+  "template": "They are {age} years old. ",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [],
+  "n_total": 99,
+  "n_kept": 99,
+  "n_outliers_removed": 0,
+  "examples": [
+   "They are 1 years old. ",
+   "They are 2 years old. ",
+   "They are 3 years old. ",
+   "They are 4 years old. ",
+   "They are 5 years old. "
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.32200992030961084,
+   0.18960405301236274,
+   0.1407472459732622
+  ],
+  "n_points": 99,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.9679134799469983,
+    "threshold": 0.9,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "R^2 of label regressed on the 3 PCs"
+   },
+   {
+    "name": "spearman_pc1_vs_label",
+    "value": 0.9411626468769325,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "label monotone along PC1"
+   }
+  ],
+  "extras": {}
+ },
+ "status": "matches",
+ "color": {
+  "color_by": "age",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "age",
+  "n_prompts": 99,
+  "elapsed_s": 0.53,
+  "started": "2026-10-15T21:35:05+00:00",
+  "finished": "2026-10-15T21:35:06+00:00"
+ },
+ "precision_check": null
+}

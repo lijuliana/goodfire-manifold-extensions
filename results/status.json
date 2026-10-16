@@ -1,0 +1,38 @@
+{
+ "colors": {
+  "status": "partial",
+  "reason": "failed: height_vs_radius2_r2=0.143 (>=0.2)"
+ },
+ "temperature": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "age": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "geography": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "days": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "years": {
+  "status": "matches",
+  "reason": "all checks passed"
+ },
+ "formality": {
+  "status": "failed",
+  "reason": "failed: linear_r2_from_pcs=0.492 (>=0.9); spearman_pc1_vs_label=0.626 (>=0.8)"
+ },
+ "sent_length": {
+  "status": "failed",
+  "reason": "failed: linear_r2_from_pcs=0.683 (>=0.9); spearman_pc1_vs_label=0.782 (>=0.8)"
+ },
+ "political_bias": {
+  "status": "failed",
+  "reason": "failed: spearman_best_direction=0.444 (>=0.5); class_centroids_monotone=0.000 (>=1.0); linear_r2_from_pcs=0.224 (>=0.3)"
+ }
+}

@@ -1,0 +1,94 @@
+{
+ "name": "temperature",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "line",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1",
+   "sae-manifold data.py build_temperature"
+  ],
+  "prompt_template": "Today it's {f} degrees Fahrenheit outside",
+  "dataset": "synthetic, f in range(-30, 120)",
+  "n_paper": 150
+ },
+ "prompt_set": {
+  "template": "Today it's {f} degrees Fahrenheit outside",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [],
+  "n_total": 150,
+  "n_kept": 150,
+  "n_outliers_removed": 0,
+  "examples": [
+   "Today it's -30 degrees Fahrenheit outside",
+   "Today it's -29 degrees Fahrenheit outside",
+   "Today it's -28 degrees Fahrenheit outside",
+   "Today it's -27 degrees Fahrenheit outside",
+   "Today it's -26 degrees Fahrenheit outside"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.5505881396887479,
+   0.2886406536099225,
+   0.06380853903685088
+  ],
+  "n_points": 150,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.9784643066347413,
+    "threshold": 0.9,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "R^2 of label regressed on the 3 PCs"
+   },
+   {
+    "name": "spearman_pc1_vs_label",
+    "value": 0.9281248055469132,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "label monotone along PC1"
+   }
+  ],
+  "extras": {}
+ },
+ "status": "matches",
+ "color": {
+  "color_by": "fahrenheit",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "temperature",
+  "n_prompts": 150,
+  "elapsed_s": 0.84,
+  "started": "2026-10-15T21:35:04+00:00",
+  "finished": "2026-10-15T21:35:05+00:00"
+ },
+ "precision_check": null
+}

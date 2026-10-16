@@ -1,0 +1,133 @@
+{
+ "name": "days",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "circle",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1 + Fig. 8",
+   "sae-manifold data.py build_days"
+  ],
+  "prompt_template": "It's {time} on {day}",
+  "dataset": "synthetic, 7 days x 8 times-of-day [\"the crack of dawn\",\"early morning\",\"late morning\",\"noon\",\"afternoon\",\"evening\",\"night\",\"midnight\"]",
+  "n_paper": 420
+ },
+ "prompt_set": {
+  "template": "It's {time} on {day}",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [
+   "paper Table 1 reports n=420; released data.py produces 56 prompts (used here)"
+  ],
+  "n_total": 56,
+  "n_kept": 56,
+  "n_outliers_removed": 0,
+  "examples": [
+   "It's the crack of dawn on Monday",
+   "It's early morning on Monday",
+   "It's late morning on Monday",
+   "It's noon on Monday",
+   "It's afternoon on Monday"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.24275866820428424,
+   0.20357895760872663,
+   0.09856128419194508
+  ],
+  "n_points": 56,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "circle",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "cyclic_order",
+    "value": 1.0,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "class centroids appear in cyclic order"
+   },
+   {
+    "name": "circular_corr",
+    "value": 0.9840703617665465,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "angle in best-fit plane vs ground-truth phase"
+   },
+   {
+    "name": "circle_fit_r2",
+    "value": 0.6481557892323416,
+    "threshold": 0.5,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "variance of PCA-3 explained by cos/sin(phase)"
+   },
+   {
+    "name": "roundness_cv",
+    "value": 0.14229302928937695,
+    "threshold": 0.35,
+    "op": "<=",
+    "critical": false,
+    "passed": true,
+    "note": "std/mean of radii in the fitted plane"
+   }
+  ],
+  "extras": {
+   "centroid_angles": {
+    "0": 2.9423663152457835,
+    "1": 2.263831444537041,
+    "2": 1.35537780917034,
+    "3": 0.5365779733690436,
+    "4": -0.3307279240896375,
+    "5": -1.440238024366687,
+    "6": -2.2321808207588076
+   }
+  }
+ },
+ "status": "matches",
+ "color": {
+  "color_by": "day",
+  "color_mode": "categorical",
+  "category_order": [
+   "Monday",
+   "Tuesday",
+   "Wednesday",
+   "Thursday",
+   "Friday",
+   "Saturday",
+   "Sunday"
+  ]
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "days",
+  "n_prompts": 56,
+  "elapsed_s": 0.3,
+  "started": "2026-10-15T21:35:35+00:00",
+  "finished": "2026-10-15T21:35:36+00:00"
+ },
+ "precision_check": null
+}

@@ -1,0 +1,112 @@
+{
+ "name": "years",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "helix",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1 + Fig. 7",
+   "sae-manifold data.py build_years"
+  ],
+  "prompt_template": "The date is {year}",
+  "dataset": "synthetic, year in range(1800, 1999)",
+  "n_paper": 199
+ },
+ "prompt_set": {
+  "template": "The date is {year}",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [],
+  "n_total": 199,
+  "n_kept": 199,
+  "n_outliers_removed": 0,
+  "examples": [
+   "The date is 1800",
+   "The date is 1801",
+   "The date is 1802",
+   "The date is 1803",
+   "The date is 1804"
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.11961474964795445,
+   0.064979763583246,
+   0.05915533516459138
+  ],
+  "n_points": 199,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "helix",
+  "status": "matches",
+  "reason": "all checks passed",
+  "checks": [
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.9402047587310123,
+    "threshold": 0.9,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "linear axis (e.g. year)"
+   },
+   {
+    "name": "periodic_circular_corr",
+    "value": 0.720118071372775,
+    "threshold": 0.6,
+    "op": ">=",
+    "critical": true,
+    "passed": true,
+    "note": "after removing the linear trend, angle vs periodic phase"
+   },
+   {
+    "name": "periodic_fit_r2",
+    "value": 0.4107827551276973,
+    "threshold": 0.3,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": "residual variance explained by cos/sin(phase)"
+   },
+   {
+    "name": "periodic_cyclic_order",
+    "value": 1.0,
+    "threshold": 1.0,
+    "op": ">=",
+    "critical": false,
+    "passed": true,
+    "note": ""
+   }
+  ],
+  "extras": {}
+ },
+ "status": "matches",
+ "color": {
+  "color_by": "year",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "years",
+  "n_prompts": 199,
+  "elapsed_s": 0.72,
+  "started": "2026-10-15T21:35:36+00:00",
+  "finished": "2026-10-15T21:35:36+00:00"
+ },
+ "precision_check": null
+}

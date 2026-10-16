@@ -1,0 +1,94 @@
+{
+ "name": "formality",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "line",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1 (pavlick2016empirical)",
+   "sae-manifold data.py build_formality"
+  ],
+  "prompt_template": "{sentence}",
+  "dataset": "osyvokon/pavlick-formality-scores",
+  "n_paper": 1000
+ },
+ "prompt_set": {
+  "template": "{sentence}",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [],
+  "n_total": 1000,
+  "n_kept": 1000,
+  "n_outliers_removed": 0,
+  "examples": [
+   "Tang was employed at private-equity firm Friedman Fleischer & Lowe.",
+   "San Francisco Mayor Gavin Newsom's withdrawal from the governor's race followed a meeting with top advisers where he was told that, unless he raised $5 million quickly and appeared to be viable, some of the state's biggest unions would throw their support behind Attorney General Jerry Brown.",
+   "lol nothing worrying about that.",
+   "She told Price she wanted to join the Police Explorers, a Boy Scouts group that lets boys and girls learn law enforcement with local police.",
+   "The prime minister is keen to use the autumn pre-budget statement to announce a new \"fiscal stimulus\", with billions of pounds of extra money for housing, infrastructure projects and training."
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.08882712350443281,
+   0.046112720019220545,
+   0.030217396437177798
+  ],
+  "n_points": 1000,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "failed",
+  "reason": "failed: linear_r2_from_pcs=0.492 (>=0.9); spearman_pc1_vs_label=0.626 (>=0.8)",
+  "checks": [
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.4916781410638794,
+    "threshold": 0.9,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "R^2 of label regressed on the 3 PCs"
+   },
+   {
+    "name": "spearman_pc1_vs_label",
+    "value": 0.6257880579533188,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "label monotone along PC1"
+   }
+  ],
+  "extras": {}
+ },
+ "status": "failed",
+ "color": {
+  "color_by": "formality",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "formality",
+  "n_prompts": 1000,
+  "elapsed_s": 19.28,
+  "started": "2026-10-15T21:35:36+00:00",
+  "finished": "2026-10-15T21:35:56+00:00"
+ },
+ "precision_check": null
+}

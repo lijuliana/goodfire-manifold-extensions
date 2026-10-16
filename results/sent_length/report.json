@@ -1,0 +1,96 @@
+{
+ "name": "sent_length",
+ "spec": {
+  "tier": "core",
+  "model": "meta-llama/Llama-3.1-8B",
+  "layer": 19,
+  "expected_geometry": "line",
+  "replication_mode": "exact-template",
+  "sources": [
+   "bhalla2026 Table 1 + Fig. 12",
+   "sae-manifold data.py build_sent_length"
+  ],
+  "prompt_template": "{sentence}",
+  "dataset": "wikitext-103-raw-v1 train, sentences with 3-80 whitespace tokens, first 5000 unique",
+  "n_paper": 5000
+ },
+ "prompt_set": {
+  "template": "{sentence}",
+  "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+  "deviations": [
+   "wikitext read in streaming mode (identical order and selection)"
+  ],
+  "n_total": 5000,
+  "n_kept": 4982,
+  "n_outliers_removed": 18,
+  "examples": [
+   "On its day of release in Japan , Valkyria Chronicles III topped both platform @-@ exclusive and multi @-@ platform sales charts . By early February , the game sold 102 @,@ 779 units , coming in second overall to The Last Story for the Wii . By the end of the year , the game had sold just over 152 @,@ 500 units .",
+   "Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "-John M Harrel Telegram , January 31 , 1861.",
+   "Perhaps because Abraham Lincoln had not yet been inaugurated as President , Captain Totten received no instructions from his superiors and was forced to withdraw his troops . He agreed to surrender the arsenal as long as the governor agreed to three provisions :.",
+   "The governor would take possession of the arsenal in the name of the United States ."
+  ]
+ },
+ "pca": {
+  "explained_variance_ratio": [
+   0.16131556705754835,
+   0.061835261863196454,
+   0.039353976556260016
+  ],
+  "n_points": 4982,
+  "n_components": 3
+ },
+ "shape": {
+  "geometry": "line",
+  "status": "failed",
+  "reason": "failed: linear_r2_from_pcs=0.683 (>=0.9); spearman_pc1_vs_label=0.782 (>=0.8)",
+  "checks": [
+   {
+    "name": "linear_r2_from_pcs",
+    "value": 0.6831593409702077,
+    "threshold": 0.9,
+    "op": ">=",
+    "critical": true,
+    "passed": false,
+    "note": "R^2 of label regressed on the 3 PCs"
+   },
+   {
+    "name": "spearman_pc1_vs_label",
+    "value": 0.781758800814194,
+    "threshold": 0.8,
+    "op": ">=",
+    "critical": false,
+    "passed": false,
+    "note": "label monotone along PC1"
+   }
+  ],
+  "extras": {}
+ },
+ "status": "failed",
+ "color": {
+  "color_by": "n_tokens",
+  "color_mode": "continuous"
+ },
+ "meta": {
+  "model_id": "unsloth/Llama-3.1-8B",
+  "model_id_resolution": "fallback:OSError",
+  "commit_sha": null,
+  "layer": 19,
+  "n_layers_loaded": 20,
+  "n_layers_full": 32,
+  "dtype": "float16",
+  "device": "Tesla T4",
+  "batch_size": 16,
+  "max_length": 1024,
+  "seed": 0,
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.0",
+  "token_position": "last",
+  "manifold": "sent_length",
+  "n_prompts": 5000,
+  "elapsed_s": 176.45,
+  "started": "2026-10-15T21:35:56+00:00",
+  "finished": "2026-10-15T21:38:52+00:00"
+ },
+ "precision_check": null
+}

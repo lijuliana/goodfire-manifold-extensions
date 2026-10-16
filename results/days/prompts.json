@@ -1,0 +1,405 @@
+{
+ "name": "days",
+ "template": "It's {time} on {day}",
+ "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+ "deviations": [
+  "paper Table 1 reports n=420; released data.py produces 56 prompts (used here)"
+ ],
+ "n": 56,
+ "prompts": [
+  "It's the crack of dawn on Monday",
+  "It's early morning on Monday",
+  "It's late morning on Monday",
+  "It's noon on Monday",
+  "It's afternoon on Monday",
+  "It's evening on Monday",
+  "It's night on Monday",
+  "It's midnight on Monday",
+  "It's the crack of dawn on Tuesday",
+  "It's early morning on Tuesday",
+  "It's late morning on Tuesday",
+  "It's noon on Tuesday",
+  "It's afternoon on Tuesday",
+  "It's evening on Tuesday",
+  "It's night on Tuesday",
+  "It's midnight on Tuesday",
+  "It's the crack of dawn on Wednesday",
+  "It's early morning on Wednesday",
+  "It's late morning on Wednesday",
+  "It's noon on Wednesday",
+  "It's afternoon on Wednesday",
+  "It's evening on Wednesday",
+  "It's night on Wednesday",
+  "It's midnight on Wednesday",
+  "It's the crack of dawn on Thursday",
+  "It's early morning on Thursday",
+  "It's late morning on Thursday",
+  "It's noon on Thursday",
+  "It's afternoon on Thursday",
+  "It's evening on Thursday",
+  "It's night on Thursday",
+  "It's midnight on Thursday",
+  "It's the crack of dawn on Friday",
+  "It's early morning on Friday",
+  "It's late morning on Friday",
+  "It's noon on Friday",
+  "It's afternoon on Friday",
+  "It's evening on Friday",
+  "It's night on Friday",
+  "It's midnight on Friday",
+  "It's the crack of dawn on Saturday",
+  "It's early morning on Saturday",
+  "It's late morning on Saturday",
+  "It's noon on Saturday",
+  "It's afternoon on Saturday",
+  "It's evening on Saturday",
+  "It's night on Saturday",
+  "It's midnight on Saturday",
+  "It's the crack of dawn on Sunday",
+  "It's early morning on Sunday",
+  "It's late morning on Sunday",
+  "It's noon on Sunday",
+  "It's afternoon on Sunday",
+  "It's evening on Sunday",
+  "It's night on Sunday",
+  "It's midnight on Sunday"
+ ],
+ "labels": [
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "the crack of dawn",
+   "time_idx": 0
+  },
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "early morning",
+   "time_idx": 1
+  },
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "late morning",
+   "time_idx": 2
+  },
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "noon",
+   "time_idx": 3
+  },
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "afternoon",
+   "time_idx": 4
+  },
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "evening",
+   "time_idx": 5
+  },
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "night",
+   "time_idx": 6
+  },
+  {
+   "day": "Monday",
+   "day_idx": 0,
+   "time": "midnight",
+   "time_idx": 7
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "the crack of dawn",
+   "time_idx": 0
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "early morning",
+   "time_idx": 1
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "late morning",
+   "time_idx": 2
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "noon",
+   "time_idx": 3
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "afternoon",
+   "time_idx": 4
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "evening",
+   "time_idx": 5
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "night",
+   "time_idx": 6
+  },
+  {
+   "day": "Tuesday",
+   "day_idx": 1,
+   "time": "midnight",
+   "time_idx": 7
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "the crack of dawn",
+   "time_idx": 0
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "early morning",
+   "time_idx": 1
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "late morning",
+   "time_idx": 2
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "noon",
+   "time_idx": 3
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "afternoon",
+   "time_idx": 4
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "evening",
+   "time_idx": 5
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "night",
+   "time_idx": 6
+  },
+  {
+   "day": "Wednesday",
+   "day_idx": 2,
+   "time": "midnight",
+   "time_idx": 7
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "the crack of dawn",
+   "time_idx": 0
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "early morning",
+   "time_idx": 1
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "late morning",
+   "time_idx": 2
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "noon",
+   "time_idx": 3
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "afternoon",
+   "time_idx": 4
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "evening",
+   "time_idx": 5
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "night",
+   "time_idx": 6
+  },
+  {
+   "day": "Thursday",
+   "day_idx": 3,
+   "time": "midnight",
+   "time_idx": 7
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "the crack of dawn",
+   "time_idx": 0
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "early morning",
+   "time_idx": 1
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "late morning",
+   "time_idx": 2
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "noon",
+   "time_idx": 3
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "afternoon",
+   "time_idx": 4
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "evening",
+   "time_idx": 5
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "night",
+   "time_idx": 6
+  },
+  {
+   "day": "Friday",
+   "day_idx": 4,
+   "time": "midnight",
+   "time_idx": 7
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "the crack of dawn",
+   "time_idx": 0
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "early morning",
+   "time_idx": 1
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "late morning",
+   "time_idx": 2
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "noon",
+   "time_idx": 3
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "afternoon",
+   "time_idx": 4
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "evening",
+   "time_idx": 5
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "night",
+   "time_idx": 6
+  },
+  {
+   "day": "Saturday",
+   "day_idx": 5,
+   "time": "midnight",
+   "time_idx": 7
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "the crack of dawn",
+   "time_idx": 0
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "early morning",
+   "time_idx": 1
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "late morning",
+   "time_idx": 2
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "noon",
+   "time_idx": 3
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "afternoon",
+   "time_idx": 4
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "evening",
+   "time_idx": 5
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "night",
+   "time_idx": 6
+  },
+  {
+   "day": "Sunday",
+   "day_idx": 6,
+   "time": "midnight",
+   "time_idx": 7
+  }
+ ]
+}

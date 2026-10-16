@@ -1,0 +1,11 @@
+{
+ "n": 16,
+ "dtype_test": "float16",
+ "dtype_ref": "float32",
+ "cosine_min": 0.9999958276748657,
+ "cosine_mean": 0.999997615814209,
+ "rel_err_max": 0.0029683406464755535,
+ "rel_err_mean": 0.0022874814458191395,
+ "manifold": "colors",
+ "passed": true
+}

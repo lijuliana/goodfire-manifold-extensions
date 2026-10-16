@@ -1,0 +1,407 @@
+{
+ "name": "age",
+ "template": "They are {age} years old. ",
+ "source": "arXiv 2604.28119 Table 1; github.com/goodfire-ai/sae-manifold data.py",
+ "deviations": [],
+ "n": 99,
+ "prompts": [
+  "They are 1 years old. ",
+  "They are 2 years old. ",
+  "They are 3 years old. ",
+  "They are 4 years old. ",
+  "They are 5 years old. ",
+  "They are 6 years old. ",
+  "They are 7 years old. ",
+  "They are 8 years old. ",
+  "They are 9 years old. ",
+  "They are 10 years old. ",
+  "They are 11 years old. ",
+  "They are 12 years old. ",
+  "They are 13 years old. ",
+  "They are 14 years old. ",
+  "They are 15 years old. ",
+  "They are 16 years old. ",
+  "They are 17 years old. ",
+  "They are 18 years old. ",
+  "They are 19 years old. ",
+  "They are 20 years old. ",
+  "They are 21 years old. ",
+  "They are 22 years old. ",
+  "They are 23 years old. ",
+  "They are 24 years old. ",
+  "They are 25 years old. ",
+  "They are 26 years old. ",
+  "They are 27 years old. ",
+  "They are 28 years old. ",
+  "They are 29 years old. ",
+  "They are 30 years old. ",
+  "They are 31 years old. ",
+  "They are 32 years old. ",
+  "They are 33 years old. ",
+  "They are 34 years old. ",
+  "They are 35 years old. ",
+  "They are 36 years old. ",
+  "They are 37 years old. ",
+  "They are 38 years old. ",
+  "They are 39 years old. ",
+  "They are 40 years old. ",
+  "They are 41 years old. ",
+  "They are 42 years old. ",
+  "They are 43 years old. ",
+  "They are 44 years old. ",
+  "They are 45 years old. ",
+  "They are 46 years old. ",
+  "They are 47 years old. ",
+  "They are 48 years old. ",
+  "They are 49 years old. ",
+  "They are 50 years old. ",
+  "They are 51 years old. ",
+  "They are 52 years old. ",
+  "They are 53 years old. ",
+  "They are 54 years old. ",
+  "They are 55 years old. ",
+  "They are 56 years old. ",
+  "They are 57 years old. ",
+  "They are 58 years old. ",
+  "They are 59 years old. ",
+  "They are 60 years old. ",
+  "They are 61 years old. ",
+  "They are 62 years old. ",
+  "They are 63 years old. ",
+  "They are 64 years old. ",
+  "They are 65 years old. ",
+  "They are 66 years old. ",
+  "They are 67 years old. ",
+  "They are 68 years old. ",
+  "They are 69 years old. ",
+  "They are 70 years old. ",
+  "They are 71 years old. ",
+  "They are 72 years old. ",
+  "They are 73 years old. ",
+  "They are 74 years old. ",
+  "They are 75 years old. ",
+  "They are 76 years old. ",
+  "They are 77 years old. ",
+  "They are 78 years old. ",
+  "They are 79 years old. ",
+  "They are 80 years old. ",
+  "They are 81 years old. ",
+  "They are 82 years old. ",
+  "They are 83 years old. ",
+  "They are 84 years old. ",
+  "They are 85 years old. ",
+  "They are 86 years old. ",
+  "They are 87 years old. ",
+  "They are 88 years old. ",
+  "They are 89 years old. ",
+  "They are 90 years old. ",
+  "They are 91 years old. ",
+  "They are 92 years old. ",
+  "They are 93 years old. ",
+  "They are 94 years old. ",
+  "They are 95 years old. ",
+  "They are 96 years old. ",
+  "They are 97 years old. ",
+  "They are 98 years old. ",
+  "They are 99 years old. "
+ ],
+ "labels": [
+  {
+   "age": 1.0
+  },
+  {
+   "age": 2.0
+  },
+  {
+   "age": 3.0
+  },
+  {
+   "age": 4.0
+  },
+  {
+   "age": 5.0
+  },
+  {
+   "age": 6.0
+  },
+  {
+   "age": 7.0
+  },
+  {
+   "age": 8.0
+  },
+  {
+   "age": 9.0
+  },
+  {
+   "age": 10.0
+  },
+  {
+   "age": 11.0
+  },
+  {
+   "age": 12.0
+  },
+  {
+   "age": 13.0
+  },
+  {
+   "age": 14.0
+  },
+  {
+   "age": 15.0
+  },
+  {
+   "age": 16.0
+  },
+  {
+   "age": 17.0
+  },
+  {
+   "age": 18.0
+  },
+  {
+   "age": 19.0
+  },
+  {
+   "age": 20.0
+  },
+  {
+   "age": 21.0
+  },
+  {
+   "age": 22.0
+  },
+  {
+   "age": 23.0
+  },
+  {
+   "age": 24.0
+  },
+  {
+   "age": 25.0
+  },
+  {
+   "age": 26.0
+  },
+  {
+   "age": 27.0
+  },
+  {
+   "age": 28.0
+  },
+  {
+   "age": 29.0
+  },
+  {
+   "age": 30.0
+  },
+  {
+   "age": 31.0
+  },
+  {
+   "age": 32.0
+  },
+  {
+   "age": 33.0
+  },
+  {
+   "age": 34.0
+  },
+  {
+   "age": 35.0
+  },
+  {
+   "age": 36.0
+  },
+  {
+   "age": 37.0
+  },
+  {
+   "age": 38.0
+  },
+  {
+   "age": 39.0
+  },
+  {
+   "age": 40.0
+  },
+  {
+   "age": 41.0
+  },
+  {
+   "age": 42.0
+  },
+  {
+   "age": 43.0
+  },
+  {
+   "age": 44.0
+  },
+  {
+   "age": 45.0
+  },
+  {
+   "age": 46.0
+  },
+  {
+   "age": 47.0
+  },
+  {
+   "age": 48.0
+  },
+  {
+   "age": 49.0
+  },
+  {
+   "age": 50.0
+  },
+  {
+   "age": 51.0
+  },
+  {
+   "age": 52.0
+  },
+  {
+   "age": 53.0
+  },
+  {
+   "age": 54.0
+  },
+  {
+   "age": 55.0
+  },
+  {
+   "age": 56.0
+  },
+  {
+   "age": 57.0
+  },
+  {
+   "age": 58.0
+  },
+  {
+   "age": 59.0
+  },
+  {
+   "age": 60.0
+  },
+  {
+   "age": 61.0
+  },
+  {
+   "age": 62.0
+  },
+  {
+   "age": 63.0
+  },
+  {
+   "age": 64.0
+  },
+  {
+   "age": 65.0
+  },
+  {
+   "age": 66.0
+  },
+  {
+   "age": 67.0
+  },
+  {
+   "age": 68.0
+  },
+  {
+   "age": 69.0
+  },
+  {
+   "age": 70.0
+  },
+  {
+   "age": 71.0
+  },
+  {
+   "age": 72.0
+  },
+  {
+   "age": 73.0
+  },
+  {
+   "age": 74.0
+  },
+  {
+   "age": 75.0
+  },
+  {
+   "age": 76.0
+  },
+  {
+   "age": 77.0
+  },
+  {
+   "age": 78.0
+  },
+  {
+   "age": 79.0
+  },
+  {
+   "age": 80.0
+  },
+  {
+   "age": 81.0
+  },
+  {
+   "age": 82.0
+  },
+  {
+   "age": 83.0
+  },
+  {
+   "age": 84.0
+  },
+  {
+   "age": 85.0
+  },
+  {
+   "age": 86.0
+  },
+  {
+   "age": 87.0
+  },
+  {
+   "age": 88.0
+  },
+  {
+   "age": 89.0
+  },
+  {
+   "age": 90.0
+  },
+  {
+   "age": 91.0
+  },
+  {
+   "age": 92.0
+  },
+  {
+   "age": 93.0
+  },
+  {
+   "age": 94.0
+  },
+  {
+   "age": 95.0
+  },
+  {
+   "age": 96.0
+  },
+  {
+   "age": 97.0
+  },
+  {
+   "age": 98.0
+  },
+  {
+   "age": 99.0
+  }
+ ]
+}
