@@ -48,3 +48,23 @@ def test_padding_does_not_change_last_token(tmp_path):
     batched = ext.extract(prompts, progress=False)
     single = np.stack([ext.extract([p], progress=False)[0] for p in prompts])
     np.testing.assert_allclose(batched, single, rtol=1e-4, atol=1e-5)
+
+
+def test_span_token_and_layer_selection(tmp_path):
+    full = _tiny(tmp_path)
+    tok = CharTokenizer()
+    ext = ActivationExtractor(
+        ExtractConfig(model_id=str(tmp_path / "tiny"), layer=3, dtype="float32", device="cpu",
+                      batch_size=4, truncate_to_layer=False),
+        tokenizer=tok,
+    )
+    prompts = ["abcdef", "xy"]
+    spans = [(0, 3), (0, 1)]           # read the 3rd and 1st characters
+    acts = ext.extract(prompts, progress=False, spans=spans, layer=1)
+    for i, (p, (a, b)) in enumerate(zip(prompts, spans, strict=True)):
+        enc = tok([p])
+        with torch.no_grad():
+            hs = full(**enc, output_hidden_states=True).hidden_states
+        ti = len(tok(p[:b])["input_ids"]) - 1
+        np.testing.assert_allclose(acts[i], hs[2][0, ti].numpy(), rtol=1e-4, atol=1e-5)
+    assert ext.n_span_mismatch == 0

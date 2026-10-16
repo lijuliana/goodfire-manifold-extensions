@@ -158,6 +158,7 @@ def run_depth(
     labels = [ps.labels[i] for i in idx]
     prompts = [ps.prompts[i] for i in idx]
     roles = ROLES[spec.name]
+    layer = spec.layer if isinstance(spec.layer, int) else cfg.model.layer
     start = ledger.now_iso()
     t0 = time.time()
 
@@ -165,12 +166,13 @@ def run_depth(
     if states_path.exists():
         states = np.load(states_path)
     else:
-        states = full_model.capture_all_layers(prompts)
+        spans = [ps.spans[i] for i in idx] if ps.spans is not None else None
+        states = full_model.capture_all_layers(prompts, spans=spans)
         np.save(states_path, states)
     n_layers = states.shape[1] - 1
 
-    # consistency: block-19 output of the full model vs the truncated-model extraction
-    h19 = states[:, cfg.model.layer + 1].astype(np.float32)
+    # consistency: the paper's block output of the full model vs the truncated-model extraction
+    h19 = states[:, layer + 1].astype(np.float32)
     a19 = acts[idx]
     cos = (h19 * a19).sum(1) / (np.linalg.norm(h19, axis=1) * np.linalg.norm(a19, axis=1) + 1e-9)
     consistency = {"cosine_min": float(cos.min()), "cosine_mean": float(cos.mean())}
@@ -185,7 +187,8 @@ def run_depth(
         pca = fit_pca(states[:, li].astype(np.float32), 3)
         coords_by_layer[li] = pca.coords[sub]
         evr[li] = [float(v) for v in pca.explained_variance_ratio]
-        rep = run_shape_check(spec.name, pca.coords, labels).to_dict()
+        rep = run_shape_check(spec.name, pca.coords, labels,
+                              acts=states[:, li].astype(np.float32)).to_dict()
         crit = _critical_metrics(rep)
         metric_names = list(crit)
         scores[li] = {"status": rep["status"], "metrics": crit}
@@ -199,7 +202,7 @@ def run_depth(
                                    for i in range(0, len(sub), 128)])
     actual_top1 = final_logits.argmax(1)
     # agreement of each lens' top-1 at the paper's layer with the model's actual top-1
-    li19 = str(cfg.model.layer + 1)
+    li19 = str(layer + 1)
     agreement = {}
     for kind in ("logit", "tuned", "jacobian"):
         d = lens.get(kind, {}).get(li19)
@@ -209,17 +212,17 @@ def run_depth(
             agreement[kind] = float(np.mean([a == b[0] for a, b in zip(actual_str, d["tokens"],
                                                                        strict=True)]))
     # principal axes of the manifold at the paper's layer, decoded four ways
-    pca19 = fit_pca(states[:, cfg.model.layer + 1].astype(np.float32), 3)
+    pca19 = fit_pca(states[:, layer + 1].astype(np.float32), 3)
     pcs = pca19.components.astype(np.float32)
     pc_read = pc_readouts(full_model, pcs, pca19.coords[sub], final_logits,
-                          cfg.model.layer + 1, jlens=jlens, tuned=tuned, k=10)
+                          layer + 1, jlens=jlens, tuned=tuned, k=10)
     for e, var in zip(pc_read, pca19.explained_variance_ratio, strict=True):
         e["explained_variance_ratio"] = float(var)
 
     steer_res = None
     if do_steer and spec.name in STEER_TASKS:
         steer_res = run_steering(full_model, spec.name, a19, labels, prompts,
-                                 layer=cfg.model.layer).to_dict()
+                                 layer=layer).to_dict()
     elapsed = time.time() - t0
     end = ledger.now_iso()
 
@@ -248,11 +251,11 @@ def run_depth(
             rows.append("<br>".join(parts))
         hover_by_layer[li] = rows
     fig_depth = depth_figure(coords_by_layer, color_values, roles["color_mode"], hover,
-                             layer_default=cfg.model.layer + 1, hover_by_layer=hover_by_layer)
-    fig_lens = lens_summary_figure(lens, cfg.model.layer + 1)
+                             layer_default=layer + 1, hover_by_layer=hover_by_layer)
+    fig_lens = lens_summary_figure(lens, layer + 1)
     metrics = {m: [scores[li]["metrics"].get(m, float("nan")) for li in range(n_layers + 1)]
                for m in metric_names}
-    fig_scores = scores_figure(list(range(n_layers + 1)), metrics, cfg.model.layer + 1)
+    fig_scores = scores_figure(list(range(n_layers + 1)), metrics, layer + 1)
 
     report = {
         "name": spec.name,
@@ -260,7 +263,8 @@ def run_depth(
         "n_points_plotted": int(len(sub)),
         "subsample_index": sub.tolist(),
         "n_layers": n_layers,
-        "layer_convention": "0 = embeddings, i = output of block i-1; paper's layer 19 = index 20",
+        "layer_convention": "0 = embeddings, i = output of block i-1",
+        "paper_layer": layer,
         "consistency_block19_vs_truncated": consistency,
         "evr": {str(k): v for k, v in evr.items()},
         "scores": {str(k): v for k, v in scores.items()},

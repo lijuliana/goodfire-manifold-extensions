@@ -338,6 +338,81 @@ def check_tree(coords: np.ndarray, lat: np.ndarray, lon: np.ndarray,
     return _finalize("tree", checks, {"knn_acc": acc, "baseline": baseline})
 
 
+def check_circumplex(coords: np.ndarray, group: np.ndarray, valence: np.ndarray,
+                     arousal: np.ndarray) -> ShapeReport:
+    """Emotion clusters arranged like the valence-arousal circumplex (Bigelow et al. 2026 figure):
+    clusters separable, and distances between cluster centroids track distances in (valence,
+    arousal) space."""
+    group = np.asarray(group)
+    cats = list(dict.fromkeys(group))
+    _, counts = np.unique(group, return_counts=True)
+    baseline = float(counts.max() / counts.sum())
+    n_splits = min(5, int(counts.min())) if counts.min() >= 2 else 2
+    cv = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=0)
+    acc = float(cross_val_score(KNeighborsClassifier(5), coords, group, cv=cv).mean())
+    sil = float(silhouette_score(coords, group)) if len(cats) > 1 else 0.0
+    cents = np.array([coords[group == c].mean(0) for c in cats])
+    va = np.array([[float(np.asarray(valence)[group == c][0]),
+                    float(np.asarray(arousal)[group == c][0])] for c in cats])
+    iu = np.triu_indices(len(cats), 1)
+    d_c = np.linalg.norm(cents[:, None] - cents[None], axis=-1)[iu]
+    d_va = np.linalg.norm(va[:, None] - va[None], axis=-1)[iu]
+    rho = float(stats.spearmanr(d_c, d_va).statistic) if len(d_c) > 2 else 0.0
+    checks = [
+        _mk("knn_group_acc_minus_baseline", acc - baseline, 0.15, critical=True, partial=0.08,
+            note=f"5-NN emotion accuracy {acc:.2f} vs majority baseline {baseline:.2f}"),
+        _mk("centroid_distance_vs_valence_arousal", rho, 0.50, critical=False, partial=0.30,
+            note="Spearman between centroid distances in PCA-3 and distances in the circumplex"),
+        _mk("silhouette_by_group", sil, 0.05, critical=False),
+    ]
+    return _finalize("circumplex", checks, {"groups": cats, "centroid_distances": d_c.tolist()})
+
+
+def fourier_probe_r2(acts: np.ndarray, value: np.ndarray, period: float, seed: int = 0) -> float:
+    """5-fold cross-validated R^2 of a ridge probe from activations to (cos, sin)(2 pi value/T):
+    the Fourier probes of Feucht et al. 2026 App. G (linear, one period at a time)."""
+    from sklearn.linear_model import RidgeCV
+    from sklearn.model_selection import KFold
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    ph = 2 * np.pi * np.asarray(value, dtype=float) / period
+    y = np.c_[np.cos(ph), np.sin(ph)]
+    model = make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(0, 5, 11)))
+    cv = KFold(n_splits=5, shuffle=True, random_state=seed)
+    scores = []
+    for tr, te in cv.split(acts):
+        model.fit(acts[tr], y[tr])
+        pred = model.predict(acts[te])
+        ss_res = ((y[te] - pred) ** 2).sum(0)
+        ss_tot = ((y[te] - y[te].mean(0)) ** 2).sum(0)
+        scores.append(float(np.mean(1 - ss_res / np.maximum(ss_tot, 1e-12))))
+    return float(np.mean(scores))
+
+
+def check_fourier_probe(acts: np.ndarray, coords: np.ndarray, value: np.ndarray,
+                        periods: Sequence[float] = (2, 5, 10), control_period: float = 7
+                        ) -> ShapeReport:
+    """Base-10 Fourier features of a number (Feucht et al. 2026 Sec. 4): linear probes for the
+    circles of period 10 and 5 must read the value well; a control period (7) should not."""
+    value = np.asarray(value, dtype=float)
+    r2 = {int(T): fourier_probe_r2(acts, value, T) for T in periods}
+    r2_ctrl = fourier_probe_r2(acts, value, control_period)
+    phase10 = 2 * np.pi * (value % 10) / 10
+    f = fit_circle_plane(coords, phase10)
+    checks = [
+        _mk("probe_r2_period_10", r2[10], 0.50, critical=True, partial=0.30,
+            note="cross-validated ridge probe to cos/sin(2 pi sum/10)"),
+        _mk("probe_r2_period_5", r2[5], 0.50, critical=True, partial=0.30),
+        _mk("probe_r2_period_2", r2[2], 0.50, critical=False, partial=0.30),
+        _mk("probe_r2_period_10_minus_control_7", r2[10] - r2_ctrl, 0.20, critical=False,
+            note=f"control period 7 probe R^2 = {r2_ctrl:.2f}"),
+        _mk("raw_pca_circular_corr_mod10", f["circ_corr"], 0.60, critical=False, partial=0.40,
+            note="is the mod-10 circle visible in the raw 3-D PCA (not required by the paper)"),
+    ]
+    return _finalize("fourier_probe", checks, {"probe_r2": r2, "control_r2": r2_ctrl})
+
+
 # ---------------------------------------------------------------- dispatch --------------------
 
 # Which label plays which role for each manifold (names from manifest.yaml).
@@ -365,6 +440,45 @@ ROLES: dict[str, dict[str, Any]] = {
     "political_bias": {"kind": "ordinal", "label": "bias_label", "color_by": "bias_label",
                        "color_mode": "continuous", "ambient_dim": 1,
                        "tuning_label": "bias_label"},
+    # ---- extended tier (supervised approximations of the blog's unsupervised manifolds)
+    "ordinals": {"kind": "line", "label": "rank", "color_by": "rank", "color_mode": "continuous",
+                 "ambient_dim": 1, "tuning_label": "rank"},
+    "classical_composers": {"kind": "line", "label": "birth_year", "color_by": "birth_year",
+                            "color_mode": "continuous", "ambient_dim": 1,
+                            "tuning_label": "birth_year"},
+    "scotus_cases": {"kind": "line", "label": "year", "color_by": "year",
+                     "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "year"},
+    "chemical_bonds": {"kind": "line", "label": "length_pm", "color_by": "length_pm",
+                       "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "length_pm"},
+    "adverbs_pace": {"kind": "ordinal", "label": "speed_rank", "color_by": "speed_rank",
+                     "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "speed_rank"},
+    "statistical_uncertainty": {"kind": "line", "label": "ln_std_over_mean",
+                                "color_by": "ln_std_over_mean", "color_mode": "continuous",
+                                "ambient_dim": 1, "tuning_label": "ln_std_over_mean"},
+    "bible_verses": {"kind": "line", "label": "position", "color_by": "book_index",
+                     "color_mode": "continuous", "ambient_dim": 1, "tuning_label": "book_index"},
+    "slant_rhymes_ore": {"kind": "ordinal", "label": "rhyme_grade", "color_by": "grade_name",
+                         "color_mode": "categorical", "ambient_dim": 1,
+                         "tuning_label": "rhyme_grade"},
+    "numbers_1_100": {"kind": "helix", "linear": "n", "periodic": "n", "period": 10,
+                      "color_by": "n", "color_mode": "continuous", "ambient_dim": 3,
+                      "tuning_label": "n"},
+    "emotions_valence_arousal": {"kind": "circumplex", "group": "emotion", "valence": "valence",
+                                 "arousal": "arousal", "color_by": "emotion",
+                                 "color_mode": "categorical", "ambient_dim": 2,
+                                 "tuning_label": "valence"},
+    # ---- cyclic tier (Feucht et al. 2026 templates)
+    "weekdays_circle": {"kind": "circle", "phase": "day_idx", "period": 7, "classes": "day_idx",
+                        "order": list(range(7)), "color_by": "day", "color_mode": "categorical",
+                        "ambient_dim": 2, "tuning_label": "day_idx"},
+    "months_circle": {"kind": "circle", "phase": "month_idx", "period": 12,
+                      "classes": "month_idx", "order": list(range(12)), "color_by": "month",
+                      "color_mode": "categorical", "ambient_dim": 2, "tuning_label": "month_idx"},
+    "hours_circle": {"kind": "circle", "phase": "hour", "period": 24, "classes": "hour",
+                     "order": [float(h) for h in range(24)], "color_by": "hour",
+                     "color_mode": "cyclic", "ambient_dim": 2, "tuning_label": "hour"},
+    "addition_sum_fourier": {"kind": "fourier_probe", "value": "sum", "color_by": "sum_mod10",
+                             "color_mode": "cyclic", "ambient_dim": 2, "tuning_label": "sum"},
 }
 
 
@@ -372,11 +486,20 @@ def _col(labels: list[dict[str, Any]], key: str) -> np.ndarray:
     return np.asarray([lab[key] for lab in labels])
 
 
-def run_shape_check(name: str, coords: np.ndarray, labels: list[dict[str, Any]]) -> ShapeReport:
+def run_shape_check(name: str, coords: np.ndarray, labels: list[dict[str, Any]],
+                    acts: np.ndarray | None = None) -> ShapeReport:
     if name not in ROLES:
         raise KeyError(f"no shape-check roles defined for manifold {name!r}")
     r = ROLES[name]
     kind = r["kind"]
+    if kind == "circumplex":
+        return check_circumplex(coords, _col(labels, r["group"]),
+                                _col(labels, r["valence"]).astype(float),
+                                _col(labels, r["arousal"]).astype(float))
+    if kind == "fourier_probe":
+        if acts is None:
+            raise ValueError("fourier_probe check needs the raw activations")
+        return check_fourier_probe(acts, coords, _col(labels, r["value"]).astype(float))
     if kind == "line":
         return check_line(coords, _col(labels, r["label"]).astype(float))
     if kind == "ordinal":

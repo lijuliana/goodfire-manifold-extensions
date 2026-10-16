@@ -78,7 +78,7 @@ def analyze_manifold(
     labels = [prompt_set.labels[i] for i in idx]
     prompts = [prompt_set.prompts[i] for i in idx]
     pca = fit_pca(acts[idx], cfg.analysis.pca_components)
-    shape = run_shape_check(spec.name, pca.coords, labels)
+    shape = run_shape_check(spec.name, pca.coords, labels, acts=acts[idx])
 
     color = _color_config(spec.name, labels)
     color_values = [lab[color["color_by"]] for lab in labels]

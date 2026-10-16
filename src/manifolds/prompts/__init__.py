@@ -6,9 +6,12 @@ Every builder reproduces a published template verbatim or documents its deviatio
 from collections.abc import Callable
 
 from manifolds.prompts.core import CORE_BUILDERS
+from manifolds.prompts.cyclic import CYCLIC_BUILDERS
+from manifolds.prompts.extended import EXTENDED_BUILDERS
 from manifolds.prompts.types import PromptSet
 
-BUILDERS: dict[str, Callable[[], PromptSet]] = dict(CORE_BUILDERS)
+BUILDERS: dict[str, Callable[[], PromptSet]] = {**CORE_BUILDERS, **EXTENDED_BUILDERS,
+                                                 **CYCLIC_BUILDERS}
 
 
 def build(name: str) -> PromptSet:

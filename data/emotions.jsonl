@@ -1,0 +1,241 @@
+{"_provenance": {"generator": "claude-opus-5-5", "generated_at": "2026-10-16T03:24:50+00:00", "prompt_sha256": "66cfd5b6543ffa02", "circumplex": {"happiness": [0.8, 0.5], "surprise": [0.2, 0.8], "fear": [-0.6, 0.8], "anger": [-0.7, 0.7], "disgust": [-0.7, 0.3], "sadness": [-0.7, -0.5]}, "mirrors": "Bigelow et al. 2026 (Meandering on Manifolds): emotions in short stories"}}
+{"emotion": "sadness", "text": "The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone."}
+{"emotion": "anger", "text": "Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack."}
+{"emotion": "fear", "text": "Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet."}
+{"emotion": "sadness", "text": "The little fox named Rusty returned to the meadow and felt sad to find his favorite berry bush had withered away."}
+{"emotion": "surprise", "text": "Sofia blinked in surprise when the parrot at the pet shop greeted her in perfect Spanish."}
+{"emotion": "sadness", "text": "After the family dog grew too old to play, Clara sat beside him each afternoon, feeling softly and quietly sad."}
+{"emotion": "anger", "text": "Kenji grew hot with rage when the older boys snatched his kite and laughed as they tore its paper wings."}
+{"emotion": "happiness", "text": "Theo built the tallest sandcastle on the beach, and he grinned happily as the sun warmed his sandy shoulders."}
+{"emotion": "surprise", "text": "Tariq was surprised when the vending machine dropped out three sandwiches after he pressed the button only once."}
+{"emotion": "anger", "text": "The baker Bruno shook his rolling pin angrily when he caught the cheeky crows stealing bread from his window sill."}
+{"emotion": "sadness", "text": "Old Mrs. Hadley set two teacups on the table out of habit, then sadly put one back in the cupboard."}
+{"emotion": "anger", "text": "When he learned his advisor had stolen gold from the treasury, King Aldric roared with anger and pounded the table."}
+{"emotion": "anger", "text": "Bruno the bear roared with anger when a sneaky raccoon raided his honey stash and left nothing but sticky paw prints."}
+{"emotion": "anger", "text": "Felix's cheeks burned with anger when his friend broke a promise and told everyone the secret he had shared."}
+{"emotion": "fear", "text": "As the plane dropped suddenly through the clouds, Mateo squeezed his eyes shut and prayed, gripped by fear."}
+{"emotion": "sadness", "text": "Isla's favorite teddy bear was left behind at the train station, and she cried softly all the way home."}
+{"emotion": "sadness", "text": "The lighthouse keeper, Agnes, watched the old ship sail off for its final voyage and felt a gentle sorrow fill her heart."}
+{"emotion": "anger", "text": "Zara huffed and crossed her arms in fury when her teammate hogged the ball and refused to pass it all game."}
+{"emotion": "sadness", "text": "Priya's goldfish, Bubbles, floated still one morning, and she buried him in the garden with tears sliding down her cheeks."}
+{"emotion": "disgust", "text": "Old Farmer Quinn stepped in a fresh, steaming cow pie with his new boots and scowled in disgust at the smelly mess."}
+{"emotion": "anger", "text": "Little Yuki stamped her foot furiously when the cat knocked over the tower of blocks she had carefully stacked all afternoon."}
+{"emotion": "disgust", "text": "Grandpa Elias sniffed the milk carton, smelled the sour, rotten stink, and pushed it away in total disgust."}
+{"emotion": "sadness", "text": "Hana's grandmother returned to her faraway village, and Hana spent the evening sadly hugging the doll Grandmother had sewn."}
+{"emotion": "disgust", "text": "At the fish market, Leo smelled the heaps of fish guts baking in the sun and covered his mouth in disgust."}
+{"emotion": "anger", "text": "Queen Isolde's face turned red with fury when she learned that the royal treasurer had been secretly stealing gold from the kingdom."}
+{"emotion": "disgust", "text": "Priya grimaced with disgust as the boy beside her on the bus loudly picked his nose and wiped it on the seat."}
+{"emotion": "fear", "text": "When Grandpa Wendell heard glass shatter downstairs at midnight, he lay frozen in bed, afraid to even breathe."}
+{"emotion": "fear", "text": "As the ice cracked loudly beneath his skates in the middle of the frozen pond, Gideon was gripped by sudden fear."}
+{"emotion": "surprise", "text": "Felix's eyes went wide as the tide pulled back further than he had ever seen, revealing a sunken rowboat."}
+{"emotion": "disgust", "text": "Oscar reached under the bus seat and touched a wad of warm, chewed gum, and he jerked his hand back in disgust."}
+{"emotion": "sadness", "text": "When the last leaf fell from the old oak, little Mira sat by the window and felt a quiet sadness settle in her chest."}
+{"emotion": "anger", "text": "Santiago kicked the dirt in anger after the referee unfairly called him out even though everyone saw he was safe."}
+{"emotion": "fear", "text": "When the ice beneath her skates began to crack, Lucia felt fear rush through her and stood completely still."}
+{"emotion": "surprise", "text": "Amara's mouth fell open in surprise as the magician pulled her missing mitten out of a teapot."}
+{"emotion": "surprise", "text": "Silas paused, astonished, when the parrot at the pet shop politely wished him a good morning in French."}
+{"emotion": "happiness", "text": "Amara received a handwritten letter from her pen pal across the ocean, and she hugged it with a happy sigh."}
+{"emotion": "disgust", "text": "Grandpa Ezekiel smelled the rotting pumpkin left on the windowsill since autumn and wrinkled his nose with disgust."}
+{"emotion": "disgust", "text": "When Daisy cleaned out the clogged bathtub drain, she pulled up a long, gray clump of hair and gagged with disgust."}
+{"emotion": "happiness", "text": "Little Mei held her grandfather's hand at the lantern festival, and the glowing lights made her feel happy and cozy."}
+{"emotion": "sadness", "text": "Little Rosa's balloon slipped from her fingers and drifted far into the gray sky, and she watched it go with sad eyes."}
+{"emotion": "anger", "text": "Desmond pounded his fist on the desk, enraged that his coworker had taken credit for the report he had written."}
+{"emotion": "anger", "text": "Felix slammed his bedroom door in anger after his older sister broke his favorite toy robot and refused to apologize."}
+{"emotion": "surprise", "text": "Clara was surprised to discover that the dusty piano in the attic still played every note perfectly in tune."}
+{"emotion": "sadness", "text": "The young prince Aldric gazed at his mother's empty throne and felt a deep sadness that no feast could chase away."}
+{"emotion": "disgust", "text": "Kwame lifted the lid of the old cooler at the campsite and recoiled in disgust from the maggots squirming over spoiled fish."}
+{"emotion": "anger", "text": "Ruth felt anger boil up inside her when the man in the park threw his litter right into the duck pond."}
+{"emotion": "happiness", "text": "On the first warm day of spring, Oliver rode his bicycle past blooming cherry trees and felt happy and carefree."}
+{"emotion": "happiness", "text": "Nadia's kitten curled up purring on her lap during a rainy afternoon, and she felt quietly happy and content."}
+{"emotion": "surprise", "text": "Felix was surprised to learn that the tiny bakery on the corner had been open for a hundred years."}
+{"emotion": "surprise", "text": "Priya stared in surprise when the gray cat she had fed for weeks strolled in followed by five kittens."}
+{"emotion": "fear", "text": "Little Fern woke in the hospital ward to strange beeping machines and unfamiliar faces, and she was very frightened."}
+{"emotion": "fear", "text": "Dmitri pressed himself against the cave wall, terrified, as hundreds of bats swirled screeching around his head."}
+{"emotion": "happiness", "text": "Clara planted sunflower seeds in spring and beamed with happiness when the first tall yellow blooms opened in July."}
+{"emotion": "anger", "text": "Mateo kicked a pebble furiously down the road after the bus driver drove away even though he had waved and shouted."}
+{"emotion": "disgust", "text": "Isla watched a boy at the next table chew with his mouth wide open, spraying crumbs, and she felt queasy disgust."}
+{"emotion": "surprise", "text": "When Mira opened the old cookie tin, she was surprised to find a stack of foreign coins instead of buttons."}
+{"emotion": "sadness", "text": "The kite string snapped, and Aisha watched her red kite drift away over the hills until her heart ached with sadness."}
+{"emotion": "disgust", "text": "Kenji opened the forgotten fridge drawer to find brown, liquefied lettuce oozing everywhere, and he groaned in disgust."}
+{"emotion": "disgust", "text": "Bruno found a used bandage floating in the public swimming pool and climbed out at once, filled with disgust."}
+{"emotion": "happiness", "text": "Oscar finally learned to ride his bike without training wheels, and he whooped happily as he zoomed down the lane."}
+{"emotion": "happiness", "text": "Chloe painted a big yellow sun on her bedroom wall with her mother, and she felt happy all afternoon."}
+{"emotion": "surprise", "text": "Hamid's jaw dropped as the plain brown seed he had planted grew into a sunflower taller than the fence overnight."}
+{"emotion": "anger", "text": "Zara huffed furiously when the boys knocked down the sandcastle she had spent the whole afternoon building at the beach."}
+{"emotion": "surprise", "text": "Priya stared in astonishment as a snowflake drifted down onto her sleeve on a warm afternoon in May."}
+{"emotion": "surprise", "text": "Kofi gasped in surprise when he lifted the flat stone and found it was hollow, with a tiny key inside."}
+{"emotion": "happiness", "text": "Amara's puppy wagged its tail and licked her cheek when she came home from school, and she laughed happily."}
+{"emotion": "fear", "text": "Deep in the dark forest, Oswald realized he had lost the trail, and fear crept over him as wolves howled nearby."}
+{"emotion": "sadness", "text": "Theo's sandcastle was washed away by the evening tide, and he sat in the wet sand feeling small and sad."}
+{"emotion": "fear", "text": "Yuki stood at the edge of the high diving board, her knees shaking with fear as she stared at the water far below."}
+{"emotion": "surprise", "text": "Diego was taken aback when his grumpy neighbor waved cheerfully and called him by name for the first time."}
+{"emotion": "fear", "text": "In the cellar of the castle, Rupert heard a low growl from the shadows and was too scared to move."}
+{"emotion": "happiness", "text": "The little fox named Rusty pounced through the fresh snow, yipping with joy at the sparkling white world around him."}
+{"emotion": "fear", "text": "The little fishing boat rocked wildly in the towering waves, and Captain Hamish feared it would capsize at any moment."}
+{"emotion": "anger", "text": "The wizard Alaric thundered with rage when his apprentice carelessly spilled ink across the ancient spellbook he had warned him about."}
+{"emotion": "happiness", "text": "When the school choir sang her favorite song, Zara swayed along and felt happiness spread through her like sunshine."}
+{"emotion": "sadness", "text": "When his grandmother's farm was sold, young Felix walked through the empty barn one last time with a sad, heavy heart."}
+{"emotion": "fear", "text": "Oliver felt a cold wave of fear when the basement door slammed shut behind him and the lights flickered out."}
+{"emotion": "disgust", "text": "Tobias stepped barefoot into a slimy puddle of spilled oatmeal and shuddered with disgust at the cold goo between his toes."}
+{"emotion": "disgust", "text": "When the cat coughed up a soggy hairball onto Ava's pillow, she held it with two fingers, feeling disgusted."}
+{"emotion": "surprise", "text": "When Jun turned the last page of the mystery book, he was astonished to learn the gardener had been the narrator all along."}
+{"emotion": "disgust", "text": "The stench of the overflowing garbage bins behind the bakery filled Rafael with disgust as he hurried past holding his breath."}
+{"emotion": "surprise", "text": "Ravi stopped in surprise when he saw that the river he crossed every morning had turned bright green overnight."}
+{"emotion": "fear", "text": "Ingrid's knees trembled with fear when she saw a bear lumbering toward her campsite in the pale morning light."}
+{"emotion": "fear", "text": "When the airplane suddenly dropped through heavy turbulence, Kwame squeezed his armrests tightly, afraid the plane would fall from the sky."}
+{"emotion": "sadness", "text": "The rain cancelled the school trip to the seaside, and Omar stared at the gray sky with a heavy, sad heart."}
+{"emotion": "disgust", "text": "Old Mr. Halvorsen felt deeply disgusted when he found a fat cockroach crawling across the bread in his pantry."}
+{"emotion": "surprise", "text": "Lena's eyebrows shot up when her little brother, who never spoke at dinner, recited an entire poem from memory."}
+{"emotion": "happiness", "text": "Elena's friends surprised her with a picnic in the park, and she smiled so wide her cheeks began to ache."}
+{"emotion": "anger", "text": "Nadia's jaw tightened with anger when the shopkeeper accused her of stealing a ribbon she had paid for honestly."}
+{"emotion": "surprise", "text": "Lena was surprised to discover that the dusty piano in the attic still played perfectly in tune."}
+{"emotion": "happiness", "text": "Felix and his dad flew a bright kite on the windy hill, and Felix laughed happily as it soared higher."}
+{"emotion": "happiness", "text": "Under the summer stars, Lucia shared warm cookies with her little brother and felt a soft, glowing happiness."}
+{"emotion": "sadness", "text": "The little robin named Pip returned to his nest and felt sorrowful to find it had blown away in the storm."}
+{"emotion": "anger", "text": "Tobias slammed the kitchen door angrily after his sister ate the last slice of cake he had saved for himself."}
+{"emotion": "happiness", "text": "Marco splashed through the summer creek with his little brother, and his heart felt light and happy under the bright sun."}
+{"emotion": "fear", "text": "Lucinda hid beneath the kitchen table during the earthquake, gripping its legs in terror as dishes crashed to the floor."}
+{"emotion": "happiness", "text": "Rosa baked cinnamon cookies for her neighbors, and seeing their smiling faces made her feel wonderfully happy inside."}
+{"emotion": "disgust", "text": "Rosalind stepped into the cramped train restroom, saw the filthy floor and smeared sink, and backed out in utter disgust."}
+{"emotion": "anger", "text": "The captain, Ingrid, bellowed in anger when she discovered that her sailors had been sleeping instead of guarding the ship."}
+{"emotion": "happiness", "text": "Zara and her sister flew a bright red kite on the windy hill, and Zara felt happy watching it soar."}
+{"emotion": "anger", "text": "Aunt Matilda fumed with anger when the delivery man tossed her fragile package over the fence and drove away laughing."}
+{"emotion": "happiness", "text": "Grandpa Walter hummed a cheerful tune as he picked ripe tomatoes, feeling happy to share them with his neighbors."}
+{"emotion": "disgust", "text": "Zara picked up a public phone and found its earpiece sticky and greasy, and she dropped it in disgust."}
+{"emotion": "surprise", "text": "Marcus stared in disbelief when the old map showed an island that had never appeared on any chart before."}
+{"emotion": "sadness", "text": "Grandpa Elias found his late wife's knitting basket in the attic and held the unfinished scarf with sorrowful, trembling hands."}
+{"emotion": "disgust", "text": "Elias was disgusted to see a sneezing customer cough all over the open tray of free cookie samples at the market."}
+{"emotion": "surprise", "text": "Beatrix paused in surprise when the cat she had fed for years walked in followed by five kittens."}
+{"emotion": "surprise", "text": "Ellie jumped in surprise as the sleepy tortoise suddenly dashed across the lawn faster than she had ever seen."}
+{"emotion": "happiness", "text": "The old sailor Magnus watched dolphins leap beside his boat at dawn, smiling with simple, peaceful happiness."}
+{"emotion": "sadness", "text": "The music box Grandma had given Ben broke on the floor, and he held its silent pieces with sad, trembling hands."}
+{"emotion": "sadness", "text": "Tobias waved goodbye as his best friend's moving truck rolled away, and his heart felt heavy and sad all afternoon."}
+{"emotion": "surprise", "text": "The weather forecaster, Ingrid, was caught completely off guard when a rainbow appeared behind her during the live broadcast."}
+{"emotion": "sadness", "text": "On the last day of summer camp, Jonah packed his bag slowly, feeling sad that he would not see the lake again."}
+{"emotion": "anger", "text": "Priya clenched her fists in anger when the neighbor's boy kicked down the sandcastle she had spent all morning building."}
+{"emotion": "anger", "text": "Hazel glared furiously at her cousin, who had read her private diary aloud to everyone at the family picnic."}
+{"emotion": "anger", "text": "Priya's cheeks burned with anger when the bully on the playground snatched her new kite and snapped its string on purpose."}
+{"emotion": "surprise", "text": "Old Mr. Halvorsen was astonished to see snow falling on his garden in the middle of a warm June afternoon."}
+{"emotion": "sadness", "text": "Grandpa Elias found his late wife's knitted scarf in the attic and held it gently, feeling sad and alone."}
+{"emotion": "sadness", "text": "When the old carousel in town closed for good, Mr. Okafor stood at the fence and remembered riding it with his son, feeling sorrowful."}
+{"emotion": "surprise", "text": "Benedikt's jaw dropped when the small seed he had planted the night before had sprouted into a knee-high stalk by morning."}
+{"emotion": "surprise", "text": "Theo blinked in surprise when the quiet librarian suddenly began juggling three heavy books behind the front desk."}
+{"emotion": "sadness", "text": "Hana read her pen pal's final letter, which said she could no longer write, and folded it away feeling sad and lonely."}
+{"emotion": "fear", "text": "Hamid's heart raced with fear as the smoke alarm shrieked and gray smoke curled under his bedroom door."}
+{"emotion": "anger", "text": "Grandma Rosalind's eyes flashed with anger when the shopkeeper rudely pushed past her and knocked her basket of apples onto the floor."}
+{"emotion": "sadness", "text": "When her pen pal stopped writing letters, Ingrid checked the mailbox each morning and turned away sadly every time."}
+{"emotion": "anger", "text": "Kofi felt hot rage rising in his chest when his teammate blamed him for a mistake he had never made."}
+{"emotion": "disgust", "text": "The baker, Mrs. Hollis, found mouse droppings in the flour sack and grimaced with disgust as she threw it away."}
+{"emotion": "surprise", "text": "Old Mr. Hatcher was amazed to see a goat standing calmly on the roof of his garden shed one morning."}
+{"emotion": "sadness", "text": "When the last leaf fell from the old oak, Mira sat by the window and felt a quiet sadness fill her heart."}
+{"emotion": "sadness", "text": "Matteo's favorite bakery closed its doors for good, and he pressed his nose to the dark window, feeling deeply sad."}
+{"emotion": "anger", "text": "When Marcus found his little brother had scribbled all over his finished homework, his face turned red and he stomped his feet."}
+{"emotion": "disgust", "text": "At the pond, Felix lifted a rock and found a squirming heap of slimy leeches, which made his stomach turn."}
+{"emotion": "happiness", "text": "Hana splashed in the warm puddles after the rain, giggling happily as her red boots made big muddy waves."}
+{"emotion": "happiness", "text": "Leo's classmates invited him to join their game of tag, and he ran across the playground feeling happy and free."}
+{"emotion": "happiness", "text": "The baker named Hugo hummed happily as the morning bread came out golden and the shop filled with sweet smells."}
+{"emotion": "happiness", "text": "Grandma Ruth hummed a cheerful tune as her garden tomatoes turned red, and she felt happy every time she watered them."}
+{"emotion": "happiness", "text": "Ivy discovered a field full of wildflowers on her walk, and she danced among them with a joyful, carefree heart."}
+{"emotion": "fear", "text": "Tobias froze in the dark forest when he heard heavy footsteps crunching closer, and his heart pounded with terror."}
+{"emotion": "disgust", "text": "Ingrid felt disgusted when the rich man laughed and kicked over the beggar's cup of coins in the town square."}
+{"emotion": "happiness", "text": "Benji the puppy wagged his tail so hard his whole body wiggled when his family came home from the market."}
+{"emotion": "fear", "text": "As the storm clouds rolled over the meadow, the shepherd boy Elias trembled in fear at the first crack of thunder."}
+{"emotion": "disgust", "text": "Nora found that someone had licked every cupcake on the party plate, and she stared at them in disgust."}
+{"emotion": "sadness", "text": "The snowman Lila had built melted into a puddle under the spring sun, and she gazed at it with a sad little sigh."}
+{"emotion": "fear", "text": "Walking home alone through the foggy village, Imogen heard footsteps following close behind her and quickened her pace in fear."}
+{"emotion": "disgust", "text": "Rafael lifted the lid of the summer garbage bin and recoiled in disgust at the maggots crawling over the rotting meat."}
+{"emotion": "disgust", "text": "The slimy, gray stew that the castle cook ladled into Percival's bowl smelled so foul that he pushed it away in disgust."}
+{"emotion": "surprise", "text": "Amara was astonished to learn that the new girl in class had lived in Amara's exact house years before."}
+{"emotion": "disgust", "text": "Luna bit into an apple, saw half a worm wriggling inside, and spat it out, feeling thoroughly disgusted."}
+{"emotion": "disgust", "text": "When the neighbor's dog licked its own vomit off the porch, little Sofie turned away with a shiver of disgust."}
+{"emotion": "sadness", "text": "Lucia found the little bird's nest empty after the storm, and she sat beneath the tree with a sorrowful sigh."}
+{"emotion": "fear", "text": "A rattlesnake coiled on the desert path in front of Wyatt, and he stood frozen with fear as it hissed."}
+{"emotion": "fear", "text": "As Nadia climbed down the cliff, her foot slipped on a loose rock, and fear surged through her as she dangled above the canyon."}
+{"emotion": "surprise", "text": "Theo stopped short in surprise when he found the hallway clock, silent for decades, ticking loudly again."}
+{"emotion": "fear", "text": "When a masked stranger followed her down the empty alley, Rosalind hurried faster, her pulse pounding with fear."}
+{"emotion": "disgust", "text": "Hazel poured cereal into her bowl and spotted tiny beetles crawling among the flakes, which filled her with disgust."}
+{"emotion": "disgust", "text": "Fatima was disgusted when she bit into a juicy apple and saw half a wriggling worm left behind."}
+{"emotion": "happiness", "text": "Samuel's family gathered around the campfire to sing silly songs, and he felt happy listening to everyone's laughter."}
+{"emotion": "sadness", "text": "The old lighthouse keeper, Mr. Harlow, turned off the lamp one final time and felt a deep sadness settle over him."}
+{"emotion": "surprise", "text": "Yuki was surprised to see her teacher arrive at school riding a bright red unicycle instead of taking the bus."}
+{"emotion": "surprise", "text": "Nadia was surprised when her quiet grandfather pulled out a skateboard and rolled smoothly down the driveway."}
+{"emotion": "happiness", "text": "Felix built a tall snowman with his cousins in the snowy yard and felt happy as they all cheered together."}
+{"emotion": "fear", "text": "During the storm at sea, young Eli gripped the mast in terror as giant waves crashed over the tiny fishing boat."}
+{"emotion": "surprise", "text": "Diego blinked twice when the vending machine dropped not one but three bottles of lemonade into the tray."}
+{"emotion": "anger", "text": "The old farmer Tobias shook his fist in fury when he found that someone had trampled his entire field of corn."}
+{"emotion": "happiness", "text": "When Lila found a warm bowl of soup waiting on the kitchen table, she smiled and felt happy all the way to her toes."}
+{"emotion": "disgust", "text": "Lena watched her brother slurp up a worm on a dare and felt such disgust that she covered her eyes."}
+{"emotion": "anger", "text": "Oliver was so angry that he crumpled the letter after learning the landlord had raised the rent without any warning."}
+{"emotion": "fear", "text": "Perched on the high diving board, Theo looked down at the distant water and felt sick with fear."}
+{"emotion": "happiness", "text": "Isabel picked a basket of ripe strawberries at the farm with her father and felt happy with every juicy bite."}
+{"emotion": "sadness", "text": "Tobias watched his best friend's moving truck disappear down the street, and his eyes grew heavy with sadness."}
+{"emotion": "sadness", "text": "Oliver's sandcastle washed away with the evening tide, and he sat on the beach feeling sad as the waves rolled in."}
+{"emotion": "fear", "text": "When the huge dog snarled and lunged against its chain, young Beatrix stumbled backward, shaking with fear."}
+{"emotion": "sadness", "text": "Marco set out paper hats for his birthday party, but only one guest came, and he felt deeply sad inside."}
+{"emotion": "happiness", "text": "Diego's grandmother taught him to make tamales, and he felt happy and warm as they laughed together over the dough."}
+{"emotion": "anger", "text": "Captain Ruiz slammed his hand on the table, furious that his crew had let the ship drift onto the rocks again."}
+{"emotion": "sadness", "text": "After the little goldfish stopped swimming, Priya held its bowl close as sad tears rolled slowly down her cheeks."}
+{"emotion": "anger", "text": "Grandpa Wendell grumbled angrily when the noisy neighbors woke him up at midnight with their loud music for the third time."}
+{"emotion": "fear", "text": "Sofia's hands shook with fear as the old elevator jolted, groaned, and stopped between floors in the empty building."}
+{"emotion": "disgust", "text": "Nadia reached under the couch for her toy and touched something sticky and furry, and she jerked her hand back in disgust."}
+{"emotion": "happiness", "text": "When Maya opened the box and found a fluffy orange kitten inside, she laughed with pure happiness."}
+{"emotion": "disgust", "text": "When Mira opened the old lunchbox, she found a fuzzy green sandwich and wrinkled her nose in disgust."}
+{"emotion": "disgust", "text": "Captain Bruno discovered his crew's socks festering in a damp pile below deck, and the stench filled him with disgust."}
+{"emotion": "disgust", "text": "Tobias stepped barefoot into a puddle of slimy, rotten pond weed and shuddered with disgust as it squished between his toes."}
+{"emotion": "anger", "text": "The old farmer Hector shouted furiously across the field when he saw that someone had let his goats loose again."}
+{"emotion": "disgust", "text": "The milk Dmitri poured into his cereal came out in sour, lumpy clumps, and his stomach turned with disgust."}
+{"emotion": "happiness", "text": "Kenji's best friend shared half of a sweet orange with him at recess, and Kenji grinned with simple happiness."}
+{"emotion": "happiness", "text": "Priya twirled across the kitchen in her new yellow dress, her heart full of happiness on her birthday morning."}
+{"emotion": "fear", "text": "When the lights went out in the old farmhouse, little Tobias froze beneath his blanket, terrified of the creaking footsteps on the stairs."}
+{"emotion": "happiness", "text": "Rosie the duckling paddled in her very first pond, quacking merrily as the cool water rippled around her."}
+{"emotion": "surprise", "text": "Yusra was astonished to find her name painted in bright letters across the classroom wall when she arrived."}
+{"emotion": "fear", "text": "The wolves howled closer and closer, and Fenwick the shepherd boy shivered with dread as he guarded the flock alone."}
+{"emotion": "anger", "text": "Sofia's jaw tightened with anger as the boy in front of her cut the long lunch line for the third time."}
+{"emotion": "surprise", "text": "The fisherman, Arvid, could hardly believe his eyes when his net came up holding a perfectly dry umbrella."}
+{"emotion": "fear", "text": "Marisol clutched the rail of the swaying rope bridge, her heart pounding with fear as the wooden planks groaned beneath her feet."}
+{"emotion": "sadness", "text": "The elderly dog, Biscuit, could no longer chase the ball, and his owner Samuel stroked his gray muzzle with quiet sadness."}
+{"emotion": "disgust", "text": "Priya watched her brother pick his nose and wipe it on the couch, and she felt utterly disgusted."}
+{"emotion": "fear", "text": "When a giant bear lumbered toward the campsite, Theodore held his breath inside the tent, terrified it would find him."}
+{"emotion": "anger", "text": "Mira stomped her foot and glared when her little brother scribbled all over the drawing she had worked on for days."}
+{"emotion": "anger", "text": "Nadia glared angrily at her brother, who had used her brand new paints without asking and left the brushes ruined."}
+{"emotion": "anger", "text": "The shepherd Elias shouted angrily at the wolf that had crept into the meadow and scattered his frightened sheep."}
+{"emotion": "surprise", "text": "When the elevator doors opened onto a floor full of potted palm trees, Ingrid stared in complete surprise."}
+{"emotion": "fear", "text": "Priya heard something scratching at her bedroom window late at night, and she was too frightened to even breathe."}
+{"emotion": "fear", "text": "When the thunder cracked over the farmhouse, little Marta hid beneath her quilt and trembled with fear until morning."}
+{"emotion": "anger", "text": "Little Oona scowled and crossed her arms when the baker gave the last cupcake to the boy who had cut in line."}
+{"emotion": "disgust", "text": "Theo saw a stranger spit a big glob onto the playground slide, and he felt sick with disgust."}
+{"emotion": "happiness", "text": "At the family reunion, Kofi played tag with his cousins until sunset, happier than he had been all year."}
+{"emotion": "disgust", "text": "Cleaning the clogged drain, Oscar pulled out a dripping wad of hair and gunk and gagged in pure disgust."}
+{"emotion": "happiness", "text": "The old fisherman Tobias watched the sunrise paint the calm sea pink, and a happy warmth filled his chest."}
+{"emotion": "sadness", "text": "As the summer camp bus pulled away, Zara waved to her new friends and felt a gentle sadness swell inside her."}
+{"emotion": "happiness", "text": "Old Mr. Abernathy fed the ducks at the pond each morning, and their cheerful quacking always made him happy."}
+{"emotion": "fear", "text": "Smoke began to fill the hallway of the apartment building, and Dmitri felt terror rise in his chest as he searched for the exit."}
+{"emotion": "surprise", "text": "Hana could hardly believe her eyes when a goat wandered calmly into the classroom and sat beside her desk."}
+{"emotion": "disgust", "text": "When Mira opened the lunchbox she had forgotten for a week, the moldy sandwich inside made her wrinkle her nose in disgust."}
+{"emotion": "fear", "text": "A strange shadow moved past the tent in the night, and Chloe lay awake, too scared to call out."}
+{"emotion": "sadness", "text": "Nobody came to Leo's birthday party at the park, so he quietly ate one slice of cake with a sad, sinking heart."}
+{"emotion": "surprise", "text": "Kofi's eyebrows shot up in surprise when his little sister answered the hardest riddle before anyone else could."}
+{"emotion": "fear", "text": "The tiny mouse named Pip cowered in the corner of the barn, trembling with fear as the hungry owl swooped overhead."}
+{"emotion": "happiness", "text": "Priya danced around the living room when her favorite song came on the radio, feeling happy and full of sunshine."}
+{"emotion": "disgust", "text": "Aunt Margery wrinkled her face in disgust as she scraped the greasy, burnt leftovers from the restaurant's filthy oven."}
+{"emotion": "surprise", "text": "Tobias blinked in surprise when the quiet librarian suddenly began juggling three apples behind the front desk."}
+{"emotion": "sadness", "text": "On his last day at the farm, Jonah said goodbye to the calves and walked away feeling sad and quiet."}
+{"emotion": "happiness", "text": "Theo's grandmother tucked him into bed with a funny bedtime story, and he drifted off feeling happy and loved."}
+{"emotion": "fear", "text": "Lost in the crowded market, little Kenji searched desperately for his mother's face, his chest tight with fear."}
+{"emotion": "sadness", "text": "After her teacher, Miss Bell, retired, Nadia looked at the new face at the front of the classroom and felt sad."}
+{"emotion": "fear", "text": "When the elevator jolted and stopped between floors, Amara pressed against the wall, terrified that the cables would snap."}
+{"emotion": "anger", "text": "Yuki was furious when her classmate copied her science project and proudly told the teacher it was his own idea."}
+{"emotion": "fear", "text": "As the rickety rope bridge swayed high above the river, Priya clutched the railing, too frightened to take another step."}
+{"emotion": "sadness", "text": "After moving to a new city, Nadia looked at photos of her old bedroom and felt a lonely sadness creep in."}
+{"emotion": "surprise", "text": "Jonah was astonished to find a tiny wooden door tucked into the roots of the old oak tree in the park."}
+{"emotion": "surprise", "text": "When Mira opened the old cookie tin, she was surprised to find a stack of seashells instead of buttons."}
+{"emotion": "anger", "text": "Lena was furious when her classmate copied her science project and the teacher praised him for it instead."}
+{"emotion": "fear", "text": "The huge dog growled and bared its teeth at Hana, who stood perfectly still, shaking with fear on the sidewalk."}
+{"emotion": "fear", "text": "Beatrice crept through the abandoned house, terrified, as the floorboards creaked and something whispered her name from upstairs."}
+{"emotion": "sadness", "text": "When the snowman melted into a puddle, little Finn stood on the porch with drooping shoulders and a sad face."}
+{"emotion": "happiness", "text": "Mr. Abernathy whistled as he baked bread for the village fair, happy to smell the sweet golden loaves rising."}
+{"emotion": "anger", "text": "Amara stormed out of the bakery, angry that the baker had carelessly sold her birthday cake to another customer."}
+{"emotion": "surprise", "text": "Rosa was taken aback when the bus driver greeted her by name, though she had never seen him before."}
+{"emotion": "disgust", "text": "Yuki felt a sour disgust when she learned her classmate had copied her homework and then smugly lied to the teacher."}
+{"emotion": "anger", "text": "The fisherman Lars growled angrily when he discovered that thieves had cut his nets and stolen his whole morning's catch."}
+{"emotion": "surprise", "text": "Grandma Rosalind was surprised to discover that her quiet grandson had secretly learned to speak fluent Japanese."}

@@ -50,6 +50,7 @@ def cmd_extract(args: argparse.Namespace) -> int:
     from manifolds.prompts import build
 
     cfg = load_config(args.config)
+    manifest = load_manifest()
     ext = ActivationExtractor(config_from_run(cfg, device=args.device))
     print(json.dumps(ext.metadata(), indent=1))
     names = _select(args)
@@ -63,8 +64,12 @@ def cmd_extract(args: argparse.Namespace) -> int:
         from manifolds.prompts.types import PromptSet
 
         ps = PromptSet.load(ps_path) if ps_path.exists() else build(name)
-        print(f"{name}: extracting {len(ps)} prompts")
-        extract_and_cache(ps, ext, out_dir, provider=args.provider, instance=args.instance)
+        spec = manifest.get(name)
+        layer = spec.layer if isinstance(spec.layer, int) else cfg.model.layer
+        pos = "concept token" if ps.spans else "last token"
+        print(f"{name}: extracting {len(ps)} prompts (block {layer}, {pos})")
+        extract_and_cache(ps, ext, out_dir, layer=layer, provider=args.provider,
+                          instance=args.instance)
         if args.precision_check and not checked and ext.cfg.dtype != "float32":
             pc = precision_check(ext, ps.prompts, cfg.precision_check.n_prompts)
             pc["manifold"] = name
@@ -119,7 +124,12 @@ def cmd_sae(args: argparse.Namespace) -> int:
         if not (RESULTS_DIR / name / "activations.npy").exists():
             print(f"{name}: no activations, skipping", file=sys.stderr)
             continue
-        rep = analyze_sae(manifest.get(name), cfg, sae, max_k=args.max_k,
+        spec = manifest.get(name)
+        if isinstance(spec.layer, int) and spec.layer != cfg.model.layer:
+            print(f"{name}: block {spec.layer} activations; the Llama Scope SAE is for block "
+                  f"{cfg.model.layer}, skipping")
+            continue
+        rep = analyze_sae(spec, cfg, sae, max_k=args.max_k,
                           max_points=args.max_points, provider=args.provider,
                           instance=args.instance)
         st, sm = rep["stats"], rep["summary"]

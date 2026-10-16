@@ -18,10 +18,13 @@ class PromptSet:
     template: str
     source: str
     deviations: list[str] = field(default_factory=list)
+    spans: list[tuple[int, int]] | None = None   # char span whose last token is read; None = last token
 
     def __post_init__(self) -> None:
         if len(self.prompts) != len(self.labels):
             raise ValueError("prompts and labels must have the same length")
+        if self.spans is not None and len(self.spans) != len(self.prompts):
+            raise ValueError("spans must match prompts")
 
     def __len__(self) -> int:
         return len(self.prompts)
@@ -38,6 +41,7 @@ class PromptSet:
                     "n": len(self),
                     "prompts": self.prompts,
                     "labels": self.labels,
+                    "spans": self.spans,
                 },
                 f,
                 indent=1,
@@ -54,4 +58,5 @@ class PromptSet:
             template=d["template"],
             source=d["source"],
             deviations=d.get("deviations", []),
+            spans=[tuple(x) for x in d["spans"]] if d.get("spans") else None,
         )

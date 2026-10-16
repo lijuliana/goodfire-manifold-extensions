@@ -11,7 +11,9 @@ class CharTokenizer:
     eos_token = "<eos>"
     padding_side = "right"
 
-    def __call__(self, batch, return_tensors="pt", padding=True, truncation=True, max_length=64):
+    def __call__(self, batch, return_tensors=None, padding=True, truncation=True, max_length=64):
+        if isinstance(batch, str):   # like HF: a single string returns plain lists
+            return BatchEncoding({"input_ids": [1] + [ord(c) % 200 + 2 for c in batch][: max_length - 1]})
         ids = [[1] + [ord(c) % 200 + 2 for c in s][: max_length - 1] for s in batch]
         n = max(len(x) for x in ids)
         input_ids = torch.zeros(len(ids), n, dtype=torch.long)

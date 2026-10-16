@@ -106,24 +106,47 @@ class ActivationExtractor:
         if getattr(self.tokenizer, "pad_token", None) is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
         self.commit_sha: str | None = getattr(config, "_commit_hash", None)
-        self._captured: torch.Tensor | None = None
-        self._block().register_forward_hook(self._hook)
+        self._captured: dict[int, torch.Tensor] = {}
+        for i, blk in enumerate(self._blocks()):
+            blk.register_forward_hook(self._make_hook(i))
+        self.n_span_mismatch = 0
 
     # -- internals -------------------------------------------------------------------------
-    def _block(self) -> torch.nn.Module:
+    def _blocks(self) -> list[torch.nn.Module]:
         layers = getattr(self.model, "layers", None)
         if layers is None:  # e.g. a CausalLM wrapper
             layers = self.model.model.layers
-        block: torch.nn.Module = layers[self.cfg.layer]
-        return block
+        return list(layers)
 
-    def _hook(self, _module: torch.nn.Module, _inputs: Any, output: Any) -> None:
-        self._captured = output[0] if isinstance(output, tuple) else output
+    def _make_hook(self, index: int) -> Any:
+        def hook(_module: torch.nn.Module, _inputs: Any, output: Any) -> None:
+            self._captured[index] = output[0] if isinstance(output, tuple) else output
+        return hook
+
+    def token_index(self, prompt: str, span: tuple[int, int] | None) -> int | None:
+        """Index of the last token covering `span` (character offsets), or None for the last token.
+
+        Uses prefix tokenisation: the number of tokens in prompt[:end] minus one. The prefix's
+        tokens are checked to be a prefix of the full prompt's tokens; mismatches are counted."""
+        if span is None:
+            return None
+        end = int(span[1])
+        full = self.tokenizer(prompt, truncation=True, max_length=self.cfg.max_length)["input_ids"]
+        pre = self.tokenizer(prompt[:end], truncation=True, max_length=self.cfg.max_length)["input_ids"]
+        if list(full[: len(pre)]) != list(pre):
+            self.n_span_mismatch += 1
+        return min(len(pre), len(full)) - 1
 
     # -- public ----------------------------------------------------------------------------
     @torch.no_grad()
-    def extract(self, prompts: list[str], progress: bool = True) -> np.ndarray:
-        """Return float32 array [N, d_model] of last-real-token activations at the hooked block."""
+    def extract(self, prompts: list[str], progress: bool = True, *,
+                spans: list[tuple[int, int]] | None = None,
+                layer: int | None = None) -> np.ndarray:
+        """float32 [N, d_model]: activations at block `layer` (default cfg.layer) for the last real
+        token, or for the token ending each character span when `spans` is given."""
+        layer = self.cfg.layer if layer is None else int(layer)
+        if layer >= int(self.model.config.num_hidden_layers):
+            raise ValueError(f"block {layer} not loaded (loaded {self.model.config.num_hidden_layers})")
         d = int(self.model.config.hidden_size)
         out = np.empty((len(prompts), d), dtype=np.float32)
         bs = self.cfg.batch_size
@@ -137,14 +160,19 @@ class ActivationExtractor:
                 truncation=True,
                 max_length=self.cfg.max_length,
             ).to(self.device)
-            self._captured = None
+            self._captured = {}
             self.model(**enc)
-            h = self._captured
+            h = self._captured.get(layer)
             if h is None:
                 raise RuntimeError("forward hook did not fire")
-            last = enc["attention_mask"].sum(dim=1) - 1
+            idx = enc["attention_mask"].sum(dim=1) - 1
+            if spans is not None:
+                for j, p in enumerate(batch):
+                    ti = self.token_index(p, spans[s + j])
+                    if ti is not None:
+                        idx[j] = min(ti, int(idx[j]))
             rows = torch.arange(h.shape[0], device=h.device)
-            out[s : s + len(batch)] = h[rows, last].float().cpu().numpy()
+            out[s : s + len(batch)] = h[rows, idx].float().cpu().numpy()
         return out
 
     def device_name(self) -> str:
@@ -178,6 +206,7 @@ def extract_and_cache(
     extractor: ActivationExtractor,
     out_dir: Path,
     *,
+    layer: int | None = None,
     provider: str = "unknown",
     instance: str = "unknown",
     log_ledger: bool = True,
@@ -186,13 +215,17 @@ def extract_and_cache(
     out_dir.mkdir(parents=True, exist_ok=True)
     start = ledger.now_iso()
     t0 = time.time()
-    acts = extractor.extract(ps.prompts)
+    extractor.n_span_mismatch = 0
+    acts = extractor.extract(ps.prompts, spans=ps.spans, layer=layer)
     elapsed = time.time() - t0
     end = ledger.now_iso()
     np.save(out_dir / "activations.npy", acts)
     ps.save(out_dir / "prompts.json")
     meta = extractor.metadata() | {
         "manifold": ps.name,
+        "layer": extractor.cfg.layer if layer is None else int(layer),
+        "token_position": "last" if ps.spans is None else "concept span (last token of span)",
+        "n_span_tokenisation_mismatches": int(extractor.n_span_mismatch),
         "n_prompts": len(ps),
         "elapsed_s": round(elapsed, 2),
         "started": start,

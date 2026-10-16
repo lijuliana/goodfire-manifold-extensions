@@ -104,9 +104,19 @@ class FullModel:
         return self.tokenizer(prompts, return_tensors="pt", padding=True, truncation=True,
                               max_length=self.cfg.max_length).to(self.input_device)
 
+    def token_index(self, prompt: str, span: tuple[int, int] | None) -> int | None:
+        if span is None:
+            return None
+        full = self.tokenizer(prompt, truncation=True, max_length=self.cfg.max_length)["input_ids"]
+        pre = self.tokenizer(prompt[: int(span[1])], truncation=True,
+                             max_length=self.cfg.max_length)["input_ids"]
+        return min(len(pre), len(full)) - 1
+
     @torch.no_grad()
-    def capture_all_layers(self, prompts: list[str], progress: bool = True) -> np.ndarray:
-        """float16 array [N, L+1, d]: last-token residual stream at every depth."""
+    def capture_all_layers(self, prompts: list[str], progress: bool = True,
+                           spans: list[tuple[int, int]] | None = None) -> np.ndarray:
+        """float16 array [N, L+1, d]: residual stream at every depth for the last token (or the
+        token ending each character span)."""
         out = np.empty((len(prompts), self.n_layers + 1, self.d_model), dtype=np.float16)
         bs = self.cfg.batch_size
         for s in tqdm(range(0, len(prompts), bs), disable=not progress, desc="depth"):
@@ -114,6 +124,11 @@ class FullModel:
             enc = self.encode(batch)
             res = self.model(**enc, output_hidden_states=True)
             last = enc["attention_mask"].sum(dim=1) - 1
+            if spans is not None:
+                for j, p in enumerate(batch):
+                    ti = self.token_index(p, spans[s + j])
+                    if ti is not None:
+                        last[j] = min(ti, int(last[j]))
             for li, h in enumerate(res.hidden_states):
                 rows = torch.arange(h.shape[0], device=h.device)
                 sel = h[rows, last.to(h.device)]
