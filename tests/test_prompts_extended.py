@@ -8,6 +8,7 @@ from manifolds.prompts.cyclic import (
     build_hours_circle,
     build_months_circle,
     build_weekdays_circle,
+    build_weekdays_last,
 )
 from manifolds.prompts.extended import (
     build_adverbs_pace,
@@ -83,3 +84,11 @@ def test_circumplex_and_fourier_checks(rng):
     rep = check_fourier_probe(acts, coords, s)
     assert rep.status in ("matches", "partial"), rep.reason
     assert rep.extras["probe_r2"][10] > 0.8 and rep.extras["control_r2"] < 0.5
+
+
+def test_last_token_variant():
+    ps = build_weekdays_last()
+    assert ps.spans is None and len(ps) == 98
+    lab = ps.labels[0]
+    assert lab["day"] == "Monday" and lab["concept_index"] == 1.0
+    assert lab["premod_sum"] == 1.0 + lab["offset"]

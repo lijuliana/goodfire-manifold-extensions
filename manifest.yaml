@@ -311,6 +311,45 @@ manifolds:
     replication_mode: exact-template
     status: pending
 
+  - name: weekdays_last
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 18
+    token_position: last
+    expected_geometry: no weekday circle at the last token; base-10 Fourier features of the pre-modulo sum (day + offset) instead   # feucht2026 Fig. 3 (absence) + Sec. 3-4 (sum)
+    intrinsic_coords: ["(day + offset) mod 10, mod 5, mod 2"]
+    prompt_template: "Q: What day is {offset} days after {concept}?\nA:"
+    dataset: same prompts as weekdays_circle
+    source: [feucht2026 Fig. 3, feucht2026 Sec. 4]
+    replication_mode: probe-based
+    status: pending
+
+  - name: months_last
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 18
+    token_position: last
+    expected_geometry: no month circle at the last token; base-10 Fourier features of month + offset instead   # feucht2026 Fig. 3 + Fig. 5
+    intrinsic_coords: ["(month + offset) mod 10, mod 5, mod 2"]
+    prompt_template: "Q: What month is {offset} months after {concept}?\nA:"
+    dataset: same prompts as months_circle
+    source: [feucht2026 Fig. 3, feucht2026 Fig. 5]
+    replication_mode: probe-based
+    status: pending
+
+  - name: hours_last
+    tier: cyclic
+    model: meta-llama/Llama-3.1-8B
+    layer: 18
+    token_position: last
+    expected_geometry: no hour circle at the last token; base-10 Fourier features of hour + offset instead   # feucht2026 Fig. 3 + Sec. 4
+    intrinsic_coords: ["(hour + offset) mod 10, mod 5, mod 2"]
+    prompt_template: "Q: In 24-hour time, it is now {concept}:00. What time will it be in {offset} hours?\n A: In 24-hour time, it will be"
+    dataset: same prompts as hours_circle
+    source: [feucht2026 Fig. 3, feucht2026 Sec. 4]
+    replication_mode: probe-based
+    status: pending
+
   - name: addition_sum_fourier
     tier: cyclic
     model: meta-llama/Llama-3.1-8B

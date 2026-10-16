@@ -413,8 +413,8 @@ def fourier_probe_r2(acts: np.ndarray, value: np.ndarray, period: float, seed: i
 
 
 def check_fourier_probe(acts: np.ndarray, coords: np.ndarray, value: np.ndarray,
-                        periods: Sequence[float] = (2, 5, 10), control_period: float = 7
-                        ) -> ShapeReport:
+                        periods: Sequence[float] = (2, 5, 10), control_period: float = 7,
+                        absent_circle: tuple[np.ndarray, float] | None = None) -> ShapeReport:
     """Base-10 Fourier features of a number (Feucht et al. 2026 Sec. 4): linear probes for the
     circles of period 10 and 5 must read the value well; a control period (7) should not."""
     value = np.asarray(value, dtype=float)
@@ -432,7 +432,15 @@ def check_fourier_probe(acts: np.ndarray, coords: np.ndarray, value: np.ndarray,
         _mk("raw_pca_circular_corr_mod10", f["circ_corr"], 0.60, informative=True,
             note="is the mod-10 circle visible in the raw 3-D PCA (not claimed by the paper)"),
     ]
-    return _finalize("fourier_probe", checks, {"probe_r2": r2, "control_r2": r2_ctrl})
+    extras: dict[str, Any] = {"probe_r2": r2, "control_r2": r2_ctrl}
+    if absent_circle is not None:
+        cidx, period = absent_circle
+        fc = fit_circle_plane(coords, 2 * np.pi * (np.asarray(cidx, float) % period) / period)
+        checks.append(_mk("concept_circle_circular_corr", fc["circ_corr"], 0.60, informative=True,
+                          note="paper (Fig. 3): the concept's circle is NOT present at this "
+                               "position; low values confirm that"))
+        extras["concept_circle_absent"] = bool(fc["circ_corr"] < 0.6)
+    return _finalize("fourier_probe", checks, extras)
 
 
 # ---------------------------------------------------------------- dispatch --------------------
@@ -503,6 +511,16 @@ ROLES: dict[str, dict[str, Any]] = {
                      "color_mode": "cyclic", "ambient_dim": 2, "tuning_label": "hour"},
     "addition_sum_fourier": {"kind": "fourier_probe", "value": "sum", "color_by": "sum_mod10",
                              "color_mode": "cyclic", "ambient_dim": 2, "tuning_label": "sum"},
+    # last-token variants (block 18): probe the pre-modulo sum; concept circle expected absent
+    "weekdays_last": {"kind": "fourier_probe", "value": "premod_sum",
+                      "absent": ("concept_index", 7), "color_by": "day",
+                      "color_mode": "categorical", "ambient_dim": 2, "tuning_label": "premod_sum"},
+    "months_last": {"kind": "fourier_probe", "value": "premod_sum",
+                    "absent": ("concept_index", 12), "color_by": "month",
+                    "color_mode": "categorical", "ambient_dim": 2, "tuning_label": "premod_sum"},
+    "hours_last": {"kind": "fourier_probe", "value": "premod_sum",
+                   "absent": ("concept_index", 24), "color_by": "hour", "color_mode": "cyclic",
+                   "ambient_dim": 2, "tuning_label": "premod_sum"},
 }
 
 
@@ -523,7 +541,12 @@ def run_shape_check(name: str, coords: np.ndarray, labels: list[dict[str, Any]],
     if kind == "fourier_probe":
         if acts is None:
             raise ValueError("fourier_probe check needs the raw activations")
-        return check_fourier_probe(acts, coords, _col(labels, r["value"]).astype(float))
+        absent = None
+        if "absent" in r:
+            key, period = r["absent"]
+            absent = (_col(labels, key).astype(float), float(period))
+        return check_fourier_probe(acts, coords, _col(labels, r["value"]).astype(float),
+                                   absent_circle=absent)
     if kind == "line":
         return check_line(coords, _col(labels, r["label"]).astype(float))
     if kind == "ordinal":

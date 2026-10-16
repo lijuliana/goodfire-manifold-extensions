@@ -9,7 +9,7 @@ def test_manifest_loads_and_has_all_tiers():
     assert len(m.manifolds) >= 30
     assert {x.name for x in m.by_tier("core")} == CORE
     assert len(m.by_tier("extended")) >= 9
-    assert len(m.by_tier("cyclic")) >= 4
+    assert len(m.by_tier("cyclic")) >= 7
     assert len(m.by_tier("vision")) >= 5
     assert len(set(m.names)) == len(m.names)
 

@@ -92,7 +92,34 @@ def build_addition_sum_fourier() -> PromptSet:
                      deviations=["1200 random (a, b) pairs from 1..100 instead of all 10k; last token; layer 18"])
 
 
+def _last_variant(base: PromptSet, name: str, concept_key: str, one_indexed: bool) -> PromptSet:
+    """Same prompts read at the last token (block 18): the paper reports no concept circle there
+    but base-10 Fourier features of the pre-modulo sum concept + offset (Feucht et al. Figs 3, 5)."""
+    labels = []
+    for lab in base.labels:
+        c = float(lab[concept_key]) + (1.0 if one_indexed else 0.0)
+        labels.append(dict(lab, premod_sum=c + float(lab["offset"]), concept_index=c))
+    return PromptSet(name, list(base.prompts), labels, base.template, SRC + " + Fig. 3 / Fig. 5",
+                     deviations=["read at the last token, block 18 (paper's addition-module site)"],
+                     spans=None)
+
+
+def build_weekdays_last() -> PromptSet:
+    return _last_variant(build_weekdays_circle(), "weekdays_last", "day_idx", True)
+
+
+def build_months_last() -> PromptSet:
+    return _last_variant(build_months_circle(), "months_last", "month_idx", True)
+
+
+def build_hours_last() -> PromptSet:
+    return _last_variant(build_hours_circle(), "hours_last", "hour", False)
+
+
 CYCLIC_BUILDERS: dict[str, Callable[[], PromptSet]] = {
+    "weekdays_last": build_weekdays_last,
+    "months_last": build_months_last,
+    "hours_last": build_hours_last,
     "weekdays_circle": build_weekdays_circle,
     "months_circle": build_months_circle,
     "hours_circle": build_hours_circle,
