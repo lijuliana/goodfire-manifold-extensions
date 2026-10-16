@@ -127,8 +127,9 @@ BASE = r"""{% if not artifact %}<!doctype html>
 INDEX = r"""{% extends "base" %}{% block body %}
 <header>
 <h1>Concept manifolds in Llama-3.1-8B</h1>
-<p class="lede">A replication of the concept manifolds reported in Goodfire's Neural Geometry series and the papers behind it.
-Each entry shows a 3-D PCA of residual-stream activations (last token), the shape the source reports, a quantitative shape check, and a replication badge. Nothing here is hand-edited: badges come from the checks.</p>
+<p class="lede">A replication of the concept manifolds reported in Goodfire's Neural Geometry series and the papers behind it, on the base Llama-3.1-8B.
+Each entry shows a 3-D PCA of residual-stream activations (last token, block 19), the shape the source reports, a quantitative shape check, and a replication badge. Nothing here is hand-edited: badges come from the checks.
+Beyond the sources, every page adds a layer slider (the manifold at all 33 residual positions), what the model would say from each point under the logit, tuned and Jacobian lenses, a decoding of what each principal axis means, the paper's steering experiment, and the SAE tiling analysis.</p>
 </header>
 <div class="kpis">
 {% for k,v in counts.items() %}<div class="kpi"><b>{{ v }}</b><span>{{ k }}</span></div>{% endfor %}
@@ -266,6 +267,99 @@ def _safe_json(s: str) -> str:
     return s.replace("</", "<\\/")
 
 
+def _round_list(v: Any, nd: int = 3) -> Any:
+    if isinstance(v, list):
+        return [round(x, nd) if isinstance(x, float) else x for x in v]
+    return v
+
+
+def _compact_depth_figure(raw: str, max_prompt: int = 40) -> str:
+    """Shrink the layer-slider figure: drop shadow traces from frames, round coordinates, and
+    shorten hover text (prompt truncated; lens readouts abbreviated to J:/L:/T:)."""
+    import re
+
+    fig = json.loads(raw)
+
+    def shrink_text(texts: list[str]) -> list[str]:
+        out = []
+        for t in texts:
+            parts = t.split("<br>")
+            head = parts[0]
+            if len(head) > max_prompt:
+                head = head[: max_prompt - 1] + "…"
+            lens = [re.sub(r"^(logit lens|tuned lens|J-lens) → (.*?) \((\d\.\d\d)\)$",
+                           lambda m: {"logit lens": "L", "tuned lens": "T", "J-lens": "J"}[m.group(1)]
+                           + ":" + m.group(2) + " " + m.group(3), x)
+                    for x in parts[2:] if "→" in x]
+            label = parts[1] if len(parts) > 1 else ""
+            out.append("<br>".join([head, label] + ([" · ".join(lens)] if lens else [])))
+        return out
+
+    def compact_traces(traces: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        kept = []
+        for tr in traces:
+            if tr.get("name") == "shadow":
+                continue
+            for k in ("x", "y", "z"):
+                if k in tr:
+                    tr[k] = _round_list(tr[k])
+            if isinstance(tr.get("text"), list):
+                tr["text"] = shrink_text(tr["text"])
+            kept.append(tr)
+        return kept
+
+    fig["data"] = compact_traces(fig.get("data", []))
+    for fr in fig.get("frames", []):
+        fr["data"] = compact_traces(fr.get("data", []))
+    return json.dumps(fig, separators=(",", ":"))
+
+
+def _compact_sae_partial(raw: str, keep_ks: tuple[int, ...] = (1, 2, 4, 8, 16, 32, 64),
+                         max_prompt: int = 40) -> str:
+    """Keep a subset of the k-values in the partial-reconstruction figure and shorten hover."""
+    fig = json.loads(raw)
+    data = fig.get("data", [])
+    keep_names = {f"top-{k} features" for k in keep_ks}
+    new = []
+    for tr in data:
+        name = tr.get("name", "")
+        if name.startswith("top-") and name not in keep_names:
+            continue
+        for k in ("x", "y", "z"):
+            if k in tr:
+                tr[k] = _round_list(tr[k])
+        if isinstance(tr.get("text"), list):
+            tr["text"] = [t.split("<br>")[0][:max_prompt] for t in tr["text"]]
+        new.append(tr)
+    fig["data"] = new
+    menus: list[dict[str, Any]] = fig.get("layout", {}).get("updatemenus", [])
+    if menus:
+        buttons: list[dict[str, Any]] = []
+        names = [tr.get("name") for tr in new]
+        for kk in keep_ks:
+            nm = f"top-{kk} features"
+            if nm in names:
+                vis = [n == nm or not str(n).startswith("top-") for n in names]
+                buttons.append({"label": f"k = {kk}", "method": "update",
+                                "args": [{"visible": vis}]})
+        menus[0]["buttons"] = buttons
+        menus[0]["active"] = len(buttons) - 1
+        for tr in new:
+            tr["visible"] = (not str(tr.get("name")).startswith("top-")) or \
+                tr.get("name") == f"top-{keep_ks[-1]} features"
+    return json.dumps(fig, separators=(",", ":"))
+
+
+def _compact_figure(raw: str) -> str:
+    """Round coordinates of a plain figure (main plot / previews)."""
+    fig = json.loads(raw)
+    for tr in fig.get("data", []):
+        for k in ("x", "y", "z"):
+            if k in tr:
+                tr[k] = _round_list(tr[k])
+    return json.dumps(fig, separators=(",", ":"))
+
+
 def _source_links(keys: list[str]) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
     for k in keys:
@@ -310,7 +404,7 @@ def _sae_payload(d: Path) -> dict[str, Any] | None:
         "tuning_label": sj["tuning"]["label"].replace("_", " "),
         "curves_json": _safe_json((d / "sae_curves.json").read_text(encoding="utf-8")),
         "tuning_json": _safe_json((d / "sae_tuning.json").read_text(encoding="utf-8")),
-        "partial_json": _safe_json((d / "sae_partial.json").read_text(encoding="utf-8")),
+        "partial_json": _safe_json(_compact_sae_partial((d / "sae_partial.json").read_text(encoding="utf-8"))),
     }
 
 
@@ -342,7 +436,7 @@ def _depth_payload(d: Path) -> dict[str, Any] | None:
     agreement = ", ".join(f"{k} {v:.0%}" for k, v in agr.items())
     return {
         "pcs": pcs, "agreement": agreement,
-        "depth_json": _safe_json((d / "depth_figure.json").read_text(encoding="utf-8")),
+        "depth_json": _safe_json(_compact_depth_figure((d / "depth_figure.json").read_text(encoding="utf-8"))),
         "scores_json": _safe_json((d / "depth_scores.json").read_text(encoding="utf-8")),
         "lens_json": _safe_json(lens_json),
         "status_line": status_line, "n_plotted": dj["n_points_plotted"],
@@ -420,7 +514,7 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
         cards.append({
             "name": name, "title": name.replace("_", " "), "by": _by_label(rep),
             "status": rep["status"], "badge": BADGE_TEXT[rep["status"]],
-            "preview_json": _safe_json(prev.read_text(encoding="utf-8")),
+            "preview_json": _safe_json(_compact_figure(prev.read_text(encoding="utf-8"))),
         })
 
     common = {"fonts": FONTS, "plotly": PLOTLY_CDN, "css": CSS, "js": JS, "built": built}
@@ -454,7 +548,7 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
             "n_outliers": ps["n_outliers_removed"], "examples": ps["examples"],
             "deviations": ps.get("deviations", []), "meta": meta,
             "precision": rep.get("precision_check"),
-            "figure_json": _safe_json(fig_path.read_text(encoding="utf-8")),
+            "figure_json": _safe_json(_compact_figure(fig_path.read_text(encoding="utf-8"))),
             "sae": _sae_payload(results_dir / name),
             "depth": _depth_payload(results_dir / name),
             "steer": _steer_payload(results_dir / name),

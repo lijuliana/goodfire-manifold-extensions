@@ -87,5 +87,8 @@ def test_jacobian_lens_identity_matches_logit_lens(tmp_path, rng):
     logits = fm.unembed(torch.as_tensor(st[:, 4].astype(np.float32))).numpy()
     reads = pc_readouts(fm, pcs, coords, logits, 2, jlens=jl, tuned=None, k=3)
     assert len(reads) == 3 and reads[0]["jacobian_lens"]["up"] == reads[0]["logit_lens"]["up"]
-    emp = logit_correlation_readout(logits, coords[:, 0], lambda i: f"t{i}", k=2, min_prob=0.0)
+    emp = logit_correlation_readout(logits, coords[:, 0], lambda i: f"t{i}", k=2, min_prob=0.0,
+                                    word_only=False)
     assert len(emp["positive"]) == 2 and len(emp["negative"]) == 2
+    none = logit_correlation_readout(logits, coords[:, 0], lambda i: "!", k=2, min_prob=0.0)
+    assert none["positive"] == []

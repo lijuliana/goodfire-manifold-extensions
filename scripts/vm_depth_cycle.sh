@@ -8,6 +8,7 @@ START=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 az vm start -g $RG -n $VM -o none
 for i in $(seq 1 20); do scripts/vm_ssh.sh 'echo up' >/dev/null 2>&1 && break; sleep 10; done
 scripts/vm_ssh.sh --sync
+scripts/vm_ssh.sh 'cd ~/goodfire-manifold-replication && bash scripts/rename_political.sh'
 RUN_SCRIPT="${RUN_SCRIPT:-scripts/run_depth.sh}"
 PURPOSE="${PURPOSE:-VM uptime session 3 (billing): political_bias_aug + depth sweep + lenses + steering}"
 scripts/vm_ssh.sh "cd ~/goodfire-manifold-replication && export PATH=\$HOME/.local/bin:\$PATH && uv sync --frozen --extra dev >/dev/null 2>&1; bash $RUN_SCRIPT" 2>&1 | grep -vE "Warning|warn|it/s\]|%\|"

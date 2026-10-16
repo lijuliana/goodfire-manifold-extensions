@@ -1,7 +1,7 @@
 from manifolds.manifest import load_manifest
 
 CORE = {"colors", "temperature", "age", "geography", "days", "years", "formality",
-        "sent_length", "political_bias", "political_bias_aug"}
+        "sent_length", "political_bias"}
 
 
 def test_manifest_loads_and_has_all_tiers():
@@ -20,7 +20,7 @@ def test_core_entries_have_templates_and_geometry_keys():
     assert keys == {
         "colors": "paraboloid", "temperature": "line", "age": "line", "geography": "tree",
         "days": "circle", "years": "helix", "formality": "line", "sent_length": "line",
-        "political_bias": "ordinal", "political_bias_aug": "ordinal",
+        "political_bias": "ordinal",
     }
     for x in m.by_tier("core"):
         assert x.prompt_template, x.name

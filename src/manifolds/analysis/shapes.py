@@ -365,9 +365,6 @@ ROLES: dict[str, dict[str, Any]] = {
     "political_bias": {"kind": "ordinal", "label": "bias_label", "color_by": "bias_label",
                        "color_mode": "continuous", "ambient_dim": 1,
                        "tuning_label": "bias_label"},
-    "political_bias_aug": {"kind": "ordinal", "label": "bias_label", "color_by": "bias_label",
-                           "color_mode": "continuous", "ambient_dim": 1,
-                           "tuning_label": "bias_label"},
 }
 
 

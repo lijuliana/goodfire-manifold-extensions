@@ -33,7 +33,7 @@ uv run manifolds ledger summary
 Extensions beyond the paper (on every manifold page): a layer slider showing the manifold at all 33
 residual-stream positions with a shape-metric-by-layer chart; logit-lens and tuned-lens readouts
 (what the model would say next from each point at each depth); and the paper's own steering
-experiment (App. B.1). `data/political_bias_aug.jsonl` is our Claude-generated stand-in for the
+experiment (App. B.1). `data/political_bias.jsonl` is our Claude-generated stand-in for the
 paper's unreleased GPT-5 augmentation (`scripts/augment_political_bias.py`, provenance in the file).
 
 Model access: the pipeline tries `meta-llama/Llama-3.1-8B` (gated; set `HF_TOKEN`) and falls back to

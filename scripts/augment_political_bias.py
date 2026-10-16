@@ -1,7 +1,7 @@
 """Generate a balanced, graded political-bias statement set with Claude.
 
 Mirrors the augmentation step of Bhalla et al. 2026 (Table 1: "GPT-5 augmentations of
-cajcodes_political_bias"), whose outputs were not released. Output: data/political_bias_aug.jsonl
+cajcodes_political_bias"), whose outputs were not released. Output: data/political_bias.jsonl
 with provenance. Levels follow the source dataset: 0 strongly conservative .. 4 strongly liberal.
 """
 
@@ -84,7 +84,7 @@ def ask(client: anthropic.Anthropic, topic: str) -> list[dict]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="data/political_bias_aug.jsonl")
+    ap.add_argument("--out", default="data/political_bias.jsonl")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--topics", type=int, default=len(TOPICS))
     a = ap.parse_args()

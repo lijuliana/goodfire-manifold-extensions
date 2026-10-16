@@ -43,7 +43,8 @@ def _color_config(name: str, labels: list[dict[str, Any]]) -> dict[str, Any]:
 _STATUS_V1 = {  # verdicts of the first core run under rubric v1 (2026-10-15), for transparency
     "colors": "partial", "temperature": "matches", "age": "matches", "geography": "matches",
     "days": "matches", "years": "matches", "formality": "failed", "sent_length": "failed",
-    "political_bias": "failed",
+    # the raw-dataset political_bias run was "failed" under v1 / "partial" under v2; the current
+    # political_bias set (Claude-augmented) never ran under v1
 }
 
 

@@ -185,15 +185,25 @@ def direction_readout(full_model: Any, transported: np.ndarray, k: int = 12
     return [tok.decode([i]) for i in top], [tok.decode([i]) for i in bottom]
 
 
+def _wordlike(s: str) -> bool:
+    t = s.strip()
+    return len(t) >= 2 and t.replace("-", "").isalpha()
+
+
 def logit_correlation_readout(logits: np.ndarray, coord: np.ndarray, vocab_decode: Any,
-                              k: int = 12, min_prob: float = 1e-4) -> dict[str, list[str]]:
+                              k: int = 12, min_prob: float = 1e-4,
+                              word_only: bool = True) -> dict[str, list[str]]:
     """Empirical (lens-free) meaning of a coordinate: tokens whose actual next-token log-prob
     correlates most positively / negatively with the coordinate across the manifold's prompts.
-    Restricted to tokens with mean probability >= min_prob so rare tokens do not dominate."""
+    Restricted to tokens with mean probability >= min_prob so rare tokens do not dominate, and
+    (by default) to word-like tokens, since the literal next token after a template is usually
+    punctuation whose probability also drifts along the manifold."""
     lp = logits - logits.max(1, keepdims=True)
     lp = lp - np.log(np.exp(lp).sum(1, keepdims=True))
     mean_p = np.exp(lp).mean(0)
     cand = np.flatnonzero(mean_p >= min_prob)
+    if word_only:
+        cand = np.array([i for i in cand if _wordlike(vocab_decode(int(i)))], dtype=int)
     if cand.size == 0:
         return {"positive": [], "negative": []}
     x = (coord - coord.mean()) / (coord.std() + 1e-9)
