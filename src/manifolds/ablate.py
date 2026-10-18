@@ -457,7 +457,8 @@ def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
         }
         steps.append((c.label, view(prep, cmp)[sub]))
         zeroed = global_res["conditions"].get(c.key, {}).get("fraction_zeroed")
-        captions[c.label] = c.description + (f" · {zeroed:.0%} of all MLP activations zeroed"
+        verb = "scaled" if c.group == "scale" else "zeroed"
+        captions[c.label] = c.description + (f" · {zeroed:.0%} of all MLP activations {verb}"
                                              if zeroed is not None else "")
         print(f"  {spec.name:20s} {c.key:14s} shape={rows[c.key]['shape_metric']:.3f} "
               f"knn={cmp['knn_overlap']:.2f} agree={beh['top1_agreement_all']:.2f} "

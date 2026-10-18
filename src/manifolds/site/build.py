@@ -287,7 +287,7 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 </div>
 <div class="box" style="margin-top:12px"><b>Reading.</b> {{ r.ablation.summary }}</div>
 <details><summary class="small mono">per-condition table</summary>
-<div class="tablewrap"><table><thead><tr><th>condition</th><th>zeroed</th><th>status</th><th>shape</th><th>k-NN overlap</th><th>move / spread</th><th>top-1 agreement</th><th>KL</th>{% if r.ablation.task %}<th>task acc.</th>{% endif %}<th>LM Δloss</th><th>PopQA</th></tr></thead><tbody>
+<div class="tablewrap"><table><thead><tr><th>condition</th><th>activations zeroed (or scaled)</th><th>status</th><th>shape</th><th>k-NN overlap</th><th>move / spread</th><th>top-1 agreement</th><th>KL</th>{% if r.ablation.task %}<th>task acc.</th>{% endif %}<th>LM Δloss</th><th>PopQA</th></tr></thead><tbody>
 {% for row in r.ablation.rows %}<tr><td class="mono" title="{{ row.description }}">{{ row.label }}</td><td class="mono">{{ row.zeroed }}</td><td><span class="badge badge-{{ row.status }}">{{ row.status }}</span></td><td class="mono">{{ row.shape }}</td><td class="mono">{{ row.knn }}</td><td class="mono">{{ row.move }}</td><td class="mono">{{ row.agree }}</td><td class="mono">{{ row.kl }}</td>{% if r.ablation.task %}<td class="mono">{{ row.task }}</td>{% endif %}<td class="mono">{{ row.dloss }}</td><td class="mono">{{ row.popqa }}</td></tr>{% endfor %}
 </tbody></table></div>
 <p class="small">shape = mean of the critical shape metrics on a fresh PCA of the ablated activations; k-NN overlap = share of each prompt's 10 nearest neighbours (full activation space) kept; KL = KL(clean ‖ ablated) of the next-token distribution over {{ r.ablation.n_kl }} prompts; LM Δloss and PopQA are model-wide (held-out FineWeb-edu; 300 PopQA questions, 8-shot).</p>
@@ -716,7 +716,8 @@ def _ablation_payload(d: Path) -> dict[str, Any] | None:
             continue
         g = a["global"].get(key, {})
         rows.append({"label": r["label"], "description": r["description"], "status": r["status"],
-                     "zeroed": _fmt(100 * g.get("fraction_zeroed", 0.0), 0) + "%",
+                     "zeroed": _fmt(100 * g.get("fraction_zeroed", 0.0), 0) + "%"
+                     + (" scaled" if r["group"] == "scale" else ""),
                      "shape": _fmt(r["shape_metric"]), "knn": _fmt(r["knn_overlap"]),
                      "move": _fmt(r["relative_move"]), "agree": _fmt(r["top1_agreement"]),
                      "kl": _fmt(r["kl_mean"], 3), "task": _fmt(r.get("task_accuracy")),
