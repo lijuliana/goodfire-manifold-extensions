@@ -44,7 +44,10 @@ def test_page_with_all_sections(tmp_path, rng):
         "name": "temperature", "n_points": n, "n_points_plotted": n, "n_layers": 4,
         "consistency_block19_vs_truncated": {"cosine_min": 0.9999, "cosine_mean": 1.0},
         "scores": {str(li): {"status": "matches", "metrics": {}} for li in range(5)},
-        "lens": lens, "tuned_lens": {"repo": "x/y"}, "steering": steer, "model_id": "m"}))
+        "lens": lens, "tuned_lens": {"repo": "x/y"}, "steering": steer, "model_id": "m",
+        "pc_readouts": [{"pc": 1, "explained_variance_ratio": 0.5,
+                         "jacobian_lens": {"up": [" hot"], "down": [" cold"]},
+                         "empirical": {"positive": [" hot"], "negative": [" cold"]}}]}))
     # a minimal SAE report in the current format
     (d / "sae.json").write_text(json.dumps({
         "name": "temperature", "sae": {"repo": "r"}, "n_points": n,
@@ -59,7 +62,7 @@ def test_page_with_all_sections(tmp_path, rng):
     assert build_site(results, tmp_path / "site") == 1
     page = (tmp_path / "site" / "manifolds" / "temperature.html").read_text()
     for marker in ("Across the layers", "json-depth", "Steering along the manifold", "json-steer",
-                   "SAE tiling", "json-sae-partial", "tuned lens", "dilution"):
+                   "SAE tiling", "json-sae-partial", "What the axes mean", "<details"):
         assert marker in page, marker
     index = (tmp_path / "site" / "index.html").read_text()
     assert "dilution" in index

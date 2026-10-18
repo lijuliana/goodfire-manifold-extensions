@@ -96,6 +96,11 @@ footer{margin-top:50px;font-size:13px;color:var(--muted)}
 .axes-summary{display:grid;gap:10px;margin:6px 0 12px}
 .axis-line{border-left:3px solid var(--line);padding:4px 10px}
 details>summary{cursor:pointer;margin:6px 0}
+details.box{margin:10px 0;padding:10px 14px}
+details.box>summary{list-style:none;display:flex;align-items:center;gap:8px}
+details.box>summary::before{content:"▸";font-family:var(--font-mono);color:var(--muted)}
+details.box[open]>summary::before{content:"▾"}
+details.box>summary::-webkit-details-marker{display:none}
 a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 """
@@ -111,8 +116,13 @@ function figFrom(id){ return JSON.parse(document.getElementById(id).textContent)
 if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
 document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo(0, 0);
-  const eager = Array.from(document.querySelectorAll('.eager-fig')).map(el => renderFig(el, figFrom(el.dataset.fig)));
+  const visible = el => !el.closest('details') || el.closest('details').open;
+  const eager = Array.from(document.querySelectorAll('.eager-fig')).filter(visible).map(el => renderFig(el, figFrom(el.dataset.fig)));
   Promise.all(eager).then(() => { window.scrollTo(0, 0); });
+  document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => {
+    if (!d.open) return;
+    d.querySelectorAll('.eager-fig').forEach(el => { if (!el.dataset.rendered) { el.dataset.rendered = '1'; renderFig(el, figFrom(el.dataset.fig)); } else { Plotly.Plots.resize(el); } });
+  }));
   const lazy = document.querySelectorAll('.lazy-fig');
   if (!('IntersectionObserver' in window)) { lazy.forEach(el => renderFig(el, figFrom(el.dataset.fig))); return; }
   const io = new IntersectionObserver(entries => entries.forEach(e => {
@@ -139,6 +149,19 @@ INDEX = r"""{% extends "base" %}{% block body %}
 Each entry shows a 3-D PCA of residual-stream activations (last token, block 19), the shape the source reports, a quantitative shape check, and a replication badge. Nothing here is hand-edited: badges come from the checks.
 Beyond the sources, every page adds a layer slider (the manifold at all 33 residual positions), what the model would say from each point under the logit, tuned and Jacobian lenses, a decoding of what each principal axis means, the paper's steering experiment, and the SAE tiling analysis.</p>
 </header>
+{% if cards %}
+<h2>Manifolds</h2>
+<div class="grid">
+{% for c in cards %}
+<a class="card" href="manifolds/{{ c.name }}.html">
+<div class="fig lazy-fig" id="prev-{{ c.name }}" data-fig="json-{{ c.name }}"></div>
+<script type="application/json" id="json-{{ c.name }}">{{ c.preview_json|safe }}</script>
+<div class="cap mono"><div class="name">{{ c.title }}</div><div class="by">by {{ c.by }} · <span class="badge badge-{{ c.status }}">{{ c.badge }}</span></div></div>
+</a>
+{% endfor %}
+</div>
+{% endif %}
+<h2>Replication status</h2>
 <div class="kpis">
 {% for k,v in counts.items() %}<div class="kpi"><b>{{ v }}</b><span>{{ k }}</span></div>{% endfor %}
 </div>
@@ -157,18 +180,6 @@ Beyond the sources, every page adds a layer slider (the manifold at all 33 resid
 </tr>
 {% endfor %}{% endfor %}
 </tbody></table></div>
-{% if cards %}
-<h2>Gallery</h2>
-<div class="grid">
-{% for c in cards %}
-<a class="card" href="manifolds/{{ c.name }}.html">
-<div class="fig lazy-fig" id="prev-{{ c.name }}" data-fig="json-{{ c.name }}"></div>
-<script type="application/json" id="json-{{ c.name }}">{{ c.preview_json|safe }}</script>
-<div class="cap mono"><div class="name">{{ c.title }}</div><div class="by">by {{ c.by }} · <span class="badge badge-{{ c.status }}">{{ c.badge }}</span></div></div>
-</a>
-{% endfor %}
-</div>
-{% endif %}
 {% endblock %}"""
 
 DETAIL = r"""{% extends "base" %}{% block body %}
@@ -180,95 +191,52 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 <div class="fig eager-fig" id="fig-probe" data-fig="json-probe"></div>
 <script type="application/json" id="json-probe">{{ r.probe.figure_json|safe }}</script>
 <p class="small mono">Fourier-probe view · drag to rotate · scroll to zoom · hover for the value</p>
-<div class="box"><p class="small">The source's claim for this manifold is about linear <em>probes</em> (Feucht et al. 2026, Fig. 6), not the top principal components. Each point sits at the cross-validated predictions of ridge probes trained on the block activations: x and y are the predicted cos and sin of 2π·{{ r.probe.label }}/10 (the ones-digit circle, R² {{ '%.2f'|format(r.probe.r2_circle) }}), z is the predicted magnitude (R² {{ '%.2f'|format(r.probe.r2_linear) }}). Predictions are out-of-fold, so a visible circle cannot come from overfitting. The raw 3-D PCA of the same activations, shown further down, is a blob: the circle carries little variance, which is also what the paper reports.</p></div>
+<p class="small">The source's claim here is about linear <em>probes</em> (Feucht et al. 2026, Fig. 6), not the top principal components. Each point sits at out-of-fold predictions of ridge probes on the block activations: x and y are the predicted cos and sin of 2π·{{ r.probe.label }}/10 (the ones-digit circle, R² {{ '%.2f'|format(r.probe.r2_circle) }}), z the predicted magnitude (R² {{ '%.2f'|format(r.probe.r2_linear) }}). The raw PCA of the same activations is a blob, as the paper reports; it is in the details below.</p>
 {% else %}
 <div class="fig eager-fig" id="fig-main" data-fig="json-main"></div>
 <script type="application/json" id="json-main">{{ r.figure_json|safe }}</script>
 <p class="small mono">drag to rotate · scroll to zoom · hover for the prompt</p>
 {% endif %}
-<div class="two">
-<div>
-<h2>What the source reports</h2>
-<div class="box"><b>{{ r.geometry }}</b><br>
-<span class="small">{{ r.model }} · layer {{ r.layer }} · last token · {{ r.replication_mode }}</span><br>
-<span class="small">{% for s in r.sources %}<a href="{{ s[1] }}">{{ s[0] }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</span></div>
-<h2>Replication status</h2>
-<div class="box"><span class="badge badge-{{ r.status }}">{{ r.badge }}</span> <span class="small">{{ r.reason }}</span>
-<table style="margin:10px 0 0"><thead><tr><th>check</th><th>value</th><th>threshold</th><th>critical</th><th>result</th></tr></thead><tbody>
-{% for c in r.checks %}<tr><td class="mono" title="{{ c.note }}">{{ c.name }}</td><td class="mono">{{ '%.3f'|format(c.value) }}</td><td class="mono">{{ c.op }} {{ c.threshold }}</td><td>{{ 'info only' if c.informative else ('yes' if c.critical else 'no') }}</td><td class="{{ 'check-pass' if c.passed else ('small' if c.informative else 'check-fail') }}">{{ 'pass' if c.passed else 'fail' }}</td></tr>{% endfor %}
-</tbody></table>
-<p class="small">Thresholds are ours; the sources describe shapes qualitatively. PCA explained variance: {{ r.evr }}.{% if r.preprocessing and r.preprocessing != 'none' %} Preprocessing: {{ r.preprocessing }}.{% endif %}</p></div>
-</div>
-<div>
-<h2>Prompts</h2>
-<div class="box">template <pre>{{ r.template }}</pre>
-{{ r.n_kept }} prompts kept of {{ r.n_total }} ({{ r.n_outliers }} norm outliers removed).<br>
-examples: {% for e in r.examples %}<pre>{{ e }}</pre>{% endfor %}
-{% if r.deviations %}<b>Deviations from the source</b><ul>{% for d in r.deviations %}<li class="small">{{ d }}</li>{% endfor %}</ul>{% endif %}
-</div>
-<h2>Extraction</h2>
-<div class="box small mono">
-{% for k,v in r.meta.items() %}{{ k }}: {{ v }}<br>{% endfor %}
-{% if r.precision %}<br>precision check vs float32: cosine min {{ '%.6f'|format(r.precision.cosine_min) }}, mean {{ '%.6f'|format(r.precision.cosine_mean) }}, max rel. err {{ '%.4f'|format(r.precision.rel_err_max) }} ({{ 'pass' if r.precision.passed else 'FAIL' }}){% endif %}
-</div>
-</div>
-</div>
-{% if r.probe %}
-<h2>Raw PCA (reference)</h2>
-<div class="box"><p class="small">Top three principal components of the raw activations, the view used on every other page. For this manifold it is uninformative by design.</p>
-<div class="fig eager-fig" id="fig-main" data-fig="json-main" style="height:460px"></div>
-<script type="application/json" id="json-main">{{ r.figure_json|safe }}</script></div>
-{% endif %}
-{% if r.depth %}
-<h2>Across the layers</h2>
-<div class="box">
-<p class="small">The paper looks at one depth. Here the same prompts are read out at every residual-stream position: 0 is the token embedding, i is the output of block i−1, so the paper's layer 19 is position 20. Drag the slider to watch the manifold form. Hover shows what the model would say next from that point at that depth (logit lens: the output head applied directly; tuned lens: Belrose et al. 2023's learned per-layer translator, {{ r.depth.tuned_repo }}).</p>
-<div class="fig eager-fig" id="fig-depth" data-fig="json-depth" style="height:560px"></div>
-<script type="application/json" id="json-depth">{{ r.depth.depth_json|safe }}</script>
-<div class="two">
-<div><div class="small mono" style="margin:12px 0 4px">shape metric by layer (critical checks of the rubric)</div><div class="fig2d eager-fig" id="fig-depth-scores" data-fig="json-depth-scores"></div>
-<script type="application/json" id="json-depth-scores">{{ r.depth.scores_json|safe }}</script>
-<p class="small">Status by layer: {{ r.depth.status_line }}.</p></div>
-<div><div class="small mono" style="margin:12px 0 4px">most common next token at position 20 (paper's layer 19)</div><div class="fig2d eager-fig" id="fig-lens" data-fig="json-lens"></div>
-<script type="application/json" id="json-lens">{{ r.depth.lens_json|safe }}</script>
-<p class="small">Top-1 token of the logit lens and of the tuned lens over the {{ r.depth.n_plotted }} plotted prompts.</p></div>
-</div>
-<p class="small">Consistency check: block-19 output of the full model vs the truncated-model extraction used above, cosine ≥ {{ '%.5f'|format(r.depth.cos_min) }}. Full-model run: {{ r.depth.model_id }}.{% if r.depth.agreement %} Share of prompts where each lens' top-1 token at position 20 equals the model's real next token: {{ r.depth.agreement }}.{% endif %}</p>
-</div>
-{% if r.depth.pcs %}
+
+{% if r.depth and r.depth.pcs %}
 <h2>What the axes mean</h2>
 <div class="box">
-<p class="small">Each principal axis of the plot above, decoded four ways. Three lenses project the axis direction through the model's output head (↑ tokens it promotes, ↓ tokens it suppresses): the logit lens (direct), the tuned lens (learned per-layer translator) and the Jacobian lens (Gurnee et al. 2026: transport by the corpus-averaged Jacobian of the final residual with respect to block 19, pre-fitted lens from Neuronpedia). The fourth is lens-free: the real next-token log-probabilities whose variation across these prompts correlates most with the coordinate. Agreement across the four is the evidence; a single lens can be fooled.</p>
 {% if r.depth.label_model %}
 <div class="axes-summary">
-{% for pc in r.depth.pcs %}{% if pc.label %}<div class="axis-line"><span class="mono">PC{{ pc.pc }}</span> <b>{{ pc.label }}</b> <span class="badge badge-{{ 'matches' if pc.confidence == 'high' else ('partial' if pc.confidence == 'medium' else 'pending') }}">{{ pc.confidence }} confidence</span><div class="small">{{ pc.rationale }}</div></div>{% endif %}{% endfor %}
-<p class="small">Readings by {{ r.depth.label_model }} from the token tables below; a guess to orient you, not a measurement.</p>
+{% for pc in r.depth.pcs %}{% if pc.label %}<div class="axis-line"><span class="mono">PC{{ pc.pc }} · {{ pc.var }} of variance</span><br><b>{{ pc.label }}</b> <span class="badge badge-{{ 'matches' if pc.confidence == 'high' else ('partial' if pc.confidence == 'medium' else 'pending') }}">{{ pc.confidence }} confidence</span><div class="small">{{ pc.rationale }}</div></div>{% endif %}{% endfor %}
 </div>
+<p class="small">Readings by {{ r.depth.label_model }} of four token readouts per axis: the Jacobian, logit and tuned lenses applied to the axis direction (what moving along it makes the model say), plus a lens-free correlation with the model's real next-token log-probabilities. A guide, not a measurement; the tables are the evidence.</p>
 {% endif %}
-<details><summary class="small mono">token tables (the evidence)</summary>
+<details><summary class="small mono">token tables</summary>
 <div class="tablewrap"><table><thead><tr><th>axis</th><th>readout</th><th>↑ promoted</th><th>↓ suppressed</th></tr></thead><tbody>
-{% for pc in r.depth.pcs %}{% for row in pc.rows %}<tr>{% if loop.first %}<td class="mono" rowspan="{{ pc.rows|length }}">PC{{ pc.pc }}<br><span class="small">{{ pc.var }} of variance</span></td>{% endif %}<td class="small">{{ row.name }}</td><td class="mono small">{{ row.up }}</td><td class="mono small">{{ row.down }}</td></tr>{% endfor %}{% endfor %}
+{% for pc in r.depth.pcs %}{% for row in pc.rows %}<tr>{% if loop.first %}<td class="mono" rowspan="{{ pc.rows|length }}">PC{{ pc.pc }}</td>{% endif %}<td class="small">{{ row.name }}</td><td class="mono small">{{ row.up }}</td><td class="mono small">{{ row.down }}</td></tr>{% endfor %}{% endfor %}
 </tbody></table></div></details>
 </div>
 {% endif %}
+
+{% if r.depth %}
+<h2>Across the layers</h2>
+<p class="small">The same prompts read out at every residual-stream position: 0 is the token embedding, position i is the output of block i−1 (the paper's layer 19 is position 20). Drag the slider to watch the manifold form. Hover shows what the model would say next from that point at that depth under the logit (L), tuned (T) and Jacobian (J) lenses.</p>
+<div class="fig eager-fig" id="fig-depth" data-fig="json-depth" style="height:560px"></div>
+<script type="application/json" id="json-depth">{{ r.depth.depth_json|safe }}</script>
 {% endif %}
+
+<h2>Details</h2>
 {% if r.steer %}
-<h2>Steering along the manifold</h2>
-<div class="box">
-<p class="small">Bhalla et al. 2026 App. B.1 / Fig. 2 right. PCA on the layer-19 activations ({{ r.steer.k }} components for 90% variance), centroids of {{ r.steer.n_bins }} bins of <code>{{ r.steer.label }}</code>, straight-line interpolation between consecutive centroids, and each interpolated point added to the base prompt's layer-19 activation during a forward pass. The curves are the next-token probabilities of the paper's diagnostic tokens.</p>
-<p class="small">Base prompt: <code>{{ r.steer.base_prompt }}</code> (label {{ r.steer.base_label }})</p>
+<details class="box"><summary><b>Steering along the manifold</b> <span class="small">· does the geometry drive behaviour?</span></summary>
+<p class="small">The paper's causal test (App. B.1, Fig. 2 right). Take one base prompt from the middle of the manifold. During a forward pass, replace its block-19 vector with points that walk along the manifold (straight lines between the centroids of successive label bins, mapped back from PCA space), let the remaining blocks and the output head run, and read the probability of the paper's diagnostic answer tokens. If the shape is causal, sliding along it slides the model's answer: for temperature the answer should move from "cold" to "warm", for days from one weekday to the next.</p>
+<p class="small">Base prompt: <code>{{ r.steer.base_prompt }}</code> (label {{ r.steer.base_label }}); PCA with {{ r.steer.k }} components, {{ r.steer.n_bins }} bins of <code>{{ r.steer.label }}</code>.</p>
 <div class="fig2d eager-fig" id="fig-steer" data-fig="json-steer" style="height:340px"></div>
 <script type="application/json" id="json-steer">{{ r.steer.figure_json|safe }}</script>
-</div>
+</details>
 {% endif %}
 {% if r.sae %}
-<h2>SAE tiling · {{ r.sae.repo }}</h2>
-<div class="box">
-<p class="small">Bhalla et al. 2026 Sec. 5 ask whether a small, fixed group of SAE atoms spans the manifold (<em>compact capture</em>) or whether it is spread over many partially redundant atoms (<em>dilution</em>). The paper's own SAEs were not released; this uses the public Llama Scope layer-19 SAE for the same base model (JumpReLU, 32k features). On these {{ r.sae.n_points }} prompts the SAE fires {{ '%.1f'|format(r.sae.l0) }} features per token on average and rebuilds {{ '%.0f'|format(100*r.sae.ve_total) }}% of the activation energy (cosine {{ '%.2f'|format(r.sae.cos) }}); relative to the <em>within-manifold</em> spread its reconstruction error is {{ r.sae.ve_within_text }}.</p>
-<table style="margin:6px 0 12px"><thead><tr><th>method</th>{% for k in r.sae.ks %}<th>k = {{ k }}</th>{% endfor %}</tr></thead><tbody>
+<details class="box"><summary><b>SAE tiling</b> <span class="small">· {{ r.sae.repo }} · {{ r.sae.verdict }}</span></summary>
+<p class="small">Bhalla et al. 2026 Sec. 5 ask whether a small, fixed group of SAE atoms spans the manifold (<em>compact capture</em>) or whether it is spread over many partially redundant atoms (<em>dilution</em>). The paper's SAEs were not released; this uses the public Llama Scope layer-19 SAE for the same base model (JumpReLU, 32k features). On these {{ r.sae.n_points }} prompts the SAE fires {{ '%.1f'|format(r.sae.l0) }} features per token on average and rebuilds {{ '%.0f'|format(100*r.sae.ve_total) }}% of the activation energy (cosine {{ '%.2f'|format(r.sae.cos) }}); relative to the within-manifold spread its reconstruction error is {{ r.sae.ve_within_text }}.</p>
+<div class="tablewrap"><table style="margin:6px 0 12px"><thead><tr><th>method</th>{% for k in r.sae.ks %}<th>k = {{ k }}</th>{% endfor %}</tr></thead><tbody>
 {% for row in r.sae.table %}<tr><td class="mono">{{ row.name }}</td>{% for v in row.vals %}<td class="mono">{{ v }}</td>{% endfor %}</tr>{% endfor %}
-</tbody></table>
-<p class="small">Variance of the centered manifold activations explained by the span of k atoms (greedy over decoder directions), by the SAE's actual codes on k greedily chosen features, by k principal components, and by k random atoms. Ambient dimension of the expected geometry: {{ r.sae.ambient_dim }}. Atoms needed to match PCA at the ambient dimension: {{ r.sae.k_match }}. Verdict: <b>{{ r.sae.verdict }}</b>.</p>
+</tbody></table></div>
+<p class="small">Variance of the centered manifold activations explained by the span of k atoms (greedy over decoder directions), by the SAE's codes on k greedily chosen features, by k principal components, and by k random atoms. Ambient dimension of the expected geometry: {{ r.sae.ambient_dim }}; atoms needed to match PCA at that dimension: {{ r.sae.k_match }}.</p>
 <div class="two">
 <div><div class="small mono" style="margin-bottom:4px">variance explained vs number of features</div><div class="fig2d eager-fig" id="fig-sae-curves" data-fig="json-sae-curves"></div>
 <script type="application/json" id="json-sae-curves">{{ r.sae.curves_json|safe }}</script></div>
@@ -278,7 +246,40 @@ examples: {% for e in r.examples %}<pre>{{ e }}</pre>{% endfor %}
 <div class="small mono" style="margin:14px 0 4px">manifold rebuilt from the first k selected features (grey = raw activations in the same PCA basis; use the dropdown)</div>
 <div class="fig eager-fig" id="fig-sae-partial" data-fig="json-sae-partial" style="height:520px"></div>
 <script type="application/json" id="json-sae-partial">{{ r.sae.partial_json|safe }}</script>
+</details>
+{% endif %}
+<details class="box"><summary><b>What the source reports</b></summary>
+<p><b>{{ r.geometry }}</b><br>
+<span class="small">{{ r.model }} · layer {{ r.layer }} · last token · {{ r.replication_mode }}</span><br>
+<span class="small">{% for s in r.sources %}<a href="{{ s[1] }}">{{ s[0] }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</span></p>
+</details>
+<details class="box"><summary><b>Replication status</b> <span class="small">· <span class="badge badge-{{ r.status }}">{{ r.badge }}</span></span></summary>
+<p class="small">{{ r.reason }}</p>
+<div class="tablewrap"><table style="margin:10px 0 0"><thead><tr><th>check</th><th>value</th><th>threshold</th><th>critical</th><th>result</th></tr></thead><tbody>
+{% for c in r.checks %}<tr><td class="mono" title="{{ c.note }}">{{ c.name }}</td><td class="mono">{{ '%.3f'|format(c.value) }}</td><td class="mono">{{ c.op }} {{ c.threshold }}</td><td>{{ 'info only' if c.informative else ('yes' if c.critical else 'no') }}</td><td class="{{ 'check-pass' if c.passed else ('small' if c.informative else 'check-fail') }}">{{ 'pass' if c.passed else 'fail' }}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="small">Thresholds are ours; the sources describe shapes qualitatively. PCA explained variance: {{ r.evr }}.{% if r.preprocessing and r.preprocessing != 'none' %} Preprocessing: {{ r.preprocessing }}.{% endif %}{% if r.depth and r.depth.agreement %} Lens top-1 agreement with the model's real next token at the paper's layer: {{ r.depth.agreement }}.{% endif %}{% if r.depth %} Status by layer: {{ r.depth.status_line }}.{% endif %}</p>
+</details>
+<details class="box"><summary><b>Prompts</b> <span class="small">· {{ r.n_kept }} of {{ r.n_total }} kept</span></summary>
+<div>template <pre>{{ r.template }}</pre>
+{{ r.n_kept }} prompts kept of {{ r.n_total }} ({{ r.n_outliers }} norm outliers removed).<br>
+examples: {% for e in r.examples %}<pre>{{ e }}</pre>{% endfor %}
+{% if r.deviations %}<b>Deviations from the source</b><ul>{% for d in r.deviations %}<li class="small">{{ d }}</li>{% endfor %}</ul>{% endif %}
 </div>
+</details>
+<details class="box"><summary><b>Extraction</b></summary>
+<div class="small mono">
+{% for k,v in r.meta.items() %}{{ k }}: {{ v }}<br>{% endfor %}
+{% if r.precision %}<br>precision check vs float32: cosine min {{ '%.6f'|format(r.precision.cosine_min) }}, mean {{ '%.6f'|format(r.precision.cosine_mean) }}, max rel. err {{ '%.4f'|format(r.precision.rel_err_max) }} ({{ 'pass' if r.precision.passed else 'FAIL' }}){% endif %}
+{% if r.depth %}<br>full-model run: {{ r.depth.model_id }}; block-{{ r.layer }} output vs truncated-model extraction cosine ≥ {{ '%.5f'|format(r.depth.cos_min) }}; tuned lens {{ r.depth.tuned_repo }}{% endif %}
+</div>
+</details>
+{% if r.probe %}
+<details class="box"><summary><b>Raw PCA (reference)</b></summary>
+<p class="small">Top three principal components of the raw activations, the view used on every other page. For this manifold it is uninformative, as the paper reports.</p>
+<div class="fig eager-fig" id="fig-main" data-fig="json-main" style="height:460px"></div>
+<script type="application/json" id="json-main">{{ r.figure_json|safe }}</script>
+</details>
 {% endif %}
 </div>
 {% endblock %}"""
