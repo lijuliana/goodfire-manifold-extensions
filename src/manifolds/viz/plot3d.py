@@ -147,6 +147,73 @@ def build_figure(
     return fig
 
 
+def frames_figure(
+    steps: list[tuple[str, np.ndarray]],
+    color_values: Sequence[Any],
+    *,
+    color_mode: str,
+    hover_text: Sequence[str],
+    active: int = 0,
+    prefix: str = "",
+    hover_by_step: dict[str, Sequence[str]] | None = None,
+    point_size: float = 3.8,
+    camera_eye: tuple[float, float, float] = (1.55, 1.25, 0.85),
+) -> go.Figure:
+    """One 3-D scatter per step with a slider (used for ablation strength, neuron ablations,
+    training checkpoints). Same look as `build_figure`; the floor is rebuilt per frame."""
+    hover_by_step = hover_by_step or {}
+    base_marker: dict[str, Any] = {"size": point_size, "opacity": 0.95, "line": {"width": 0}}
+    if color_mode == "hex":
+        base_marker["color"] = [str(c) for c in color_values]
+    elif color_mode == "categorical":
+        cats = list(dict.fromkeys(color_values))
+        base_marker["color"] = [CATEGORICAL[cats.index(c) % len(CATEGORICAL)]
+                                for c in color_values]
+    else:
+        base_marker["color"] = [float(c) for c in color_values]
+        base_marker["colorscale"] = colorscale_for(color_mode)
+
+    def traces(label: str, c: np.ndarray) -> list[go.BaseTraceType]:
+        c = np.round(np.asarray(c, dtype=float), 3)
+        txt = list(hover_by_step.get(label, hover_text))
+        return _floor_traces(c, point_size) + [go.Scatter3d(
+            x=c[:, 0], y=c[:, 1], z=c[:, 2], mode="markers", marker=base_marker, text=txt,
+            hoverinfo="text", name=label)]
+
+    fig = go.Figure(data=traces(*steps[active]))
+    fig.frames = [go.Frame(data=traces(lab, c), name=lab) for lab, c in steps]
+    slider_steps = [{"method": "animate", "label": lab,
+                     "args": [[lab], {"mode": "immediate", "frame": {"duration": 0, "redraw": True},
+                                      "transition": {"duration": 0}}]} for lab, _ in steps]
+    axis = {"visible": False, "showbackground": False}
+    fig.update_layout(
+        scene={"xaxis": axis, "yaxis": axis, "zaxis": axis, "aspectmode": "data",
+               "camera": {"eye": {"x": camera_eye[0], "y": camera_eye[1], "z": camera_eye[2]}}},
+        sliders=[{"active": active, "steps": slider_steps, "x": 0.05, "len": 0.9, "y": 0.02,
+                  "pad": {"t": 10}, "font": {"family": FONT, "size": 11},
+                  "currentvalue": {"prefix": prefix, "font": {"family": FONT, "size": 12}}}],
+        paper_bgcolor="white", margin={"l": 0, "r": 0, "t": 0, "b": 0},
+        font={"family": FONT, "color": TEXT}, showlegend=False,
+        hoverlabel={"font": {"family": FONT, "size": 11}, "bgcolor": "white"},
+    )
+    return fig
+
+
+def line_layout(title_x: str, title_y: str, *, y_range: tuple[float, float] | None = None,
+                legend_y: float = -0.3) -> dict[str, Any]:
+    ax = {"showgrid": True, "gridcolor": "#eeeeee", "zeroline": False,
+          "tickfont": {"family": FONT, "size": 11}}
+    yax = ax | {"title": {"text": title_y}}
+    if y_range is not None:
+        yax["range"] = list(y_range)
+    return {"paper_bgcolor": "white", "plot_bgcolor": "white",
+            "font": {"family": FONT, "color": TEXT, "size": 12},
+            "margin": {"l": 50, "r": 10, "t": 10, "b": 40},
+            "xaxis": ax | {"title": {"text": title_x}}, "yaxis": yax,
+            "legend": {"font": {"family": FONT, "size": 11}, "orientation": "h", "y": legend_y},
+            "hoverlabel": {"font": {"family": FONT, "size": 11}}}
+
+
 def figure_to_json(fig: go.Figure) -> str:
     out: str = fig.to_json()
     return out

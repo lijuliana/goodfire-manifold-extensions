@@ -15,3 +15,7 @@ logs/vm/
 results/*/depth_states.npy
 data/_probe.jsonl
 site/
+logs/aws/
+logs/aws_instance.json
+results/_ablation/cache/
+results/_checkpoints/raw/*.npy

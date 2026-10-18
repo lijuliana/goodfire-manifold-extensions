@@ -1,0 +1,275 @@
+{
+ "name": "age",
+ "layer": 19,
+ "n_prompts": 99,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.9829886297570695,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "matches",
+   "shape_metric": 0.7480616625809094,
+   "metrics": {
+    "spearman_best_direction": 0.8308719851576993,
+    "knn_r2": 0.6652513400041196
+   },
+   "knn_overlap": 0.38989898989898986,
+   "relative_move": 1.0678437230330529,
+   "top1_agreement": 0.10101010101010101,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.5102864203702634,
+   "move_fraction_in_prefix_domain_subspace": 0.0033651581034064293,
+   "move_fraction_in_null_subspace": 0.007451239041984081,
+   "example": "The hex code #80b918 is for the color green. They are 1 years old. ",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. They are 1 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "1",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. They are 2 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "1",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. They are 3 years old. ",
+     "clean_top1": "3",
+     "prefixed_top1": "1",
+     "answer": null
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "matches",
+   "shape_metric": 0.9564155060672175,
+   "metrics": {
+    "spearman_best_direction": 0.9566481137909708,
+    "knn_r2": 0.9561828983434643
+   },
+   "knn_overlap": 0.608080808080808,
+   "relative_move": 0.7227451914735255,
+   "top1_agreement": 0.2727272727272727,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.18337424982749204,
+   "move_fraction_in_prefix_domain_subspace": 0.000862269604112953,
+   "move_fraction_in_null_subspace": 0.004040644038468599,
+   "example": "The deadline is Tuesday. They are 1 years old. ",
+   "examples": [
+    {
+     "prompt": "The deadline is Tuesday. They are 1 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "It happened on a Monday. They are 2 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "The deadline is Tuesday. They are 3 years old. ",
+     "clean_top1": "3",
+     "prefixed_top1": "3",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "matches",
+   "shape_metric": 0.9490030992487535,
+   "metrics": {
+    "spearman_best_direction": 0.9571057513914657,
+    "knn_r2": 0.9409004471060414
+   },
+   "knn_overlap": 0.4494949494949495,
+   "relative_move": 0.8737932904737703,
+   "top1_agreement": 0.25252525252525254,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.21069344313948565,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.00542460335418582,
+   "example": "Rent is due in November. They are 1 years old. ",
+   "examples": [
+    {
+     "prompt": "Rent is due in November. They are 1 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "It snowed in January. They are 2 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "The trip is in March. They are 3 years old. ",
+     "clean_top1": "3",
+     "prefixed_top1": "2",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "matches",
+   "shape_metric": 0.8981031147224097,
+   "metrics": {
+    "spearman_best_direction": 0.9285590599876314,
+    "knn_r2": 0.867647169457188
+   },
+   "knn_overlap": 0.497979797979798,
+   "relative_move": 1.3689089760547253,
+   "top1_agreement": 0.08080808080808081,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.21749603266356385,
+   "move_fraction_in_prefix_domain_subspace": 0.0025378998834639788,
+   "move_fraction_in_null_subspace": 0.006296209990978241,
+   "example": "The city of Lagos is in Nigeria. They are 1 years old. ",
+   "examples": [
+    {
+     "prompt": "The city of Lagos is in Nigeria. They are 1 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "1",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Quito is in Ecuador. They are 2 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Perth is in Australia. They are 3 years old. ",
+     "clean_top1": "3",
+     "prefixed_top1": "1",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "matches",
+   "shape_metric": 0.7471513130038587,
+   "metrics": {
+    "spearman_best_direction": 0.8581199752628323,
+    "knn_r2": 0.6361826507448852
+   },
+   "knn_overlap": 0.33232323232323235,
+   "relative_move": 1.0750905445435666,
+   "top1_agreement": 0.13131313131313133,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.30644852299522357,
+   "move_fraction_in_prefix_domain_subspace": 0.007913335226476192,
+   "move_fraction_in_null_subspace": 0.007296045310795307,
+   "example": "The debate covered healthcare and the minimum wage. They are 1 years old. ",
+   "examples": [
+    {
+     "prompt": "The debate covered healthcare and the minimum wage. They are 1 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "1",
+     "answer": null
+    },
+    {
+     "prompt": "The mayor announced a climate and energy plan. They are 2 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "Protesters gathered over abortion rights. They are 3 years old. ",
+     "clean_top1": "3",
+     "prefixed_top1": "3",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "matches",
+   "shape_metric": 0.8811349162645722,
+   "metrics": {
+    "spearman_best_direction": 0.9570686456400742,
+    "knn_r2": 0.8052011868890702
+   },
+   "knn_overlap": 0.47373737373737373,
+   "relative_move": 0.9980195627995061,
+   "top1_agreement": 0.10101010101010101,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.3981070538809596,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.006788349244743586,
+   "example": "35+46=81. They are 1 years old. ",
+   "examples": [
+    {
+     "prompt": "35+46=81. They are 1 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "1",
+     "answer": null
+    },
+    {
+     "prompt": "35+46=81. They are 2 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "17+25=42. They are 3 years old. ",
+     "clean_top1": "3",
+     "prefixed_top1": "3",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "matches",
+   "shape_metric": 0.7879656571130247,
+   "metrics": {
+    "spearman_best_direction": 0.9079901051329623,
+    "knn_r2": 0.6679412090930871
+   },
+   "knn_overlap": 0.3919191919191919,
+   "relative_move": 0.9206055954818447,
+   "top1_agreement": 0.1717171717171717,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.32017089103482016,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.006441541016101837,
+   "example": "Please see the note below. They are 1 years old. ",
+   "examples": [
+    {
+     "prompt": "Please see the note below. They are 1 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "A short sentence comes first here. They are 2 years old. ",
+     "clean_top1": "2",
+     "prefixed_top1": "2",
+     "answer": null
+    },
+    {
+     "prompt": "Please see the note below. They are 3 years old. ",
+     "clean_top1": "3",
+     "prefixed_top1": "2",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 76.3
+}

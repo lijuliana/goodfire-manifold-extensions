@@ -1,6 +1,6 @@
 # Replication report: Goodfire concept manifolds in Llama-3.1-8B
 
-Status as of 2026-10-16 (phase 1 + extensions). Site: `site/index.html` (published as a private
+Status as of 2026-10-17 (phase 1, extensions, and the debate extensions on seven pilot manifolds). Site: `site/index.html` (published as a private
 artifact). Every number below is read from `results/<manifold>/*.json`; nothing is hand-edited.
 
 ## Setup
@@ -139,6 +139,157 @@ neighbour count scales with n; cyclic order is graded (fraction of expected neig
 partial ≥ 0.75) instead of all-or-nothing for 12- and 24-class circles; informative checks never
 gate; multi-frame prompt sets are centred per frame before PCA. Under the first pass months and
 hours were "failed" and addition "partial"; those verdicts changed only through these mechanics.
+
+## Extensions II: the "already clean" debate on seven pilot manifolds (2026-10-17)
+
+Prompted by Cammarata's *Neural Networks Are Already Clean*, Gao's reply, and the research plan in
+`concept_manifold_research_plan.md`. Pilots: addition_sum_fourier, colors, age, weekdays_circle,
+geography, months_last, political_bias. Hardware: one AWS g6e.2xlarge (L40S 48 GB), Llama-3.1-8B
+in bf16 with no offload (block-19 activations agree with the cached fp16 extraction at cosine
+≥ 0.9995). All numbers are in `results/<manifold>/{ablation,neurons,crosstalk,checkpoints}.json`
+and `results/_ablation`, `results/_interference`, `results/_checkpoints`. Sources: `docs/sources.md`.
+
+### 1. Weak-activation ablation vs geometry (`manifolds ablate`)
+
+Method ported from Li 2026 (`weak-activation-ablation`): zero every SwiGLU activation in every
+MLP block with |a| < X% of that neuron's max over 512 × 1024 FineWeb-edu tokens (position 0
+excluded). Controls: the same count zeroed at random per (layer, token); the weak tail scaled by
+s = 0.5 or 2 instead of zeroed. The manifold is re-read at the paper's layer under the same
+perturbation that the behaviour is scored under.
+
+Model-wide (64 × 1024 held-out FineWeb-edu tokens; 300 PopQA questions, 8-shot, clean 28.7%):
+
+| condition | share of activations zeroed | Δ held-out loss (nats) | PopQA |
+|---|---|---|---|
+| weak X = 0.5% | 33% | +0.017 | 30.0% |
+| weak X = 1% | 49% | +0.074 | 25.3% |
+| weak X = 2% | 68% | +0.264 | 20.0% |
+| weak X = 3% | 78% | +0.556 | 16.0% |
+| weak X = 5% | 89% | +1.513 | 7.7% |
+| random, count matched to X = 0.1% | 10% | +0.474 | 8.0% |
+| random, count matched to X = 0.5% | 38% | +3.49 | 0.7% |
+| tail × 0.5 below 1.5% | (61% affected) | +0.047 | 26.0% |
+| tail × 2 below 1.5% | (63% affected) | +0.204 | 18.0% |
+
+This reproduces the Qwen3-1.7B picture on Llama-3.1-8B: the weak half of all MLP activations is
+close to dead weight, the same count at random is catastrophic, and amplifying the tail costs
+about as much as deleting it (the readout is linear in the tail).
+
+Per manifold, the first X at which each readout has lost half its clean value (shape = mean
+critical shape metric on a fresh PCA; k-NN = share of each prompt's 10 nearest neighbours kept;
+task = the manifold's own next-token task; "–" = never within X ≤ 10%):
+
+| manifold | task (clean acc.) | shape halves | k-NN < ½ | task halves | PopQA halves | loss +0.1 |
+|---|---|---|---|---|---|---|
+| age | – | – (0.96 at X = 5) | 10 | – | 5 | 1.5 |
+| weekdays_circle | weekday arithmetic (70%) | 7.5 | 10 | 3 | 5 | 1.5 |
+| geography | country recall, a fact (81%) | 5 | 5 | 3 | 5 | 1.5 |
+| addition_sum_fourier | exact sum (95%) | 5 | 5 | 5 | 5 | 1.5 |
+| months_last | month arithmetic (65%) | 3 | 5 | 3 | 5 | 1.5 |
+| political_bias | lean, 2-way (96%) | 3 | 1 | – (92% at X = 5 is a 2-way guess rate) | 5 | 1.5 |
+| colors | hue-family naming (60%) | 1 | 1 | 3 | 5 | 1.5 |
+
+Reading. The plan's hypothesis ("continuous quantities break before facts") holds for some
+manifolds and fails for others. The age line and the weekday circle are *more* robust than
+facts: at X = 5% (89% of activations zeroed, PopQA at a quarter of baseline) their refit shape
+metrics are still 0.96 and 0.93. Colours, the last-token month features and the political-bias
+neighbourhoods degrade earlier than facts: colours lose half their shape metric and two thirds
+of their neighbourhoods at X = 1% (loss +0.07, PopQA 25%), the point where the model's own
+top-1 continuation also changes on two thirds of colour prompts. The tasks that sit on a
+manifold (weekday / month arithmetic, addition) fall at the same X as general top-1 agreement
+(2–3%), not earlier. Across all seven, the count-matched random control at X = 0.1% (10% of
+activations) destroys the geometry (shape ≤ 0.5, k-NN ≤ 0.4) and the tasks, so what the sweep
+measures is specific to weak activations and not to perturbation size. Scaling the tail by 0.5
+leaves every manifold intact; scaling by 2 damages months, colours and political bias about as
+much as zeroing. Caveat: "displacement / spread" in the per-condition tables includes a common
+shift of the whole cloud; the k-NN overlap and the shape metric are translation-invariant.
+
+### 2. Neurons that write and read each manifold (`manifolds neurons`)
+
+Writers: a neuron's own contribution to the variance inside the 3-PC subspace, Var(a)·‖C w‖²
+(w = its `down_proj` column), on ≤ 1000 prompts. Readers: neurons in the four blocks after the
+read layer whose activation is predicted (5-fold CV ridge on the three coordinates, their
+squares and products) from the manifold position. Causal: zero the top-k writers in all
+positions vs k random neurons of the same blocks.
+
+| manifold | Σ individual writer shares | Σ per-block MLP / attention projected variance | top writers' tuning η² (random) | top-256 writers zeroed: shape, k-NN, task (random 256) |
+|---|---|---|---|---|
+| addition_sum_fourier | 12% | 19% / 4% | 0.27 (0.15) | 0.38, 0.49, 3% (0.91, 0.96, 94%) |
+| months_last | 5% | 14% / 4% | 0.34 (0.29) | 0.33, 0.49, 11% (0.88, 0.97, 62%) |
+| weekdays_circle | 2% | 9% / 0% | 0.99 (0.73) | 0.62, 0.86, 26% (0.99, 0.98, 73%) |
+| political_bias | 2% | 11% / 3% | 0.62 (0.07) | 0.69, 0.59, 92% (0.92, 0.84, 96%) |
+| geography | 4% | 10% / 8% | 0.17 (0.26) | 0.61, 0.85, 59% (0.59, 0.97, 81%) |
+| colors | 2% | 12% / 4% | 0.60 (0.17) | 0.94, 0.68, 61% (0.93, 0.87, 60%) |
+| age | 1% | 5% / 4% | 0.84 (0.69) | 0.97, 0.92, – (0.98, 0.97, –) |
+
+Reading. No manifold is written by a handful of neurons: the individual-neuron variances sum to
+1–12% of the subspace variance, and even whole-block MLP outputs sum to 5–19%; the rest is
+covariance between many neurons and blocks. Yet the top writers are causally specific: zeroing
+16 of them (block 18 for addition, e.g. neuron 1712) halves addition accuracy and 64 of them
+bring it to 5%, while 256 random neurons change nothing; the same holds for month and weekday
+arithmetic. For the weekday circle the top writers are the tiling the plan predicted: η² ≈ 1.0,
+each peaked on one day (Wednesday, Friday, Thursday, …), and for colours η² ≈ 0.9 with peaks
+spread around the hue circle (hue 0.03, 0.78, 0.38, 0.70, 0.95); political-bias writers peak at
+the two poles. Two manifolds resist the causal test: the age line and the colour paraboloid keep
+their shape with the top 256 writers zeroed (0.97 and 0.94), so their geometry is carried
+collectively or by attention rather than by the top-ranked neurons. Readers exist for every
+manifold: in blocks L+1…L+4 the best neurons are predicted from the three coordinates with CV
+R² 0.8–0.99, and the fraction of their gate weight inside the subspace is 2–70 × the isotropic
+expectation (3/4096).
+
+### 3. Interference between manifolds (`manifolds interference`, `manifolds crosstalk`)
+
+Subspace overlap (mean squared cosine of the principal angles between 3-PC subspaces) for the
+237 pairs of manifolds read at the same layer (22 at block 19, 4 at block 18), against random
+3-D subspaces drawn from the pooled activation covariance (mean 0.015, 95th percentile 0.028;
+isotropic expectation 0.0007):
+
+- median pair overlap 0.003; 88% of pairs are below the null mean and 94% below its 95th
+  percentile; 10 pairs exceed 0.05 and 4 exceed 0.1.
+- the four large overlaps are shared-concept pairs: days–weekdays_circle 0.52 (the same weekday
+  concept in two templates), weekdays_last–months_last 0.30 and months_last–hours_last 0.12 (all
+  last-token Fourier features of concept + offset), formality–sent_length 0.15 (both read from
+  wikitext sentences).
+- split-half reliability of a manifold's own subspace ranges from 1.0 (colors) to 0.2
+  (adverbs_pace), so low overlaps for the unstable extended-tier manifolds are also low ceilings.
+
+So at the level of their top-3 subspaces the manifolds of different concepts are not "woven
+through each other"; they are as orthogonal as random directions of the residual stream allow.
+Crosstalk (`manifolds crosstalk`): each prompt of a pilot manifold was prefixed with one of six
+sentences from another pilot's domain (e.g. "The hex code #e63946 is for the color red. ") or one
+of six neutral sentences, and the manifold was re-read at its layer. Because a prefix sentence
+adds its own offset to the read token, prefixed activations are centred per prefix sentence
+before the comparison (a first run without this centring showed prefix-identity clusters in the
+top PCs and was discarded). k-NN overlap with the clean cloud, neutral prefix vs the most
+disruptive domain, and where the displacement went:
+
+| manifold | neutral: k-NN, shape | worst domain: k-NN, shape | task clean → neutral | move inside own subspace | inside prefix-domain subspace (random level) |
+|---|---|---|---|---|---|
+| weekdays_circle (concept token) | 0.88, 0.98 | colors 0.86, 0.98 | 70% → 27% | 14% | ≤ 1.8% (0.7%) |
+| geography | 0.91, 0.58 | politics 0.88, 0.54 | 84% → 81% | 3% | ≤ 0.4% (0.3%) |
+| addition_sum_fourier | 0.70, 0.90 | age 0.68, 0.91 | 95% → 100% | 7% | ≤ 1.2% (0.5%) |
+| colors | 0.33, 0.90 | weekdays 0.35, 0.88 | 58% → 60% | 28% | ≤ 1.1% (0.5%) |
+| age | 0.39, 0.79 | politics 0.33, 0.75 | – | 32% | ≤ 0.8% (0.7%) |
+| months_last (last token) | 0.43, 0.31 | politics 0.35, 0.28 | 65% → 16% | 25% | ≤ 1.6% (1.1%) |
+| political_bias | 0.12, 0.62 | weekdays 0.14, 0.79 | 96% → 92% | 22% | ≤ 1.1% (0.8%) |
+
+Reading. There is no concept-specific crosstalk to measure: a colour sentence does not disturb
+the weekday circle more than a neutral sentence does, and for every manifold the most disruptive
+domain is within a few points of the neutral control. What a prefix does is generic context
+sensitivity, and it is large for some read positions: the last-token manifolds (age, colours,
+political bias, the last-token month features) lose most of their neighbourhoods under *any*
+prefix, while the concept-token weekday circle and the "=" and "of" tokens of addition and
+geography barely move. The displacement lies inside the manifold's own 3-PC subspace at 3–32%,
+far above the random level, and inside the prefix domain's subspace at the random level
+(≤ 1.8%): prefixes slide or stretch a manifold along its own axes rather than pulling it toward
+the other concept's directions, which is what the orthogonal subspaces above predict. The
+Q/A-format tasks are the prefix-sensitive ones (weekday arithmetic 70% → 27%, month arithmetic
+65% → 16% with a neutral sentence; the model's unrestricted top-1 changes on 70–80% of those
+prompts), whereas addition, country recall and the lean classification are unaffected.
+
+### 4. Forming during pre-training (`manifolds checkpoints`, OLMo-2 1B)
+
+CHECKPOINTS_PLACEHOLDER
 
 ## Skipped (and why)
 

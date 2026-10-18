@@ -1,0 +1,268 @@
+{
+ "name": "geography",
+ "layer": 19,
+ "n_prompts": 800,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.5425,
+  "task_accuracy": 0.83875,
+  "task": "country recall (fact)"
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "matches",
+   "shape_metric": 0.5012500000000001,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5012500000000001
+   },
+   "knn_overlap": 0.8936250000000001,
+   "relative_move": 0.3695611217572771,
+   "top1_agreement": 0.92375,
+   "task_accuracy": 0.8375,
+   "move_fraction_in_own_subspace": 0.02563202387877353,
+   "move_fraction_in_prefix_domain_subspace": 0.003043512813746929,
+   "move_fraction_in_null_subspace": 0.0023217599373310804,
+   "example": "The hex code #80b918 is for the color green. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. The geographical coordinates latitude 36.2155556 and longitude 65.9363861 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. The geographical coordinates latitude 37.1275 and longitude 69.8305588 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "matches",
+   "shape_metric": 0.5412500000000001,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5412500000000001
+   },
+   "knn_overlap": 0.9036250000000001,
+   "relative_move": 0.25942289639348465,
+   "top1_agreement": 0.93125,
+   "task_accuracy": 0.81625,
+   "move_fraction_in_own_subspace": 0.04055149725603645,
+   "move_fraction_in_prefix_domain_subspace": 0.0008147843182086945,
+   "move_fraction_in_null_subspace": 0.002987941727042198,
+   "example": "They rest on Sunday. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "examples": [
+    {
+     "prompt": "They rest on Sunday. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "The meeting is on Friday. The geographical coordinates latitude 36.2155556 and longitude 65.9363861 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "It happened on a Monday. The geographical coordinates latitude 37.1275 and longitude 69.8305588 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "matches",
+   "shape_metric": 0.5562500000000001,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5562500000000001
+   },
+   "knn_overlap": 0.9011250000000001,
+   "relative_move": 0.28270487811043515,
+   "top1_agreement": 0.92375,
+   "task_accuracy": 0.81125,
+   "move_fraction_in_own_subspace": 0.047061484235919944,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.00273075676523149,
+   "example": "The harvest is in October. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "examples": [
+    {
+     "prompt": "The harvest is in October. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "The harvest is in October. The geographical coordinates latitude 36.2155556 and longitude 65.9363861 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "The festival is in September. The geographical coordinates latitude 37.1275 and longitude 69.8305588 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.5599999999999999,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5599999999999999
+   },
+   "knn_overlap": 0.921,
+   "relative_move": 0.2482566741763975,
+   "top1_agreement": 0.92125,
+   "task_accuracy": 0.8225,
+   "move_fraction_in_own_subspace": 0.04250436430997083,
+   "move_fraction_in_prefix_domain_subspace": 0.002060722094029188,
+   "move_fraction_in_null_subspace": 0.0026889643631875515,
+   "example": "He is 82 years old. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "examples": [
+    {
+     "prompt": "He is 82 years old. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "She is 7 years old. The geographical coordinates latitude 36.2155556 and longitude 65.9363861 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "She is 7 years old. The geographical coordinates latitude 37.1275 and longitude 69.8305588 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "matches",
+   "shape_metric": 0.5425,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5425
+   },
+   "knn_overlap": 0.8792500000000001,
+   "relative_move": 0.31343116225422746,
+   "top1_agreement": 0.86875,
+   "task_accuracy": 0.77625,
+   "move_fraction_in_own_subspace": 0.03437357754648449,
+   "move_fraction_in_prefix_domain_subspace": 0.0037195258773863316,
+   "move_fraction_in_null_subspace": 0.0027374590281397104,
+   "example": "The candidate spoke about tax cuts and welfare. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "examples": [
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "Protesters gathered over abortion rights. The geographical coordinates latitude 36.2155556 and longitude 65.9363861 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "The debate covered healthcare and the minimum wage. The geographical coordinates latitude 37.1275 and longitude 69.8305588 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "matches",
+   "shape_metric": 0.5662500000000001,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5662500000000001
+   },
+   "knn_overlap": 0.91,
+   "relative_move": 0.2493266095118385,
+   "top1_agreement": 0.90875,
+   "task_accuracy": 0.815,
+   "move_fraction_in_own_subspace": 0.03389119392462112,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.002859720727428794,
+   "example": "48+37=85. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "examples": [
+    {
+     "prompt": "48+37=85. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "35+46=81. The geographical coordinates latitude 36.2155556 and longitude 65.9363861 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "91+6=97. The geographical coordinates latitude 37.1275 and longitude 69.8305588 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "matches",
+   "shape_metric": 0.5750000000000002,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5750000000000002
+   },
+   "knn_overlap": 0.9067500000000002,
+   "relative_move": 0.2616102280100317,
+   "top1_agreement": 0.9425,
+   "task_accuracy": 0.815,
+   "move_fraction_in_own_subspace": 0.03319003174123353,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.0026232623495161533,
+   "example": "This paragraph continues the text. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "The door at the end of the hall is open. The geographical coordinates latitude 36.2155556 and longitude 65.9363861 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    },
+    {
+     "prompt": "This paragraph continues the text. The geographical coordinates latitude 37.1275 and longitude 69.8305588 are in the country of",
+     "clean_top1": " Afghanistan",
+     "prefixed_top1": " Afghanistan",
+     "answer": " Afghanistan"
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 44.4
+}

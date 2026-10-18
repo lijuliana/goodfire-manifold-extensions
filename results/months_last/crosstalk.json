@@ -1,0 +1,275 @@
+{
+ "name": "months_last",
+ "layer": 18,
+ "n_prompts": 288,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.885675403412169,
+  "task_accuracy": 0.6493055555555556,
+  "task": "month arithmetic"
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "partial",
+   "shape_metric": 0.6179382490452677,
+   "metrics": {
+    "probe_r2_period_10": 0.7582151967314615,
+    "probe_r2_period_5": 0.4776613013590739
+   },
+   "knn_overlap": 0.7350694444444444,
+   "relative_move": 0.6335446976209521,
+   "top1_agreement": 0.4236111111111111,
+   "task_accuracy": 0.3333333333333333,
+   "move_fraction_in_own_subspace": 0.18680776796700974,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.009641495533287525,
+   "example": "The hex code #80b918 is for the color green. Q: What month is one months after January?\nA:",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. Q: What month is one months after January?\nA:",
+     "clean_top1": " February",
+     "prefixed_top1": " February",
+     "answer": " February"
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Q: What month is two months after January?\nA:",
+     "clean_top1": " March",
+     "prefixed_top1": " March",
+     "answer": " March"
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Q: What month is three months after January?\nA:",
+     "clean_top1": " April",
+     "prefixed_top1": " April",
+     "answer": " April"
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "failed",
+   "shape_metric": 0.38863538420786786,
+   "metrics": {
+    "probe_r2_period_10": 0.4824294579336895,
+    "probe_r2_period_5": 0.2948413104820462
+   },
+   "knn_overlap": 0.49374999999999997,
+   "relative_move": 0.6465368252012403,
+   "top1_agreement": 0.2951388888888889,
+   "task_accuracy": 0.21875,
+   "move_fraction_in_own_subspace": 0.2508482006460898,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.010181624442338943,
+   "example": "The deadline is Tuesday. Q: What month is one months after January?\nA:",
+   "examples": [
+    {
+     "prompt": "The deadline is Tuesday. Q: What month is one months after January?\nA:",
+     "clean_top1": " February",
+     "prefixed_top1": " February",
+     "answer": " February"
+    },
+    {
+     "prompt": "It happened on a Monday. Q: What month is two months after January?\nA:",
+     "clean_top1": " March",
+     "prefixed_top1": " March",
+     "answer": " March"
+    },
+    {
+     "prompt": "Today is Wednesday. Q: What month is three months after January?\nA:",
+     "clean_top1": " April",
+     "prefixed_top1": " April",
+     "answer": " April"
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.6026074140468907,
+   "metrics": {
+    "probe_r2_period_10": 0.6614319244159584,
+    "probe_r2_period_5": 0.543782903677823
+   },
+   "knn_overlap": 0.4552083333333333,
+   "relative_move": 0.6636690047538883,
+   "top1_agreement": 0.21180555555555555,
+   "task_accuracy": 0.16666666666666666,
+   "move_fraction_in_own_subspace": 0.2699987781930969,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.010789571329951286,
+   "example": "They are 19 years old. Q: What month is one months after January?\nA:",
+   "examples": [
+    {
+     "prompt": "They are 19 years old. Q: What month is one months after January?\nA:",
+     "clean_top1": " February",
+     "prefixed_top1": " February",
+     "answer": " February"
+    },
+    {
+     "prompt": "They are 19 years old. Q: What month is two months after January?\nA:",
+     "clean_top1": " March",
+     "prefixed_top1": " February",
+     "answer": " March"
+    },
+    {
+     "prompt": "He is 45 years old. Q: What month is three months after January?\nA:",
+     "clean_top1": " April",
+     "prefixed_top1": " April",
+     "answer": " April"
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "partial",
+   "shape_metric": 0.5687931857716312,
+   "metrics": {
+    "probe_r2_period_10": 0.6976089578788053,
+    "probe_r2_period_5": 0.4399774136644571
+   },
+   "knn_overlap": 0.71875,
+   "relative_move": 0.601925349646959,
+   "top1_agreement": 0.3715277777777778,
+   "task_accuracy": 0.3125,
+   "move_fraction_in_own_subspace": 0.20958195040462138,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.009246045723557472,
+   "example": "The city of Perth is in Australia. Q: What month is one months after January?\nA:",
+   "examples": [
+    {
+     "prompt": "The city of Perth is in Australia. Q: What month is one months after January?\nA:",
+     "clean_top1": " February",
+     "prefixed_top1": " February",
+     "answer": " February"
+    },
+    {
+     "prompt": "The city of Perth is in Australia. Q: What month is two months after January?\nA:",
+     "clean_top1": " March",
+     "prefixed_top1": " March",
+     "answer": " March"
+    },
+    {
+     "prompt": "The city of Osaka is in Japan. Q: What month is three months after January?\nA:",
+     "clean_top1": " April",
+     "prefixed_top1": " April",
+     "answer": " April"
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "failed",
+   "shape_metric": 0.2822572012509933,
+   "metrics": {
+    "probe_r2_period_10": 0.348981709596096,
+    "probe_r2_period_5": 0.21553269290589064
+   },
+   "knn_overlap": 0.34756944444444443,
+   "relative_move": 0.7091689308329863,
+   "top1_agreement": 0.23958333333333334,
+   "task_accuracy": 0.1875,
+   "move_fraction_in_own_subspace": 0.2712615982787507,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.010205059312283993,
+   "example": "The candidate spoke about tax cuts and welfare. Q: What month is one months after January?\nA:",
+   "examples": [
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. Q: What month is one months after January?\nA:",
+     "clean_top1": " February",
+     "prefixed_top1": " February",
+     "answer": " February"
+    },
+    {
+     "prompt": "The mayor announced a climate and energy plan. Q: What month is two months after January?\nA:",
+     "clean_top1": " March",
+     "prefixed_top1": " March",
+     "answer": " March"
+    },
+    {
+     "prompt": "The mayor announced a climate and energy plan. Q: What month is three months after January?\nA:",
+     "clean_top1": " April",
+     "prefixed_top1": " April",
+     "answer": " April"
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "partial",
+   "shape_metric": 0.5812232765174932,
+   "metrics": {
+    "probe_r2_period_10": 0.686001117447931,
+    "probe_r2_period_5": 0.4764454355870553
+   },
+   "knn_overlap": 0.46562499999999996,
+   "relative_move": 0.6989254367930059,
+   "top1_agreement": 0.15625,
+   "task_accuracy": 0.1111111111111111,
+   "move_fraction_in_own_subspace": 0.24197080849466981,
+   "move_fraction_in_prefix_domain_subspace": 0.016146153211593628,
+   "move_fraction_in_null_subspace": 0.00974756758660078,
+   "example": "17+25=42. Q: What month is one months after January?\nA:",
+   "examples": [
+    {
+     "prompt": "17+25=42. Q: What month is one months after January?\nA:",
+     "clean_top1": " February",
+     "prefixed_top1": " February",
+     "answer": " February"
+    },
+    {
+     "prompt": "17+25=42. Q: What month is two months after January?\nA:",
+     "clean_top1": " March",
+     "prefixed_top1": " February",
+     "answer": " March"
+    },
+    {
+     "prompt": "35+46=81. Q: What month is three months after January?\nA:",
+     "clean_top1": " April",
+     "prefixed_top1": " February",
+     "answer": " April"
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "failed",
+   "shape_metric": 0.3115629477725077,
+   "metrics": {
+    "probe_r2_period_10": 0.41333431600410464,
+    "probe_r2_period_5": 0.2097915795409107
+   },
+   "knn_overlap": 0.43090277777777775,
+   "relative_move": 0.7011202387559127,
+   "top1_agreement": 0.2048611111111111,
+   "task_accuracy": 0.1597222222222222,
+   "move_fraction_in_own_subspace": 0.25275594949914093,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.010693234391510487,
+   "example": "This paragraph continues the text. Q: What month is one months after January?\nA:",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. Q: What month is one months after January?\nA:",
+     "clean_top1": " February",
+     "prefixed_top1": " February",
+     "answer": " February"
+    },
+    {
+     "prompt": "A short sentence comes first here. Q: What month is two months after January?\nA:",
+     "clean_top1": " March",
+     "prefixed_top1": " March",
+     "answer": " March"
+    },
+    {
+     "prompt": "This paragraph continues the text. Q: What month is three months after January?\nA:",
+     "clean_top1": " April",
+     "prefixed_top1": " April",
+     "answer": " April"
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 219.0
+}

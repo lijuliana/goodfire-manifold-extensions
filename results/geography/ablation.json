@@ -1,0 +1,743 @@
+{
+ "name": "geography",
+ "layer": 19,
+ "n_points": 3007,
+ "n_plotted": 800,
+ "n_kl": 400,
+ "model_id": "unsloth/Llama-3.1-8B",
+ "consistency_with_cached_activations": {
+  "cosine_min": 0.9997920393943787,
+  "cosine_mean": 0.9999136328697205
+ },
+ "task": "country recall (fact)",
+ "task_n": 3007,
+ "clean_task_accuracy": 0.8134353175922847,
+ "conditions": {
+  "clean": {
+   "key": "clean",
+   "group": "clean",
+   "mode": "off",
+   "x": 0.0,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "clean",
+   "description": "unmodified model",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.6119041782627636
+   },
+   "shape_metric": 0.6119041782627636,
+   "status_fixed_basis": "matches",
+   "knn_overlap": 1.0,
+   "relative_move": 0.0,
+   "kl_mean": 0.0,
+   "top1_agreement": 1.0,
+   "task_accuracy": 0.8134353175922847
+  },
+  "weak_0.1": {
+   "key": "weak_0.1",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 0.1,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "0.1",
+   "description": "weak activations zeroed below 0.1% of each neuron's max",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.611903625474222
+   },
+   "shape_metric": 0.611903625474222,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.611903625474222
+   },
+   "evr_refit": [
+    0.07702996988264393,
+    0.05948487501788077,
+    0.044780454267902926
+   ],
+   "knn_overlap": 0.9693049551047556,
+   "knn_overlap_pca3": 0.8949783837712004,
+   "relative_move": 0.050451562268421055,
+   "kl_mean": 0.001408156307825142,
+   "kl_median": 0.0008509169492451194,
+   "top1_agreement": 0.9883604921849019,
+   "task_accuracy": 0.8164283338875956
+  },
+  "weak_0.25": {
+   "key": "weak_0.25",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 0.25,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "0.25",
+   "description": "weak activations zeroed below 0.25% of each neuron's max",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.6119041782627636
+   },
+   "shape_metric": 0.6119041782627636,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.6122341930222176
+   },
+   "evr_refit": [
+    0.07734514348682729,
+    0.05986673191346432,
+    0.04445205708013771
+   ],
+   "knn_overlap": 0.9451612903225808,
+   "knn_overlap_pca3": 0.7977053541735949,
+   "relative_move": 0.12840080769235576,
+   "kl_mean": 0.0053717359960504685,
+   "kl_median": 0.0032607897810603523,
+   "top1_agreement": 0.9767209843698038,
+   "task_accuracy": 0.817093448619887
+  },
+  "weak_0.5": {
+   "key": "weak_0.5",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 0.5,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "0.5",
+   "description": "weak activations zeroed below 0.5% of each neuron's max",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.6055863580185415
+   },
+   "shape_metric": 0.6055863580185415,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.6092447125881681
+   },
+   "evr_refit": [
+    0.07882710432756437,
+    0.060688017349017076,
+    0.04441432567799802
+   ],
+   "knn_overlap": 0.8936481543066178,
+   "knn_overlap_pca3": 0.6087795144662453,
+   "relative_move": 0.3142469722017853,
+   "kl_mean": 0.025909595937757227,
+   "kl_median": 0.01752276982500975,
+   "top1_agreement": 0.9501163950781509,
+   "task_accuracy": 0.8071167276355171
+  },
+  "weak_1": {
+   "key": "weak_1",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 1.0,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "1",
+   "description": "weak activations zeroed below 1% of each neuron's max",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.609236973548583
+   },
+   "shape_metric": 0.609236973548583,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.6069130505188596
+   },
+   "evr_refit": [
+    0.07457056417652314,
+    0.060697207273743135,
+    0.04419965443237953
+   ],
+   "knn_overlap": 0.8031925507149984,
+   "knn_overlap_pca3": 0.3534752244762222,
+   "relative_move": 0.6199287888247091,
+   "kl_mean": 0.1316279450984794,
+   "kl_median": 0.06708470037660075,
+   "top1_agreement": 0.8676421682740273,
+   "task_accuracy": 0.7598935816428334
+  },
+  "weak_1.5": {
+   "key": "weak_1.5",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 1.5,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "1.5",
+   "description": "weak activations zeroed below 1.5% of each neuron's max",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5849684509865186
+   },
+   "shape_metric": 0.5849684509865186,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.5842973656967744
+   },
+   "evr_refit": [
+    0.07540786910774391,
+    0.056228849365664094,
+    0.04465926592036857
+   ],
+   "knn_overlap": 0.7417026937146658,
+   "knn_overlap_pca3": 0.2582307948121051,
+   "relative_move": 0.840781810800889,
+   "kl_mean": 0.2603204323180348,
+   "kl_median": 0.12415851400505135,
+   "top1_agreement": 0.7931493182573994,
+   "task_accuracy": 0.7163285666777519
+  },
+  "weak_2": {
+   "key": "weak_2",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 2.0,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "2",
+   "description": "weak activations zeroed below 2% of each neuron's max",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5507204368793549
+   },
+   "shape_metric": 0.5507204368793549,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.5493848997623684
+   },
+   "evr_refit": [
+    0.07447196561415112,
+    0.05364466201776875,
+    0.04445451848938076
+   ],
+   "knn_overlap": 0.6814765547056867,
+   "knn_overlap_pca3": 0.18027934818756236,
+   "relative_move": 1.055071419797165,
+   "kl_mean": 0.5796875366284013,
+   "kl_median": 0.3449485082714852,
+   "top1_agreement": 0.6667775191220485,
+   "task_accuracy": 0.6112404389757233
+  },
+  "weak_3": {
+   "key": "weak_3",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 3.0,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "3",
+   "description": "weak activations zeroed below 3% of each neuron's max",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.596274082243394
+   },
+   "shape_metric": 0.596274082243394,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.5058168708404719
+   },
+   "evr_refit": [
+    0.0840573202796707,
+    0.055662014083185926,
+    0.040862512595749606
+   ],
+   "knn_overlap": 0.5654805453940805,
+   "knn_overlap_pca3": 0.11273694712337878,
+   "relative_move": 1.4831234259682533,
+   "kl_mean": 1.4249661446674309,
+   "kl_median": 1.2152294580818073,
+   "top1_agreement": 0.4479547721982042,
+   "task_accuracy": 0.4040571998669771
+  },
+  "weak_5": {
+   "key": "weak_5",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 5.0,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "5",
+   "description": "weak activations zeroed below 5% of each neuron's max",
+   "status": "partial",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.26205978823728004
+   },
+   "shape_metric": 0.26205978823728004,
+   "status_fixed_basis": "partial",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.35217427074428664
+   },
+   "evr_refit": [
+    0.08840566023437567,
+    0.0409053634123016,
+    0.0395429891391552
+   ],
+   "knn_overlap": 0.1922846691054207,
+   "knn_overlap_pca3": 0.03099434652477552,
+   "relative_move": 1.9607624707835765,
+   "kl_mean": 4.249625305074464,
+   "kl_median": 4.146824947314842,
+   "top1_agreement": 0.045892916528101096,
+   "task_accuracy": 0.041902228134353174
+  },
+  "weak_7.5": {
+   "key": "weak_7.5",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 7.5,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "7.5",
+   "description": "weak activations zeroed below 7.5% of each neuron's max",
+   "status": "partial",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.1383484765253492
+   },
+   "shape_metric": 0.1383484765253492,
+   "status_fixed_basis": "failed",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": -0.037913677912713606
+   },
+   "evr_refit": [
+    0.07568959513472606,
+    0.052872864230045724,
+    0.03212696183260418
+   ],
+   "knn_overlap": 0.06019288327236448,
+   "knn_overlap_pca3": 0.004023944130362488,
+   "relative_move": 2.5129082764098576,
+   "kl_mean": 7.978941704180947,
+   "kl_median": 7.776044545470496,
+   "top1_agreement": 0.0006651147322913202,
+   "task_accuracy": 0.0006651147322913202
+  },
+  "weak_10": {
+   "key": "weak_10",
+   "group": "weak",
+   "mode": "threshold",
+   "x": 10.0,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "10",
+   "description": "weak activations zeroed below 10% of each neuron's max",
+   "status": "partial",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.16428255096385425
+   },
+   "shape_metric": 0.16428255096385425,
+   "status_fixed_basis": "failed",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.017291655391137695
+   },
+   "evr_refit": [
+    0.1128265315635344,
+    0.07418006846596381,
+    0.02948400180711069
+   ],
+   "knn_overlap": 0.1277020285999335,
+   "knn_overlap_pca3": 0.005653475224476222,
+   "relative_move": 2.8006407922715293,
+   "kl_mean": 10.240586142238449,
+   "kl_median": 10.109343123455325,
+   "top1_agreement": 0.0,
+   "task_accuracy": 0.0003325573661456601
+  },
+  "random_0.1": {
+   "key": "random_0.1",
+   "group": "random",
+   "mode": "random",
+   "x": 0.1,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "r0.1",
+   "description": "count-matched random activations zeroed (matched to 0.1%)",
+   "status": "failed",
+   "metrics": {
+    "knn_group_acc_minus_baseline": -0.036246467670647486
+   },
+   "shape_metric": -0.036246467670647486,
+   "status_fixed_basis": "partial",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.18523710621783301
+   },
+   "evr_refit": [
+    0.5545856519113644,
+    0.035175082647551245,
+    0.013594034292615147
+   ],
+   "knn_overlap": 0.06348520119720653,
+   "knn_overlap_pca3": 0.01978716328566678,
+   "relative_move": 2.0672995274848365,
+   "kl_mean": 5.322391530170758,
+   "kl_median": 2.9323927925574536,
+   "top1_agreement": 0.20984369803791153,
+   "task_accuracy": 0.18822746923844363
+  },
+  "random_0.25": {
+   "key": "random_0.25",
+   "group": "random",
+   "mode": "random",
+   "x": 0.25,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "r0.25",
+   "description": "count-matched random activations zeroed (matched to 0.25%)",
+   "status": "failed",
+   "metrics": {
+    "knn_group_acc_minus_baseline": -0.07216169201987713
+   },
+   "shape_metric": -0.07216169201987713,
+   "status_fixed_basis": "failed",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": -0.0046523913526614336
+   },
+   "evr_refit": [
+    0.4754425363101663,
+    0.04229829672674022,
+    0.025222974633332895
+   ],
+   "knn_overlap": 0.005387429331559694,
+   "knn_overlap_pca3": 0.004489524442966412,
+   "relative_move": 2.8213503870810777,
+   "kl_mean": 9.886298407885889,
+   "kl_median": 11.260579233401439,
+   "top1_agreement": 0.018290655138011307,
+   "task_accuracy": 0.015297638842700367
+  },
+  "random_0.5": {
+   "key": "random_0.5",
+   "group": "random",
+   "mode": "random",
+   "x": 0.5,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "r0.5",
+   "description": "count-matched random activations zeroed (matched to 0.5%)",
+   "status": "failed",
+   "metrics": {
+    "knn_group_acc_minus_baseline": -0.07150221528951081
+   },
+   "shape_metric": -0.07150221528951081,
+   "status_fixed_basis": "failed",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": -0.07116059197067898
+   },
+   "evr_refit": [
+    0.31816674338750917,
+    0.061060754432605356,
+    0.04286003063033051
+   ],
+   "knn_overlap": 0.003491852344529432,
+   "knn_overlap_pca3": 0.003491852344529431,
+   "relative_move": 3.298355312116357,
+   "kl_mean": 11.71559315546061,
+   "kl_median": 12.18141129534175,
+   "top1_agreement": 0.0003325573661456601,
+   "task_accuracy": 0.0
+  },
+  "random_1": {
+   "key": "random_1",
+   "group": "random",
+   "mode": "random",
+   "x": 1.0,
+   "scale": 0.0,
+   "seed": 0,
+   "label": "r1",
+   "description": "count-matched random activations zeroed (matched to 1%)",
+   "status": "failed",
+   "metrics": {
+    "knn_group_acc_minus_baseline": -0.06518052552549622
+   },
+   "shape_metric": -0.06518052552549622,
+   "status_fixed_basis": "failed",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": -0.08114229466994541
+   },
+   "evr_refit": [
+    0.1791473689697759,
+    0.07319625614267518,
+    0.050556304276165275
+   ],
+   "knn_overlap": 0.0035916195543731298,
+   "knn_overlap_pca3": 0.0035583638177585637,
+   "relative_move": 4.2823871641433975,
+   "kl_mean": 12.407219289095018,
+   "kl_median": 12.362589163377919,
+   "top1_agreement": 0.0,
+   "task_accuracy": 0.0
+  },
+  "scale_0.5_0.5": {
+   "key": "scale_0.5_0.5",
+   "group": "scale",
+   "mode": "scaleweak",
+   "x": 0.5,
+   "scale": 0.5,
+   "seed": 0,
+   "label": "\u00d70.5@0.5",
+   "description": "weak tail (below 0.5%) multiplied by 0.5",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.6142314180237379
+   },
+   "shape_metric": 0.6142314180237379,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.6135653078308699
+   },
+   "evr_refit": [
+    0.07895235002209781,
+    0.06062300080671423,
+    0.04481427502942586
+   ],
+   "knn_overlap": 0.9401396740937813,
+   "knn_overlap_pca3": 0.7824742268041237,
+   "relative_move": 0.1601303148370861,
+   "kl_mean": 0.007107897258989122,
+   "kl_median": 0.004379343976858683,
+   "top1_agreement": 0.9714000665114733,
+   "task_accuracy": 0.814100432324576
+  },
+  "scale_0.5_1.5": {
+   "key": "scale_0.5_1.5",
+   "group": "scale",
+   "mode": "scaleweak",
+   "x": 1.5,
+   "scale": 0.5,
+   "seed": 0,
+   "label": "\u00d70.5@1.5",
+   "description": "weak tail (below 1.5%) multiplied by 0.5",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.6045874691235107
+   },
+   "shape_metric": 0.6045874691235107,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.611575821868935
+   },
+   "evr_refit": [
+    0.07775946325869118,
+    0.06286014132270122,
+    0.04642860469581828
+   ],
+   "knn_overlap": 0.8646158962421019,
+   "knn_overlap_pca3": 0.5038244097106751,
+   "relative_move": 0.44230241370345535,
+   "kl_mean": 0.0692407366772467,
+   "kl_median": 0.030778568581154013,
+   "top1_agreement": 0.9068839374792151,
+   "task_accuracy": 0.7891586298636515
+  },
+  "scale_2_0.5": {
+   "key": "scale_2_0.5",
+   "group": "scale",
+   "mode": "scaleweak",
+   "x": 0.5,
+   "scale": 2.0,
+   "seed": 0,
+   "label": "\u00d72@0.5",
+   "description": "weak tail (below 0.5%) multiplied by 2",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.6049224589798409
+   },
+   "shape_metric": 0.6049224589798409,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.6019307673916241
+   },
+   "evr_refit": [
+    0.07324699976779676,
+    0.05744620485047785,
+    0.04423045818974938
+   ],
+   "knn_overlap": 0.896242101762554,
+   "knn_overlap_pca3": 0.6233122713668108,
+   "relative_move": 0.28245186736332845,
+   "kl_mean": 0.031127528775972264,
+   "kl_median": 0.016813580271327424,
+   "top1_agreement": 0.9428001330229464,
+   "task_accuracy": 0.8024609245094779
+  },
+  "scale_2_1.5": {
+   "key": "scale_2_1.5",
+   "group": "scale",
+   "mode": "scaleweak",
+   "x": 1.5,
+   "scale": 2.0,
+   "seed": 0,
+   "label": "\u00d72@1.5",
+   "description": "weak tail (below 1.5%) multiplied by 2",
+   "status": "matches",
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.5470571072128524
+   },
+   "shape_metric": 0.5470571072128524,
+   "status_fixed_basis": "matches",
+   "metrics_fixed_basis": {
+    "knn_group_acc_minus_baseline": 0.5453965304332878
+   },
+   "evr_refit": [
+    0.07788432521677773,
+    0.054819685968346396,
+    0.04382230624275916
+   ],
+   "knn_overlap": 0.6472896574659128,
+   "knn_overlap_pca3": 0.17070169604256732,
+   "relative_move": 0.9946668681648659,
+   "kl_mean": 0.6878913757720417,
+   "kl_median": 0.4406482209251794,
+   "top1_agreement": 0.6288659793814433,
+   "task_accuracy": 0.5643498503491853
+  }
+ },
+ "order": [
+  "clean",
+  "weak_0.1",
+  "weak_0.25",
+  "weak_0.5",
+  "weak_1",
+  "weak_1.5",
+  "weak_2",
+  "weak_3",
+  "weak_5",
+  "weak_7.5",
+  "weak_10",
+  "random_0.1",
+  "random_0.25",
+  "random_0.5",
+  "random_1",
+  "scale_0.5_0.5",
+  "scale_0.5_1.5",
+  "scale_2_0.5",
+  "scale_2_1.5"
+ ],
+ "global": {
+  "clean": {
+   "lm_loss": 2.193698424398025,
+   "lm_loss_delta": 0.0,
+   "popqa_accuracy": 0.2866666666666667,
+   "fraction_zeroed": 0.0
+  },
+  "weak_0.1": {
+   "lm_loss": 2.1940541719528004,
+   "lm_loss_delta": 0.0003557475547752986,
+   "popqa_accuracy": 0.29,
+   "fraction_zeroed": 0.10144753724203578
+  },
+  "weak_0.25": {
+   "lm_loss": 2.1967620849609375,
+   "lm_loss_delta": 0.003063660562912407,
+   "popqa_accuracy": 0.29333333333333333,
+   "fraction_zeroed": 0.20222476620360144
+  },
+  "weak_0.5": {
+   "lm_loss": 2.2111122601193065,
+   "lm_loss_delta": 0.017413835721281412,
+   "popqa_accuracy": 0.3,
+   "fraction_zeroed": 0.32627602556853424
+  },
+  "weak_1": {
+   "lm_loss": 2.2674916436129187,
+   "lm_loss_delta": 0.07379321921489357,
+   "popqa_accuracy": 0.25333333333333335,
+   "fraction_zeroed": 0.49411034936617526
+  },
+  "weak_1.5": {
+   "lm_loss": 2.3494463013530593,
+   "lm_loss_delta": 0.15574787695503423,
+   "popqa_accuracy": 0.21,
+   "fraction_zeroed": 0.6039218372731868
+  },
+  "weak_2": {
+   "lm_loss": 2.457304968512303,
+   "lm_loss_delta": 0.26360654411427786,
+   "popqa_accuracy": 0.2,
+   "fraction_zeroed": 0.6814355082543833
+  },
+  "weak_3": {
+   "lm_loss": 2.75005678417396,
+   "lm_loss_delta": 0.5563583597759347,
+   "popqa_accuracy": 0.16,
+   "fraction_zeroed": 0.7834396776410618
+  },
+  "weak_5": {
+   "lm_loss": 3.707184524014082,
+   "lm_loss_delta": 1.513486099616057,
+   "popqa_accuracy": 0.07666666666666666,
+   "fraction_zeroed": 0.8894496257749519
+  },
+  "weak_7.5": {
+   "lm_loss": 5.712569191075956,
+   "lm_loss_delta": 3.518870766677931,
+   "popqa_accuracy": 0.006666666666666667,
+   "fraction_zeroed": 0.947343251102471
+  },
+  "weak_10": {
+   "lm_loss": 8.035399107872449,
+   "lm_loss_delta": 5.841700683474423,
+   "popqa_accuracy": 0.0,
+   "fraction_zeroed": 0.9729019122397793
+  },
+  "random_0.1": {
+   "lm_loss": 2.667804766493692,
+   "lm_loss_delta": 0.4741063420956668,
+   "popqa_accuracy": 0.08,
+   "fraction_zeroed": 0.10368420616058367
+  },
+  "random_0.25": {
+   "lm_loss": 3.292717807803336,
+   "lm_loss_delta": 1.0990193834053108,
+   "popqa_accuracy": 0.03,
+   "fraction_zeroed": 0.21581074628712876
+  },
+  "random_0.5": {
+   "lm_loss": 5.686965778309812,
+   "lm_loss_delta": 3.493267353911787,
+   "popqa_accuracy": 0.006666666666666667,
+   "fraction_zeroed": 0.3780066127822335
+  },
+  "random_1": {
+   "lm_loss": 9.125397921773812,
+   "lm_loss_delta": 6.931699497375787,
+   "popqa_accuracy": 0.0033333333333333335,
+   "fraction_zeroed": 0.5477775783344571
+  },
+  "scale_0.5_0.5": {
+   "lm_loss": 2.198874204156452,
+   "lm_loss_delta": 0.00517577975842709,
+   "popqa_accuracy": 0.29,
+   "fraction_zeroed": 0.3266404003370553
+  },
+  "scale_0.5_1.5": {
+   "lm_loss": 2.241134591349642,
+   "lm_loss_delta": 0.04743616695161679,
+   "popqa_accuracy": 0.26,
+   "fraction_zeroed": 0.6089204298664949
+  },
+  "scale_2_0.5": {
+   "lm_loss": 2.210518554508511,
+   "lm_loss_delta": 0.016820130110485998,
+   "popqa_accuracy": 0.28,
+   "fraction_zeroed": 0.32799101514475687
+  },
+  "scale_2_1.5": {
+   "lm_loss": 2.397690102734757,
+   "lm_loss_delta": 0.20399167833673193,
+   "popqa_accuracy": 0.18,
+   "fraction_zeroed": 0.6326709915883839
+  }
+ },
+ "breaking_points": {
+  "shape_half": 5.0,
+  "status_changes": 5.0,
+  "knn_half": 5.0,
+  "agreement_half": 3.0,
+  "lm_loss_plus_0.1": 1.5,
+  "popqa_half": 5.0,
+  "task_half": 3.0
+ },
+ "elapsed_s": 389.9
+}

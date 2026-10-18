@@ -62,3 +62,16 @@ Facts extracted from the sources on 2026-10-15. Each bullet names where it came 
 ## Visual style reference (Goodfire figures)
 
 - 3D scatter, no axes, light-gray square floor plane below the cloud with a blurred gray shadow/density projection of the points; points colored by the ordering variable (viridis / plasma / categorical); uppercase IBM Plex Mono title with italic "by <variable>" subtitle; site text color #1D272A, accent #FFEBAA, fonts Suisse Intl + IBM Plex Mono.
+
+## Debate extensions (added 2026-10-17)
+
+- Cammarata 2026, "Neural Networks Are Already Clean" (Goodfire, Oct 15 2026). https://already-clean.goodfire.com/ — weak-activation ablation tables for vision models ("Weak Activations: Further Measurements"); the remark that the residual stream may hold "manifolds woven through each other"; recursive generalization.
+- Gao 2026, "Neural Networks Are Not Already Clean" (LessWrong reply). https://www.lesswrong.com/posts/neural-networks-are-not-already-clean — KL simulation scoring; the claim that graded / weak activations carry essential information; superposition.
+- Nanda 2026 (X/Twitter reply, summarised from the thread, Oct 2026): weak activations may hold superposed facts, so removing them should hurt rare knowledge first. McGrath's rebuttal was not found online; Juliana's `concept_manifold_research_plan.md` summarises it as "interference is minor crosstalk if you know what neurons read and write".
+- Li 2026, `weak-activation-ablation` (Qwen3-1.7B-Base): method ported verbatim (SwiGLU product below X% of the per-neuron max over 512 x 1024 FineWeb-edu tokens, position 0 excluded; count-matched random control; tail scaling s). Results summarised in `weak_activation_ablation_results_reference.md`.
+- Anthropic 2025, "When Models Manipulate Manifolds: The Geometry of a Counting Task" (linebreaks). https://transformer-circuits.pub/2025/linebreaks/index.html — transcoder features tiling a count manifold with dilating receptive fields; 6-D causal subspace; subspace ablation vs random-subspace control; probe "ringing".
+- Engels et al. 2024, "Not All Language Model Features Are Linear", arXiv 2405.14860 — circular day/month features.
+- Mallen et al. 2023, "When Not to Trust Language Models", arXiv 2212.10511 — PopQA (`akariasai/PopQA`, test split; substring-match metric). Used as the facts baseline (300 questions, 8-shot, seed 0).
+- `HuggingFaceFW/fineweb-edu` (sample-10BT, streamed) — calibration (512 x 1024 tokens) and held-out loss (64 x 1024, disjoint).
+- `allenai/OLMo-2-0425-1B` — 195 stage-1 checkpoints (`stage1-step{N}-tokens{T}B`) plus `main`; OLMo 2 report arXiv 2501.00656. Checkpoint schedule in `src/manifolds/checkpoints.py`.
+- Principal angles / subspace overlap: Björck & Golub 1973 (mean squared cosine of principal angles = ||U_a^T U_b||_F^2 / k).

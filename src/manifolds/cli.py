@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 from manifolds import RESULTS_DIR, SITE_DIR
 from manifolds.config import DEFAULT_CONFIG_PATH, load_config
@@ -178,6 +179,130 @@ def cmd_depth(args: argparse.Namespace) -> int:
     return 0
 
 
+def _full_model(args: argparse.Namespace, cfg: Any) -> Any:
+    from manifolds.depth import DepthConfig, FullModel
+
+    fm = FullModel(DepthConfig(model_id=cfg.model.id, fallback_model_id=cfg.model.fallback_id,
+                               dtype=args.dtype, device=args.device, batch_size=args.batch_size,
+                               gpu_memory_gib=args.gpu_gib, seed=cfg.seed))
+    print(f"full model {fm.model_id} ({fm.resolution}), {fm.n_layers} blocks, dtype {args.dtype}")
+    return fm
+
+
+def cmd_ablate(args: argparse.Namespace) -> int:
+    from manifolds.ablate import Ablator, conditions, run_global, run_manifold
+
+    cfg = load_config(args.config)
+    manifest = load_manifest()
+    fm = _full_model(args, cfg)
+    ablator = Ablator(fm.model, seed=cfg.seed)
+    conds = conditions()
+    glob = run_global(fm, ablator, conds, n_heldout=args.n_heldout, n_popqa=args.n_popqa,
+                      lm_batch=args.lm_batch, provider=args.provider, instance=args.instance)
+    for name in _select(args):
+        if not (RESULTS_DIR / name / "activations.npy").exists():
+            print(f"{name}: no activations, skipping", file=sys.stderr)
+            continue
+        if (RESULTS_DIR / name / "ablation.json").exists() and not args.force:
+            print(f"{name}: ablation.json exists, skipping (use --force)")
+            continue
+        rep = run_manifold(manifest.get(name), cfg, fm, ablator, conds, glob,
+                           max_points=args.max_points, provider=args.provider,
+                           instance=args.instance)
+        print(f"{name:20s} breaking points {rep['breaking_points']} ({rep['elapsed_s']}s)")
+    ablator.remove()
+    return 0
+
+
+def cmd_neurons(args: argparse.Namespace) -> int:
+    from manifolds.neurons import run_neurons
+
+    cfg = load_config(args.config)
+    manifest = load_manifest()
+    fm = _full_model(args, cfg)
+    for name in _select(args):
+        if not (RESULTS_DIR / name / "activations.npy").exists():
+            print(f"{name}: no activations, skipping", file=sys.stderr)
+            continue
+        if (RESULTS_DIR / name / "neurons.json").exists() and not args.force:
+            print(f"{name}: neurons.json exists, skipping (use --force)")
+            continue
+        rep = run_neurons(manifest.get(name), cfg, fm, max_prompts=args.max_prompts,
+                          max_points=args.max_points, provider=args.provider,
+                          instance=args.instance)
+        print(f"{name:20s} half the subspace variance in {rep['n_neurons_for_half_share']} "
+              f"neurons; top writer share {rep['writers'][0]['share']:.3f} "
+              f"({rep['elapsed_s']}s)")
+    return 0
+
+
+def cmd_interference(args: argparse.Namespace) -> int:
+    from manifolds.interference import run_geometry, woven_figure
+
+    cfg = load_config(args.config)
+    manifest = load_manifest()
+    names = [m.name for m in manifest.manifolds
+             if (RESULTS_DIR / m.name / "activations.npy").exists()]
+    res = run_geometry(manifest, cfg, names, k=args.k)
+    print(f"{len(res['names'])} manifolds; null (pooled) {res['null_pooled_mean']:.4f}, "
+          f"isotropic {res['null_isotropic_mean']:.4f}")
+    for r in res["pairs_sorted"][:10]:
+        print(f"  {r['a']:22s} {r['b']:22s} overlap={r['overlap']:.3f} "
+              f"weighted={r['weighted']:.3f}")
+    for name in _select(args):
+        if name not in res["names"]:
+            continue
+        i = res["names"].index(name)
+        row = [(res["names"][j], res["overlap"][i][j]) for j in range(len(res["names"]))
+               if j != i and res["overlap"][i][j] is not None]
+        row = [r for r in row if r[1] == r[1]]
+        if not row:
+            continue
+        partner = max(row, key=lambda r: r[1])[0]
+        fig = woven_figure(RESULTS_DIR, cfg, name, partner)
+        (RESULTS_DIR / name / "woven_figure.json").write_text(fig.to_json(), encoding="utf-8")
+        (RESULTS_DIR / name / "woven.json").write_text(
+            json.dumps({"partner": partner, "overlap": max(row, key=lambda r: r[1])[1]}),
+            encoding="utf-8")
+        print(f"  {name}: woven view with {partner}")
+    return 0
+
+
+def cmd_crosstalk(args: argparse.Namespace) -> int:
+    from manifolds.interference import GLOBAL_DIR, run_crosstalk
+
+    cfg = load_config(args.config)
+    manifest = load_manifest()
+    geo_path = GLOBAL_DIR / "geometry.json"
+    if not geo_path.exists():
+        print("run `manifolds interference` first", file=sys.stderr)
+        return 1
+    geometry = json.loads(geo_path.read_text(encoding="utf-8"))
+    fm = _full_model(args, cfg)
+    for name in _select(args):
+        if not (RESULTS_DIR / name / "activations.npy").exists():
+            continue
+        if (RESULTS_DIR / name / "crosstalk.json").exists() and not args.force:
+            print(f"{name}: crosstalk.json exists, skipping (use --force)")
+            continue
+        run_crosstalk(manifest.get(name), cfg, fm, geometry, max_prompts=args.max_prompts,
+                      provider=args.provider, instance=args.instance)
+    return 0
+
+
+def cmd_checkpoints(args: argparse.Namespace) -> int:
+    from manifolds.checkpoints import run_checkpoints
+
+    cfg = load_config(args.config)
+    manifest = load_manifest()
+    names = _select(args)
+    summary = run_checkpoints(manifest, cfg, names, device=args.device, batch_size=args.batch_size,
+                              max_prompts=args.max_prompts, max_points=args.max_points,
+                              provider=args.provider, instance=args.instance)
+    print(json.dumps(summary["display_layers"]))
+    return 0
+
+
 def cmd_site(args: argparse.Namespace) -> int:
     from manifolds.site.build import build_site
 
@@ -261,6 +386,47 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--no-jlens", action="store_true")
     sp.add_argument("--no-steer", action="store_true")
     sp.set_defaults(fn=cmd_depth)
+
+    def add_gpu(sp: argparse.ArgumentParser) -> None:
+        sp.add_argument("--device", default="auto")
+        sp.add_argument("--dtype", default="bfloat16")
+        sp.add_argument("--provider", default="unknown")
+        sp.add_argument("--instance", default="unknown")
+        sp.add_argument("--batch-size", type=int, default=16)
+        sp.add_argument("--gpu-gib", type=float, default=44.0)
+        sp.add_argument("--force", action="store_true")
+
+    sp = sub.add_parser("ablate",
+                        help="weak-activation ablation sweep (all MLP blocks) vs geometry")
+    add_select(sp)
+    add_gpu(sp)
+    sp.add_argument("--max-points", type=int, default=800)
+    sp.add_argument("--n-heldout", type=int, default=64)
+    sp.add_argument("--n-popqa", type=int, default=300)
+    sp.add_argument("--lm-batch", type=int, default=4)
+    sp.set_defaults(fn=cmd_ablate)
+    sp = sub.add_parser("neurons",
+                        help="MLP neurons that write / read the manifold + causal ablation")
+    add_select(sp)
+    add_gpu(sp)
+    sp.add_argument("--max-prompts", type=int, default=1000)
+    sp.add_argument("--max-points", type=int, default=800)
+    sp.set_defaults(fn=cmd_neurons)
+    sp = sub.add_parser("interference", help="subspace overlap between manifolds (no GPU)")
+    add_select(sp)
+    sp.add_argument("--k", type=int, default=3)
+    sp.set_defaults(fn=cmd_interference)
+    sp = sub.add_parser("crosstalk", help="prefix sentences from other domains and re-read")
+    add_select(sp)
+    add_gpu(sp)
+    sp.add_argument("--max-prompts", type=int, default=800)
+    sp.set_defaults(fn=cmd_crosstalk)
+    sp = sub.add_parser("checkpoints", help="OLMo-2 1B training-checkpoint sweep")
+    add_select(sp)
+    add_gpu(sp)
+    sp.add_argument("--max-prompts", type=int, default=600)
+    sp.add_argument("--max-points", type=int, default=600)
+    sp.set_defaults(fn=cmd_checkpoints)
     sp = sub.add_parser("site", help="build the static site")
     sp.add_argument("--out", default=str(SITE_DIR))
     sp.set_defaults(fn=cmd_site)

@@ -136,6 +136,80 @@ class FullModel:
         return out
 
     @torch.no_grad()
+    def capture_layer_and_logits(
+        self, prompts: list[str], layer_index: int, *, spans: list[tuple[int, int]] | None = None,
+        cand_ids: list[int] | None = None, full_index: np.ndarray | None = None,
+        mlp_blocks: list[int] | None = None, progress: bool = True,
+    ) -> dict[str, Any]:
+        """One pass per batch: the residual stream at hidden-state position `layer_index`
+        (0 = embeddings, i = output of block i-1) for the read token (last real token, or the
+        token ending each character span), plus the next-token readouts at the last token:
+        greedy token id, the logits of `cand_ids`, and the full logits (float16) for the prompts
+        in `full_index`. With `mlp_blocks`, also the SwiGLU activations (input of down_proj) of
+        those blocks at the read token, float16 [N, len(mlp_blocks), d_ff]."""
+        n = len(prompts)
+        hidden = np.empty((n, self.d_model), dtype=np.float32)
+        top1 = np.empty(n, dtype=np.int64)
+        cand = np.empty((n, len(cand_ids)), dtype=np.float32) if cand_ids else None
+        full_pos = {int(i): j for j, i in enumerate(full_index)} if full_index is not None else {}
+        full: np.ndarray | None = None
+        mlp_acts: np.ndarray | None = None
+        captured: dict[int, torch.Tensor] = {}
+        handles = []
+        if mlp_blocks:
+            base = self.model.model if hasattr(self.model, "model") else self.model
+
+            def mk(bi: int) -> Any:
+                def hook(_m: torch.nn.Module, args: Any) -> None:
+                    captured[bi] = args[0]
+                return hook
+            for bi in mlp_blocks:
+                handles.append(base.layers[bi].mlp.down_proj.register_forward_pre_hook(mk(bi)))
+        bs = self.cfg.batch_size
+        try:
+            for s in tqdm(range(0, n, bs), disable=not progress, desc="capture"):
+                batch = prompts[s : s + bs]
+                enc = self.encode(batch)
+                res = self.model(**enc, output_hidden_states=True)
+                last = enc["attention_mask"].sum(dim=1) - 1
+                read = last.clone()
+                if spans is not None:
+                    for j, p in enumerate(batch):
+                        ti = self.token_index(p, spans[s + j])
+                        if ti is not None:
+                            read[j] = min(ti, int(last[j]))
+                h = res.hidden_states[layer_index]
+                rows = torch.arange(h.shape[0], device=h.device)
+                hidden[s : s + len(batch)] = h[rows, read.to(h.device)].float().cpu().numpy()
+                lg = res.logits
+                rows_l = torch.arange(lg.shape[0], device=lg.device)
+                ll = lg[rows_l, last.to(lg.device)].float()
+                top1[s : s + len(batch)] = ll.argmax(1).cpu().numpy()
+                if cand is not None:
+                    cand[s : s + len(batch)] = ll[:, cand_ids].cpu().numpy()
+                if full_pos:
+                    for j in range(len(batch)):
+                        k = full_pos.get(s + j)
+                        if k is not None:
+                            if full is None:
+                                full = np.empty((len(full_pos), ll.shape[1]), dtype=np.float16)
+                            full[k] = ll[j].to(torch.float16).cpu().numpy()
+                if mlp_blocks:
+                    if mlp_acts is None:
+                        d_ff = captured[mlp_blocks[0]].shape[-1]
+                        mlp_acts = np.empty((n, len(mlp_blocks), d_ff), dtype=np.float16)
+                    for bj, bi in enumerate(mlp_blocks):
+                        a = captured[bi]
+                        ra = torch.arange(a.shape[0], device=a.device)
+                        sel = a[ra, read.to(a.device)]
+                        mlp_acts[s : s + len(batch), bj] = sel.to(torch.float16).cpu().numpy()
+                    captured.clear()
+        finally:
+            for hd in handles:
+                hd.remove()
+        return {"hidden": hidden, "top1": top1, "cand": cand, "full": full, "mlp": mlp_acts}
+
+    @torch.no_grad()
     def unembed(self, h: torch.Tensor) -> torch.Tensor:
         """Final norm + output head: [N, d] -> logits [N, vocab] (the logit lens).
 

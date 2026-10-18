@@ -1,0 +1,282 @@
+{
+ "name": "colors",
+ "layer": 19,
+ "n_prompts": 800,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "partial",
+  "shape_metric": 0.9297694051962019,
+  "task_accuracy": 0.585,
+  "task": "hue-family naming"
+ },
+ "conditions": {
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "partial",
+   "shape_metric": 0.8804405319820253,
+   "metrics": {
+    "hue_circular_corr": 0.9326886125003748,
+    "hue_cyclic_order": 1.0,
+    "height_vs_lightness_or_saturation": 0.7086329834457011
+   },
+   "knn_overlap": 0.352625,
+   "relative_move": 0.918826283469356,
+   "top1_agreement": 0.465,
+   "task_accuracy": 0.6525,
+   "move_fraction_in_own_subspace": 0.15831175590577026,
+   "move_fraction_in_prefix_domain_subspace": 0.0007948093116283417,
+   "move_fraction_in_null_subspace": 0.004038191866129637,
+   "example": "They rest on Sunday. The hex code #0e277d is for the color",
+   "examples": [
+    {
+     "prompt": "They rest on Sunday. The hex code #0e277d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "We leave on Saturday. The hex code #0e673d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "We leave on Saturday. The hex code #101160 is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "partial",
+   "shape_metric": 0.9249288254738866,
+   "metrics": {
+    "hue_circular_corr": 0.9441778344216392,
+    "hue_cyclic_order": 1.0,
+    "height_vs_lightness_or_saturation": 0.8306086420000204
+   },
+   "knn_overlap": 0.41200000000000003,
+   "relative_move": 0.8435033662593955,
+   "top1_agreement": 0.385,
+   "task_accuracy": 0.65125,
+   "move_fraction_in_own_subspace": 0.16798988338882792,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.0038152080960571766,
+   "example": "The harvest is in October. The hex code #0e277d is for the color",
+   "examples": [
+    {
+     "prompt": "The harvest is in October. The hex code #0e277d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "The trip is in March. The hex code #0e673d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "Rent is due in November. The hex code #101160 is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "partial",
+   "shape_metric": 0.9284484433152712,
+   "metrics": {
+    "hue_circular_corr": 0.9519874505331637,
+    "hue_cyclic_order": 1.0,
+    "height_vs_lightness_or_saturation": 0.8333578794126503
+   },
+   "knn_overlap": 0.6038749999999999,
+   "relative_move": 0.5561296476115414,
+   "top1_agreement": 0.41,
+   "task_accuracy": 0.64,
+   "move_fraction_in_own_subspace": 0.1446916527140484,
+   "move_fraction_in_prefix_domain_subspace": 0.004675540141761303,
+   "move_fraction_in_null_subspace": 0.004084297455847263,
+   "example": "He is 45 years old. The hex code #0e277d is for the color",
+   "examples": [
+    {
+     "prompt": "He is 45 years old. The hex code #0e277d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "He is 45 years old. The hex code #0e673d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "They are 19 years old. The hex code #101160 is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "partial",
+   "shape_metric": 0.9045652006388313,
+   "metrics": {
+    "hue_circular_corr": 0.8899812073781108,
+    "hue_cyclic_order": 1.0,
+    "height_vs_lightness_or_saturation": 0.8237143945383829
+   },
+   "knn_overlap": 0.57075,
+   "relative_move": 0.739327647391801,
+   "top1_agreement": 0.40875,
+   "task_accuracy": 0.375,
+   "move_fraction_in_own_subspace": 0.590888321625703,
+   "move_fraction_in_prefix_domain_subspace": 0.003565608523786068,
+   "move_fraction_in_null_subspace": 0.004935174714773893,
+   "example": "The city of Lagos is in Nigeria. The hex code #0e277d is for the color",
+   "examples": [
+    {
+     "prompt": "The city of Lagos is in Nigeria. The hex code #0e277d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Osaka is in Japan. The hex code #0e673d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Osaka is in Japan. The hex code #101160 is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "partial",
+   "shape_metric": 0.923719642148845,
+   "metrics": {
+    "hue_circular_corr": 0.9498637211332911,
+    "hue_cyclic_order": 1.0,
+    "height_vs_lightness_or_saturation": 0.8212952053132444
+   },
+   "knn_overlap": 0.415,
+   "relative_move": 1.1841946649940855,
+   "top1_agreement": 0.285,
+   "task_accuracy": 0.6475,
+   "move_fraction_in_own_subspace": 0.12249291203910748,
+   "move_fraction_in_prefix_domain_subspace": 0.010850096121430397,
+   "move_fraction_in_null_subspace": 0.002739270683377981,
+   "example": "The candidate spoke about tax cuts and welfare. The hex code #0e277d is for the color",
+   "examples": [
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. The hex code #0e277d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "Protesters gathered over abortion rights. The hex code #0e673d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " green",
+     "answer": null
+    },
+    {
+     "prompt": "The debate covered healthcare and the minimum wage. The hex code #101160 is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "partial",
+   "shape_metric": 0.9362259219495952,
+   "metrics": {
+    "hue_circular_corr": 0.954453802177595,
+    "hue_cyclic_order": 1.0,
+    "height_vs_lightness_or_saturation": 0.8542239636711905
+   },
+   "knn_overlap": 0.6961250000000001,
+   "relative_move": 0.46491549317460845,
+   "top1_agreement": 0.3725,
+   "task_accuracy": 0.6825,
+   "move_fraction_in_own_subspace": 0.09727929142149135,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.0030248602852225304,
+   "example": "48+37=85. The hex code #0e277d is for the color",
+   "examples": [
+    {
+     "prompt": "48+37=85. The hex code #0e277d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "35+46=81. The hex code #0e673d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "91+6=97. The hex code #101160 is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "partial",
+   "shape_metric": 0.8967236948828886,
+   "metrics": {
+    "hue_circular_corr": 0.9187583699747018,
+    "hue_cyclic_order": 1.0,
+    "height_vs_lightness_or_saturation": 0.7714127146739638
+   },
+   "knn_overlap": 0.3328749999999999,
+   "relative_move": 0.8800690148557161,
+   "top1_agreement": 0.3225,
+   "task_accuracy": 0.6,
+   "move_fraction_in_own_subspace": 0.2773256043903207,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.004672323353588581,
+   "example": "This paragraph continues the text. The hex code #0e277d is for the color",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. The hex code #0e277d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    },
+    {
+     "prompt": "The door at the end of the hall is open. The hex code #0e673d is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " dark",
+     "answer": null
+    },
+    {
+     "prompt": "This paragraph continues the text. The hex code #101160 is for the color",
+     "clean_top1": " \"",
+     "prefixed_top1": " \"",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 168.3
+}

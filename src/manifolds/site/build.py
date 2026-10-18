@@ -14,6 +14,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 from jinja2 import DictLoader, Environment, select_autoescape
 
 from manifolds.manifest import load_manifest
@@ -148,6 +149,7 @@ INDEX = r"""{% extends "base" %}{% block body %}
 <p class="lede">A replication of the concept manifolds reported in Goodfire's Neural Geometry series and the papers behind it, on the base Llama-3.1-8B.
 Each entry shows a 3-D PCA of residual-stream activations (last token, block 19), the shape the source reports, a quantitative shape check, and a replication badge. Nothing here is hand-edited: badges come from the checks.
 Beyond the sources, every page adds a layer slider (the manifold at all 33 residual positions), what the model would say from each point under the logit, tuned and Jacobian lenses, a decoding of what each principal axis means, the paper's steering experiment, and the SAE tiling analysis.</p>
+{% if ext %}<p class="lede">Seven pilot pages ({{ ext.pilots }}) also carry four experiments prompted by the <a href="https://already-clean.goodfire.com/">Neural Networks Are Already Clean</a> debate: a weak-activation ablation slider (does the manifold survive zeroing the weak tail of every MLP neuron, and how does that compare with facts and LM loss), the MLP neurons that write and read each manifold, subspace overlap and crosstalk between manifolds, and the manifold forming across OLMo-2 1B training checkpoints.</p>{% endif %}
 </header>
 {% if cards %}
 <h2>Manifolds</h2>
@@ -161,15 +163,31 @@ Beyond the sources, every page adds a layer slider (the manifold at all 33 resid
 {% endfor %}
 </div>
 {% endif %}
+{% if ext %}
+<h2>Across manifolds</h2>
+<div class="two" style="margin-top:8px">
+{% if ext.global_json %}<div><div class="small mono" style="margin-bottom:4px">model-wide cost of zeroing weak activations (Llama-3.1-8B): facts and loss</div><div class="fig2d eager-fig" id="fig-ext-global" data-fig="json-ext-global" style="height:340px"></div>
+<script type="application/json" id="json-ext-global">{{ ext.global_json|safe }}</script>
+<p class="small">{{ ext.global_text }}</p></div>{% endif %}
+{% if ext.heatmap_json %}<div><div class="small mono" style="margin-bottom:4px">subspace overlap between manifolds (3 PCs, same layer; random ≈ {{ ext.null }})</div><div class="fig2d eager-fig" id="fig-ext-heat" data-fig="json-ext-heat" style="height:520px"></div>
+<script type="application/json" id="json-ext-heat">{{ ext.heatmap_json|safe }}</script></div>{% endif %}
+</div>
+{% if ext.breaking %}
+<div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>manifold</th><th>task</th><th>clean acc.</th><th>X where shape metric halves</th><th>X where k-NN overlap &lt; ½</th><th>X where task acc. halves</th><th>X where PopQA halves</th><th>X where LM loss +0.1</th></tr></thead><tbody>
+{% for b in ext.breaking %}<tr><td class="mono"><a href="manifolds/{{ b.name }}.html">{{ b.name }}</a></td><td class="small">{{ b.task }}</td><td class="mono">{{ b.clean_acc }}</td><td class="mono">{{ b.shape }}</td><td class="mono">{{ b.knn }}</td><td class="mono">{{ b.task_x }}</td><td class="mono">{{ b.popqa }}</td><td class="mono">{{ b.loss }}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="small">X is the weak-activation threshold in % of each neuron's calibrated max, swept over 0.1 … 10 (the realised share of activations zeroed is on each page). "–" means the readout never crossed that line within the sweep.</p>
+{% endif %}
+{% endif %}
 <h2>Replication status</h2>
 <div class="kpis">
 {% for k,v in counts.items() %}<div class="kpi"><b>{{ v }}</b><span>{{ k }}</span></div>{% endfor %}
 </div>
 <div class="tablewrap"><table>
-<thead><tr><th>manifold</th><th>model</th><th>layer</th><th>expected geometry</th><th>paper / post</th><th>status</th><th>SAE tiling</th></tr></thead>
+<thead><tr><th>manifold</th><th>model</th><th>layer</th><th>expected geometry</th><th>paper / post</th><th>status</th><th>SAE tiling</th><th>extensions</th></tr></thead>
 <tbody>
 {% for tier, rows in tiers %}
-<tr class="tier-row"><td colspan="7">{{ tier }}</td></tr>
+<tr class="tier-row"><td colspan="8">{{ tier }}</td></tr>
 {% for r in rows %}
 <tr>
 <td class="mono">{% if r.has_page %}<a href="manifolds/{{ r.name }}.html">{{ r.name }}</a>{% else %}{{ r.name }}{% endif %}</td>
@@ -177,6 +195,7 @@ Beyond the sources, every page adds a layer slider (the manifold at all 33 resid
 <td class="small">{% for s in r.sources %}<a href="{{ s[1] }}">{{ s[0] }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</td>
 <td><span class="badge badge-{{ r.status }}" title="{{ r.reason }}">{{ r.badge }}</span></td>
 <td class="small">{{ r.sae_note }}</td>
+<td class="small">{{ r.ext_note }}</td>
 </tr>
 {% endfor %}{% endfor %}
 </tbody></table></div>
@@ -219,6 +238,91 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 <p class="small">The same prompts read out at every residual-stream position: 0 is the token embedding, position i is the output of block i−1 (the paper's layer 19 is position 20). Drag the slider to watch the manifold form. Hover shows what the model would say next from that point at that depth under the logit (L), tuned (T) and Jacobian (J) lenses.</p>
 <div class="fig eager-fig" id="fig-depth" data-fig="json-depth" style="height:560px"></div>
 <script type="application/json" id="json-depth">{{ r.depth.depth_json|safe }}</script>
+{% endif %}
+
+{% if r.ablation %}
+<h2>Weak activations: does the manifold survive?</h2>
+<p class="small">Cammarata's <a href="https://already-clean.goodfire.com/">Neural Networks Are Already Clean</a> argues that weak neuron activations can be removed at little cost; <a href="https://www.lesswrong.com/posts/neural-networks-are-not-already-clean">Gao's reply</a> argues that graded, weak activations carry essential information. A concept manifold is a graded structure, so it is a direct test. Here every SwiGLU activation in every MLP block with |a| below X% of that neuron's calibrated maximum is set to zero (method of Li 2026, <code>weak-activation-ablation</code>; calibration on FineWeb-edu), the manifold is re-read at block {{ r.ablation.layer }}, and the model's behaviour is scored under the same perturbation. Drag the slider: the points are the same prompts projected onto the <em>clean</em> PCA axes, so movement is real displacement. The control zeroes the same number of activations at random (<code>r</code> steps); the <code>×0.5</code>/<code>×2</code> steps scale the weak tail instead of zeroing it.</p>
+<div class="fig eager-fig" id="fig-ablation" data-fig="json-ablation" style="height:560px"></div>
+<script type="application/json" id="json-ablation">{{ r.ablation.figure_json|safe }}</script>
+<div class="two">
+<div><div class="small mono" style="margin-bottom:4px">geometry vs threshold</div><div class="fig2d eager-fig" id="fig-abl-geo" data-fig="json-abl-geo" style="height:340px"></div>
+<script type="application/json" id="json-abl-geo">{{ r.ablation.geometry_json|safe }}</script></div>
+<div><div class="small mono" style="margin-bottom:4px">behaviour vs threshold{% if r.ablation.task %} · task: {{ r.ablation.task }}{% endif %}</div><div class="fig2d eager-fig" id="fig-abl-beh" data-fig="json-abl-beh" style="height:340px"></div>
+<script type="application/json" id="json-abl-beh">{{ r.ablation.behaviour_json|safe }}</script></div>
+</div>
+<div class="box" style="margin-top:12px"><b>Reading.</b> {{ r.ablation.summary }}</div>
+<details><summary class="small mono">per-condition table</summary>
+<div class="tablewrap"><table><thead><tr><th>condition</th><th>zeroed</th><th>status</th><th>shape</th><th>k-NN overlap</th><th>move / spread</th><th>top-1 agreement</th><th>KL</th>{% if r.ablation.task %}<th>task acc.</th>{% endif %}<th>LM Δloss</th><th>PopQA</th></tr></thead><tbody>
+{% for row in r.ablation.rows %}<tr><td class="mono" title="{{ row.description }}">{{ row.label }}</td><td class="mono">{{ row.zeroed }}</td><td><span class="badge badge-{{ row.status }}">{{ row.status }}</span></td><td class="mono">{{ row.shape }}</td><td class="mono">{{ row.knn }}</td><td class="mono">{{ row.move }}</td><td class="mono">{{ row.agree }}</td><td class="mono">{{ row.kl }}</td>{% if r.ablation.task %}<td class="mono">{{ row.task }}</td>{% endif %}<td class="mono">{{ row.dloss }}</td><td class="mono">{{ row.popqa }}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="small">shape = mean of the critical shape metrics on a fresh PCA of the ablated activations; k-NN overlap = share of each prompt's 10 nearest neighbours (full activation space) kept; KL = KL(clean ‖ ablated) of the next-token distribution over {{ r.ablation.n_kl }} prompts; LM Δloss and PopQA are model-wide (held-out FineWeb-edu; 300 PopQA questions, 8-shot).</p>
+</details>
+{% endif %}
+
+{% if r.neurons %}
+<h2>Which neurons write and read it</h2>
+<p class="small">The residual stream at block {{ r.neurons.layer }} is a sum of MLP neuron writes a·w (activation times the neuron's <code>down_proj</code> column). Each neuron's own contribution to the variance inside the manifold's 3-PC subspace is Var(a)·‖Cw‖², with C the PCA axes. Summed over all {{ r.neurons.n_total }} neurons of blocks 0–{{ r.neurons.layer }} these individual contributions come to {{ r.neurons.total_share }} of the subspace variance (the rest is covariance between neurons and attention: summing each block's projected MLP output gives {{ r.neurons.mlp_total }}, each block's attention output {{ r.neurons.attn_total }}, cross-block terms excluded). Half of the neuron-attributable part sits in <b>{{ r.neurons.n_half }}</b> neurons ({{ r.neurons.n_90 }} for 90%). Tiling, in the sense of Anthropic's <a href="https://transformer-circuits.pub/2025/linebreaks/index.html">counting-manifold paper</a>, would show up as top writers with narrow, ordered tuning curves over <code>{{ r.neurons.tuning_label }}</code>; the mean tuning strength (η²) of the top writers is {{ r.neurons.eta_top }} against {{ r.neurons.eta_rand }} for random neurons of the same blocks.</p>
+<div class="two">
+<div><div class="small mono" style="margin-bottom:4px">who builds it: variance written per block</div><div class="fig2d eager-fig" id="fig-neu-blocks" data-fig="json-neu-blocks"></div>
+<script type="application/json" id="json-neu-blocks">{{ r.neurons.blocks_json|safe }}</script></div>
+<div><div class="small mono" style="margin-bottom:4px">top writers: tuning curves vs {{ r.neurons.tuning_label }}</div><div class="fig2d eager-fig" id="fig-neu-tuning" data-fig="json-neu-tuning"></div>
+<script type="application/json" id="json-neu-tuning">{{ r.neurons.tuning_json|safe }}</script></div>
+</div>
+<div class="two">
+<div><div class="small mono" style="margin-bottom:4px">top readers (blocks {{ r.neurons.reader_blocks }}): activation predicted from the 3 coordinates</div><div class="fig2d eager-fig" id="fig-neu-readers" data-fig="json-neu-readers"></div>
+<script type="application/json" id="json-neu-readers">{{ r.neurons.readers_json|safe }}</script></div>
+<div><div class="small mono" style="margin-bottom:4px">causal: zero the top-k writers vs k random neurons</div><div class="fig2d eager-fig" id="fig-neu-causal" data-fig="json-neu-causal"></div>
+<script type="application/json" id="json-neu-causal">{{ r.neurons.causal_json|safe }}</script></div>
+</div>
+<div class="small mono" style="margin:14px 0 4px">the manifold with the top writers zeroed (clean PCA axes; drag the slider)</div>
+<div class="fig eager-fig" id="fig-neu-3d" data-fig="json-neu-3d" style="height:480px"></div>
+<script type="application/json" id="json-neu-3d">{{ r.neurons.figure_json|safe }}</script>
+<details><summary class="small mono">top writers and readers</summary>
+<div class="tablewrap"><table><thead><tr><th>role</th><th>block</th><th>neuron</th><th>share of subspace var.</th><th>tuning η²</th><th>peak {{ r.neurons.tuning_label }}</th><th>CV R² from coords</th></tr></thead><tbody>
+{% for w in r.neurons.writers %}<tr><td>writer</td><td class="mono">{{ w.block }}</td><td class="mono">{{ w.neuron }}</td><td class="mono">{{ '%.3f'|format(w.share) }}</td><td class="mono">{{ '%.2f'|format(w.eta2) }}</td><td class="mono">{{ '%.3g'|format(w.peak_label) }}</td><td class="mono">–</td></tr>{% endfor %}
+{% for w in r.neurons.readers %}<tr><td>reader</td><td class="mono">{{ w.block }}</td><td class="mono">{{ w.neuron }}</td><td class="mono">–</td><td class="mono">{{ '%.2f'|format(w.eta2) }}</td><td class="mono">{{ '%.3g'|format(w.peak_label) }}</td><td class="mono">{{ '%.2f'|format(w.cv_r2) }}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="small">{{ r.neurons.causal_text }}{% if r.sae %} The SAE tiling section below shows the same kind of tuning curves for Llama Scope features, for a features-vs-neurons comparison on the same manifold.{% endif %}</p>
+</details>
+{% endif %}
+
+{% if r.interference %}
+<h2>Interference with other manifolds</h2>
+<p class="small">Cammarata allows that the residual stream may hold "manifolds woven through each other"; the plan asks how much. Left: the overlap of this manifold's 3-PC subspace with every other manifold read at the same layer (mean squared cosine of the principal angles, 1 = identical subspaces), against random 3-D subspaces drawn from the pooled activation covariance and the split-half ceiling. Right: this manifold and its most overlapping partner, <b>{{ r.interference.partner }}</b> (overlap {{ '%.2f'|format(r.interference.partner_overlap) }},{{ r.interference.partner_note }}; random 95th percentile {{ r.interference.null95 }}), drawn together in the span of their two subspaces.</p>
+<div class="two">
+<div><div class="fig2d eager-fig" id="fig-int-bars" data-fig="json-int-bars" style="height:380px"></div>
+<script type="application/json" id="json-int-bars">{{ r.interference.bars_json|safe }}</script></div>
+<div><div class="fig eager-fig" id="fig-int-woven" data-fig="json-int-woven" style="height:380px"></div>
+<script type="application/json" id="json-int-woven">{{ r.interference.woven_json|safe }}</script></div>
+</div>
+{% if r.interference.crosstalk %}
+<p class="small" style="margin-top:14px">Does the overlap matter? Each prompt was prefixed with one of six sentences from another manifold's domain (or six neutral sentences) and re-read; the prefixed activations are centred per prefix sentence first, so the metrics measure distortion of the manifold rather than the offset a prefix adds. {{ r.interference.crosstalk_text }}</p>
+<div class="fig2d eager-fig" id="fig-int-cross" data-fig="json-int-cross" style="height:340px"></div>
+<script type="application/json" id="json-int-cross">{{ r.interference.crosstalk_json|safe }}</script>
+<details><summary class="small mono">where the points moved</summary>
+<div class="tablewrap"><table><thead><tr><th>prefix domain</th><th>example</th><th>k-NN overlap</th><th>shape</th><th>top-1 agreement</th>{% if r.interference.task %}<th>task acc.</th>{% endif %}<th>move in own subspace</th><th>move in prefix-domain subspace</th><th>random subspace</th></tr></thead><tbody>
+{% for row in r.interference.cross_rows %}<tr><td class="mono">{{ row.domain }}</td><td class="small">{{ row.example }}</td><td class="mono">{{ row.knn }}</td><td class="mono">{{ row.shape }}</td><td class="mono">{{ row.agree }}</td>{% if r.interference.task %}<td class="mono">{{ row.task }}</td>{% endif %}<td class="mono">{{ row.own }}</td><td class="mono">{{ row.other }}</td><td class="mono">{{ row.null }}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="small">"move in … subspace" is the mean fraction of each point's displacement that lies inside that 3-D subspace; the random column is the same for pooled-covariance random subspaces.</p>
+{% if r.interference.cross_examples %}<div class="tablewrap"><table><thead><tr><th>prefix domain</th><th>prompt</th><th>clean →</th><th>prefixed →</th><th>answer</th></tr></thead><tbody>
+{% for e in r.interference.cross_examples %}<tr><td class="mono">{{ e.domain }}</td><td class="small">{{ e.prompt }}</td><td class="mono">{{ e.clean }}</td><td class="mono">{{ e.prefixed }}</td><td class="mono">{{ e.answer }}</td></tr>{% endfor %}
+</tbody></table></div>{% endif %}
+</details>
+{% endif %}
+{% endif %}
+
+{% if r.checkpoints %}
+<h2>Forming during pre-training (OLMo-2 1B)</h2>
+<p class="small">Llama 3.1 has no public training checkpoints, so this is <code>{{ r.checkpoints.model_id }}</code> read with the same prompts at residual position {{ r.checkpoints.layer }} of {{ r.checkpoints.n_layers }} (the position with the best shape metric at the final checkpoint), across 12 log-spaced stage-1 checkpoints and the final model. Frames are aligned to the final checkpoint by orthogonal Procrustes, so rotations between independently fitted PCAs do not show. {{ r.checkpoints.summary }}</p>
+<div class="fig eager-fig" id="fig-ckpt" data-fig="json-ckpt" style="height:520px"></div>
+<script type="application/json" id="json-ckpt">{{ r.checkpoints.figure_json|safe }}</script>
+<div class="two">
+<div><div class="small mono" style="margin-bottom:4px">shape metric, task accuracy and centroid dimensionality vs tokens</div><div class="fig2d eager-fig" id="fig-ckpt-curve" data-fig="json-ckpt-curve" style="height:340px"></div>
+<script type="application/json" id="json-ckpt-curve">{{ r.checkpoints.curve_json|safe }}</script></div>
+<div><div class="small mono" style="margin-bottom:4px">shape metric by checkpoint and residual position</div><div class="fig2d eager-fig" id="fig-ckpt-heat" data-fig="json-ckpt-heat" style="height:340px"></div>
+<script type="application/json" id="json-ckpt-heat">{{ r.checkpoints.heatmap_json|safe }}</script></div>
+</div>
 {% endif %}
 
 <h2>Details</h2>
@@ -520,6 +624,200 @@ def _steer_payload(d: Path) -> dict[str, Any] | None:
     }
 
 
+def _fmt(v: Any, nd: int = 2) -> str:
+    if v is None or (isinstance(v, float) and v != v):
+        return "–"
+    return f"{v:.{nd}f}" if isinstance(v, float) else str(v)
+
+
+def _x(v: Any) -> str:
+    return "–" if v is None else f"{v:g}%"
+
+
+def _ablation_payload(d: Path) -> dict[str, Any] | None:
+    if not (d / "ablation.json").exists() or not (d / "ablation_figure.json").exists():
+        return None
+    a = json.loads((d / "ablation.json").read_text(encoding="utf-8"))
+    rows = []
+    for key in a["order"]:
+        r = a["conditions"].get(key)
+        if r is None:
+            continue
+        g = a["global"].get(key, {})
+        rows.append({"label": r["label"], "description": r["description"], "status": r["status"],
+                     "zeroed": _fmt(100 * g.get("fraction_zeroed", 0.0), 0) + "%",
+                     "shape": _fmt(r["shape_metric"]), "knn": _fmt(r["knn_overlap"]),
+                     "move": _fmt(r["relative_move"]), "agree": _fmt(r["top1_agreement"]),
+                     "kl": _fmt(r["kl_mean"], 3), "task": _fmt(r.get("task_accuracy")),
+                     "dloss": _fmt(g.get("lm_loss_delta"), 3), "popqa": _fmt(g.get("popqa_accuracy"))})
+    bp = a["breaking_points"]
+    clean = a["conditions"]["clean"]
+    parts = []
+    if bp.get("shape_half") is None and bp.get("knn_half") is None:
+        parts.append(f"The geometry never lost half its shape metric or half its neighbourhoods within the sweep (shape metric {clean['shape_metric']:.2f} clean, {a['conditions'].get('weak_10', {}).get('shape_metric', float('nan')):.2f} at X = 10%).")
+    else:
+        parts.append(f"The shape metric halves at X = {_x(bp.get('shape_half'))} and the neighbourhood overlap drops below ½ at X = {_x(bp.get('knn_half'))}.")
+    if a.get("task"):
+        parts.append(f"The {a['task']} task ({clean.get('task_accuracy', 0):.0%} clean) halves at X = {_x(bp.get('task_half'))}.")
+    parts.append(f"Model-wide, PopQA fact recall halves at X = {_x(bp.get('popqa_half'))} and held-out loss is up 0.1 nats at X = {_x(bp.get('lm_loss_plus_0.1'))}.")
+    r1 = a["conditions"].get("random_1")
+    if r1:
+        parts.append(f"The count-matched random control at the X = 1% count keeps {r1['knn_overlap']:.0%} of neighbourhoods and {r1['top1_agreement']:.0%} top-1 agreement, against {a['conditions']['weak_1']['knn_overlap']:.0%} and {a['conditions']['weak_1']['top1_agreement']:.0%} for the weak ablation.")
+    return {
+        "layer": a["layer"], "task": a.get("task"), "n_kl": a["n_kl"], "rows": rows,
+        "summary": " ".join(parts), "breaking": bp, "clean_task": clean.get("task_accuracy"),
+        "figure_json": _safe_json(_compact_depth_figure((d / "ablation_figure.json").read_text(encoding="utf-8"))),
+        "geometry_json": _safe_json((d / "ablation_geometry.json").read_text(encoding="utf-8")),
+        "behaviour_json": _safe_json((d / "ablation_behaviour.json").read_text(encoding="utf-8")),
+    }
+
+
+def _neurons_payload(d: Path) -> dict[str, Any] | None:
+    if not (d / "neurons.json").exists():
+        return None
+    n = json.loads((d / "neurons.json").read_text(encoding="utf-8"))
+    c = n["causal"]
+    ks = sorted({v["k"] for v in c.values()})
+    txt = []
+    for k in ks:
+        t, r = c.get(f"top_{k}"), c.get(f"random_{k}")
+        if t and r:
+            txt.append(f"k = {k}: shape {t['shape_metric']:.2f} vs {r['shape_metric']:.2f} random, "
+                       f"neighbourhoods kept {t['knn_overlap']:.0%} vs {r['knn_overlap']:.0%}"
+                       + (f", task {t['task_accuracy']:.0%} vs {r['task_accuracy']:.0%}" if t.get("task_accuracy") is not None else ""))
+    eta_top = float(np.mean([w["eta2"] for w in n["writers"]])) if n["writers"] else float("nan")
+    bc = n["block_contributions"]
+    sv = n["subspace_variance"] or 1e-9
+    mlp_total, attn_total = sum(bc["mlp"]) / sv, sum(bc["attn"]) / sv
+    return {
+        "total_share": f"{100 * n['total_writer_share']:.0f}%",
+        "mlp_total": f"{100 * mlp_total:.0f}%", "attn_total": f"{100 * attn_total:.0f}%",
+        "layer": n["layer"], "n_half": n["n_neurons_for_half_share"], "n_90": n["n_neurons_for_90pct_share"],
+        "n_total": n["n_neurons_total"], "tuning_label": n["tuning_label"].replace("_", " "),
+        "eta_top": f"{eta_top:.2f}", "eta_rand": f"{n['writers_random_eta2_mean']:.2f}",
+        "reader_blocks": f"{n['reader_blocks'][0]}–{n['reader_blocks'][-1]}" if n["reader_blocks"] else "–",
+        "writers": n["writers"][:10], "readers": n["readers"][:10],
+        "causal_text": f"Zeroing the top writers vs the same number of random neurons (blocks 0–{n['layer']}): {'; '.join(txt)}.",
+        "figure_json": _safe_json(_compact_depth_figure((d / "neurons_figure.json").read_text(encoding="utf-8"))),
+        "tuning_json": _safe_json((d / "neurons_tuning.json").read_text(encoding="utf-8")),
+        "readers_json": _safe_json((d / "neurons_readers.json").read_text(encoding="utf-8")),
+        "blocks_json": _safe_json((d / "neurons_blocks.json").read_text(encoding="utf-8")),
+        "causal_json": _safe_json((d / "neurons_causal.json").read_text(encoding="utf-8")),
+    }
+
+
+def _interference_payload(d: Path, name: str, geometry: dict[str, Any] | None) -> dict[str, Any] | None:
+    if geometry is None or name not in geometry.get("names", []) or not (d / "woven_figure.json").exists():
+        return None
+    from manifolds.interference import overlap_bar_figure
+
+    w = json.loads((d / "woven.json").read_text(encoding="utf-8"))
+    null95 = float(geometry.get("null_pooled_p95", 0.0))
+    out: dict[str, Any] = {
+        "partner": w["partner"].replace("_", " "), "partner_overlap": w["overlap"],
+        "partner_note": (" which is within the range of random subspaces, so even the closest other manifold is essentially orthogonal to this one"
+                         if w["overlap"] <= null95 else " which is above the random range"),
+        "null95": f"{null95:.3f}",
+        "bars_json": _safe_json(overlap_bar_figure(geometry, name).to_json()),
+        "woven_json": _safe_json(_compact_figure((d / "woven_figure.json").read_text(encoding="utf-8"))),
+        "crosstalk": None, "task": None, "cross_rows": [],
+    }
+    if (d / "crosstalk.json").exists() and (d / "crosstalk_figure.json").exists():
+        ct = json.loads((d / "crosstalk.json").read_text(encoding="utf-8"))
+        rows = []
+        for dom, r in ct["conditions"].items():
+            rows.append({"domain": dom, "example": r["example"][:70], "knn": _fmt(r["knn_overlap"]),
+                         "shape": _fmt(r["shape_metric"]), "agree": _fmt(r["top1_agreement"]),
+                         "task": _fmt(r.get("task_accuracy")), "own": _fmt(r["move_fraction_in_own_subspace"], 3),
+                         "other": _fmt(r.get("move_fraction_in_prefix_domain_subspace"), 3),
+                         "null": _fmt(r.get("move_fraction_in_null_subspace"), 3)})
+        neutral = ct["conditions"].get("neutral")
+        others = {k: v for k, v in ct["conditions"].items() if k != "neutral"}
+        worst = min(others, key=lambda k: others[k]["knn_overlap"]) if others else None
+        txt = ""
+        if neutral and worst:
+            txt = (f"A neutral prefix keeps {neutral['knn_overlap']:.0%} of neighbourhoods; the most disruptive domain is "
+                   f"{worst} at {others[worst]['knn_overlap']:.0%}")
+            if ct["clean"].get("task_accuracy") is not None:
+                txt += (f" (task accuracy {ct['clean']['task_accuracy']:.0%} clean, {neutral['task_accuracy']:.0%} neutral, "
+                        f"{others[worst]['task_accuracy']:.0%} with a {worst} prefix)")
+            txt += "."
+        examples = []
+        for dom, r in ct["conditions"].items():
+            for e in r.get("examples", [])[:2]:
+                examples.append({"domain": dom, "prompt": _clean_text(e["prompt"][:90]),
+                                 "clean": _clean_text(repr(e["clean_top1"])),
+                                 "prefixed": _clean_text(repr(e["prefixed_top1"])),
+                                 "answer": _clean_text(repr(e["answer"])) if e.get("answer") is not None else "–"})
+        out.update({"crosstalk": ct, "task": ct["clean"].get("task"), "cross_rows": rows, "crosstalk_text": txt,
+                    "cross_examples": examples,
+                    "crosstalk_json": _safe_json((d / "crosstalk_figure.json").read_text(encoding="utf-8"))})
+    return out
+
+
+def _checkpoints_payload(d: Path) -> dict[str, Any] | None:
+    if not (d / "checkpoints.json").exists() or not (d / "checkpoints_figure.json").exists():
+        return None
+    c = json.loads((d / "checkpoints.json").read_text(encoding="utf-8"))
+    ck = c["checkpoints"]
+    final = ck[-1]
+    first_match = next((x for x in ck if x["status"] == "matches"), None)
+    first_half = next((x for x in ck if x["shape_metric"] >= 0.5 * final["shape_metric"]), None)
+    parts = [f"At the final checkpoint the shape metric is {final['shape_metric']:.2f} ({final['status']})"]
+    if c.get("task") and final.get("task_accuracy") is not None:
+        parts[-1] += f" and {c['task']} accuracy {final['task_accuracy']:.0%}"
+    parts[-1] += "."
+    if first_match:
+        parts.append(f"The check first passes at {first_match['label']} of pre-training.")
+    elif first_half:
+        parts.append(f"Half the final shape metric is reached by {first_half['label']}.")
+    prs = [x["centroid_participation_ratio"] for x in ck]
+    parts.append(f"Centroid dimensionality goes from {prs[0]:.1f} to {prs[-1]:.1f} (1 = an axis, 2 = a plane or circle).")
+    return {"model_id": c["model_id"], "layer": c["display_layer"], "n_layers": c["n_layers"],
+            "summary": " ".join(parts),
+            "figure_json": _safe_json(_compact_depth_figure((d / "checkpoints_figure.json").read_text(encoding="utf-8"))),
+            "curve_json": _safe_json((d / "checkpoints_curve.json").read_text(encoding="utf-8")),
+            "heatmap_json": _safe_json((d / "checkpoints_heatmap.json").read_text(encoding="utf-8"))}
+
+
+def _extensions_index(results_dir: Path, reports: dict[str, dict[str, Any]]) -> dict[str, Any] | None:
+    pilots = [n for n in reports if (results_dir / n / "ablation.json").exists()
+              or (results_dir / n / "neurons.json").exists() or (results_dir / n / "checkpoints.json").exists()]
+    if not pilots:
+        return None
+    out: dict[str, Any] = {"pilots": ", ".join(p.replace("_", " ") for p in pilots), "global_json": None,
+                           "heatmap_json": None, "breaking": [], "null": "", "global_text": ""}
+    g = results_dir / "_ablation" / "global.json"
+    if g.exists():
+        from manifolds.ablate import global_figure
+
+        gj = json.loads(g.read_text(encoding="utf-8"))
+        out["global_json"] = _safe_json(global_figure(gj).to_json())
+        c = gj["conditions"]
+        w1, r1 = c.get("weak_1"), c.get("random_1")
+        if w1 and r1:
+            out["global_text"] = (f"Zeroing every activation below 1% of its neuron's max removes {w1['fraction_zeroed']:.0%} of all MLP activations "
+                                  f"for +{w1['lm_loss_delta']:.3f} nats and PopQA {w1['popqa_accuracy']:.1%} (clean {c['clean']['popqa_accuracy']:.1%}); "
+                                  f"the same count at random costs +{r1['lm_loss_delta']:.2f} nats and PopQA {r1['popqa_accuracy']:.1%}.")
+    h = results_dir / "_interference" / "heatmap.json"
+    if h.exists():
+        out["heatmap_json"] = _safe_json(h.read_text(encoding="utf-8"))
+        geo = json.loads((results_dir / "_interference" / "geometry.json").read_text(encoding="utf-8"))
+        out["null"] = f"{geo['null_pooled_mean']:.3f}"
+    for n in pilots:
+        a = results_dir / n / "ablation.json"
+        if not a.exists():
+            continue
+        aj = json.loads(a.read_text(encoding="utf-8"))
+        bp = aj["breaking_points"]
+        out["breaking"].append({"name": n, "task": aj.get("task") or "–",
+                                "clean_acc": _fmt(aj.get("clean_task_accuracy")),
+                                "shape": _x(bp.get("shape_half")), "knn": _x(bp.get("knn_half")),
+                                "task_x": _x(bp.get("task_half")) if aj.get("task") else "–",
+                                "popqa": _x(bp.get("popqa_half")), "loss": _x(bp.get("lm_loss_plus_0.1"))})
+    return out
+
+
 def _by_label(report: dict[str, Any]) -> str:
     color = report.get("color", {})
     if color.get("color_mode") == "hex":
@@ -538,6 +836,10 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
         reports[d.parent.name] = json.loads(d.read_text(encoding="utf-8"))
 
     (out_dir / "manifolds").mkdir(parents=True, exist_ok=True)
+    geometry = None
+    if (results_dir / "_interference" / "geometry.json").exists():
+        geometry = json.loads((results_dir / "_interference" / "geometry.json").read_text(encoding="utf-8"))
+    ext = _extensions_index(results_dir, reports)
 
     # ---- index rows ------------------------------------------------------------------
     tier_order = ["core", "extended", "cyclic", "vision"]
@@ -556,8 +858,13 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
                 if "ve_at" in sj["summary"]:
                     sae_note = ("dilution" if sj["summary"].get("consistent_with_dilution_claim")
                                 else "no dilution signature")
+            dd = results_dir / m.name
+            ext_parts = [lab for f, lab in (("ablation.json", "ablation"), ("neurons.json", "neurons"),
+                                            ("woven.json", "interference"), ("checkpoints.json", "checkpoints"))
+                         if (dd / f).exists()]
             rows.append({
                 "name": m.name, "model": m.model, "layer": m.layer, "sae_note": sae_note,
+                "ext_note": " · ".join(ext_parts) if ext_parts else "—",
                 "geometry": m.expected_geometry, "sources": _source_links(m.sources),
                 "status": status, "badge": BADGE_TEXT[status],
                 "reason": rep["shape"]["reason"] if rep else "not run yet",
@@ -585,7 +892,7 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
     common = {"fonts": FONTS, "plotly": PLOTLY_CDN, "css": CSS, "js": JS, "built": built}
     for artifact, fname in ((False, "index.html"), (True, "artifact.html")):
         index_html = env.get_template("index").render(
-            title=SITE_TITLE, root="", counts=counts, tiers=tiers, cards=cards,
+            title=SITE_TITLE, root="", counts=counts, tiers=tiers, cards=cards, ext=ext,
             artifact=artifact, **common,
         )
         (out_dir / fname).write_text(index_html, encoding="utf-8")
@@ -618,6 +925,10 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
             "probe": _probe_payload(results_dir / name, rep),
             "depth": _depth_payload(results_dir / name),
             "steer": _steer_payload(results_dir / name),
+            "ablation": _ablation_payload(results_dir / name),
+            "neurons": _neurons_payload(results_dir / name),
+            "interference": _interference_payload(results_dir / name, name, geometry),
+            "checkpoints": _checkpoints_payload(results_dir / name),
         }
         page = env.get_template("detail").render(
             title=f"{name.replace('_', ' ')} manifold", root="../", r=r, artifact=False,

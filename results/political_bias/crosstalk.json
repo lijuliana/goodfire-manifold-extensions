@@ -1,0 +1,275 @@
+{
+ "name": "political_bias",
+ "layer": 19,
+ "n_prompts": 799,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.9185410803669866,
+  "task_accuracy": 0.9577464788732394,
+  "task": "lean (conservative vs liberal)"
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "matches",
+   "shape_metric": 0.9020962119723919,
+   "metrics": {
+    "spearman_best_direction": 0.9159917718622641,
+    "knn_r2": 0.8882006520825196
+   },
+   "knn_overlap": 0.24568210262828538,
+   "relative_move": 0.8323273546072391,
+   "top1_agreement": 0.07384230287859825,
+   "task_accuracy": 0.94679186228482,
+   "move_fraction_in_own_subspace": 0.2832252661316226,
+   "move_fraction_in_prefix_domain_subspace": 0.010811264626681805,
+   "move_fraction_in_null_subspace": 0.007409789599478245,
+   "example": "The hex code #80b918 is for the color green. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": " liberal",
+     "answer": " liberal"
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Statement: \"We should keep core clean air and water protections in place while speeding up permitting reviews, so that necessary projects move forward without weakening standards.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": " liberal",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Statement: \"Housing assistance should be temporary and tied to work requirements, helping families get back on their feet without creating long-term reliance on government.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": " conservative",
+     "answer": " conservative"
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "partial",
+   "shape_metric": 0.7860052581031098,
+   "metrics": {
+    "spearman_best_direction": 0.8601488443547123,
+    "knn_r2": 0.7118616718515075
+   },
+   "knn_overlap": 0.13992490613266584,
+   "relative_move": 1.2179191258350663,
+   "top1_agreement": 0.7434292866082604,
+   "task_accuracy": 0.9405320813771518,
+   "move_fraction_in_own_subspace": 0.24654282662798208,
+   "move_fraction_in_prefix_domain_subspace": 0.001223829691298306,
+   "move_fraction_in_null_subspace": 0.00797762256115675,
+   "example": "It happened on a Monday. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+   "examples": [
+    {
+     "prompt": "It happened on a Monday. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " liberal"
+    },
+    {
+     "prompt": "They rest on Sunday. Statement: \"We should keep core clean air and water protections in place while speeding up permitting reviews, so that necessary projects move forward without weakening standards.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": null
+    },
+    {
+     "prompt": "The meeting is on Friday. Statement: \"Housing assistance should be temporary and tied to work requirements, helping families get back on their feet without creating long-term reliance on government.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " conservative"
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "matches",
+   "shape_metric": 0.809302835880741,
+   "metrics": {
+    "spearman_best_direction": 0.8612961382165454,
+    "knn_r2": 0.7573095335449367
+   },
+   "knn_overlap": 0.19524405506883605,
+   "relative_move": 0.9215144578846535,
+   "top1_agreement": 0.6921151439299124,
+   "task_accuracy": 0.9483568075117371,
+   "move_fraction_in_own_subspace": 0.25163581258285284,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.007818219251930714,
+   "example": "The trip is in March. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+   "examples": [
+    {
+     "prompt": "The trip is in March. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " liberal"
+    },
+    {
+     "prompt": "The harvest is in October. Statement: \"We should keep core clean air and water protections in place while speeding up permitting reviews, so that necessary projects move forward without weakening standards.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": null
+    },
+    {
+     "prompt": "The harvest is in October. Statement: \"Housing assistance should be temporary and tied to work requirements, helping families get back on their feet without creating long-term reliance on government.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " conservative"
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.8428568081306664,
+   "metrics": {
+    "spearman_best_direction": 0.8875527502993473,
+    "knn_r2": 0.7981608659619855
+   },
+   "knn_overlap": 0.15556946182728412,
+   "relative_move": 1.035393904351551,
+   "top1_agreement": 0.7284105131414268,
+   "task_accuracy": 0.9342723004694836,
+   "move_fraction_in_own_subspace": 0.22904815426679231,
+   "move_fraction_in_prefix_domain_subspace": 0.005404436029493809,
+   "move_fraction_in_null_subspace": 0.007727554999291897,
+   "example": "He is 82 years old. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+   "examples": [
+    {
+     "prompt": "He is 82 years old. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " liberal"
+    },
+    {
+     "prompt": "They are 19 years old. Statement: \"We should keep core clean air and water protections in place while speeding up permitting reviews, so that necessary projects move forward without weakening standards.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": null
+    },
+    {
+     "prompt": "They are 34 years old. Statement: \"Housing assistance should be temporary and tied to work requirements, helping families get back on their feet without creating long-term reliance on government.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " conservative"
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "matches",
+   "shape_metric": 0.8168609363771484,
+   "metrics": {
+    "spearman_best_direction": 0.870529929942622,
+    "knn_r2": 0.7631919428116747
+   },
+   "knn_overlap": 0.22415519399249065,
+   "relative_move": 0.8737568751161717,
+   "top1_agreement": 0.799749687108886,
+   "task_accuracy": 0.9045383411580594,
+   "move_fraction_in_own_subspace": 0.20140097663350215,
+   "move_fraction_in_prefix_domain_subspace": 0.0019832230173051357,
+   "move_fraction_in_null_subspace": 0.0064216069877147675,
+   "example": "The city of Lagos is in Nigeria. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+   "examples": [
+    {
+     "prompt": "The city of Lagos is in Nigeria. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " liberal"
+    },
+    {
+     "prompt": "The city of Perth is in Australia. Statement: \"We should keep core clean air and water protections in place while speeding up permitting reviews, so that necessary projects move forward without weakening standards.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Osaka is in Japan. Statement: \"Housing assistance should be temporary and tied to work requirements, helping families get back on their feet without creating long-term reliance on government.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " conservative"
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "matches",
+   "shape_metric": 0.7845657482081363,
+   "metrics": {
+    "spearman_best_direction": 0.8516478848571085,
+    "knn_r2": 0.7174836115591642
+   },
+   "knn_overlap": 0.17371714643304131,
+   "relative_move": 1.0644446169121733,
+   "top1_agreement": 0.6470588235294118,
+   "task_accuracy": 0.9139280125195618,
+   "move_fraction_in_own_subspace": 0.2012466847623937,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.00691132852807641,
+   "example": "91+6=97. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+   "examples": [
+    {
+     "prompt": "91+6=97. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " liberal"
+    },
+    {
+     "prompt": "48+37=85. Statement: \"We should keep core clean air and water protections in place while speeding up permitting reviews, so that necessary projects move forward without weakening standards.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": null
+    },
+    {
+     "prompt": "17+25=42. Statement: \"Housing assistance should be temporary and tied to work requirements, helping families get back on their feet without creating long-term reliance on government.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": ":",
+     "answer": " conservative"
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "matches",
+   "shape_metric": 0.621220024153363,
+   "metrics": {
+    "spearman_best_direction": 0.6875276689985205,
+    "knn_r2": 0.5549123793082056
+   },
+   "knn_overlap": 0.12152690863579474,
+   "relative_move": 1.2023644843580865,
+   "top1_agreement": 0.40550688360450565,
+   "task_accuracy": 0.918622848200313,
+   "move_fraction_in_own_subspace": 0.22224276511950924,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.007037229835987091,
+   "example": "The package arrived without any delay. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+   "examples": [
+    {
+     "prompt": "The package arrived without any delay. Statement: \"Families should not be separated at the border, and immigration detention should be reserved for people who pose a genuine risk to public safety.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": " not",
+     "answer": " liberal"
+    },
+    {
+     "prompt": "The report was published this morning. Statement: \"We should keep core clean air and water protections in place while speeding up permitting reviews, so that necessary projects move forward without weakening standards.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": " obvious",
+     "answer": null
+    },
+    {
+     "prompt": "The report was published this morning. Statement: \"Housing assistance should be temporary and tied to work requirements, helping families get back on their feet without creating long-term reliance on government.\"\nThe political leaning of this statement is",
+     "clean_top1": ":",
+     "prefixed_top1": " obvious",
+     "answer": " conservative"
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 167.1
+}
