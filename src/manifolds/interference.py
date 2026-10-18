@@ -30,7 +30,7 @@ import torch
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import compare, prepare, summary_metric
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
-from manifolds.analysis.shapes import ROLES, slider_coloring
+from manifolds.analysis.shapes import ROLES, category_order, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.manifest import Manifest
 from manifolds.prompts.types import PromptSet
@@ -40,6 +40,7 @@ from manifolds.viz.plot3d import (
     FONT,
     TEXT,
     _floor_traces,
+    category_colors,
     colorscale_for,
     line_layout,
     subsample,
@@ -203,8 +204,7 @@ def woven_figure(results_dir: Path, cfg: RunConfig, a: str, b: str, max_points: 
     if cmode == "hex":
         marker_a["color"] = [str(v) for v in cvals]
     elif cmode == "categorical":
-        cats = list(dict.fromkeys(cvals))
-        marker_a["color"] = [CATEGORICAL[cats.index(v) % len(CATEGORICAL)] for v in cvals]
+        marker_a["color"] = category_colors(cvals, category_order(a, labs_a))
     else:
         marker_a["color"] = [float(v) for v in cvals]
         marker_a["colorscale"] = colorscale_for(cmode)

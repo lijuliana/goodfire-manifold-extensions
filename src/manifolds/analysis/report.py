@@ -10,7 +10,7 @@ import numpy as np
 
 from manifolds import RESULTS_DIR
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
-from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check
+from manifolds.analysis.shapes import ROLES, category_order, center_by_group, run_shape_check
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
@@ -32,11 +32,7 @@ def _color_config(name: str, labels: list[dict[str, Any]]) -> dict[str, Any]:
     key = r["color_by"]
     cfg: dict[str, Any] = {"color_by": key, "color_mode": r["color_mode"]}
     if r["color_mode"] == "categorical":
-        if name == "days":
-            # keep weekday order
-            cfg["category_order"] = list(dict.fromkeys(lab["day"] for lab in labels))
-        else:
-            cfg["category_order"] = sorted({str(lab[key]) for lab in labels})
+        cfg["category_order"] = category_order(name, labels)   # calendar, valence, … (shapes.py)
     return cfg
 
 

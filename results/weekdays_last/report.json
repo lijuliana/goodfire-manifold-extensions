@@ -140,13 +140,13 @@
   "color_by": "day",
   "color_mode": "categorical",
   "category_order": [
-   "Friday",
    "Monday",
-   "Saturday",
-   "Sunday",
-   "Thursday",
    "Tuesday",
-   "Wednesday"
+   "Wednesday",
+   "Thursday",
+   "Friday",
+   "Saturday",
+   "Sunday"
   ]
  },
  "meta": {

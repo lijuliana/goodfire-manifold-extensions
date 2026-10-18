@@ -589,3 +589,25 @@ def slider_coloring(name: str, labels: list[dict[str, Any]]) -> tuple[list[Any],
     if r["color_mode"] == "categorical":
         vals = [str(v) for v in vals]
     return vals, r["color_mode"]
+
+
+# Logical legend / colour order for categorical colourings (anything not listed is alphabetical).
+NATURAL_ORDER: dict[str, list[str]] = {
+    "month": ["January", "February", "March", "April", "May", "June", "July", "August",
+              "September", "October", "November", "December"],
+    "day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "grade_name": ["perfect -ore", "slant (r-ending)", "none"],
+    "emotion": ["anger", "disgust", "fear", "sadness", "surprise", "happiness"],  # by valence
+}
+
+
+def category_order(name: str, labels: list[dict[str, Any]]) -> list[str]:
+    """Order of the categories of a categorical colouring: calendar for months and weekdays,
+    rhyme strength, valence for emotions, otherwise alphabetical. Used for the legend and for
+    assigning palette colours, so a category has the same colour in every plot of a page."""
+    key = ROLES[name]["color_by"]
+    present = {str(lab[key]) for lab in labels}
+    base = NATURAL_ORDER.get(key)
+    if base:
+        return [c for c in base if c in present] + sorted(present - set(base))
+    return sorted(present)

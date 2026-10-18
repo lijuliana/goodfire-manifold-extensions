@@ -15,14 +15,28 @@ import torch
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
 from manifolds.analysis.probe import cv_probe_coords
-from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check, slider_coloring
+from manifolds.analysis.shapes import (
+    ROLES,
+    category_order,
+    center_by_group,
+    run_shape_check,
+    slider_coloring,
+)
 from manifolds.config import RunConfig
 from manifolds.jlens import JacobianLensFull, pc_readouts
 from manifolds.lens import TunedLens, lens_readout
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
 from manifolds.steer import STEER_TASKS, run_steering
-from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, _floor_traces, colorscale_for, subsample
+from manifolds.viz.plot3d import (
+    CATEGORICAL,
+    FONT,
+    TEXT,
+    _floor_traces,
+    category_colors,
+    colorscale_for,
+    subsample,
+)
 
 LENS_LAYERS_DEFAULT = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 19, 20, 22, 24, 26, 28, 30, 32]
 
@@ -33,7 +47,8 @@ def _critical_metrics(report: dict[str, Any]) -> dict[str, float]:
 
 def depth_figure(coords_by_layer: dict[int, np.ndarray], color_values: list[Any],
                  color_mode: str, hover: list[str], layer_default: int,
-                 hover_by_layer: dict[int, list[str]] | None = None) -> go.Figure:
+                 hover_by_layer: dict[int, list[str]] | None = None,
+                 category_order: list[Any] | None = None) -> go.Figure:
     """One 3-D scatter per layer with a slider (Goodfire styling, shared floor per frame)."""
     layers = sorted(coords_by_layer)
     hover_by_layer = hover_by_layer or {}
@@ -41,9 +56,7 @@ def depth_figure(coords_by_layer: dict[int, np.ndarray], color_values: list[Any]
     if color_mode == "hex":
         base_marker["color"] = [str(c) for c in color_values]
     elif color_mode == "categorical":
-        cats = list(dict.fromkeys(color_values))
-        base_marker["color"] = [CATEGORICAL[cats.index(c) % len(CATEGORICAL)]
-                                for c in color_values]
+        base_marker["color"] = category_colors(color_values, category_order)
     else:
         base_marker["color"] = [float(c) for c in color_values]
         base_marker["colorscale"] = colorscale_for(color_mode)
@@ -259,7 +272,8 @@ def run_depth(
             rows.append("<br>".join(parts))
         hover_by_layer[li] = rows
     fig_depth = depth_figure(coords_by_layer, color_values, color_mode, hover,
-                             layer_default=layer + 1, hover_by_layer=hover_by_layer)
+                             layer_default=layer + 1, hover_by_layer=hover_by_layer,
+                             category_order=category_order(spec.name, labels))
     fig_lens = lens_summary_figure(lens, layer + 1)
     metrics = {m: [scores[li]["metrics"].get(m, float("nan")) for li in range(n_layers + 1)]
                for m in metric_names}
@@ -360,7 +374,8 @@ def rebuild_depth_figure(spec: ManifoldSpec, cfg: RunConfig, full_model: Any,
         hover_by_layer[li] = rows
     color_values, color_mode = slider_coloring(spec.name, [labels[i] for i in sub])
     fig_depth = depth_figure(coords_by_layer, color_values, color_mode, hover,
-                             layer_default=layer + 1, hover_by_layer=hover_by_layer)
+                             layer_default=layer + 1, hover_by_layer=hover_by_layer,
+                             category_order=category_order(spec.name, labels))
     (out_dir / "depth_figure.json").write_text(fig_depth.to_json(), encoding="utf-8")
     dj["frames_view"] = ("Fourier probe (out-of-fold), fitted per layer" if is_probe
                          else "PCA per layer")

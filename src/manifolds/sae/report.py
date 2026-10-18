@@ -13,7 +13,7 @@ import torch
 
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
-from manifolds.analysis.shapes import ROLES
+from manifolds.analysis.shapes import ROLES, category_order
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
@@ -27,7 +27,7 @@ from manifolds.sae.capture import (
     tuning_curves,
 )
 from manifolds.sae.llama_scope import LlamaScopeSAE
-from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, colorscale_for, subsample
+from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, category_colors, colorscale_for, subsample
 
 PARTIAL_KS = [1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64]
 
@@ -78,7 +78,7 @@ def tuning_figure(tcs: list[Any], label_name: str) -> go.Figure:
 
 
 def partial_figure(gt: np.ndarray, partial: Any, color_values: list[Any], color_mode: str,
-                   hover: list[str]) -> go.Figure:
+                   hover: list[str], category_order: list[Any] | None = None) -> go.Figure:
     """Ground-truth PCA cloud (grey) plus the reconstruction from the first k features, with a
     dropdown over k (Fig. 5 right / Fig. 9 of the paper)."""
     fig = go.Figure()
@@ -89,8 +89,7 @@ def partial_figure(gt: np.ndarray, partial: Any, color_values: list[Any], color_
     if color_mode == "hex":
         marker["color"] = [str(c) for c in color_values]
     elif color_mode == "categorical":
-        cats = list(dict.fromkeys(color_values))
-        marker["color"] = [CATEGORICAL[cats.index(c) % len(CATEGORICAL)] for c in color_values]
+        marker["color"] = category_colors(color_values, category_order)
     else:
         marker["color"] = [float(c) for c in color_values]
         marker["colorscale"] = colorscale_for(color_mode)
@@ -169,7 +168,8 @@ def analyze_sae(
     hover = [f"{p}<br>{tlabel}: {lb[tlabel]}" for p, lb in zip(prompts, labels, strict=True)]
     fig_curves = curves_figure(curves, roles["ambient_dim"])
     fig_tuning = tuning_figure(tcs, tlabel)
-    fig_partial = partial_figure(pca.coords, partial, color_values, roles["color_mode"], hover)
+    fig_partial = partial_figure(pca.coords, partial, color_values, roles["color_mode"], hover,
+                                 category_order=category_order(spec.name, labels))
 
     summary = summarize(curves, roles["ambient_dim"])
     # Dilution claim (paper Sec. 5): no compact atom group spans the manifold -- the greedy

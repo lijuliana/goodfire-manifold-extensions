@@ -30,7 +30,13 @@ from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import critical_metrics, procrustes_align, summary_metric
 from manifolds.analysis.pca import fit_pca
 from manifolds.analysis.probe import cv_probe_coords
-from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check, slider_coloring
+from manifolds.analysis.shapes import (
+    ROLES,
+    category_order,
+    center_by_group,
+    run_shape_check,
+    slider_coloring,
+)
 from manifolds.config import RunConfig
 from manifolds.depth import DepthConfig, FullModel
 from manifolds.manifest import Manifest
@@ -279,7 +285,8 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         hover = [(s["prompts"][i] if len(s["prompts"][i]) <= 60 else s["prompts"][i][:57] + "…")
                  + f"<br>{tl}: {s['labels'][i][tl]}" for i in sub]
         fig = frames_figure(steps, cv, color_mode=cmode, hover_text=hover,
-                            active=len(steps) - 1, prefix="checkpoint: ", captions=captions)
+                            active=len(steps) - 1, prefix="checkpoint: ", captions=captions,
+                        category_order=category_order(name, s["labels"]))
         (d / "checkpoints_figure.json").write_text(fig.to_json(), encoding="utf-8")
         (d / "checkpoints_curve.json").write_text(curve_figure(rep).to_json(), encoding="utf-8")
         (d / "checkpoints_heatmap.json").write_text(layer_heatmap(rep).to_json(), encoding="utf-8")

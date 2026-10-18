@@ -31,6 +31,16 @@ CATEGORICAL = [
 ]
 
 
+def category_colors(values: Sequence[Any], order: Sequence[Any] | None = None) -> list[str]:
+    """Palette colour per point; category i of `order` gets CATEGORICAL[i] (appearance order when
+    no order is given). Unknown categories are appended in appearance order."""
+    cats = [str(c) for c in order] if order is not None else []
+    for v in values:
+        if str(v) not in cats:
+            cats.append(str(v))
+    return [CATEGORICAL[cats.index(str(v)) % len(CATEGORICAL)] for v in values]
+
+
 def subsample(n: int, max_points: int, seed: int = 0) -> np.ndarray:
     """Deterministic index subset of size min(n, max_points)."""
     if n <= max_points:
@@ -157,6 +167,7 @@ def frames_figure(
     prefix: str = "",
     hover_by_step: dict[str, Sequence[str]] | None = None,
     captions: dict[str, str] | None = None,
+    category_order: Sequence[Any] | None = None,
     point_size: float = 3.8,
     camera_eye: tuple[float, float, float] = (1.55, 1.25, 0.85),
 ) -> go.Figure:
@@ -178,9 +189,7 @@ def frames_figure(
     if color_mode == "hex":
         base_marker["color"] = [str(c) for c in color_values]
     elif color_mode == "categorical":
-        cats = list(dict.fromkeys(color_values))
-        base_marker["color"] = [CATEGORICAL[cats.index(c) % len(CATEGORICAL)]
-                                for c in color_values]
+        base_marker["color"] = category_colors(color_values, category_order)
     else:
         base_marker["color"] = [float(c) for c in color_values]
         base_marker["colorscale"] = colorscale_for(color_mode)

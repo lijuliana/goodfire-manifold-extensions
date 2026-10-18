@@ -119,9 +119,9 @@
    "anger",
    "disgust",
    "fear",
-   "happiness",
    "sadness",
-   "surprise"
+   "surprise",
+   "happiness"
   ]
  },
  "meta": {

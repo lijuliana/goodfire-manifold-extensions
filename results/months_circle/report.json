@@ -116,18 +116,18 @@
   "color_by": "month",
   "color_mode": "categorical",
   "category_order": [
-   "April",
-   "August",
-   "December",
-   "February",
    "January",
-   "July",
-   "June",
+   "February",
    "March",
+   "April",
    "May",
-   "November",
+   "June",
+   "July",
+   "August",
+   "September",
    "October",
-   "September"
+   "November",
+   "December"
   ]
  },
  "meta": {

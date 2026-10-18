@@ -108,9 +108,9 @@
   "color_by": "grade_name",
   "color_mode": "categorical",
   "category_order": [
-   "none",
    "perfect -ore",
-   "slant (r-ending)"
+   "slant (r-ending)",
+   "none"
   ]
  },
  "meta": {
