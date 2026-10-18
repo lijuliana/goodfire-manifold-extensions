@@ -32,9 +32,9 @@
  ],
  "subspace_variance": 9.987527847290039,
  "evr": [
-  0.117203566938159,
-  0.05681234232170859,
-  0.050836276572369984
+  0.11720356693815907,
+  0.05681234232170857,
+  0.05083627657236996
  ],
  "tuning_label": "sum",
  "writers": [
@@ -914,7 +914,7 @@
   {
    "block": 19,
    "neuron": 13713,
-   "cv_r2": 0.7541631460189819,
+   "cv_r2": 0.7541632056236267,
    "eta2": 0.6685970983039531,
    "weight_subspace_fraction": 0.00048097167746163905,
    "peak_label": 146.0,
@@ -1156,6 +1156,23 @@
   "task": "addition (exact sum)"
  },
  "view": "Fourier probe fitted on the clean activations, applied to every frame",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:45:17+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 1000,
+  "max_points": 800,
+  "top_n": 12,
+  "ablate_k": [
+   16,
+   64,
+   256
+  ]
+ },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 45.6
+ "elapsed_s": 58.3
 }

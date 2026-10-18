@@ -77,7 +77,7 @@
   "weekdays_last",
   "years"
  ],
- "elapsed_s": 2681.3,
+ "elapsed_s": 4859.9,
  "display_layers": {
   "addition_sum_fourier": 15,
   "colors": 12,
@@ -92,7 +92,7 @@
   "sent_length": 8,
   "ordinals": 16,
   "classical_composers": 13,
-  "statistical_uncertainty": 4,
+  "statistical_uncertainty": 6,
   "slant_rhymes_ore": 14,
   "numbers_1_100": 12,
   "emotions_valence_arousal": 8,

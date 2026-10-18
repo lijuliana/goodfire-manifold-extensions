@@ -110,6 +110,7 @@
   }
  },
  "status": "partial",
+ "rubric_version": 2.1,
  "status_v1": null,
  "probe_view": null,
  "color": {

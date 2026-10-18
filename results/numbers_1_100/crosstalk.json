@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 100,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:55:41+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.9018871601251158,
+  "shape_metric": 0.9014218409946168,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "matches",
-   "shape_metric": 0.5731629400744338,
+   "shape_metric": 0.5702778749561179,
    "metrics": {
-    "probe_r2_period_10": 0.5900672473445239,
-    "probe_r2_period_5": 0.5562586328043437
+    "probe_r2_period_10": 0.5843007501484342,
+    "probe_r2_period_5": 0.5562549997638015
    },
-   "knn_overlap": 0.7490000000000001,
-   "relative_move": 0.6854523181380348,
-   "top1_agreement": 0.05,
+   "knn_overlap": 0.757,
+   "relative_move": 0.6849357334665774,
+   "top1_agreement": 0.03,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.17554547287450484,
-   "move_fraction_in_prefix_domain_subspace": 0.0016710717463865876,
-   "move_fraction_in_null_subspace": 0.006349095609039068,
+   "move_fraction_in_own_subspace": 0.17374337191400152,
+   "move_fraction_in_prefix_domain_subspace": 0.0016701099229976535,
+   "move_fraction_in_null_subspace": 0.006324498914182186,
    "example": "The hex code #80b918 is for the color green. The number is 1",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "partial",
-   "shape_metric": 0.5414654846946931,
+   "shape_metric": 0.5409630878244255,
    "metrics": {
-    "probe_r2_period_10": 0.44747800488116385,
-    "probe_r2_period_5": 0.6354529645082223
+    "probe_r2_period_10": 0.4457057406057407,
+    "probe_r2_period_5": 0.6362204350431103
    },
-   "knn_overlap": 0.725,
-   "relative_move": 0.545673100762489,
-   "top1_agreement": 0.92,
+   "knn_overlap": 0.7289999999999999,
+   "relative_move": 0.5438253942971084,
+   "top1_agreement": 0.93,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.0714534531610871,
-   "move_fraction_in_prefix_domain_subspace": 0.003600024851039052,
-   "move_fraction_in_null_subspace": 0.004655379336327314,
+   "move_fraction_in_own_subspace": 0.07140590339216042,
+   "move_fraction_in_prefix_domain_subspace": 0.003601658856496215,
+   "move_fraction_in_null_subspace": 0.004644456319510937,
    "example": "It happened on a Monday. The number is 1",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "failed",
-   "shape_metric": 0.42549775585399857,
+   "shape_metric": 0.4265772499431236,
    "metrics": {
-    "probe_r2_period_10": 0.28245094569090046,
-    "probe_r2_period_5": 0.5685445660170967
+    "probe_r2_period_10": 0.2829749605583067,
+    "probe_r2_period_5": 0.5701795393279406
    },
-   "knn_overlap": 0.726,
-   "relative_move": 0.6106166971328358,
-   "top1_agreement": 0.85,
+   "knn_overlap": 0.722,
+   "relative_move": 0.6090948173293229,
+   "top1_agreement": 0.87,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.05969187586184775,
+   "move_fraction_in_own_subspace": 0.05969237683278435,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004067678935825825,
+   "move_fraction_in_null_subspace": 0.004096563905477524,
    "example": "The trip is in March. The number is 1",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.6291763914045774,
+   "shape_metric": 0.6301612611350509,
    "metrics": {
-    "probe_r2_period_10": 0.6165941104092704,
-    "probe_r2_period_5": 0.6417586723998843
+    "probe_r2_period_10": 0.6174736323601582,
+    "probe_r2_period_5": 0.6428488899099437
    },
-   "knn_overlap": 0.6829999999999999,
-   "relative_move": 0.5886763907293905,
-   "top1_agreement": 0.98,
+   "knn_overlap": 0.6799999999999998,
+   "relative_move": 0.5878097475598602,
+   "top1_agreement": 0.99,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.11254530356685395,
-   "move_fraction_in_prefix_domain_subspace": 0.005479495041072369,
-   "move_fraction_in_null_subspace": 0.005012881476432085,
+   "move_fraction_in_own_subspace": 0.112726778470011,
+   "move_fraction_in_prefix_domain_subspace": 0.005405102856457233,
+   "move_fraction_in_null_subspace": 0.005040768533945084,
    "example": "They are 34 years old. The number is 1",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.6229372170663068,
+   "shape_metric": 0.6238048767871572,
    "metrics": {
-    "probe_r2_period_10": 0.5740657622273164,
-    "probe_r2_period_5": 0.6718086719052971
+    "probe_r2_period_10": 0.5741185263877764,
+    "probe_r2_period_5": 0.6734912271865381
    },
-   "knn_overlap": 0.7080000000000001,
-   "relative_move": 0.6701034338457382,
-   "top1_agreement": 0.9,
+   "knn_overlap": 0.7120000000000002,
+   "relative_move": 0.6696604207643578,
+   "top1_agreement": 0.91,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.0818095261925097,
-   "move_fraction_in_prefix_domain_subspace": 0.0025658714585006237,
-   "move_fraction_in_null_subspace": 0.004650456830859184,
+   "move_fraction_in_own_subspace": 0.0822478046860184,
+   "move_fraction_in_prefix_domain_subspace": 0.002533656544983387,
+   "move_fraction_in_null_subspace": 0.004673593211919069,
    "example": "The city of Quito is in Ecuador. The number is 1",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "partial",
-   "shape_metric": 0.5087495178529055,
+   "shape_metric": 0.508942070605299,
    "metrics": {
-    "probe_r2_period_10": 0.5577858531016257,
-    "probe_r2_period_5": 0.4597131826041852
+    "probe_r2_period_10": 0.5579347317959731,
+    "probe_r2_period_5": 0.4599494094146249
    },
-   "knn_overlap": 0.75,
-   "relative_move": 0.5544726458114153,
-   "top1_agreement": 0.43,
+   "knn_overlap": 0.7480000000000001,
+   "relative_move": 0.5545366910854315,
+   "top1_agreement": 0.4,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.0721316599329612,
-   "move_fraction_in_prefix_domain_subspace": 0.003308966988697648,
-   "move_fraction_in_null_subspace": 0.004257583990693092,
+   "move_fraction_in_own_subspace": 0.07205423353822796,
+   "move_fraction_in_prefix_domain_subspace": 0.0033420335967093706,
+   "move_fraction_in_null_subspace": 0.004250925034284592,
    "example": "The senator gave a speech about immigration policy. The number is 1",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "matches",
-   "shape_metric": 0.5617728150073342,
+   "shape_metric": 0.5615221899154679,
    "metrics": {
-    "probe_r2_period_10": 0.5843602679308317,
-    "probe_r2_period_5": 0.5391853620838368
+    "probe_r2_period_10": 0.5851125407404278,
+    "probe_r2_period_5": 0.5379318390905079
    },
-   "knn_overlap": 0.77,
-   "relative_move": 0.5131821985526352,
+   "knn_overlap": 0.768,
+   "relative_move": 0.5128338050515322,
    "top1_agreement": 0.71,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.0957275873877253,
+   "move_fraction_in_own_subspace": 0.09590092631506578,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.00444917194545269,
+   "move_fraction_in_null_subspace": 0.004453016445040703,
    "example": "This paragraph continues the text. The number is 1",
    "examples": [
     {
@@ -271,5 +282,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 24.6
+ "elapsed_s": 17.7
 }

@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 84,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:50:41+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.9367962811961941,
+  "shape_metric": 0.9353286839711485,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "matches",
-   "shape_metric": 0.7512772719646701,
+   "shape_metric": 0.7540885592040247,
    "metrics": {
-    "spearman_best_direction": 0.8240511532605025,
-    "knn_r2": 0.6785033906688378
+    "spearman_best_direction": 0.831077969586977,
+    "knn_r2": 0.6770991488210725
    },
-   "knn_overlap": 0.4428571428571429,
-   "relative_move": 0.9166642307744612,
+   "knn_overlap": 0.44880952380952377,
+   "relative_move": 0.9158637390624227,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.38137828087491277,
-   "move_fraction_in_prefix_domain_subspace": 0.004189043305814266,
-   "move_fraction_in_null_subspace": 0.005192630924284458,
+   "move_fraction_in_own_subspace": 0.38253706699188716,
+   "move_fraction_in_prefix_domain_subspace": 0.004183468874543905,
+   "move_fraction_in_null_subspace": 0.005199776496738195,
    "example": "The hex code #80b918 is for the color green. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "matches",
-   "shape_metric": 0.8788950815551749,
+   "shape_metric": 0.881524782324214,
    "metrics": {
-    "spearman_best_direction": 0.884882727452807,
-    "knn_r2": 0.8729074356575428
+    "spearman_best_direction": 0.8844169730565277,
+    "knn_r2": 0.8786325915919004
    },
-   "knn_overlap": 0.5214285714285714,
-   "relative_move": 0.6810828190027853,
+   "knn_overlap": 0.5297619047619047,
+   "relative_move": 0.6790256237155827,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.25283407655311363,
-   "move_fraction_in_prefix_domain_subspace": 0.0010043041547760367,
-   "move_fraction_in_null_subspace": 0.004348738584667444,
+   "move_fraction_in_own_subspace": 0.254488309065541,
+   "move_fraction_in_prefix_domain_subspace": 0.0009963602060452104,
+   "move_fraction_in_null_subspace": 0.004331047646701336,
    "example": "The deadline is Tuesday. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "matches",
-   "shape_metric": 0.865149607422663,
+   "shape_metric": 0.8639234803081091,
    "metrics": {
-    "spearman_best_direction": 0.8342471245007905,
-    "knn_r2": 0.8960520903445355
+    "spearman_best_direction": 0.8330624883189497,
+    "knn_r2": 0.8947844722972684
    },
-   "knn_overlap": 0.5797619047619048,
-   "relative_move": 0.6869207671113016,
+   "knn_overlap": 0.5702380952380952,
+   "relative_move": 0.6875234541627679,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.23852741925046075,
+   "move_fraction_in_own_subspace": 0.24006271699496667,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.003895409870892763,
+   "move_fraction_in_null_subspace": 0.003920086193829775,
    "example": "It is the month of July. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.8093580115680373,
+   "shape_metric": 0.8164963075910081,
    "metrics": {
-    "spearman_best_direction": 0.908767827905478,
-    "knn_r2": 0.7099481952305966
+    "spearman_best_direction": 0.910863722688735,
+    "knn_r2": 0.7221288924932814
    },
-   "knn_overlap": 0.3726190476190476,
-   "relative_move": 0.8613750036176595,
-   "top1_agreement": 0.9523809523809523,
+   "knn_overlap": 0.386904761904762,
+   "relative_move": 0.8578466964381232,
+   "top1_agreement": 0.9642857142857143,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.18877705602398803,
-   "move_fraction_in_prefix_domain_subspace": 0.007496040314435959,
-   "move_fraction_in_null_subspace": 0.004957274533808231,
+   "move_fraction_in_own_subspace": 0.19028268502199794,
+   "move_fraction_in_prefix_domain_subspace": 0.007296352181583643,
+   "move_fraction_in_null_subspace": 0.004893716890364885,
    "example": "She is 7 years old. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.8251398230054967,
+   "shape_metric": 0.8326292354877569,
    "metrics": {
-    "spearman_best_direction": 0.891494414860859,
-    "knn_r2": 0.7587852311501345
+    "spearman_best_direction": 0.8970125919472113,
+    "knn_r2": 0.7682458790283024
    },
-   "knn_overlap": 0.4678571428571429,
-   "relative_move": 0.8986527243564504,
+   "knn_overlap": 0.4642857142857142,
+   "relative_move": 0.9006431169704974,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.22872529701160918,
-   "move_fraction_in_prefix_domain_subspace": 0.003931266721338034,
-   "move_fraction_in_null_subspace": 0.006987030152231455,
+   "move_fraction_in_own_subspace": 0.2303356344501436,
+   "move_fraction_in_prefix_domain_subspace": 0.0039063929580152035,
+   "move_fraction_in_null_subspace": 0.00698710884898901,
    "example": "The city of Oslo is in Norway. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "matches",
-   "shape_metric": 0.7633186167734288,
+   "shape_metric": 0.7677285588346818,
    "metrics": {
-    "spearman_best_direction": 0.8528773003519623,
-    "knn_r2": 0.6737599331948954
+    "spearman_best_direction": 0.8531911783146724,
+    "knn_r2": 0.6822659393546914
    },
-   "knn_overlap": 0.4333333333333333,
-   "relative_move": 0.8495176912591316,
+   "knn_overlap": 0.4416666666666667,
+   "relative_move": 0.8503589328800332,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.32048718552125655,
-   "move_fraction_in_prefix_domain_subspace": 0.005121967755258083,
-   "move_fraction_in_null_subspace": 0.004411926958709955,
+   "move_fraction_in_own_subspace": 0.32150588443544287,
+   "move_fraction_in_prefix_domain_subspace": 0.005099745932966471,
+   "move_fraction_in_null_subspace": 0.0044005755335092545,
    "example": "The governor signed a bill on gun regulation. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "matches",
-   "shape_metric": 0.8279100587373306,
+   "shape_metric": 0.8241624947256452,
    "metrics": {
-    "spearman_best_direction": 0.8309058429622652,
-    "knn_r2": 0.824914274512396
+    "spearman_best_direction": 0.8278683142908784,
+    "knn_r2": 0.8204566751604119
    },
-   "knn_overlap": 0.4357142857142857,
-   "relative_move": 0.8297849183808407,
+   "knn_overlap": 0.444047619047619,
+   "relative_move": 0.829132534523047,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.2662440417713097,
+   "move_fraction_in_own_subspace": 0.26986993284127386,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.005454086698591709,
+   "move_fraction_in_null_subspace": 0.005437655374407768,
    "example": "22+58=80. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -272,18 +283,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "matches",
-   "shape_metric": 0.9162415417380079,
+   "shape_metric": 0.9168103296091579,
    "metrics": {
-    "spearman_best_direction": 0.9344551953698383,
-    "knn_r2": 0.8980278881061775
+    "spearman_best_direction": 0.9355183304048236,
+    "knn_r2": 0.8981023288134923
    },
-   "knn_overlap": 0.6285714285714284,
-   "relative_move": 0.5791595892391946,
+   "knn_overlap": 0.6261904761904761,
+   "relative_move": 0.5784415169704138,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.16756020723265988,
+   "move_fraction_in_own_subspace": 0.16948555774292892,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0036076907999813557,
+   "move_fraction_in_null_subspace": 0.0036183963529765606,
    "example": "This paragraph continues the text. The composer Hildegard of Bingen was born in the year",
    "examples": [
     {
@@ -308,5 +319,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 23.5
+ "elapsed_s": 15.6
 }

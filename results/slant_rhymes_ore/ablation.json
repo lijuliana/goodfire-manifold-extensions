@@ -3,12 +3,45 @@
  "layer": 19,
  "n_points": 75,
  "n_plotted": 75,
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:23:49+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_points": 800,
+  "n_kl": 400,
+  "workers": 3,
+  "conditions": [
+   "clean",
+   "weak_0.1",
+   "weak_0.25",
+   "weak_0.5",
+   "weak_1",
+   "weak_1.5",
+   "weak_2",
+   "weak_3",
+   "weak_5",
+   "weak_7.5",
+   "weak_10",
+   "random_0.1",
+   "random_0.25",
+   "random_0.5",
+   "random_1",
+   "scale_0.5_0.5",
+   "scale_0.5_1.5",
+   "scale_2_0.5",
+   "scale_2_1.5"
+  ]
+ },
  "view": "clean PCA basis",
  "n_kl": 75,
  "model_id": "unsloth/Llama-3.1-8B",
  "consistency_with_cached_activations": {
-  "cosine_min": 0.9998555183410645,
-  "cosine_mean": 0.999952495098114
+  "cosine_min": 0.9996700882911682,
+  "cosine_mean": 0.999951958656311
  },
  "task": null,
  "task_n": 0,
@@ -25,10 +58,10 @@
    "description": "unmodified model",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8222025721811383,
-    "knn_r2": 0.7519729589094799
+    "spearman_best_direction": 0.8191853150355196,
+    "knn_r2": 0.7486114829870285
    },
-   "shape_metric": 0.7870877655453091,
+   "shape_metric": 0.783898399011274,
    "status_fixed_basis": "matches",
    "knn_overlap": 1.0,
    "relative_move": 0.0,
@@ -47,25 +80,25 @@
    "description": "weak activations zeroed below 0.1% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.820693943608329,
-    "knn_r2": 0.7455627024992235
+    "spearman_best_direction": 0.8214482578947336,
+    "knn_r2": 0.747087092743126
    },
-   "shape_metric": 0.7831283230537762,
+   "shape_metric": 0.7842676753189298,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.820693943608329,
-    "knn_r2": 0.7455627024992235
+    "spearman_best_direction": 0.8191853150355196,
+    "knn_r2": 0.747087092743126
    },
    "evr_refit": [
-    0.09555445602152755,
-    0.06412616939515935,
-    0.0407697418196433
+    0.0955913540099819,
+    0.06427744886359159,
+    0.04082319642852715
    ],
-   "knn_overlap": 0.9800000000000002,
-   "knn_overlap_pca3": 0.9853333333333334,
-   "relative_move": 0.02422701994898745,
-   "kl_mean": 0.0011559834567181704,
-   "kl_median": 0.000896842981929574,
+   "knn_overlap": 0.9733333333333334,
+   "knn_overlap_pca3": 0.9893333333333332,
+   "relative_move": 0.02490461432343084,
+   "kl_mean": 0.0012092499304668198,
+   "kl_median": 0.0009505435822853282,
    "top1_agreement": 1.0,
    "task_accuracy": null
   },
@@ -80,25 +113,25 @@
    "description": "weak activations zeroed below 0.25% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8222025721811383,
-    "knn_r2": 0.748237192273744
+    "spearman_best_direction": 0.8229568864675431,
+    "knn_r2": 0.7444211499878082
    },
-   "shape_metric": 0.7852198822274412,
+   "shape_metric": 0.7836890182276757,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8199396293219243,
-    "knn_r2": 0.7469077012391075
+    "spearman_best_direction": 0.8214482578947336,
+    "knn_r2": 0.7459455402317104
    },
    "evr_refit": [
-    0.09567342147103998,
-    0.06424483533709273,
-    0.040604922438932954
+    0.0956685955425782,
+    0.06441550487680152,
+    0.040647116254388216
    ],
-   "knn_overlap": 0.9533333333333335,
-   "knn_overlap_pca3": 0.9720000000000001,
-   "relative_move": 0.05366781230667706,
-   "kl_mean": 0.0019755665054951156,
-   "kl_median": 0.00172696687047448,
+   "knn_overlap": 0.96,
+   "knn_overlap_pca3": 0.9733333333333334,
+   "relative_move": 0.05352060539305338,
+   "kl_mean": 0.0020297976832194574,
+   "kl_median": 0.001840740784615119,
    "top1_agreement": 1.0,
    "task_accuracy": null
   },
@@ -113,25 +146,25 @@
    "description": "weak activations zeroed below 0.5% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8229568864675431,
-    "knn_r2": 0.7431869468292454
+    "spearman_best_direction": 0.8244655150403525,
+    "knn_r2": 0.7505624769761925
    },
-   "shape_metric": 0.7830719166483942,
+   "shape_metric": 0.7875139960082724,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
     "spearman_best_direction": 0.8199396293219243,
-    "knn_r2": 0.7439882288805274
+    "knn_r2": 0.7415062088680195
    },
    "evr_refit": [
-    0.0951344420564776,
-    0.06308940499432256,
-    0.04062330689544933
+    0.0960436507011674,
+    0.0630669638283811,
+    0.0404332471895837
    ],
-   "knn_overlap": 0.9266666666666666,
-   "knn_overlap_pca3": 0.9253333333333332,
-   "relative_move": 0.13101040886137005,
-   "kl_mean": 0.013625877523718175,
-   "kl_median": 0.007294549967813304,
+   "knn_overlap": 0.9266666666666669,
+   "knn_overlap_pca3": 0.932,
+   "relative_move": 0.12884189508947216,
+   "kl_mean": 0.013511753822948487,
+   "kl_median": 0.007355228221609566,
    "top1_agreement": 1.0,
    "task_accuracy": null
   },
@@ -146,25 +179,25 @@
    "description": "weak activations zeroed below 1% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8222025721811383,
-    "knn_r2": 0.7069226569377107
+    "spearman_best_direction": 0.8214482578947336,
+    "knn_r2": 0.7102460089189698
    },
-   "shape_metric": 0.7645626145594245,
+   "shape_metric": 0.7658471334068517,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8169223721763054,
-    "knn_r2": 0.7407509278144305
+    "spearman_best_direction": 0.8131508007442818,
+    "knn_r2": 0.7422056912188737
    },
    "evr_refit": [
-    0.08974000862576344,
-    0.0632447757526074,
-    0.039799285715013955
+    0.09007257462947192,
+    0.06275271824647619,
+    0.039414556254899646
    ],
-   "knn_overlap": 0.8653333333333336,
-   "knn_overlap_pca3": 0.8880000000000001,
-   "relative_move": 0.2975385284673886,
-   "kl_mean": 0.06125231243375678,
-   "kl_median": 0.04074016129441471,
+   "knn_overlap": 0.856,
+   "knn_overlap_pca3": 0.8893333333333332,
+   "relative_move": 0.29891519949932543,
+   "kl_mean": 0.06107141225599532,
+   "kl_median": 0.03927404313000106,
    "top1_agreement": 0.9733333333333334,
    "task_accuracy": null
   },
@@ -179,26 +212,26 @@
    "description": "weak activations zeroed below 1.5% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8403061150548515,
-    "knn_r2": 0.7419803999441312
+    "spearman_best_direction": 0.8297457150451854,
+    "knn_r2": 0.7083549852492061
    },
-   "shape_metric": 0.7911432574994914,
+   "shape_metric": 0.7690503501471957,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.831254343617995,
-    "knn_r2": 0.7692358865204336
+    "spearman_best_direction": 0.8176766864627102,
+    "knn_r2": 0.7474066796032601
    },
    "evr_refit": [
-    0.09001555415446502,
-    0.06035424648823187,
-    0.03888437202724335
+    0.08572713692900268,
+    0.05887846826761406,
+    0.03860904706824953
    ],
-   "knn_overlap": 0.7853333333333333,
-   "knn_overlap_pca3": 0.8373333333333334,
-   "relative_move": 0.46560271798511754,
-   "kl_mean": 0.12681818450429255,
-   "kl_median": 0.08608897121638777,
-   "top1_agreement": 0.88,
+   "knn_overlap": 0.7866666666666666,
+   "knn_overlap_pca3": 0.8533333333333334,
+   "relative_move": 0.467722620205486,
+   "kl_mean": 0.13366809212676042,
+   "kl_median": 0.1089379097502194,
+   "top1_agreement": 0.9466666666666667,
    "task_accuracy": null
   },
   "weak_2": {
@@ -212,26 +245,26 @@
    "description": "weak activations zeroed below 2% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8252198293267573,
-    "knn_r2": 0.6610739339084645
+    "spearman_best_direction": 0.8357802293364232,
+    "knn_r2": 0.6765357074190248
    },
-   "shape_metric": 0.7431468816176109,
+   "shape_metric": 0.756157968377724,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8139051150306865,
-    "knn_r2": 0.7021408454357101
+    "spearman_best_direction": 0.8184310007491147,
+    "knn_r2": 0.7224489213509926
    },
    "evr_refit": [
-    0.08327126964751051,
-    0.056208397926481954,
-    0.03726069438036321
+    0.07977480770194369,
+    0.056879060868788106,
+    0.038123150516246186
    ],
-   "knn_overlap": 0.6826666666666668,
-   "knn_overlap_pca3": 0.7933333333333333,
-   "relative_move": 0.5978491026033332,
-   "kl_mean": 0.21903394344125465,
-   "kl_median": 0.14373472112899313,
-   "top1_agreement": 0.88,
+   "knn_overlap": 0.684,
+   "knn_overlap_pca3": 0.7773333333333334,
+   "relative_move": 0.6001961153032188,
+   "kl_mean": 0.25250264678350803,
+   "kl_median": 0.20328156650889304,
+   "top1_agreement": 0.84,
    "task_accuracy": null
   },
   "weak_3": {
@@ -245,26 +278,26 @@
    "description": "weak activations zeroed below 3% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8093792293122581,
-    "knn_r2": 0.6764514466228915
+    "spearman_best_direction": 0.807116286453044,
+    "knn_r2": 0.6572440634858043
    },
-   "shape_metric": 0.7429153379675748,
+   "shape_metric": 0.7321801749694241,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.7980645150161875,
-    "knn_r2": 0.6621545744232823
+    "spearman_best_direction": 0.807116286453044,
+    "knn_r2": 0.7096065275219934
    },
    "evr_refit": [
-    0.08050171034240877,
-    0.054728245764769944,
-    0.038111063738225294
+    0.08173383052758937,
+    0.054324839432472447,
+    0.03706232234481815
    ],
-   "knn_overlap": 0.5893333333333333,
-   "knn_overlap_pca3": 0.736,
-   "relative_move": 0.8139454369943875,
-   "kl_mean": 0.6320428851211966,
-   "kl_median": 0.47685803683942224,
-   "top1_agreement": 0.36,
+   "knn_overlap": 0.5706666666666667,
+   "knn_overlap_pca3": 0.7306666666666667,
+   "relative_move": 0.805421004952063,
+   "kl_mean": 0.6418322747821634,
+   "kl_median": 0.45198496713662595,
+   "top1_agreement": 0.32,
    "task_accuracy": null
   },
   "weak_5": {
@@ -278,26 +311,26 @@
    "description": "weak activations zeroed below 5% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.80485334359383,
-    "knn_r2": 0.5729019527939645
+    "spearman_best_direction": 0.8176766864627102,
+    "knn_r2": 0.5899335288313802
    },
-   "shape_metric": 0.6888776481938972,
+   "shape_metric": 0.7038051076470452,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.7995731435889969,
-    "knn_r2": 0.6622002997106785
+    "spearman_best_direction": 0.7844868578609026,
+    "knn_r2": 0.5913490028525548
    },
    "evr_refit": [
-    0.09092680289583856,
-    0.04806923548560283,
-    0.03618134134484552
+    0.08219704603675031,
+    0.04561030405025985,
+    0.03622255003497028
    ],
-   "knn_overlap": 0.4706666666666665,
-   "knn_overlap_pca3": 0.564,
-   "relative_move": 1.1250722840230498,
-   "kl_mean": 1.8579272532531665,
-   "kl_median": 1.6695966208440496,
-   "top1_agreement": 0.08,
+   "knn_overlap": 0.42666666666666664,
+   "knn_overlap_pca3": 0.5346666666666667,
+   "relative_move": 1.1302979724614093,
+   "kl_mean": 2.0798361763531146,
+   "kl_median": 1.950663112088388,
+   "top1_agreement": 0.05333333333333334,
    "task_accuracy": null
   },
   "weak_7.5": {
@@ -311,26 +344,26 @@
    "description": "weak activations zeroed below 7.5% of each neuron's max",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.7776980292832603,
-    "knn_r2": 0.5119778475860268
+    "spearman_best_direction": 0.8191853150355196,
+    "knn_r2": 0.520519309960687
    },
-   "shape_metric": 0.6448379384346435,
+   "shape_metric": 0.6698523124981033,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8169223721763054,
-    "knn_r2": 0.6111204559586607
+    "spearman_best_direction": 0.8229568864675431,
+    "knn_r2": 0.5805664526387571
    },
    "evr_refit": [
-    0.12687085334721876,
-    0.04680749007560501,
-    0.03692215367715588
+    0.12208453516125665,
+    0.04481543125799269,
+    0.03712739254154148
    ],
-   "knn_overlap": 0.368,
-   "knn_overlap_pca3": 0.45333333333333325,
-   "relative_move": 1.2989945213954968,
-   "kl_mean": 2.7420138458424623,
-   "kl_median": 2.512716874045011,
-   "top1_agreement": 0.013333333333333334,
+   "knn_overlap": 0.37333333333333335,
+   "knn_overlap_pca3": 0.4599999999999999,
+   "relative_move": 1.3089641813024397,
+   "kl_mean": 2.453435936887542,
+   "kl_median": 2.297096264617069,
+   "top1_agreement": 0.02666666666666667,
    "task_accuracy": null
   },
   "weak_10": {
@@ -344,25 +377,25 @@
    "description": "weak activations zeroed below 10% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "spearman_best_direction": 0.5906280862548912,
-    "knn_r2": 0.13391353941396728
+    "spearman_best_direction": 0.6381498862983882,
+    "knn_r2": 0.1292524424043056
    },
-   "shape_metric": 0.3622708128344292,
-   "status_fixed_basis": "partial",
+   "shape_metric": 0.38370116435134693,
+   "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.7935386292977593,
-    "knn_r2": 0.44009878132532493
+    "spearman_best_direction": 0.8093792293122581,
+    "knn_r2": 0.5456884620904151
    },
    "evr_refit": [
-    0.18260969928510296,
-    0.050915762997243666,
-    0.03957910772860539
+    0.17116287853998666,
+    0.05883253566598251,
+    0.03961649617186308
    ],
-   "knn_overlap": 0.2573333333333333,
-   "knn_overlap_pca3": 0.332,
-   "relative_move": 1.6002076465238764,
-   "kl_mean": 4.787366600168259,
-   "kl_median": 4.498413956172566,
+   "knn_overlap": 0.264,
+   "knn_overlap_pca3": 0.33866666666666667,
+   "relative_move": 1.6174230672259646,
+   "kl_mean": 5.119761806722938,
+   "kl_median": 4.950157261547692,
    "top1_agreement": 0.0,
    "task_accuracy": null
   },
@@ -377,26 +410,26 @@
    "description": "count-matched random activations zeroed (matched to 0.1%)",
    "status": "partial",
    "metrics": {
-    "spearman_best_direction": 0.8297457150451854,
-    "knn_r2": 0.5850878257968685
+    "spearman_best_direction": 0.7739264578512366,
+    "knn_r2": 0.4008308381951048
    },
-   "shape_metric": 0.7074167704210269,
-   "status_fixed_basis": "partial",
+   "shape_metric": 0.5873786480231706,
+   "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8214482578947336,
-    "knn_r2": 0.6520607258881517
+    "spearman_best_direction": 0.7429995721086434,
+    "knn_r2": 0.5258768245415262
    },
    "evr_refit": [
-    0.40556109713310756,
-    0.037012941161447904,
-    0.02566776711315543
+    0.3618250706300165,
+    0.04228870052161974,
+    0.026611180168660355
    ],
-   "knn_overlap": 0.39466666666666667,
-   "knn_overlap_pca3": 0.4373333333333334,
-   "relative_move": 1.180607214842082,
-   "kl_mean": 2.896839578489159,
-   "kl_median": 0.45047183052332324,
-   "top1_agreement": 0.37333333333333335,
+   "knn_overlap": 0.37733333333333335,
+   "knn_overlap_pca3": 0.44400000000000006,
+   "relative_move": 1.18538390161489,
+   "kl_mean": 2.864033826195754,
+   "kl_median": 0.7391612861063136,
+   "top1_agreement": 0.44,
    "task_accuracy": null
   },
   "random_0.25": {
@@ -410,26 +443,26 @@
    "description": "count-matched random activations zeroed (matched to 0.25%)",
    "status": "failed",
    "metrics": {
-    "spearman_best_direction": 0.28890237169300553,
-    "knn_r2": -0.20381159655729392
+    "spearman_best_direction": 0.22780291449422366,
+    "knn_r2": -0.2336498692659022
    },
-   "shape_metric": 0.04254538756785581,
+   "shape_metric": -0.002923477385839271,
    "status_fixed_basis": "partial",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.7611031149823565,
-    "knn_r2": 0.42812990564538334
+    "spearman_best_direction": 0.7362107435310009,
+    "knn_r2": 0.34125270537065977
    },
    "evr_refit": [
-    0.4003126574263841,
-    0.040154217670936056,
-    0.027767033955067518
+    0.37638777408127516,
+    0.046629494778558114,
+    0.028816411497920597
    ],
-   "knn_overlap": 0.23333333333333334,
-   "knn_overlap_pca3": 0.2933333333333334,
-   "relative_move": 1.6598682115067842,
-   "kl_mean": 4.106571980456829,
-   "kl_median": 4.823471346434346,
-   "top1_agreement": 0.18666666666666668,
+   "knn_overlap": 0.19866666666666666,
+   "knn_overlap_pca3": 0.30000000000000004,
+   "relative_move": 1.7126882860179646,
+   "kl_mean": 4.429682547797955,
+   "kl_median": 5.274883516171278,
+   "top1_agreement": 0.2,
    "task_accuracy": null
   },
   "random_0.5": {
@@ -443,26 +476,26 @@
    "description": "count-matched random activations zeroed (matched to 0.5%)",
    "status": "failed",
    "metrics": {
-    "spearman_best_direction": 0.06864260006282899,
-    "knn_r2": -0.24546762773255795
+    "spearman_best_direction": 0.10786694295587412,
+    "knn_r2": -0.21191683196497896
    },
-   "shape_metric": -0.08841251383486448,
+   "shape_metric": -0.05202494450455242,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.5898737719684864,
-    "knn_r2": 0.21822367703490836
+    "spearman_best_direction": 0.6321153720071504,
+    "knn_r2": 0.10256382685380587
    },
    "evr_refit": [
-    0.32209204463084445,
-    0.0731070981815949,
-    0.04143559559184479
+    0.3297987994581409,
+    0.07004522743418813,
+    0.049690571715536945
    ],
-   "knn_overlap": 0.14133333333333334,
-   "knn_overlap_pca3": 0.18399999999999997,
-   "relative_move": 1.9800166911346622,
-   "kl_mean": 4.974710195392181,
-   "kl_median": 5.076524073704511,
-   "top1_agreement": 0.02666666666666667,
+   "knn_overlap": 0.12933333333333333,
+   "knn_overlap_pca3": 0.18800000000000003,
+   "relative_move": 1.9735493071244028,
+   "kl_mean": 4.6540947470048035,
+   "kl_median": 5.192604736315014,
+   "top1_agreement": 0.06666666666666667,
    "task_accuracy": null
   },
   "random_1": {
@@ -476,26 +509,26 @@
    "description": "count-matched random activations zeroed (matched to 1%)",
    "status": "failed",
    "metrics": {
-    "spearman_best_direction": 0.20668211447489168,
-    "knn_r2": 0.005543287379699291
+    "spearman_best_direction": 0.1335136286936344,
+    "knn_r2": -0.4125708370345108
    },
-   "shape_metric": 0.10611270092729548,
+   "shape_metric": -0.13952860417043822,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.5317915719153234,
-    "knn_r2": 0.14403386679306623
+    "spearman_best_direction": 0.39299774321685604,
+    "knn_r2": -0.32252257276162544
    },
    "evr_refit": [
-    0.16882577306413765,
-    0.09986952989963062,
-    0.0649987846567696
+    0.21547135962589806,
+    0.11360533748636843,
+    0.07728897785572286
    ],
-   "knn_overlap": 0.10933333333333332,
-   "knn_overlap_pca3": 0.17200000000000001,
-   "relative_move": 2.5513696964401675,
-   "kl_mean": 6.913261096041148,
-   "kl_median": 7.023342905806607,
-   "top1_agreement": 0.013333333333333334,
+   "knn_overlap": 0.13199999999999998,
+   "knn_overlap_pca3": 0.14666666666666667,
+   "relative_move": 2.511005681953545,
+   "kl_mean": 6.986977509644833,
+   "kl_median": 6.8767263236402245,
+   "top1_agreement": 0.04,
    "task_accuracy": null
   },
   "scale_0.5_0.5": {
@@ -509,25 +542,25 @@
    "description": "weak tail (below 0.5%) multiplied by 0.5",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8244655150403525,
-    "knn_r2": 0.7569776721969836
+    "spearman_best_direction": 0.8282370864723761,
+    "knn_r2": 0.7540140262538857
    },
-   "shape_metric": 0.790721593618668,
+   "shape_metric": 0.791125556363131,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8222025721811383,
-    "knn_r2": 0.7476037698436293
+    "spearman_best_direction": 0.8214482578947336,
+    "knn_r2": 0.739981818624117
    },
    "evr_refit": [
-    0.09580476241070716,
-    0.06408609322332351,
-    0.04070588640556587
+    0.09556319848841216,
+    0.06399811135001944,
+    0.04065452581409221
    ],
-   "knn_overlap": 0.9626666666666669,
-   "knn_overlap_pca3": 0.9640000000000002,
-   "relative_move": 0.0680015023690326,
-   "kl_mean": 0.0038803204304828673,
-   "kl_median": 0.002467666246835892,
+   "knn_overlap": 0.9466666666666667,
+   "knn_overlap_pca3": 0.9653333333333334,
+   "relative_move": 0.06783174091607556,
+   "kl_mean": 0.003711955516764681,
+   "kl_median": 0.0021586972688201547,
    "top1_agreement": 1.0,
    "task_accuracy": null
   },
@@ -543,24 +576,24 @@
    "status": "matches",
    "metrics": {
     "spearman_best_direction": 0.8237112007539478,
-    "knn_r2": 0.7084226861123888
+    "knn_r2": 0.6996231096183224
    },
-   "shape_metric": 0.7660669434331683,
+   "shape_metric": 0.7616671551861351,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
     "spearman_best_direction": 0.8169223721763054,
-    "knn_r2": 0.7023327597813276
+    "knn_r2": 0.7170536757494324
    },
    "evr_refit": [
-    0.09015671311899683,
-    0.06240699442634075,
-    0.040083558483763444
+    0.09002554859866765,
+    0.06206366807997499,
+    0.040077028144020574
    ],
-   "knn_overlap": 0.8853333333333334,
-   "knn_overlap_pca3": 0.9200000000000002,
-   "relative_move": 0.2414464672885581,
-   "kl_mean": 0.03270723998901397,
-   "kl_median": 0.025889990841017303,
+   "knn_overlap": 0.8880000000000001,
+   "knn_overlap_pca3": 0.9106666666666666,
+   "relative_move": 0.24650114200750034,
+   "kl_mean": 0.040505032471678255,
+   "kl_median": 0.032704147841998675,
    "top1_agreement": 0.9866666666666667,
    "task_accuracy": null
   },
@@ -575,25 +608,25 @@
    "description": "weak tail (below 0.5%) multiplied by 2",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8191853150355196,
-    "knn_r2": 0.7291099342783373
+    "spearman_best_direction": 0.8199396293219243,
+    "knn_r2": 0.7322333669918334
    },
-   "shape_metric": 0.7741476246569284,
+   "shape_metric": 0.7760864981568789,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8184310007491147,
-    "knn_r2": 0.7493360203446175
+    "spearman_best_direction": 0.8222025721811383,
+    "knn_r2": 0.7473467186073967
    },
    "evr_refit": [
-    0.09461034446062595,
-    0.06293882328735155,
-    0.04087073268351177
+    0.09527001199948854,
+    0.0638410489363545,
+    0.04056899722905908
    ],
-   "knn_overlap": 0.9240000000000004,
-   "knn_overlap_pca3": 0.934666666666667,
-   "relative_move": 0.13092089519315306,
-   "kl_mean": 0.00890275163878722,
-   "kl_median": 0.006170324695086342,
+   "knn_overlap": 0.9200000000000002,
+   "knn_overlap_pca3": 0.9360000000000003,
+   "relative_move": 0.13197290269142362,
+   "kl_mean": 0.008686313634461738,
+   "kl_median": 0.006191561374704252,
    "top1_agreement": 1.0,
    "task_accuracy": null
   },
@@ -608,26 +641,26 @@
    "description": "weak tail (below 1.5%) multiplied by 2",
    "status": "matches",
    "metrics": {
-    "spearman_best_direction": 0.8093792293122581,
-    "knn_r2": 0.6402101698835745
+    "spearman_best_direction": 0.8222025721811383,
+    "knn_r2": 0.6423006173417269
    },
-   "shape_metric": 0.7247946995979163,
+   "shape_metric": 0.7322515947614326,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "spearman_best_direction": 0.8244655150403525,
-    "knn_r2": 0.7212164696853784
+    "spearman_best_direction": 0.8267284578995667,
+    "knn_r2": 0.6925716909106323
    },
    "evr_refit": [
-    0.08924429595909962,
-    0.06437032455771344,
-    0.04005645641835693
+    0.09059191308030179,
+    0.06079902907037547,
+    0.04059308255025911
    ],
-   "knn_overlap": 0.7466666666666667,
-   "knn_overlap_pca3": 0.8133333333333332,
-   "relative_move": 0.4403552683988954,
-   "kl_mean": 0.1083718268928445,
-   "kl_median": 0.07662259766058101,
-   "top1_agreement": 0.8933333333333333,
+   "knn_overlap": 0.7653333333333334,
+   "knn_overlap_pca3": 0.8039999999999999,
+   "relative_move": 0.45864238916708844,
+   "kl_mean": 0.11024819873007329,
+   "kl_median": 0.0742970255899227,
+   "top1_agreement": 0.9066666666666666,
    "task_accuracy": null
   }
  },
@@ -776,5 +809,5 @@
   "lm_loss_plus_0.1": 1.5,
   "popqa_half": 5.0
  },
- "elapsed_s": 19.7
+ "elapsed_s": 9.8
 }

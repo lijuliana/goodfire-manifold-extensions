@@ -3,6 +3,17 @@
  "layer": 19,
  "n_prompts": 98,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:51:35+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
   "shape_metric": 0.9895391081220488,
@@ -24,7 +35,7 @@
    "task_accuracy": 0.5510204081632653,
    "move_fraction_in_own_subspace": 0.14983587430784537,
    "move_fraction_in_prefix_domain_subspace": 0.004346017725765705,
-   "move_fraction_in_null_subspace": 0.0061143613420426846,
+   "move_fraction_in_null_subspace": 0.005700708832591772,
    "example": "The hex code #80b918 is for the color green. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -61,7 +72,7 @@
    "task_accuracy": 0.3163265306122449,
    "move_fraction_in_own_subspace": 0.16411396973289374,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.005722477566450834,
+   "move_fraction_in_null_subspace": 0.006048314273357391,
    "example": "Rent is due in November. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -98,7 +109,7 @@
    "task_accuracy": 0.40816326530612246,
    "move_fraction_in_own_subspace": 0.12307411454227926,
    "move_fraction_in_prefix_domain_subspace": 0.002973320195451379,
-   "move_fraction_in_null_subspace": 0.00584802683442831,
+   "move_fraction_in_null_subspace": 0.005961796268820763,
    "example": "He is 82 years old. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -135,7 +146,7 @@
    "task_accuracy": 0.5408163265306123,
    "move_fraction_in_own_subspace": 0.23643324545399547,
    "move_fraction_in_prefix_domain_subspace": 0.0017683664336800575,
-   "move_fraction_in_null_subspace": 0.00612714234739542,
+   "move_fraction_in_null_subspace": 0.006747668143361807,
    "example": "The city of Oslo is in Norway. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -172,7 +183,7 @@
    "task_accuracy": 0.1836734693877551,
    "move_fraction_in_own_subspace": 0.08868456083759914,
    "move_fraction_in_prefix_domain_subspace": 0.01786905713379383,
-   "move_fraction_in_null_subspace": 0.006737460847944021,
+   "move_fraction_in_null_subspace": 0.006392084993422031,
    "example": "The candidate spoke about tax cuts and welfare. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -209,7 +220,7 @@
    "task_accuracy": 0.22448979591836735,
    "move_fraction_in_own_subspace": 0.10592764001038006,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004955841228365898,
+   "move_fraction_in_null_subspace": 0.004919574595987797,
    "example": "48+37=85. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -246,7 +257,7 @@
    "task_accuracy": 0.2653061224489796,
    "move_fraction_in_own_subspace": 0.13736914450393273,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0062901913188397884,
+   "move_fraction_in_null_subspace": 0.006402395665645599,
    "example": "This paragraph continues the text. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -271,5 +282,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 16.2
+ "elapsed_s": 16.0
 }

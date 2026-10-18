@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 199,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:47:51+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.8605587009046897,
+  "shape_metric": 0.8226666652850083,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "failed",
-   "shape_metric": 0.6030190378468478,
+   "shape_metric": 0.6084545389532903,
    "metrics": {
-    "linear_r2_from_pcs": 0.9109960910522451,
-    "periodic_circular_corr": 0.2950419846414505
+    "linear_r2_from_pcs": 0.9112866906396626,
+    "periodic_circular_corr": 0.30562238726691804
    },
-   "knn_overlap": 0.7155778894472362,
-   "relative_move": 0.6770799492010079,
-   "top1_agreement": 0.507537688442211,
+   "knn_overlap": 0.720603015075377,
+   "relative_move": 0.6768281592974857,
+   "top1_agreement": 0.49246231155778897,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.0638649058956007,
-   "move_fraction_in_prefix_domain_subspace": 0.0028178500942885876,
-   "move_fraction_in_null_subspace": 0.00458518834784627,
+   "move_fraction_in_own_subspace": 0.06971274289752939,
+   "move_fraction_in_prefix_domain_subspace": 0.0028915361035615206,
+   "move_fraction_in_null_subspace": 0.004614123608916998,
    "example": "The hex code #80b918 is for the color green. The date is 1800",
    "examples": [
     {
@@ -41,7 +52,7 @@
     },
     {
      "prompt": "The hex code #4361ee is for the color blue. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "failed",
-   "shape_metric": 0.563963709558373,
+   "shape_metric": 0.5665629762475296,
    "metrics": {
-    "linear_r2_from_pcs": 0.8964619659226947,
-    "periodic_circular_corr": 0.23146545319405137
+    "linear_r2_from_pcs": 0.895416358103481,
+    "periodic_circular_corr": 0.2377095943915783
    },
-   "knn_overlap": 0.7100502512562815,
-   "relative_move": 0.6246845657946777,
-   "top1_agreement": 0.8090452261306532,
+   "knn_overlap": 0.7090452261306532,
+   "relative_move": 0.6258134452785299,
+   "top1_agreement": 0.8140703517587939,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.048630284446268136,
-   "move_fraction_in_prefix_domain_subspace": 0.00430293520912528,
-   "move_fraction_in_null_subspace": 0.0044118911027908325,
+   "move_fraction_in_own_subspace": 0.05269154292743166,
+   "move_fraction_in_prefix_domain_subspace": 0.004305111709982157,
+   "move_fraction_in_null_subspace": 0.0044641392305493355,
    "example": "The deadline is Tuesday. The date is 1800",
    "examples": [
     {
@@ -78,7 +89,7 @@
     },
     {
      "prompt": "It happened on a Monday. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "failed",
-   "shape_metric": 0.5134610371842916,
+   "shape_metric": 0.5098067176236554,
    "metrics": {
-    "linear_r2_from_pcs": 0.8918093875859455,
-    "periodic_circular_corr": 0.1351126867826376
+    "linear_r2_from_pcs": 0.8922001911472738,
+    "periodic_circular_corr": 0.12741324410003704
    },
-   "knn_overlap": 0.6969849246231156,
-   "relative_move": 0.6449766147594684,
-   "top1_agreement": 0.8140703517587939,
+   "knn_overlap": 0.6989949748743718,
+   "relative_move": 0.6462704090469182,
+   "top1_agreement": 0.8090452261306532,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.029944209002077535,
+   "move_fraction_in_own_subspace": 0.03413606121147545,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0037783992011100054,
+   "move_fraction_in_null_subspace": 0.003832650138065219,
    "example": "The festival is in September. The date is 1800",
    "examples": [
     {
@@ -115,7 +126,7 @@
     },
     {
      "prompt": "The harvest is in October. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.86096867308613,
+   "shape_metric": 0.8617910406497231,
    "metrics": {
-    "linear_r2_from_pcs": 0.9247827070496026,
-    "periodic_circular_corr": 0.7971546391226574
+    "linear_r2_from_pcs": 0.9249417638186856,
+    "periodic_circular_corr": 0.7986403174807607
    },
-   "knn_overlap": 0.7969849246231157,
-   "relative_move": 0.47429786179058286,
-   "top1_agreement": 0.8140703517587939,
+   "knn_overlap": 0.7964824120603018,
+   "relative_move": 0.4762706666130285,
+   "top1_agreement": 0.8190954773869347,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.052499182660072016,
-   "move_fraction_in_prefix_domain_subspace": 0.004206010606139898,
-   "move_fraction_in_null_subspace": 0.004459231160581112,
+   "move_fraction_in_own_subspace": 0.05894892768085164,
+   "move_fraction_in_prefix_domain_subspace": 0.004255978856235743,
+   "move_fraction_in_null_subspace": 0.004536813590675592,
    "example": "She is 56 years old. The date is 1800",
    "examples": [
     {
@@ -152,7 +163,7 @@
     },
     {
      "prompt": "She is 56 years old. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "partial",
-   "shape_metric": 0.7062351799773301,
+   "shape_metric": 0.7053390132802613,
    "metrics": {
-    "linear_r2_from_pcs": 0.8645792451638175,
-    "periodic_circular_corr": 0.5478911147908427
+    "linear_r2_from_pcs": 0.8641768375871222,
+    "periodic_circular_corr": 0.5465011889734004
    },
-   "knn_overlap": 0.7216080402010051,
-   "relative_move": 0.610346552717931,
-   "top1_agreement": 0.8140703517587939,
+   "knn_overlap": 0.7190954773869348,
+   "relative_move": 0.6109204657264097,
+   "top1_agreement": 0.8190954773869347,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.06797263204950471,
-   "move_fraction_in_prefix_domain_subspace": 0.0020348625257611275,
-   "move_fraction_in_null_subspace": 0.004100187681615353,
+   "move_fraction_in_own_subspace": 0.07289864350770853,
+   "move_fraction_in_prefix_domain_subspace": 0.0020705086644738913,
+   "move_fraction_in_null_subspace": 0.004162548575550318,
    "example": "The city of Quito is in Ecuador. The date is 1800",
    "examples": [
     {
@@ -189,7 +200,7 @@
     },
     {
      "prompt": "The city of Quito is in Ecuador. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "partial",
-   "shape_metric": 0.6804349345490913,
+   "shape_metric": 0.6754215943894257,
    "metrics": {
-    "linear_r2_from_pcs": 0.9330590197986892,
-    "periodic_circular_corr": 0.42781084929949337
+    "linear_r2_from_pcs": 0.9337562874114294,
+    "periodic_circular_corr": 0.4170869013674221
    },
-   "knn_overlap": 0.7095477386934673,
-   "relative_move": 0.6711604862748046,
-   "top1_agreement": 0.6884422110552764,
+   "knn_overlap": 0.708040201005025,
+   "relative_move": 0.6728221858559413,
+   "top1_agreement": 0.6934673366834171,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.046886208339279166,
-   "move_fraction_in_prefix_domain_subspace": 0.006000935565680265,
-   "move_fraction_in_null_subspace": 0.004059340804815292,
+   "move_fraction_in_own_subspace": 0.051665405750044885,
+   "move_fraction_in_prefix_domain_subspace": 0.006329687312245369,
+   "move_fraction_in_null_subspace": 0.004114000592380762,
    "example": "The mayor announced a climate and energy plan. The date is 1800",
    "examples": [
     {
@@ -226,7 +237,7 @@
     },
     {
      "prompt": "The candidate spoke about tax cuts and welfare. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -235,18 +246,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "partial",
-   "shape_metric": 0.7894442288434917,
+   "shape_metric": 0.7882877916169451,
    "metrics": {
-    "linear_r2_from_pcs": 0.9293511462456825,
-    "periodic_circular_corr": 0.6495373114413011
+    "linear_r2_from_pcs": 0.9293983019368135,
+    "periodic_circular_corr": 0.6471772812970766
    },
-   "knn_overlap": 0.7819095477386936,
-   "relative_move": 0.6173323240053917,
+   "knn_overlap": 0.7798994974874371,
+   "relative_move": 0.6192359405710977,
    "top1_agreement": 0.8190954773869347,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.029774836022618063,
+   "move_fraction_in_own_subspace": 0.03449816389299802,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.003489152994006872,
+   "move_fraction_in_null_subspace": 0.003527313005179167,
    "example": "63+9=72. The date is 1800",
    "examples": [
     {
@@ -263,7 +274,7 @@
     },
     {
      "prompt": "17+25=42. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -272,18 +283,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "partial",
-   "shape_metric": 0.6980864873716845,
+   "shape_metric": 0.6990852300924728,
    "metrics": {
-    "linear_r2_from_pcs": 0.8895900399369221,
-    "periodic_circular_corr": 0.5065829348064471
+    "linear_r2_from_pcs": 0.8893190991778192,
+    "periodic_circular_corr": 0.5088513610071264
    },
-   "knn_overlap": 0.7291457286432161,
-   "relative_move": 0.5638383547826458,
-   "top1_agreement": 0.8040201005025126,
+   "knn_overlap": 0.7276381909547739,
+   "relative_move": 0.564065706586171,
+   "top1_agreement": 0.7989949748743719,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.049503885009514685,
+   "move_fraction_in_own_subspace": 0.055153268695847836,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004243831150233746,
+   "move_fraction_in_null_subspace": 0.0042979042045772076,
    "example": "The package arrived without any delay. The date is 1800",
    "examples": [
     {
@@ -300,7 +311,7 @@
     },
     {
      "prompt": "The door at the end of the hall is open. The date is 1802",
-     "clean_top1": ".",
+     "clean_top1": ",",
      "prefixed_top1": ".",
      "answer": null
     }
@@ -308,5 +319,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 28.6
+ "elapsed_s": 17.7
 }

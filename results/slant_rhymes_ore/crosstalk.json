@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 75,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:51:19+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.7870877655453091,
+  "shape_metric": 0.783898399011274,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "matches",
-   "shape_metric": 0.6506956401110879,
+   "shape_metric": 0.6633303313930783,
    "metrics": {
-    "spearman_best_direction": 0.7452625149678576,
-    "knn_r2": 0.5561287652543182
+    "spearman_best_direction": 0.749034086399881,
+    "knn_r2": 0.5776265763862757
    },
-   "knn_overlap": 0.6706666666666666,
-   "relative_move": 0.44115112489093256,
+   "knn_overlap": 0.6759999999999999,
+   "relative_move": 0.4407377487979341,
    "top1_agreement": 0.7866666666666666,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.10641483654778165,
-   "move_fraction_in_prefix_domain_subspace": 0.0032390400301665068,
-   "move_fraction_in_null_subspace": 0.004437500145286322,
+   "move_fraction_in_own_subspace": 0.10725834287210342,
+   "move_fraction_in_prefix_domain_subspace": 0.00326374894939363,
+   "move_fraction_in_null_subspace": 0.00445952033624053,
    "example": "The hex code #80b918 is for the color green. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "matches",
-   "shape_metric": 0.7373388901450959,
+   "shape_metric": 0.7430870921019017,
    "metrics": {
-    "spearman_best_direction": 0.7958015721569734,
-    "knn_r2": 0.6788762081332183
+    "spearman_best_direction": 0.7950472578705687,
+    "knn_r2": 0.6911269263332348
    },
-   "knn_overlap": 0.7000000000000001,
-   "relative_move": 0.40819967144613045,
-   "top1_agreement": 0.88,
+   "knn_overlap": 0.7026666666666667,
+   "relative_move": 0.40691436442656426,
+   "top1_agreement": 0.8666666666666667,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.06615879270992941,
-   "move_fraction_in_prefix_domain_subspace": 0.004013441037386656,
-   "move_fraction_in_null_subspace": 0.004113643895834684,
+   "move_fraction_in_own_subspace": 0.06636529237468974,
+   "move_fraction_in_prefix_domain_subspace": 0.0040176608599722385,
+   "move_fraction_in_null_subspace": 0.0041372813284397125,
    "example": "They rest on Sunday. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "matches",
-   "shape_metric": 0.7579120344072152,
+   "shape_metric": 0.7593496867832472,
    "metrics": {
-    "spearman_best_direction": 0.801836086448211,
-    "knn_r2": 0.7139879823662193
+    "spearman_best_direction": 0.8040990293074253,
+    "knn_r2": 0.7146003442590692
    },
-   "knn_overlap": 0.6213333333333334,
-   "relative_move": 0.44600394123856757,
+   "knn_overlap": 0.6186666666666666,
+   "relative_move": 0.4449564654737138,
    "top1_agreement": 0.88,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.10315235579412088,
+   "move_fraction_in_own_subspace": 0.10455208225267817,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004475618712604046,
+   "move_fraction_in_null_subspace": 0.004503586795181036,
    "example": "It is the month of July. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.7347280096257975,
+   "shape_metric": 0.7474992483296784,
    "metrics": {
-    "spearman_best_direction": 0.8010817721618064,
-    "knn_r2": 0.6683742470897887
+    "spearman_best_direction": 0.801836086448211,
+    "knn_r2": 0.6931624102111458
    },
-   "knn_overlap": 0.6786666666666666,
-   "relative_move": 0.36871000040586255,
+   "knn_overlap": 0.6733333333333333,
+   "relative_move": 0.3674929234434173,
    "top1_agreement": 0.8933333333333333,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.10174856532653255,
-   "move_fraction_in_prefix_domain_subspace": 0.002124934922903776,
-   "move_fraction_in_null_subspace": 0.004542089533060789,
+   "move_fraction_in_own_subspace": 0.10132029587167769,
+   "move_fraction_in_prefix_domain_subspace": 0.0021390088368207216,
+   "move_fraction_in_null_subspace": 0.0045246765948832035,
    "example": "She is 56 years old. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.7034861966693952,
+   "shape_metric": 0.6976902147005493,
    "metrics": {
-    "spearman_best_direction": 0.7429995721086434,
-    "knn_r2": 0.6639728212301469
+    "spearman_best_direction": 0.7422452578222387,
+    "knn_r2": 0.6531351715788599
    },
-   "knn_overlap": 0.6386666666666666,
-   "relative_move": 0.46262613528055835,
+   "knn_overlap": 0.6413333333333333,
+   "relative_move": 0.46185850587347854,
    "top1_agreement": 0.8666666666666667,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.1108074326756539,
-   "move_fraction_in_prefix_domain_subspace": 0.004256019368767738,
-   "move_fraction_in_null_subspace": 0.00511946901679039,
+   "move_fraction_in_own_subspace": 0.11219453584046174,
+   "move_fraction_in_prefix_domain_subspace": 0.004297876264899969,
+   "move_fraction_in_null_subspace": 0.005170861724764109,
    "example": "The city of Lima is in Peru. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "matches",
-   "shape_metric": 0.7084680148363027,
+   "shape_metric": 0.7112653043539058,
    "metrics": {
-    "spearman_best_direction": 0.7301762292397632,
-    "knn_r2": 0.6867598004328423
+    "spearman_best_direction": 0.7309305435261679,
+    "knn_r2": 0.6916000651816436
    },
-   "knn_overlap": 0.644,
-   "relative_move": 0.45917780752928977,
-   "top1_agreement": 0.8666666666666667,
+   "knn_overlap": 0.648,
+   "relative_move": 0.4579367081643887,
+   "top1_agreement": 0.8533333333333334,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.09105027884945179,
-   "move_fraction_in_prefix_domain_subspace": 0.003950413782149553,
-   "move_fraction_in_null_subspace": 0.004472195170819759,
+   "move_fraction_in_own_subspace": 0.09183290023996063,
+   "move_fraction_in_prefix_domain_subspace": 0.0039968229830265045,
+   "move_fraction_in_null_subspace": 0.004503120668232441,
    "example": "The mayor announced a climate and energy plan. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "matches",
-   "shape_metric": 0.7271141769606135,
+   "shape_metric": 0.7232384402823298,
    "metrics": {
-    "spearman_best_direction": 0.8086249150258534,
-    "knn_r2": 0.6456034388953737
+    "spearman_best_direction": 0.8101335435986631,
+    "knn_r2": 0.6363433369659963
    },
-   "knn_overlap": 0.7373333333333334,
-   "relative_move": 0.3620577047873553,
+   "knn_overlap": 0.7466666666666667,
+   "relative_move": 0.3632268571688933,
    "top1_agreement": 0.96,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.10237786612454111,
+   "move_fraction_in_own_subspace": 0.1031870504676572,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004971789196133614,
+   "move_fraction_in_null_subspace": 0.00498106749728322,
    "example": "22+58=80. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -272,18 +283,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "matches",
-   "shape_metric": 0.7491940922128022,
+   "shape_metric": 0.7539966747732214,
    "metrics": {
-    "spearman_best_direction": 0.8116421721714724,
-    "knn_r2": 0.686746012254132
+    "spearman_best_direction": 0.8131508007442818,
+    "knn_r2": 0.6948425488021611
    },
-   "knn_overlap": 0.6719999999999999,
-   "relative_move": 0.39391622985025737,
-   "top1_agreement": 0.92,
+   "knn_overlap": 0.6639999999999999,
+   "relative_move": 0.39472048973656654,
+   "top1_agreement": 0.9066666666666666,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.09957518182966808,
+   "move_fraction_in_own_subspace": 0.09994593688145643,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004708311054855585,
+   "move_fraction_in_null_subspace": 0.004721533507108688,
    "example": "The package arrived without any delay. A word that sounds like it could rhyme with door is door",
    "examples": [
     {
@@ -308,5 +319,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 22.4
+ "elapsed_s": 15.5
 }

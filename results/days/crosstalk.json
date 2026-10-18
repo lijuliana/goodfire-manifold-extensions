@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 56,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:47:33+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.9922877380749908,
+  "shape_metric": 0.9922136939095452,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "failed",
-   "shape_metric": 0.5652906696685216,
+   "shape_metric": 0.5682798203450774,
    "metrics": {
     "cyclic_order": 1.0,
-    "circular_corr": 0.13058133933704313
+    "circular_corr": 0.13655964069015475
    },
-   "knn_overlap": 0.6124999999999999,
-   "relative_move": 0.8815747934770617,
-   "top1_agreement": 0.9642857142857143,
+   "knn_overlap": 0.6160714285714286,
+   "relative_move": 0.8817732301813328,
+   "top1_agreement": 0.9821428571428571,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.1943644935354658,
-   "move_fraction_in_prefix_domain_subspace": 0.004538954235613346,
-   "move_fraction_in_null_subspace": 0.005880539305508137,
+   "move_fraction_in_own_subspace": 0.1944162314775301,
+   "move_fraction_in_prefix_domain_subspace": 0.004511379636824131,
+   "move_fraction_in_null_subspace": 0.005863061174750328,
    "example": "The hex code #80b918 is for the color green. It's the crack of dawn on Monday",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "matches",
-   "shape_metric": 0.9515710184743058,
+   "shape_metric": 0.9516008554503013,
    "metrics": {
     "cyclic_order": 1.0,
-    "circular_corr": 0.9031420369486116
+    "circular_corr": 0.9032017109006026
    },
-   "knn_overlap": 0.7714285714285715,
-   "relative_move": 0.5798913502252173,
+   "knn_overlap": 0.7732142857142856,
+   "relative_move": 0.5798937935403785,
    "top1_agreement": 0.7678571428571429,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.20411319948378642,
+   "move_fraction_in_own_subspace": 0.20414387684314633,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.005071219522505999,
+   "move_fraction_in_null_subspace": 0.005085074342787266,
    "example": "Rent is due in November. It's the crack of dawn on Monday",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.9526554983524975,
+   "shape_metric": 0.9525256842023204,
    "metrics": {
     "cyclic_order": 1.0,
-    "circular_corr": 0.905310996704995
+    "circular_corr": 0.905051368404641
    },
-   "knn_overlap": 0.8250000000000001,
-   "relative_move": 0.48436284417171005,
-   "top1_agreement": 0.9107142857142857,
+   "knn_overlap": 0.8267857142857145,
+   "relative_move": 0.48416397757944574,
+   "top1_agreement": 0.8928571428571429,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.20834012824486864,
-   "move_fraction_in_prefix_domain_subspace": 0.002496959874406457,
-   "move_fraction_in_null_subspace": 0.005525157321244478,
+   "move_fraction_in_own_subspace": 0.20997960647422267,
+   "move_fraction_in_prefix_domain_subspace": 0.002640313934534788,
+   "move_fraction_in_null_subspace": 0.0055711232125759125,
    "example": "He is 45 years old. It's the crack of dawn on Monday",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.9413913832033223,
+   "shape_metric": 0.9410449852758382,
    "metrics": {
     "cyclic_order": 1.0,
-    "circular_corr": 0.8827827664066445
+    "circular_corr": 0.8820899705516765
    },
-   "knn_overlap": 0.7714285714285715,
-   "relative_move": 0.6065204282732761,
-   "top1_agreement": 0.9464285714285714,
+   "knn_overlap": 0.7678571428571429,
+   "relative_move": 0.6103338864581902,
+   "top1_agreement": 0.9285714285714286,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.20951899297270035,
-   "move_fraction_in_prefix_domain_subspace": 0.0011765280505642295,
-   "move_fraction_in_null_subspace": 0.005501344334334135,
+   "move_fraction_in_own_subspace": 0.20928926327574265,
+   "move_fraction_in_prefix_domain_subspace": 0.0011926268925890326,
+   "move_fraction_in_null_subspace": 0.005525366868823767,
    "example": "The city of Lima is in Peru. It's the crack of dawn on Monday",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "partial",
-   "shape_metric": 0.9379734381411495,
+   "shape_metric": 0.9372273414668368,
    "metrics": {
     "cyclic_order": 1.0,
-    "circular_corr": 0.8759468762822992
+    "circular_corr": 0.8744546829336738
    },
-   "knn_overlap": 0.6928571428571428,
-   "relative_move": 0.7000624365830885,
-   "top1_agreement": 0.9464285714285714,
+   "knn_overlap": 0.6875,
+   "relative_move": 0.7017639315560343,
+   "top1_agreement": 0.9285714285714286,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.1939095229789418,
-   "move_fraction_in_prefix_domain_subspace": 0.009366328828036785,
-   "move_fraction_in_null_subspace": 0.006078619509935379,
+   "move_fraction_in_own_subspace": 0.19285500539029413,
+   "move_fraction_in_prefix_domain_subspace": 0.00976439006626606,
+   "move_fraction_in_null_subspace": 0.006160351447761059,
    "example": "The mayor announced a climate and energy plan. It's the crack of dawn on Monday",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "matches",
-   "shape_metric": 0.9848780392109828,
+   "shape_metric": 0.9850428613979841,
    "metrics": {
     "cyclic_order": 1.0,
-    "circular_corr": 0.9697560784219657
+    "circular_corr": 0.9700857227959683
    },
    "knn_overlap": 0.8125,
-   "relative_move": 0.5227726075862426,
+   "relative_move": 0.5241215958156181,
    "top1_agreement": 0.9107142857142857,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.137302984050567,
+   "move_fraction_in_own_subspace": 0.136735231515069,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.005623912438750267,
+   "move_fraction_in_null_subspace": 0.00564830144867301,
    "example": "17+25=42. It's the crack of dawn on Monday",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "matches",
-   "shape_metric": 0.9779386952019529,
+   "shape_metric": 0.9778982317746068,
    "metrics": {
     "cyclic_order": 1.0,
-    "circular_corr": 0.9558773904039056
+    "circular_corr": 0.9557964635492135
    },
    "knn_overlap": 0.8035714285714286,
-   "relative_move": 0.545665713249145,
-   "top1_agreement": 0.7321428571428571,
+   "relative_move": 0.5455125183572798,
+   "top1_agreement": 0.75,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.15938757545195342,
+   "move_fraction_in_own_subspace": 0.15897796372656778,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004439431242644787,
+   "move_fraction_in_null_subspace": 0.004459865391254425,
    "example": "This paragraph continues the text. It's the crack of dawn on Monday",
    "examples": [
     {
@@ -271,5 +282,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 19.0
+ "elapsed_s": 13.8
 }

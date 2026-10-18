@@ -3,28 +3,39 @@
  "layer": 19,
  "n_prompts": 288,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:51:56+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "partial",
-  "shape_metric": 0.863330397935496,
-  "task_accuracy": 0.6527777777777778,
+  "shape_metric": 0.863575247069433,
+  "task_accuracy": 0.6493055555555556,
   "task": "month arithmetic"
  },
  "conditions": {
   "colors": {
    "prefix_domain": "colors",
    "status": "partial",
-   "shape_metric": 0.8369337520217144,
+   "shape_metric": 0.8339134539018631,
    "metrics": {
     "cyclic_order": 0.8333333333333334,
-    "circular_corr": 0.8405341707100953
+    "circular_corr": 0.8344935744703929
    },
-   "knn_overlap": 0.8951388888888892,
-   "relative_move": 0.40197392141222776,
-   "top1_agreement": 0.4340277777777778,
-   "task_accuracy": 0.3506944444444444,
-   "move_fraction_in_own_subspace": 0.1568879490857923,
-   "move_fraction_in_prefix_domain_subspace": 0.0021616690792143345,
-   "move_fraction_in_null_subspace": 0.006428275257349014,
+   "knn_overlap": 0.8961805555555556,
+   "relative_move": 0.39991263905050106,
+   "top1_agreement": 0.4236111111111111,
+   "task_accuracy": 0.3333333333333333,
+   "move_fraction_in_own_subspace": 0.155810652754141,
+   "move_fraction_in_prefix_domain_subspace": 0.0021805772557854652,
+   "move_fraction_in_null_subspace": 0.00642333785071969,
    "example": "The hex code #80b918 is for the color green. Q: What month is one months after January?\nA:",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "partial",
-   "shape_metric": 0.8598229788742565,
+   "shape_metric": 0.8594200929130329,
    "metrics": {
     "cyclic_order": 0.8333333333333334,
-    "circular_corr": 0.8863126244151797
+    "circular_corr": 0.8855068524927323
    },
-   "knn_overlap": 0.8621527777777778,
-   "relative_move": 0.400981369487104,
-   "top1_agreement": 0.3020833333333333,
+   "knn_overlap": 0.8635416666666668,
+   "relative_move": 0.3993880428605417,
+   "top1_agreement": 0.2951388888888889,
    "task_accuracy": 0.21875,
-   "move_fraction_in_own_subspace": 0.14835820325629734,
-   "move_fraction_in_prefix_domain_subspace": 0.00826408714056015,
-   "move_fraction_in_null_subspace": 0.006142204627394676,
+   "move_fraction_in_own_subspace": 0.14977015083573808,
+   "move_fraction_in_prefix_domain_subspace": 0.008421627804636955,
+   "move_fraction_in_null_subspace": 0.006179552059620619,
    "example": "The deadline is Tuesday. Q: What month is one months after January?\nA:",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "partial",
-   "shape_metric": 0.871133767761775,
+   "shape_metric": 0.8706834993227084,
    "metrics": {
     "cyclic_order": 0.8333333333333334,
-    "circular_corr": 0.9089342021902166
+    "circular_corr": 0.9080336653120834
    },
    "knn_overlap": 0.9048611111111112,
-   "relative_move": 0.3388061364766986,
+   "relative_move": 0.337934578389392,
    "top1_agreement": 0.21180555555555555,
-   "task_accuracy": 0.15625,
-   "move_fraction_in_own_subspace": 0.1786976744971349,
-   "move_fraction_in_prefix_domain_subspace": 0.003578171133995056,
-   "move_fraction_in_null_subspace": 0.007443907205015421,
+   "task_accuracy": 0.16666666666666666,
+   "move_fraction_in_own_subspace": 0.1789580939974974,
+   "move_fraction_in_prefix_domain_subspace": 0.0036429811734706163,
+   "move_fraction_in_null_subspace": 0.007489216513931751,
    "example": "They are 19 years old. Q: What month is one months after January?\nA:",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "partial",
-   "shape_metric": 0.8833296352211166,
+   "shape_metric": 0.8834660604833684,
    "metrics": {
     "cyclic_order": 0.8333333333333334,
-    "circular_corr": 0.9333259371088999
+    "circular_corr": 0.9335987876334035
    },
-   "knn_overlap": 0.8461805555555555,
-   "relative_move": 0.41649807916721693,
-   "top1_agreement": 0.3784722222222222,
-   "task_accuracy": 0.3159722222222222,
-   "move_fraction_in_own_subspace": 0.20550924720297128,
-   "move_fraction_in_prefix_domain_subspace": 0.0009326324216090143,
-   "move_fraction_in_null_subspace": 0.007314077578485012,
+   "knn_overlap": 0.8454861111111112,
+   "relative_move": 0.4132498024678183,
+   "top1_agreement": 0.3715277777777778,
+   "task_accuracy": 0.3125,
+   "move_fraction_in_own_subspace": 0.20451843661869595,
+   "move_fraction_in_prefix_domain_subspace": 0.0009439734276384115,
+   "move_fraction_in_null_subspace": 0.0073292129673063755,
    "example": "The city of Perth is in Australia. Q: What month is one months after January?\nA:",
    "examples": [
     {
@@ -160,19 +171,19 @@
   },
   "politics": {
    "prefix_domain": "politics",
-   "status": "partial",
-   "shape_metric": 0.8699658272209981,
+   "status": "matches",
+   "shape_metric": 0.9533808340404832,
    "metrics": {
-    "cyclic_order": 0.8333333333333334,
-    "circular_corr": 0.9065983211086629
+    "cyclic_order": 1.0,
+    "circular_corr": 0.9067616680809666
    },
-   "knn_overlap": 0.8215277777777779,
-   "relative_move": 0.47161376223585016,
+   "knn_overlap": 0.8229166666666666,
+   "relative_move": 0.47056589227246187,
    "top1_agreement": 0.23958333333333334,
-   "task_accuracy": 0.1840277777777778,
-   "move_fraction_in_own_subspace": 0.11032700474887973,
-   "move_fraction_in_prefix_domain_subspace": 0.0036294518504291773,
-   "move_fraction_in_null_subspace": 0.00494761299341917,
+   "task_accuracy": 0.1875,
+   "move_fraction_in_own_subspace": 0.11194186898900606,
+   "move_fraction_in_prefix_domain_subspace": 0.003640504786744714,
+   "move_fraction_in_null_subspace": 0.004961843136698008,
    "example": "The candidate spoke about tax cuts and welfare. Q: What month is one months after January?\nA:",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "partial",
-   "shape_metric": 0.8698125861098813,
+   "shape_metric": 0.87071556456299,
    "metrics": {
     "cyclic_order": 0.8333333333333334,
-    "circular_corr": 0.9062918388864294
+    "circular_corr": 0.9080977957926466
    },
-   "knn_overlap": 0.8843750000000001,
-   "relative_move": 0.4723042578005861,
-   "top1_agreement": 0.1597222222222222,
-   "task_accuracy": 0.1076388888888889,
-   "move_fraction_in_own_subspace": 0.19369246166706866,
+   "knn_overlap": 0.8798611111111111,
+   "relative_move": 0.47086520545788574,
+   "top1_agreement": 0.15625,
+   "task_accuracy": 0.1111111111111111,
+   "move_fraction_in_own_subspace": 0.19672023582852682,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0066278716549277306,
+   "move_fraction_in_null_subspace": 0.006697370205074549,
    "example": "17+25=42. Q: What month is one months after January?\nA:",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "partial",
-   "shape_metric": 0.8474690232241161,
+   "shape_metric": 0.8471710879397967,
    "metrics": {
     "cyclic_order": 0.8333333333333334,
-    "circular_corr": 0.8616047131148988
+    "circular_corr": 0.86100884254626
    },
-   "knn_overlap": 0.8736111111111112,
-   "relative_move": 0.34739733905887593,
-   "top1_agreement": 0.2013888888888889,
-   "task_accuracy": 0.15625,
-   "move_fraction_in_own_subspace": 0.16375425260564402,
+   "knn_overlap": 0.8711805555555555,
+   "relative_move": 0.3461683314527887,
+   "top1_agreement": 0.2048611111111111,
+   "task_accuracy": 0.1597222222222222,
+   "move_fraction_in_own_subspace": 0.16478374531727122,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.006361252628266811,
+   "move_fraction_in_null_subspace": 0.006394960917532444,
    "example": "This paragraph continues the text. Q: What month is one months after January?\nA:",
    "examples": [
     {
@@ -271,5 +282,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 38.7
+ "elapsed_s": 19.9
 }

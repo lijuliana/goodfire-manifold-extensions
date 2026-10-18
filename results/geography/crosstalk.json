@@ -3,6 +3,17 @@
  "layer": 19,
  "n_prompts": 800,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:47:19+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
   "shape_metric": 0.5425,
@@ -21,9 +32,9 @@
    "relative_move": 0.3695611217572771,
    "top1_agreement": 0.92375,
    "task_accuracy": 0.8375,
-   "move_fraction_in_own_subspace": 0.02563202387877353,
+   "move_fraction_in_own_subspace": 0.025632023878773502,
    "move_fraction_in_prefix_domain_subspace": 0.003043512813746929,
-   "move_fraction_in_null_subspace": 0.0023217599373310804,
+   "move_fraction_in_null_subspace": 0.002315700054168701,
    "example": "The hex code #80b918 is for the color green. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
    "examples": [
     {
@@ -57,9 +68,9 @@
    "relative_move": 0.25942289639348465,
    "top1_agreement": 0.93125,
    "task_accuracy": 0.81625,
-   "move_fraction_in_own_subspace": 0.04055149725603645,
+   "move_fraction_in_own_subspace": 0.04055149725603639,
    "move_fraction_in_prefix_domain_subspace": 0.0008147843182086945,
-   "move_fraction_in_null_subspace": 0.002987941727042198,
+   "move_fraction_in_null_subspace": 0.002878289669752121,
    "example": "They rest on Sunday. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
    "examples": [
     {
@@ -93,9 +104,9 @@
    "relative_move": 0.28270487811043515,
    "top1_agreement": 0.92375,
    "task_accuracy": 0.81125,
-   "move_fraction_in_own_subspace": 0.047061484235919944,
+   "move_fraction_in_own_subspace": 0.047061484235919895,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.00273075676523149,
+   "move_fraction_in_null_subspace": 0.0028460421599447727,
    "example": "The harvest is in October. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
    "examples": [
     {
@@ -129,9 +140,9 @@
    "relative_move": 0.2482566741763975,
    "top1_agreement": 0.92125,
    "task_accuracy": 0.8225,
-   "move_fraction_in_own_subspace": 0.04250436430997083,
+   "move_fraction_in_own_subspace": 0.042504364309970774,
    "move_fraction_in_prefix_domain_subspace": 0.002060722094029188,
-   "move_fraction_in_null_subspace": 0.0026889643631875515,
+   "move_fraction_in_null_subspace": 0.0028728137258440256,
    "example": "He is 82 years old. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
    "examples": [
     {
@@ -165,9 +176,9 @@
    "relative_move": 0.31343116225422746,
    "top1_agreement": 0.86875,
    "task_accuracy": 0.77625,
-   "move_fraction_in_own_subspace": 0.03437357754648449,
+   "move_fraction_in_own_subspace": 0.03437357754648446,
    "move_fraction_in_prefix_domain_subspace": 0.0037195258773863316,
-   "move_fraction_in_null_subspace": 0.0027374590281397104,
+   "move_fraction_in_null_subspace": 0.002682128921151161,
    "example": "The candidate spoke about tax cuts and welfare. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
    "examples": [
     {
@@ -201,9 +212,9 @@
    "relative_move": 0.2493266095118385,
    "top1_agreement": 0.90875,
    "task_accuracy": 0.815,
-   "move_fraction_in_own_subspace": 0.03389119392462112,
+   "move_fraction_in_own_subspace": 0.033891193924621095,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.002859720727428794,
+   "move_fraction_in_null_subspace": 0.002818104112520814,
    "example": "48+37=85. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
    "examples": [
     {
@@ -237,9 +248,9 @@
    "relative_move": 0.2616102280100317,
    "top1_agreement": 0.9425,
    "task_accuracy": 0.815,
-   "move_fraction_in_own_subspace": 0.03319003174123353,
+   "move_fraction_in_own_subspace": 0.03319003174123348,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0026232623495161533,
+   "move_fraction_in_null_subspace": 0.002546678762882948,
    "example": "This paragraph continues the text. The geographical coordinates latitude 34.5166667 and longitude 69.1833344 are in the country of",
    "examples": [
     {
@@ -264,5 +275,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 44.4
+ "elapsed_s": 30.3
 }

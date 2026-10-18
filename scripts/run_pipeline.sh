@@ -15,7 +15,7 @@ export CODE_COMMIT="${CODE_COMMIT:-unknown}"
 GPU_MIB=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits | head -1)
 if [ "${GPU_MIB:-0}" -lt 30000 ]; then BS=12; GIB=21; else BS=32; GIB=44; fi
 P="--provider aws --instance $INSTANCE --batch-size $BS --gpu-gib $GIB"
-W="--workers 7"
+W="--workers $(( $(nproc) > 2 ? $(nproc) - 1 : 1 ))"
 run() { echo "== $1 $(date -u +%H:%M:%S)"; shift; "$@" 2>&1 | tee -a logs/pipeline_$(date -u +%Y%m%d).log | grep -vE 'it/s\]|%\|' ; }
 # no --manifold: every non-archived page (manifest order)
 run interference uv run manifolds interference

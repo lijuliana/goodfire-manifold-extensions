@@ -3,6 +3,17 @@
  "layer": 18,
  "n_prompts": 800,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:55:23+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
   "shape_metric": 0.9093885137616015,
@@ -22,9 +33,9 @@
    "relative_move": 0.6790625019201368,
    "top1_agreement": 0.95,
    "task_accuracy": 1.0,
-   "move_fraction_in_own_subspace": 0.08645476077549892,
+   "move_fraction_in_own_subspace": 0.08645476077549898,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0051875910721719265,
+   "move_fraction_in_null_subspace": 0.006711335387080908,
    "example": "The hex code #80b918 is for the color green. 1+5=",
    "examples": [
     {
@@ -59,9 +70,9 @@
    "relative_move": 0.5980616323435121,
    "top1_agreement": 0.9475,
    "task_accuracy": 0.9975,
-   "move_fraction_in_own_subspace": 0.07394295814572734,
+   "move_fraction_in_own_subspace": 0.07394295814572736,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0045034452341496944,
+   "move_fraction_in_null_subspace": 0.0060476274229586124,
    "example": "They rest on Sunday. 1+5=",
    "examples": [
     {
@@ -96,9 +107,9 @@
    "relative_move": 0.6268223867360425,
    "top1_agreement": 0.9475,
    "task_accuracy": 0.995,
-   "move_fraction_in_own_subspace": 0.06438533097837995,
+   "move_fraction_in_own_subspace": 0.06438533097837999,
    "move_fraction_in_prefix_domain_subspace": 0.011882800608873367,
-   "move_fraction_in_null_subspace": 0.0043289861641824245,
+   "move_fraction_in_null_subspace": 0.005767383612692356,
    "example": "The harvest is in October. 1+5=",
    "examples": [
     {
@@ -133,9 +144,9 @@
    "relative_move": 0.6438903191834687,
    "top1_agreement": 0.95,
    "task_accuracy": 0.99875,
-   "move_fraction_in_own_subspace": 0.07359125537590788,
+   "move_fraction_in_own_subspace": 0.07359125537590792,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004425886087119579,
+   "move_fraction_in_null_subspace": 0.006186996586620808,
    "example": "He is 82 years old. 1+5=",
    "examples": [
     {
@@ -170,9 +181,9 @@
    "relative_move": 0.6059590042478122,
    "top1_agreement": 0.95,
    "task_accuracy": 1.0,
-   "move_fraction_in_own_subspace": 0.071371690131167,
+   "move_fraction_in_own_subspace": 0.07137169013116702,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004373845644295216,
+   "move_fraction_in_null_subspace": 0.005895433947443962,
    "example": "The city of Lagos is in Nigeria. 1+5=",
    "examples": [
     {
@@ -207,9 +218,9 @@
    "relative_move": 0.5808077527127213,
    "top1_agreement": 0.93875,
    "task_accuracy": 0.97625,
-   "move_fraction_in_own_subspace": 0.06484556936585519,
+   "move_fraction_in_own_subspace": 0.0648455693658552,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004211427643895149,
+   "move_fraction_in_null_subspace": 0.005721820518374443,
    "example": "The candidate spoke about tax cuts and welfare. 1+5=",
    "examples": [
     {
@@ -244,9 +255,9 @@
    "relative_move": 0.5812860978814118,
    "top1_agreement": 0.95,
    "task_accuracy": 1.0,
-   "move_fraction_in_own_subspace": 0.07075192658937214,
+   "move_fraction_in_own_subspace": 0.07075192658937215,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004318178631365299,
+   "move_fraction_in_null_subspace": 0.005865344777703285,
    "example": "This paragraph continues the text. 1+5=",
    "examples": [
     {
@@ -271,5 +282,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 641.6
+ "elapsed_s": 48.5
 }

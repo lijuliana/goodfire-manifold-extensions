@@ -3,6 +3,40 @@
  "layer": 19,
  "n_points": 1848,
  "n_plotted": 800,
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T18:44:54+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_points": 800,
+  "n_kl": 400,
+  "workers": 3,
+  "conditions": [
+   "clean",
+   "weak_0.1",
+   "weak_0.25",
+   "weak_0.5",
+   "weak_1",
+   "weak_1.5",
+   "weak_2",
+   "weak_3",
+   "weak_5",
+   "weak_7.5",
+   "weak_10",
+   "random_0.1",
+   "random_0.25",
+   "random_0.5",
+   "random_1",
+   "scale_0.5_0.5",
+   "scale_0.5_1.5",
+   "scale_2_0.5",
+   "scale_2_1.5"
+  ]
+ },
+ "view": "clean PCA basis",
  "n_kl": 400,
  "model_id": "unsloth/Llama-3.1-8B",
  "consistency_with_cached_activations": {
@@ -54,14 +88,14 @@
    "shape_metric": 0.9285783150444411,
    "status_fixed_basis": "partial",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.962552473735305,
+    "hue_circular_corr": 0.9625524737353051,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8229643414718695
    },
    "evr_refit": [
-    0.3275599875765482,
-    0.19973431248545515,
-    0.18025457715115506
+    0.3275599875765485,
+    0.19973431248545506,
+    0.18025457715115503
    ],
    "knn_overlap": 0.8344696969696972,
    "knn_overlap_pca3": 0.734469696969697,
@@ -82,21 +116,21 @@
    "description": "weak activations zeroed below 0.25% of each neuron's max",
    "status": "partial",
    "metrics": {
-    "hue_circular_corr": 0.9579463281495587,
+    "hue_circular_corr": 0.9579463281495586,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8336171938666161
    },
-   "shape_metric": 0.9305211740053917,
+   "shape_metric": 0.9305211740053916,
    "status_fixed_basis": "partial",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.9622077678324967,
+    "hue_circular_corr": 0.962207767832497,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8236262224686232
    },
    "evr_refit": [
-    0.297618801114828,
-    0.18377449112458527,
-    0.17425763323321
+    0.29761880111482814,
+    0.18377449112458522,
+    0.17425763323320997
    ],
    "knn_overlap": 0.7431818181818183,
    "knn_overlap_pca3": 0.5773809523809523,
@@ -124,14 +158,14 @@
    "shape_metric": 0.902072851540375,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.9605793395590162,
+    "hue_circular_corr": 0.9605793395590161,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8030737766334897
    },
    "evr_refit": [
-    0.2437131011921324,
-    0.23528229855810284,
-    0.15008572109269055
+    0.2437131011921325,
+    0.2352822985581028,
+    0.15008572109269044
    ],
    "knn_overlap": 0.5869588744588745,
    "knn_overlap_pca3": 0.3742965367965368,
@@ -152,21 +186,21 @@
    "description": "weak activations zeroed below 1% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.14181074792639076,
+    "hue_circular_corr": 0.14181074792639037,
     "hue_cyclic_order": 0.5,
     "height_vs_lightness_or_saturation": 0.5615940034558551
    },
-   "shape_metric": 0.4011349171274153,
+   "shape_metric": 0.40113491712741517,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.923215468762803,
+    "hue_circular_corr": 0.9232154687628029,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.6641638227559769
    },
    "evr_refit": [
-    0.1105423339751344,
-    0.09372132780981238,
-    0.0846955563201878
+    0.11054233397513417,
+    0.09372132780981235,
+    0.08469555632018802
    ],
    "knn_overlap": 0.3198593073593074,
    "knn_overlap_pca3": 0.1445887445887446,
@@ -187,21 +221,21 @@
    "description": "weak activations zeroed below 1.5% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.059598954984611964,
+    "hue_circular_corr": 0.059598954984611804,
     "hue_cyclic_order": 0.3333333333333333,
     "height_vs_lightness_or_saturation": 0.6155644877107611
    },
-   "shape_metric": 0.3361655920095688,
+   "shape_metric": 0.33616559200956875,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.7628312534130758,
+    "hue_circular_corr": 0.7628312534130752,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.612320419521165
    },
    "evr_refit": [
-    0.08969588753822814,
-    0.07354168098653058,
-    0.026335096644793648
+    0.08969588753822817,
+    0.07354168098653062,
+    0.02633509664479362
    ],
    "knn_overlap": 0.1760822510822511,
    "knn_overlap_pca3": 0.05557359307359307,
@@ -222,21 +256,21 @@
    "description": "weak activations zeroed below 2% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.03925930498012642,
+    "hue_circular_corr": 0.03925930498012619,
     "hue_cyclic_order": 0.4166666666666667,
     "height_vs_lightness_or_saturation": 0.5256681981450954
    },
-   "shape_metric": 0.3271980565972961,
+   "shape_metric": 0.32719805659729606,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.4622492539609027,
+    "hue_circular_corr": 0.46224925396090244,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.5952426064766122
    },
    "evr_refit": [
-    0.07013474454864499,
-    0.03449707539113496,
-    0.020249765548019473
+    0.07013474454864493,
+    0.03449707539113497,
+    0.020249765548019494
    ],
    "knn_overlap": 0.11574675324675326,
    "knn_overlap_pca3": 0.022943722943722947,
@@ -257,21 +291,21 @@
    "description": "weak activations zeroed below 3% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.058267846009409756,
+    "hue_circular_corr": 0.058267846009409714,
     "hue_cyclic_order": 0.4166666666666667,
     "height_vs_lightness_or_saturation": 0.3172845978397503
    },
    "shape_metric": 0.2640730368386089,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.47784981060554454,
+    "hue_circular_corr": 0.47784981060554405,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.6694391235608005
    },
    "evr_refit": [
-    0.09560858130002518,
-    0.028665202004834914,
-    0.023241947092419654
+    0.0956085813000252,
+    0.028665202004834918,
+    0.023241947092419668
    ],
    "knn_overlap": 0.11071428571428572,
    "knn_overlap_pca3": 0.032034632034632034,
@@ -292,21 +326,21 @@
    "description": "weak activations zeroed below 5% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.02734680541309262,
+    "hue_circular_corr": 0.027346805413092787,
     "hue_cyclic_order": 0.3333333333333333,
     "height_vs_lightness_or_saturation": 0.5547734462536614
    },
-   "shape_metric": 0.30515119500002913,
+   "shape_metric": 0.3051511950000292,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.05427274889984719,
+    "hue_circular_corr": 0.054272748899847185,
     "hue_cyclic_order": 0.5833333333333334,
     "height_vs_lightness_or_saturation": 0.2877779012853708
    },
    "evr_refit": [
-    0.07252653279237935,
-    0.04082185736097736,
-    0.019915917152967075
+    0.07252653279237949,
+    0.040821857360977425,
+    0.019915917152967064
    ],
    "knn_overlap": 0.09691558441558441,
    "knn_overlap_pca3": 0.0079004329004329,
@@ -327,21 +361,21 @@
    "description": "weak activations zeroed below 7.5% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.00546393283348925,
+    "hue_circular_corr": 0.005463932833489407,
     "hue_cyclic_order": 0.3333333333333333,
     "height_vs_lightness_or_saturation": 0.5357260361011145
    },
-   "shape_metric": 0.29150776742264567,
+   "shape_metric": 0.2915077674226457,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.02636152413944088,
+    "hue_circular_corr": 0.026361524139440675,
     "hue_cyclic_order": 0.5,
     "height_vs_lightness_or_saturation": 0.06467385783777142
    },
    "evr_refit": [
-    0.10479251086078167,
-    0.042104114235980275,
-    0.022255169547774633
+    0.10479251086078181,
+    0.042104114235980344,
+    0.022255169547774654
    ],
    "knn_overlap": 0.10227272727272728,
    "knn_overlap_pca3": 0.009415584415584415,
@@ -362,21 +396,21 @@
    "description": "weak activations zeroed below 10% of each neuron's max",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.04431161853294598,
+    "hue_circular_corr": 0.044311618532946004,
     "hue_cyclic_order": 0.4166666666666667,
     "height_vs_lightness_or_saturation": 0.6003246350716361
    },
-   "shape_metric": 0.3537676400904162,
+   "shape_metric": 0.35376764009041634,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.008638433132148475,
+    "hue_circular_corr": 0.008638433132148458,
     "hue_cyclic_order": 0.3333333333333333,
     "height_vs_lightness_or_saturation": 0.22709710170423075
    },
    "evr_refit": [
-    0.0940787117809093,
-    0.041952357324487495,
-    0.03017602437215481
+    0.09407871178090936,
+    0.04195235732448747,
+    0.030176024372154758
    ],
    "knn_overlap": 0.09502164502164503,
    "knn_overlap_pca3": 0.005952380952380952,
@@ -397,21 +431,21 @@
    "description": "count-matched random activations zeroed (matched to 0.1%)",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.0009202077696578171,
+    "hue_circular_corr": 0.0009202077696578186,
     "hue_cyclic_order": 0.3333333333333333,
     "height_vs_lightness_or_saturation": 0.053332440572852184
    },
    "shape_metric": 0.12919532722528113,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.04853085904661759,
+    "hue_circular_corr": 0.048530859046617546,
     "hue_cyclic_order": 0.8333333333333334,
     "height_vs_lightness_or_saturation": 0.15036659497152788
    },
    "evr_refit": [
     0.5495428222703908,
-    0.029780364003133473,
-    0.020039432866779335
+    0.02978036400313339,
+    0.02003943286677936
    ],
    "knn_overlap": 0.007305194805194805,
    "knn_overlap_pca3": 0.00762987012987013,
@@ -432,21 +466,21 @@
    "description": "count-matched random activations zeroed (matched to 0.25%)",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.0009729669698268848,
+    "hue_circular_corr": 0.0009729669698268832,
     "hue_cyclic_order": 0.08333333333333333,
     "height_vs_lightness_or_saturation": 0.034098998205377595
    },
    "shape_metric": 0.03946843283617927,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.0004652158780867791,
+    "hue_circular_corr": 0.0004652158780867789,
     "hue_cyclic_order": 0.16666666666666666,
     "height_vs_lightness_or_saturation": 0.08278578459246434
    },
    "evr_refit": [
     0.440558850879033,
-    0.03770450396296911,
-    0.02292561960309011
+    0.03770450396296907,
+    0.02292561960309016
    ],
    "knn_overlap": 0.006655844155844156,
    "knn_overlap_pca3": 0.005303030303030303,
@@ -467,21 +501,21 @@
    "description": "count-matched random activations zeroed (matched to 0.5%)",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.00014112064636252126,
+    "hue_circular_corr": 0.00014112064636251945,
     "hue_cyclic_order": 0.16666666666666666,
     "height_vs_lightness_or_saturation": 0.035857940460597655
    },
    "shape_metric": 0.06755524259120894,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 9.459129039388472e-05,
+    "hue_circular_corr": 9.459129039387169e-05,
     "hue_cyclic_order": 0.0,
     "height_vs_lightness_or_saturation": 0.008704814672268912
    },
    "evr_refit": [
-    0.28708219441062405,
-    0.0616782632476918,
-    0.0390996417589951
+    0.28708219441062416,
+    0.06167826324769196,
+    0.039099641758994996
    ],
    "knn_overlap": 0.006114718614718615,
    "knn_overlap_pca3": 0.006818181818181819,
@@ -502,21 +536,21 @@
    "description": "count-matched random activations zeroed (matched to 1%)",
    "status": "failed",
    "metrics": {
-    "hue_circular_corr": 0.0012027569067855,
+    "hue_circular_corr": 0.001202756906785513,
     "hue_cyclic_order": 0.5,
     "height_vs_lightness_or_saturation": 0.03265839990328641
    },
    "shape_metric": 0.17795371893669065,
    "status_fixed_basis": "failed",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.0008824833853285205,
+    "hue_circular_corr": 0.000882483385328554,
     "hue_cyclic_order": 0.25,
     "height_vs_lightness_or_saturation": 0.10228193181393165
    },
    "evr_refit": [
     0.1585762642565518,
     0.0688584108661714,
-    0.0488219543843173
+    0.04882195438431737
    ],
    "knn_overlap": 0.006655844155844156,
    "knn_overlap_pca3": 0.005735930735930737,
@@ -537,11 +571,11 @@
    "description": "weak tail (below 0.5%) multiplied by 0.5",
    "status": "matches",
    "metrics": {
-    "hue_circular_corr": 0.9635533514708229,
+    "hue_circular_corr": 0.9635533514708231,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.7907585539124999
    },
-   "shape_metric": 0.9181039684611075,
+   "shape_metric": 0.9181039684611078,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
     "hue_circular_corr": 0.9641113378615728,
@@ -549,9 +583,9 @@
     "height_vs_lightness_or_saturation": 0.8230403894652838
    },
    "evr_refit": [
-    0.29837778897866707,
-    0.22621585200208172,
-    0.17853890106505096
+    0.2983777889786672,
+    0.22621585200208155,
+    0.17853890106505102
    ],
    "knn_overlap": 0.7504329004329005,
    "knn_overlap_pca3": 0.578030303030303,
@@ -572,21 +606,21 @@
    "description": "weak tail (below 1.5%) multiplied by 0.5",
    "status": "matches",
    "metrics": {
-    "hue_circular_corr": 0.95392950857317,
+    "hue_circular_corr": 0.9539295085731702,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.723440136539981
    },
    "shape_metric": 0.8924565483710504,
    "status_fixed_basis": "matches",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.9450187674241335,
+    "hue_circular_corr": 0.9450187674241334,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.7965381928552033
    },
    "evr_refit": [
     0.23700540258665284,
-    0.14510612874829365,
-    0.09809878241229479
+    0.14510612874829368,
+    0.09809878241229494
    ],
    "knn_overlap": 0.4893939393939394,
    "knn_overlap_pca3": 0.27705627705627706,
@@ -607,21 +641,21 @@
    "description": "weak tail (below 0.5%) multiplied by 2",
    "status": "partial",
    "metrics": {
-    "hue_circular_corr": 0.9592294009116913,
+    "hue_circular_corr": 0.9592294009116912,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8833749128793288
    },
    "shape_metric": 0.9475347712636734,
    "status_fixed_basis": "partial",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.9592927857072076,
+    "hue_circular_corr": 0.9592927857072078,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8165892507434076
    },
    "evr_refit": [
-    0.26230988290573465,
-    0.1495756365091557,
-    0.13368308794432038
+    0.2623098829057344,
+    0.1495756365091558,
+    0.13368308794432043
    ],
    "knn_overlap": 0.6007575757575757,
    "knn_overlap_pca3": 0.37857142857142856,
@@ -642,21 +676,21 @@
    "description": "weak tail (below 1.5%) multiplied by 2",
    "status": "partial",
    "metrics": {
-    "hue_circular_corr": 0.888532858925626,
+    "hue_circular_corr": 0.8885328589256257,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.6804900444694142
    },
    "shape_metric": 0.8563409677983467,
    "status_fixed_basis": "partial",
    "metrics_fixed_basis": {
-    "hue_circular_corr": 0.9184662439983234,
+    "hue_circular_corr": 0.9184662439983233,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.7464481034094733
    },
    "evr_refit": [
-    0.14834362086372302,
-    0.09343591991130266,
-    0.07565599967956949
+    0.14834362086372319,
+    0.09343591991130279,
+    0.07565599967956932
    ],
    "knn_overlap": 0.30638528138528137,
    "knn_overlap_pca3": 0.1326839826839827,
@@ -813,5 +847,5 @@
   "popqa_half": 5.0,
   "task_half": 3.0
  },
- "elapsed_s": 153.2
+ "elapsed_s": 164.6
 }

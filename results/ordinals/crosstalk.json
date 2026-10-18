@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 98,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:50:25+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.8473404715975023,
+  "shape_metric": 0.8459316792690779,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "partial",
-   "shape_metric": 0.6884795295060376,
+   "shape_metric": 0.6830154738320107,
    "metrics": {
-    "spearman_best_direction": 0.823652047510663,
-    "knn_r2": 0.5533070115014123
+    "spearman_best_direction": 0.824837901421112,
+    "knn_r2": 0.5411930462429092
    },
-   "knn_overlap": 0.6489795918367347,
-   "relative_move": 0.686764619335512,
-   "top1_agreement": 0.5816326530612245,
+   "knn_overlap": 0.6499999999999999,
+   "relative_move": 0.6865447069061711,
+   "top1_agreement": 0.6326530612244898,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.22961420349439737,
-   "move_fraction_in_prefix_domain_subspace": 0.00251528131775558,
-   "move_fraction_in_null_subspace": 0.004338177852332592,
+   "move_fraction_in_own_subspace": 0.22977337291798858,
+   "move_fraction_in_prefix_domain_subspace": 0.0025765777099877596,
+   "move_fraction_in_null_subspace": 0.004374761134386063,
    "example": "The hex code #80b918 is for the color green. She finished the race in second place",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "partial",
-   "shape_metric": 0.6934126803669209,
+   "shape_metric": 0.683213593282209,
    "metrics": {
-    "spearman_best_direction": 0.8116659972330075,
-    "knn_r2": 0.5751593635008344
+    "spearman_best_direction": 0.8072413595241281,
+    "knn_r2": 0.5591858270402899
    },
-   "knn_overlap": 0.6540816326530613,
-   "relative_move": 0.5884280537234058,
-   "top1_agreement": 0.3163265306122449,
+   "knn_overlap": 0.6520408163265305,
+   "relative_move": 0.5878345349857852,
+   "top1_agreement": 0.29591836734693877,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.21815830049068718,
-   "move_fraction_in_prefix_domain_subspace": 0.0017789345001801848,
-   "move_fraction_in_null_subspace": 0.003909812308847904,
+   "move_fraction_in_own_subspace": 0.2199628721591072,
+   "move_fraction_in_prefix_domain_subspace": 0.0018051140941679478,
+   "move_fraction_in_null_subspace": 0.0038830458652228117,
    "example": "It happened on a Monday. She finished the race in second place",
    "examples": [
     {
@@ -73,7 +84,7 @@
     {
      "prompt": "The deadline is Tuesday. She finished the race in fourth place",
      "clean_top1": ",",
-     "prefixed_top1": ",",
+     "prefixed_top1": ".",
      "answer": null
     },
     {
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "partial",
-   "shape_metric": 0.6772646697048524,
+   "shape_metric": 0.6607064769592121,
    "metrics": {
-    "spearman_best_direction": 0.8321442916435552,
-    "knn_r2": 0.5223850477661497
+    "spearman_best_direction": 0.8296323215321741,
+    "knn_r2": 0.49178063238625
    },
-   "knn_overlap": 0.6091836734693877,
-   "relative_move": 0.6842665918028262,
-   "top1_agreement": 0.2653061224489796,
+   "knn_overlap": 0.603061224489796,
+   "relative_move": 0.683855088934666,
+   "top1_agreement": 0.25510204081632654,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.20312973960789799,
+   "move_fraction_in_own_subspace": 0.20236116385204508,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0037258625961840153,
+   "move_fraction_in_null_subspace": 0.003764064982533455,
    "example": "Rent is due in November. She finished the race in second place",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "partial",
-   "shape_metric": 0.7113790797811962,
+   "shape_metric": 0.7109814125289262,
    "metrics": {
-    "spearman_best_direction": 0.8420646609159126,
-    "knn_r2": 0.5806934986464798
+    "spearman_best_direction": 0.8413633494634967,
+    "knn_r2": 0.5805994755943559
    },
-   "knn_overlap": 0.6214285714285714,
-   "relative_move": 0.6742384014388634,
-   "top1_agreement": 0.22448979591836735,
+   "knn_overlap": 0.6224489795918368,
+   "relative_move": 0.6732900649458948,
+   "top1_agreement": 0.1836734693877551,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.2019117577521881,
-   "move_fraction_in_prefix_domain_subspace": 0.005398299545049667,
-   "move_fraction_in_null_subspace": 0.003606261685490608,
+   "move_fraction_in_own_subspace": 0.20249399616043393,
+   "move_fraction_in_prefix_domain_subspace": 0.005500888451933861,
+   "move_fraction_in_null_subspace": 0.0036175765562802553,
    "example": "They are 19 years old. She finished the race in second place",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.7524201667284965,
+   "shape_metric": 0.75788256161748,
    "metrics": {
-    "spearman_best_direction": 0.8613060969467448,
-    "knn_r2": 0.6435342365102483
+    "spearman_best_direction": 0.8604517720865289,
+    "knn_r2": 0.6553133511484311
    },
-   "knn_overlap": 0.6112244897959183,
-   "relative_move": 0.7864446991240738,
+   "knn_overlap": 0.6153061224489796,
+   "relative_move": 0.7819006574006724,
    "top1_agreement": 0.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.23823484831508396,
-   "move_fraction_in_prefix_domain_subspace": 0.001272991648875177,
-   "move_fraction_in_null_subspace": 0.005184536334127188,
+   "move_fraction_in_own_subspace": 0.2384363434045133,
+   "move_fraction_in_prefix_domain_subspace": 0.0012514240806922317,
+   "move_fraction_in_null_subspace": 0.005059702321887016,
    "example": "The city of Lagos is in Nigeria. She finished the race in second place",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "matches",
-   "shape_metric": 0.7750006640383231,
+   "shape_metric": 0.7830287466095249,
    "metrics": {
-    "spearman_best_direction": 0.853285644154569,
-    "knn_r2": 0.6967156839220772
+    "spearman_best_direction": 0.8548412804672009,
+    "knn_r2": 0.7112162127518491
    },
-   "knn_overlap": 0.5163265306122449,
-   "relative_move": 0.9457723964594236,
+   "knn_overlap": 0.5173469387755102,
+   "relative_move": 0.9502302483316003,
    "top1_agreement": 0.22448979591836735,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.1598733005577288,
-   "move_fraction_in_prefix_domain_subspace": 0.005905050318688154,
-   "move_fraction_in_null_subspace": 0.0037957143504172564,
+   "move_fraction_in_own_subspace": 0.16013198858697886,
+   "move_fraction_in_prefix_domain_subspace": 0.00641040550544858,
+   "move_fraction_in_null_subspace": 0.003884820733219385,
    "example": "The candidate spoke about tax cuts and welfare. She finished the race in second place",
    "examples": [
     {
@@ -235,24 +246,24 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "matches",
-   "shape_metric": 0.752816148248149,
+   "shape_metric": 0.7599407653772602,
    "metrics": {
-    "spearman_best_direction": 0.8652206899629579,
-    "knn_r2": 0.6404116065333402
+    "spearman_best_direction": 0.8644938762759087,
+    "knn_r2": 0.6553876544786117
    },
-   "knn_overlap": 0.5499999999999999,
-   "relative_move": 0.9219271456324026,
-   "top1_agreement": 0.01020408163265306,
+   "knn_overlap": 0.5540816326530612,
+   "relative_move": 0.9189417986039277,
+   "top1_agreement": 0.04081632653061224,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.14648333310155717,
+   "move_fraction_in_own_subspace": 0.14710391857736063,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004022609908133745,
+   "move_fraction_in_null_subspace": 0.003980595152825117,
    "example": "91+6=97. She finished the race in second place",
    "examples": [
     {
      "prompt": "91+6=97. She finished the race in second place",
      "clean_top1": ",",
-     "prefixed_top1": ".",
+     "prefixed_top1": ",",
      "answer": null
     },
     {
@@ -272,18 +283,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "partial",
-   "shape_metric": 0.6712984621648352,
+   "shape_metric": 0.6722666734841153,
    "metrics": {
-    "spearman_best_direction": 0.7876556433257463,
-    "knn_r2": 0.5549412810039243
+    "spearman_best_direction": 0.7856282156723982,
+    "knn_r2": 0.5589051312958324
    },
-   "knn_overlap": 0.4959183673469388,
-   "relative_move": 0.7581058305825668,
-   "top1_agreement": 0.42857142857142855,
+   "knn_overlap": 0.4979591836734694,
+   "relative_move": 0.7571856947989736,
+   "top1_agreement": 0.41836734693877553,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.19727512423030583,
+   "move_fraction_in_own_subspace": 0.19934282076024976,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004197901580482721,
+   "move_fraction_in_null_subspace": 0.004173878580331802,
    "example": "A short sentence comes first here. She finished the race in second place",
    "examples": [
     {
@@ -308,5 +319,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 22.8
+ "elapsed_s": 15.7
 }

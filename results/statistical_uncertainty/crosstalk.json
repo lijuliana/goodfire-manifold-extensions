@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 300,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:51:03+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "partial",
-  "shape_metric": 0.5326760899857255,
+  "shape_metric": 0.5415565401227806,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "failed",
-   "shape_metric": 0.21329352666406637,
+   "shape_metric": 0.2002871331618111,
    "metrics": {
-    "spearman_best_direction": 0.2449671663018478,
-    "knn_r2": 0.18161988702628493
+    "spearman_best_direction": 0.2388484316492405,
+    "knn_r2": 0.1617258346743817
    },
-   "knn_overlap": 0.6426666666666667,
-   "relative_move": 0.8093588636319574,
-   "top1_agreement": 0.6166666666666667,
+   "knn_overlap": 0.6376666666666667,
+   "relative_move": 0.8091593359988224,
+   "top1_agreement": 0.62,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.08822347130160951,
-   "move_fraction_in_prefix_domain_subspace": 0.0025218806695193052,
-   "move_fraction_in_null_subspace": 0.004245028831064701,
+   "move_fraction_in_own_subspace": 0.08782054618094705,
+   "move_fraction_in_prefix_domain_subspace": 0.0025326358154416084,
+   "move_fraction_in_null_subspace": 0.00425043236464262,
    "example": "The hex code #80b918 is for the color green. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "failed",
-   "shape_metric": 0.324750355852057,
+   "shape_metric": 0.33059480100788263,
    "metrics": {
-    "spearman_best_direction": 0.44931343681596453,
-    "knn_r2": 0.20018727488814952
+    "spearman_best_direction": 0.45036055956177296,
+    "knn_r2": 0.21082904245399234
    },
-   "knn_overlap": 0.485,
-   "relative_move": 0.8534199206339105,
-   "top1_agreement": 0.5833333333333334,
+   "knn_overlap": 0.48566666666666664,
+   "relative_move": 0.854196063160429,
+   "top1_agreement": 0.58,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.03533235076774464,
-   "move_fraction_in_prefix_domain_subspace": 0.0013562641106545925,
-   "move_fraction_in_null_subspace": 0.0030141761526465416,
+   "move_fraction_in_own_subspace": 0.035333640345021705,
+   "move_fraction_in_prefix_domain_subspace": 0.0013646103907376528,
+   "move_fraction_in_null_subspace": 0.003020264208316803,
    "example": "Today is Wednesday. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "failed",
-   "shape_metric": 0.2976369564253053,
+   "shape_metric": 0.29498699899601843,
    "metrics": {
-    "spearman_best_direction": 0.44471338570428565,
-    "knn_r2": 0.150560527146325
+    "spearman_best_direction": 0.4471627462527361,
+    "knn_r2": 0.14281125173930076
    },
-   "knn_overlap": 0.5063333333333333,
-   "relative_move": 0.8384151901578019,
-   "top1_agreement": 0.5866666666666667,
+   "knn_overlap": 0.5086666666666666,
+   "relative_move": 0.8395441935492383,
+   "top1_agreement": 0.58,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.03867993218270412,
+   "move_fraction_in_own_subspace": 0.03879910562813317,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0030406119767576456,
+   "move_fraction_in_null_subspace": 0.003063551615923643,
    "example": "The festival is in September. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -110,7 +121,7 @@
     {
      "prompt": "The harvest is in October. The patients' mean age was 120 +/- 1.01 years",
      "clean_top1": " (",
-     "prefixed_top1": ".",
+     "prefixed_top1": " (",
      "answer": null
     },
     {
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "failed",
-   "shape_metric": 0.46909143064170783,
+   "shape_metric": 0.4684648025826402,
    "metrics": {
-    "spearman_best_direction": 0.5985808731208124,
-    "knn_r2": 0.33960198816260323
+    "spearman_best_direction": 0.5990973233035922,
+    "knn_r2": 0.3378322818616882
    },
-   "knn_overlap": 0.6890000000000001,
-   "relative_move": 0.5463987001275454,
+   "knn_overlap": 0.6900000000000001,
+   "relative_move": 0.5473546568190241,
    "top1_agreement": 0.6733333333333333,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.05012992815244075,
-   "move_fraction_in_prefix_domain_subspace": 0.0034435181878507137,
-   "move_fraction_in_null_subspace": 0.002920334693044424,
+   "move_fraction_in_own_subspace": 0.04993952306339406,
+   "move_fraction_in_prefix_domain_subspace": 0.0034797601401805878,
+   "move_fraction_in_null_subspace": 0.0029294579289853573,
    "example": "He is 82 years old. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "failed",
-   "shape_metric": 0.3538566889767749,
+   "shape_metric": 0.3546368487641848,
    "metrics": {
-    "spearman_best_direction": 0.4443947154968388,
-    "knn_r2": 0.2633186624567111
+    "spearman_best_direction": 0.450835675951955,
+    "knn_r2": 0.25843802157641454
    },
-   "knn_overlap": 0.5933333333333334,
-   "relative_move": 0.7957343960564267,
-   "top1_agreement": 0.7,
+   "knn_overlap": 0.5923333333333333,
+   "relative_move": 0.7971034398316184,
+   "top1_agreement": 0.71,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.04997303816201723,
-   "move_fraction_in_prefix_domain_subspace": 0.002926694229245186,
-   "move_fraction_in_null_subspace": 0.0051732370629906654,
+   "move_fraction_in_own_subspace": 0.04993631029532463,
+   "move_fraction_in_prefix_domain_subspace": 0.0029832811560481787,
+   "move_fraction_in_null_subspace": 0.005272109992802143,
    "example": "The city of Oslo is in Norway. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "failed",
-   "shape_metric": 0.29585223400795707,
+   "shape_metric": 0.2986838519886548,
    "metrics": {
-    "spearman_best_direction": 0.4566739630440338,
-    "knn_r2": 0.13503050497188038
+    "spearman_best_direction": 0.4569286325403615,
+    "knn_r2": 0.14043907143694817
    },
-   "knn_overlap": 0.41600000000000004,
-   "relative_move": 0.9023437962596484,
-   "top1_agreement": 0.49333333333333335,
+   "knn_overlap": 0.4153333333333334,
+   "relative_move": 0.9028576821953466,
+   "top1_agreement": 0.49666666666666665,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.05258425655288718,
-   "move_fraction_in_prefix_domain_subspace": 0.0035739040467888117,
-   "move_fraction_in_null_subspace": 0.003026867052540183,
+   "move_fraction_in_own_subspace": 0.05257080489924062,
+   "move_fraction_in_prefix_domain_subspace": 0.003650902071967721,
+   "move_fraction_in_null_subspace": 0.0030447791796177626,
    "example": "The debate covered healthcare and the minimum wage. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "failed",
-   "shape_metric": 0.3865531556470796,
+   "shape_metric": 0.39180761075680937,
    "metrics": {
-    "spearman_best_direction": 0.4749097212191246,
-    "knn_r2": 0.29819659007503463
+    "spearman_best_direction": 0.47573773041922685,
+    "knn_r2": 0.30787749109439194
    },
-   "knn_overlap": 0.7656666666666666,
-   "relative_move": 0.4903091670620323,
+   "knn_overlap": 0.7646666666666667,
+   "relative_move": 0.49092429895568973,
    "top1_agreement": 0.6733333333333333,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.09063631286361451,
+   "move_fraction_in_own_subspace": 0.0904717839809135,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.003884881269186735,
+   "move_fraction_in_null_subspace": 0.0038689852226525545,
    "example": "63+9=72. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -258,7 +269,7 @@
     {
      "prompt": "35+46=81. The patients' mean age was 120 +/- 1.01 years",
      "clean_top1": " (",
-     "prefixed_top1": " (",
+     "prefixed_top1": ".",
      "answer": null
     },
     {
@@ -272,18 +283,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "failed",
-   "shape_metric": 0.3220764356155954,
+   "shape_metric": 0.32424219592602244,
    "metrics": {
-    "spearman_best_direction": 0.4489076545294947,
-    "knn_r2": 0.1952452167016961
+    "spearman_best_direction": 0.44504672274136375,
+    "knn_r2": 0.2034376691106811
    },
-   "knn_overlap": 0.46966666666666657,
-   "relative_move": 0.7297708437627094,
-   "top1_agreement": 0.66,
+   "knn_overlap": 0.47533333333333333,
+   "relative_move": 0.7315011397756768,
+   "top1_agreement": 0.6666666666666666,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.045084548227110305,
+   "move_fraction_in_own_subspace": 0.0452338634454366,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0034811601508408785,
+   "move_fraction_in_null_subspace": 0.0034720185212790966,
    "example": "This paragraph continues the text. The mean value was 540 +/- 16.0",
    "examples": [
     {
@@ -308,5 +319,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 47.3
+ "elapsed_s": 22.0
 }

@@ -3,9 +3,20 @@
  "layer": 18,
  "n_prompts": 98,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:52:55+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.8838884651287029,
+  "shape_metric": 0.8807606310030973,
   "task_accuracy": 0.7040816326530612,
   "task": "weekday arithmetic"
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "matches",
-   "shape_metric": 0.729223333024739,
+   "shape_metric": 0.7293844618245702,
    "metrics": {
-    "probe_r2_period_10": 0.8345873890642489,
-    "probe_r2_period_5": 0.623859276985229
+    "probe_r2_period_10": 0.8336095024278476,
+    "probe_r2_period_5": 0.6251594212212926
    },
-   "knn_overlap": 0.8367346938775512,
-   "relative_move": 0.5260093051908108,
-   "top1_agreement": 0.5204081632653061,
+   "knn_overlap": 0.833673469387755,
+   "relative_move": 0.528698298895594,
+   "top1_agreement": 0.5102040816326531,
    "task_accuracy": 0.5510204081632653,
-   "move_fraction_in_own_subspace": 0.14233883988046606,
+   "move_fraction_in_own_subspace": 0.14136515969541955,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.007974008098244667,
+   "move_fraction_in_null_subspace": 0.007897784933447838,
    "example": "The hex code #80b918 is for the color green. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "partial",
-   "shape_metric": 0.5670995127885095,
+   "shape_metric": 0.5680428179913037,
    "metrics": {
-    "probe_r2_period_10": 0.6497871630009792,
-    "probe_r2_period_5": 0.48441186257603963
+    "probe_r2_period_10": 0.647396859414753,
+    "probe_r2_period_5": 0.48868877656785437
    },
-   "knn_overlap": 0.7183673469387756,
-   "relative_move": 0.5553716089194708,
-   "top1_agreement": 0.5102040816326531,
-   "task_accuracy": 0.32653061224489793,
-   "move_fraction_in_own_subspace": 0.2624806118418845,
-   "move_fraction_in_prefix_domain_subspace": 0.10652868449687958,
-   "move_fraction_in_null_subspace": 0.012482894584536552,
+   "knn_overlap": 0.7122448979591838,
+   "relative_move": 0.5534678187588374,
+   "top1_agreement": 0.5,
+   "task_accuracy": 0.3163265306122449,
+   "move_fraction_in_own_subspace": 0.26030180783143275,
+   "move_fraction_in_prefix_domain_subspace": 0.10496960580348969,
+   "move_fraction_in_null_subspace": 0.012366367504000664,
    "example": "Rent is due in November. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.6546582099355458,
+   "shape_metric": 0.6582045352211652,
    "metrics": {
-    "probe_r2_period_10": 0.713932119355634,
-    "probe_r2_period_5": 0.5953843005154574
+    "probe_r2_period_10": 0.7129507479881803,
+    "probe_r2_period_5": 0.60345832245415
    },
-   "knn_overlap": 0.7551020408163265,
-   "relative_move": 0.5307413748099876,
+   "knn_overlap": 0.7591836734693879,
+   "relative_move": 0.527775118294487,
    "top1_agreement": 0.5102040816326531,
-   "task_accuracy": 0.3877551020408163,
-   "move_fraction_in_own_subspace": 0.2522599313318174,
+   "task_accuracy": 0.40816326530612246,
+   "move_fraction_in_own_subspace": 0.250417559743931,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.011440498754382133,
+   "move_fraction_in_null_subspace": 0.011271318420767784,
    "example": "He is 82 years old. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.6764630283702284,
+   "shape_metric": 0.677664408005739,
    "metrics": {
-    "probe_r2_period_10": 0.7051510036100419,
-    "probe_r2_period_5": 0.647775053130415
+    "probe_r2_period_10": 0.7067930326142104,
+    "probe_r2_period_5": 0.6485357833972675
    },
-   "knn_overlap": 0.8102040816326531,
-   "relative_move": 0.48473589061467837,
-   "top1_agreement": 0.673469387755102,
+   "knn_overlap": 0.807142857142857,
+   "relative_move": 0.4866321779160177,
+   "top1_agreement": 0.6632653061224489,
    "task_accuracy": 0.5408163265306123,
-   "move_fraction_in_own_subspace": 0.19433512410422749,
+   "move_fraction_in_own_subspace": 0.19200814178015146,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.009845564141869545,
+   "move_fraction_in_null_subspace": 0.00968597736209631,
    "example": "The city of Oslo is in Norway. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "failed",
-   "shape_metric": 0.1330068292193789,
+   "shape_metric": 0.1332336337267846,
    "metrics": {
-    "probe_r2_period_10": 0.18681656437017086,
-    "probe_r2_period_5": 0.07919709406858694
+    "probe_r2_period_10": 0.18789617528409874,
+    "probe_r2_period_5": 0.07857109216947045
    },
-   "knn_overlap": 0.43673469387755104,
-   "relative_move": 0.7479597899864612,
+   "knn_overlap": 0.4357142857142857,
+   "relative_move": 0.7467625595268901,
    "top1_agreement": 0.2755102040816326,
    "task_accuracy": 0.1836734693877551,
-   "move_fraction_in_own_subspace": 0.3323842981551638,
+   "move_fraction_in_own_subspace": 0.33114904855483357,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.014905421063303947,
+   "move_fraction_in_null_subspace": 0.014832517132163048,
    "example": "The candidate spoke about tax cuts and welfare. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "matches",
-   "shape_metric": 0.7106575452499421,
+   "shape_metric": 0.7113257221816506,
    "metrics": {
-    "probe_r2_period_10": 0.7720770760961089,
-    "probe_r2_period_5": 0.6492380144037753
+    "probe_r2_period_10": 0.7737347079214443,
+    "probe_r2_period_5": 0.6489167364418569
    },
-   "knn_overlap": 0.6959183673469388,
-   "relative_move": 0.6071485209302514,
-   "top1_agreement": 0.2755102040816326,
-   "task_accuracy": 0.21428571428571427,
-   "move_fraction_in_own_subspace": 0.3216521146539272,
-   "move_fraction_in_prefix_domain_subspace": 0.007887451909482479,
-   "move_fraction_in_null_subspace": 0.014305578544735909,
+   "knn_overlap": 0.7000000000000001,
+   "relative_move": 0.60323800221953,
+   "top1_agreement": 0.30612244897959184,
+   "task_accuracy": 0.22448979591836735,
+   "move_fraction_in_own_subspace": 0.31926323472187296,
+   "move_fraction_in_prefix_domain_subspace": 0.00778534822165966,
+   "move_fraction_in_null_subspace": 0.01412635575979948,
    "example": "48+37=85. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "partial",
-   "shape_metric": 0.45817620370799794,
+   "shape_metric": 0.46182698474876976,
    "metrics": {
-    "probe_r2_period_10": 0.5169545881671536,
-    "probe_r2_period_5": 0.39939781924884227
+    "probe_r2_period_10": 0.5226997793941799,
+    "probe_r2_period_5": 0.40095419010335964
    },
-   "knn_overlap": 0.6826530612244895,
-   "relative_move": 0.6124210148416099,
+   "knn_overlap": 0.6826530612244897,
+   "relative_move": 0.6134279602952473,
    "top1_agreement": 0.29591836734693877,
    "task_accuracy": 0.2653061224489796,
-   "move_fraction_in_own_subspace": 0.2749601695487503,
+   "move_fraction_in_own_subspace": 0.27196877995568897,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.012507746927440166,
+   "move_fraction_in_null_subspace": 0.012366259470582008,
    "example": "This paragraph continues the text. Q: What day is one days after Monday?\nA:",
    "examples": [
     {
@@ -271,5 +282,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 15.2
+ "elapsed_s": 6.9
 }

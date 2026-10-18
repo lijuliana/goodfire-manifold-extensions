@@ -3,9 +3,20 @@
  "layer": 19,
  "n_prompts": 150,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:46:32+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.9903601764072404,
+  "shape_metric": 0.9905215471439778,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "matches",
-   "shape_metric": 0.958386317145155,
+   "shape_metric": 0.9558411438524221,
    "metrics": {
-    "spearman_best_direction": 0.9684003733499267,
-    "knn_r2": 0.9483722609403834
+    "spearman_best_direction": 0.9678954620205343,
+    "knn_r2": 0.9437868256843098
    },
-   "knn_overlap": 0.5206666666666666,
-   "relative_move": 1.414882964871979,
-   "top1_agreement": 0.4533333333333333,
+   "knn_overlap": 0.52,
+   "relative_move": 1.4225362863747497,
+   "top1_agreement": 0.41333333333333333,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.27533394524847854,
-   "move_fraction_in_prefix_domain_subspace": 0.02239294722676277,
-   "move_fraction_in_null_subspace": 0.013123284094035625,
+   "move_fraction_in_own_subspace": 0.2701580735824959,
+   "move_fraction_in_prefix_domain_subspace": 0.02252640388906002,
+   "move_fraction_in_null_subspace": 0.013157792389392853,
    "example": "The hex code #80b918 is for the color green. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "matches",
-   "shape_metric": 0.9709174283425298,
+   "shape_metric": 0.9707089664462614,
    "metrics": {
-    "spearman_best_direction": 0.9706582514778436,
-    "knn_r2": 0.971176605207216
+    "spearman_best_direction": 0.9704662429441309,
+    "knn_r2": 0.9709516899483918
    },
-   "knn_overlap": 0.5359999999999998,
-   "relative_move": 0.5146047596694067,
+   "knn_overlap": 0.5293333333333333,
+   "relative_move": 0.5154185747732448,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.23577316714751745,
-   "move_fraction_in_prefix_domain_subspace": 0.0009851126233115792,
-   "move_fraction_in_null_subspace": 0.0036595850251615047,
+   "move_fraction_in_own_subspace": 0.23481044750367602,
+   "move_fraction_in_prefix_domain_subspace": 0.0009561064071021974,
+   "move_fraction_in_null_subspace": 0.0036250606644898653,
    "example": "Today is Wednesday. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "matches",
-   "shape_metric": 0.9522271237631074,
+   "shape_metric": 0.9533122511733892,
    "metrics": {
-    "spearman_best_direction": 0.9513116138495045,
-    "knn_r2": 0.9531426336767103
+    "spearman_best_direction": 0.9528654606871417,
+    "knn_r2": 0.9537590416596368
    },
-   "knn_overlap": 0.4926666666666667,
-   "relative_move": 0.6230285774861045,
+   "knn_overlap": 0.49600000000000005,
+   "relative_move": 0.6244638893311197,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.20999850956887958,
+   "move_fraction_in_own_subspace": 0.21017071271662302,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0031796277035027742,
+   "move_fraction_in_null_subspace": 0.00321561167947948,
    "example": "It is the month of July. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.957745603135777,
+   "shape_metric": 0.9578456931947431,
    "metrics": {
-    "spearman_best_direction": 0.9509453753500157,
-    "knn_r2": 0.9645458309215382
+    "spearman_best_direction": 0.9511409395973155,
+    "knn_r2": 0.9645504467921707
    },
-   "knn_overlap": 0.5479999999999999,
-   "relative_move": 0.8167007845452031,
+   "knn_overlap": 0.5466666666666667,
+   "relative_move": 0.8205530507424901,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.10300979828449101,
-   "move_fraction_in_prefix_domain_subspace": 0.007265935651957989,
-   "move_fraction_in_null_subspace": 0.005475291050970554,
+   "move_fraction_in_own_subspace": 0.1020310451342766,
+   "move_fraction_in_prefix_domain_subspace": 0.0074375285767018795,
+   "move_fraction_in_null_subspace": 0.005547770764678717,
    "example": "She is 56 years old. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.9260354754733204,
+   "shape_metric": 0.9262220428411162,
    "metrics": {
-    "spearman_best_direction": 0.9618543046357616,
-    "knn_r2": 0.8902166463108794
+    "spearman_best_direction": 0.9636108271478734,
+    "knn_r2": 0.888833258534359
    },
-   "knn_overlap": 0.37266666666666665,
-   "relative_move": 1.723202890975036,
-   "top1_agreement": 0.6533333333333333,
+   "knn_overlap": 0.3766666666666666,
+   "relative_move": 1.7226255602167122,
+   "top1_agreement": 0.6733333333333333,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.16002430694386638,
-   "move_fraction_in_prefix_domain_subspace": 0.00656110467389226,
-   "move_fraction_in_null_subspace": 0.013607916422188282,
+   "move_fraction_in_own_subspace": 0.16110126678022102,
+   "move_fraction_in_prefix_domain_subspace": 0.006447243504226208,
+   "move_fraction_in_null_subspace": 0.013503491878509521,
    "example": "The city of Oslo is in Norway. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "matches",
-   "shape_metric": 0.9555161628321802,
+   "shape_metric": 0.9556947929255659,
    "metrics": {
-    "spearman_best_direction": 0.9532921463176142,
-    "knn_r2": 0.9577401793467463
+    "spearman_best_direction": 0.9539997333214809,
+    "knn_r2": 0.957389852529651
    },
-   "knn_overlap": 0.5366666666666665,
-   "relative_move": 0.7614132029527797,
+   "knn_overlap": 0.5246666666666666,
+   "relative_move": 0.7610447402378102,
    "top1_agreement": 0.98,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.2485908513808934,
-   "move_fraction_in_prefix_domain_subspace": 0.004115257412195206,
-   "move_fraction_in_null_subspace": 0.0039937449619174,
+   "move_fraction_in_own_subspace": 0.24773395564434333,
+   "move_fraction_in_prefix_domain_subspace": 0.0041131447069346905,
+   "move_fraction_in_null_subspace": 0.0039954157546162605,
    "example": "The senator gave a speech about immigration policy. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "matches",
-   "shape_metric": 0.9780595474457556,
+   "shape_metric": 0.9785162377673033,
    "metrics": {
-    "spearman_best_direction": 0.9737268323036579,
-    "knn_r2": 0.9823922625878534
+    "spearman_best_direction": 0.9749464420640918,
+    "knn_r2": 0.982086033470515
    },
-   "knn_overlap": 0.6706666666666666,
-   "relative_move": 0.5724010881073235,
+   "knn_overlap": 0.6626666666666666,
+   "relative_move": 0.5734049875671654,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.25844049211407977,
+   "move_fraction_in_own_subspace": 0.25594318223609985,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004586091265082359,
+   "move_fraction_in_null_subspace": 0.004537899512797594,
    "example": "48+37=85. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -272,18 +283,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "matches",
-   "shape_metric": 0.9687096083206856,
+   "shape_metric": 0.9684767500812714,
    "metrics": {
-    "spearman_best_direction": 0.9654420196453176,
-    "knn_r2": 0.9719771969960537
+    "spearman_best_direction": 0.9655202453442376,
+    "knn_r2": 0.9714332548183051
    },
-   "knn_overlap": 0.4579999999999999,
-   "relative_move": 0.5734011843133019,
+   "knn_overlap": 0.456,
+   "relative_move": 0.5718988527926776,
    "top1_agreement": 0.8533333333333334,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.18191951145598206,
+   "move_fraction_in_own_subspace": 0.18206424375177577,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.003870958462357521,
+   "move_fraction_in_null_subspace": 0.003903211560100317,
    "example": "Please see the note below. Today it's -30 degrees Fahrenheit outside",
    "examples": [
     {
@@ -308,5 +319,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 32.6
+ "elapsed_s": 16.7
 }

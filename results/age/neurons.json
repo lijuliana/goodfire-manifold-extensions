@@ -1160,6 +1160,24 @@
   "task_accuracy": null,
   "task": null
  },
+ "view": "clean PCA basis",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:38:36+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 1000,
+  "max_points": 800,
+  "top_n": 12,
+  "ablate_k": [
+   16,
+   64,
+   256
+  ]
+ },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 3.8
+ "elapsed_s": 3.2
 }

@@ -33,9 +33,9 @@
  ],
  "subspace_variance": 6.6267900466918945,
  "evr": [
-  0.2479509567761404,
-  0.20016315490537906,
-  0.12731352822190212
+  0.24795095677614057,
+  0.20016315490537925,
+  0.12731352822190153
  ],
  "tuning_label": "bias_label",
  "writers": [
@@ -824,6 +824,24 @@
   "task_accuracy": 0.9577464788732394,
   "task": "lean (conservative vs liberal)"
  },
+ "view": "clean PCA basis",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:41:11+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 1000,
+  "max_points": 800,
+  "top_n": 12,
+  "ablate_k": [
+   16,
+   64,
+   256
+  ]
+ },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 32.8
+ "elapsed_s": 33.6
 }

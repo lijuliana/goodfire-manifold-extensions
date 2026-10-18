@@ -3,6 +3,17 @@
  "layer": 19,
  "n_prompts": 99,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:46:48+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
   "shape_metric": 0.9829886297570695,
@@ -24,7 +35,7 @@
    "task_accuracy": null,
    "move_fraction_in_own_subspace": 0.5102864203702634,
    "move_fraction_in_prefix_domain_subspace": 0.0033651581034064293,
-   "move_fraction_in_null_subspace": 0.007451239041984081,
+   "move_fraction_in_null_subspace": 0.007931657135486603,
    "example": "The hex code #80b918 is for the color green. They are 1 years old. ",
    "examples": [
     {
@@ -61,7 +72,7 @@
    "task_accuracy": null,
    "move_fraction_in_own_subspace": 0.18337424982749204,
    "move_fraction_in_prefix_domain_subspace": 0.000862269604112953,
-   "move_fraction_in_null_subspace": 0.004040644038468599,
+   "move_fraction_in_null_subspace": 0.004227573983371258,
    "example": "The deadline is Tuesday. They are 1 years old. ",
    "examples": [
     {
@@ -98,7 +109,7 @@
    "task_accuracy": null,
    "move_fraction_in_own_subspace": 0.21069344313948565,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.00542460335418582,
+   "move_fraction_in_null_subspace": 0.0048627229407429695,
    "example": "Rent is due in November. They are 1 years old. ",
    "examples": [
     {
@@ -135,7 +146,7 @@
    "task_accuracy": null,
    "move_fraction_in_own_subspace": 0.21749603266356385,
    "move_fraction_in_prefix_domain_subspace": 0.0025378998834639788,
-   "move_fraction_in_null_subspace": 0.006296209990978241,
+   "move_fraction_in_null_subspace": 0.006031648721545935,
    "example": "The city of Lagos is in Nigeria. They are 1 years old. ",
    "examples": [
     {
@@ -172,7 +183,7 @@
    "task_accuracy": null,
    "move_fraction_in_own_subspace": 0.30644852299522357,
    "move_fraction_in_prefix_domain_subspace": 0.007913335226476192,
-   "move_fraction_in_null_subspace": 0.007296045310795307,
+   "move_fraction_in_null_subspace": 0.0067579420283436775,
    "example": "The debate covered healthcare and the minimum wage. They are 1 years old. ",
    "examples": [
     {
@@ -209,7 +220,7 @@
    "task_accuracy": null,
    "move_fraction_in_own_subspace": 0.3981070538809596,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.006788349244743586,
+   "move_fraction_in_null_subspace": 0.0071163056418299675,
    "example": "35+46=81. They are 1 years old. ",
    "examples": [
     {
@@ -246,7 +257,7 @@
    "task_accuracy": null,
    "move_fraction_in_own_subspace": 0.32017089103482016,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.006441541016101837,
+   "move_fraction_in_null_subspace": 0.006393122486770153,
    "example": "Please see the note below. They are 1 years old. ",
    "examples": [
     {
@@ -271,5 +282,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 76.3
+ "elapsed_s": 15.4
 }

@@ -3,9 +3,20 @@
  "layer": 18,
  "n_prompts": 800,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:54:29+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "matches",
-  "shape_metric": 0.6440722346490797,
+  "shape_metric": 0.6411037450223895,
   "task_accuracy": null,
   "task": null
  },
@@ -13,18 +24,18 @@
   "colors": {
    "prefix_domain": "colors",
    "status": "matches",
-   "shape_metric": 0.606222246552059,
+   "shape_metric": 0.6082723962713994,
    "metrics": {
-    "probe_r2_period_10": 0.6390844107673586,
-    "probe_r2_period_5": 0.5733600823367595
+    "probe_r2_period_10": 0.64389451733359,
+    "probe_r2_period_5": 0.5726502752092089
    },
-   "knn_overlap": 0.784625,
-   "relative_move": 0.5499777029992167,
+   "knn_overlap": 0.7873750000000002,
+   "relative_move": 0.5534987743401241,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.04859626370563179,
+   "move_fraction_in_own_subspace": 0.04792682461972803,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004098859149962664,
+   "move_fraction_in_null_subspace": 0.004105677362531424,
    "example": "The hex code #80b918 is for the color green. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -50,18 +61,18 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "matches",
-   "shape_metric": 0.6094761809774467,
+   "shape_metric": 0.6072966729306455,
    "metrics": {
-    "probe_r2_period_10": 0.6144539524141776,
-    "probe_r2_period_5": 0.604498409540716
+    "probe_r2_period_10": 0.6143969834728843,
+    "probe_r2_period_5": 0.6001963623884066
    },
-   "knn_overlap": 0.7903749999999999,
-   "relative_move": 0.36058549611351853,
+   "knn_overlap": 0.7848750000000001,
+   "relative_move": 0.3618132413126775,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.10039657550292028,
+   "move_fraction_in_own_subspace": 0.09999441582980557,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.005122527480125427,
+   "move_fraction_in_null_subspace": 0.005112351384013891,
    "example": "They rest on Sunday. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -87,18 +98,18 @@
   "months": {
    "prefix_domain": "months",
    "status": "matches",
-   "shape_metric": 0.5301840836229894,
+   "shape_metric": 0.5303455672691383,
    "metrics": {
-    "probe_r2_period_10": 0.5395483714671678,
-    "probe_r2_period_5": 0.5208197957788109
+    "probe_r2_period_10": 0.5381980231886047,
+    "probe_r2_period_5": 0.5224931113496719
    },
-   "knn_overlap": 0.73875,
-   "relative_move": 0.3986219339781279,
+   "knn_overlap": 0.7353749999999999,
+   "relative_move": 0.4007831689406626,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.08400112898190094,
-   "move_fraction_in_prefix_domain_subspace": 0.02319210022687912,
-   "move_fraction_in_null_subspace": 0.004708458203822374,
+   "move_fraction_in_own_subspace": 0.08215581710482942,
+   "move_fraction_in_prefix_domain_subspace": 0.022975632920861244,
+   "move_fraction_in_null_subspace": 0.004680961836129427,
    "example": "The harvest is in October. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -124,18 +135,18 @@
   "age": {
    "prefix_domain": "age",
    "status": "matches",
-   "shape_metric": 0.6723224111330244,
+   "shape_metric": 0.674176731038567,
    "metrics": {
-    "probe_r2_period_10": 0.6786269795778571,
-    "probe_r2_period_5": 0.6660178426881916
+    "probe_r2_period_10": 0.682497147653506,
+    "probe_r2_period_5": 0.665856314423628
    },
-   "knn_overlap": 0.7807499999999998,
-   "relative_move": 0.38452649177086556,
+   "knn_overlap": 0.783875,
+   "relative_move": 0.3874781007161159,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.10463475431998473,
+   "move_fraction_in_own_subspace": 0.10170029108847628,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.00590105913579464,
+   "move_fraction_in_null_subspace": 0.005859700031578541,
    "example": "He is 82 years old. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -161,18 +172,18 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "matches",
-   "shape_metric": 0.6544158478450451,
+   "shape_metric": 0.6559155117190021,
    "metrics": {
-    "probe_r2_period_10": 0.6821622560360814,
-    "probe_r2_period_5": 0.6266694396540089
+    "probe_r2_period_10": 0.6848906823861217,
+    "probe_r2_period_5": 0.6269403410518826
    },
-   "knn_overlap": 0.715,
-   "relative_move": 0.5243665076246654,
+   "knn_overlap": 0.7162500000000002,
+   "relative_move": 0.5285679952813667,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.054859668343225206,
+   "move_fraction_in_own_subspace": 0.054091053080171696,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.005031627137213945,
+   "move_fraction_in_null_subspace": 0.005045601632446051,
    "example": "The city of Lagos is in Nigeria. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -198,18 +209,18 @@
   "politics": {
    "prefix_domain": "politics",
    "status": "matches",
-   "shape_metric": 0.5481395153390278,
+   "shape_metric": 0.5478656243544666,
    "metrics": {
-    "probe_r2_period_10": 0.5348925863118179,
-    "probe_r2_period_5": 0.5613864443662377
+    "probe_r2_period_10": 0.5367981181507062,
+    "probe_r2_period_5": 0.5589331305582271
    },
-   "knn_overlap": 0.7182499999999998,
-   "relative_move": 0.4620564436747161,
+   "knn_overlap": 0.7186249999999998,
+   "relative_move": 0.4658942137921601,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.07547758591375947,
+   "move_fraction_in_own_subspace": 0.07396902374053974,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004259401001036167,
+   "move_fraction_in_null_subspace": 0.004263748414814472,
    "example": "The candidate spoke about tax cuts and welfare. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -235,18 +246,18 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "matches",
-   "shape_metric": 0.5625853618511985,
+   "shape_metric": 0.5663494827254261,
    "metrics": {
-    "probe_r2_period_10": 0.588299418870923,
-    "probe_r2_period_5": 0.5368713048314738
+    "probe_r2_period_10": 0.5949344137259396,
+    "probe_r2_period_5": 0.5377645517249127
    },
-   "knn_overlap": 0.78975,
-   "relative_move": 0.44314835862608976,
+   "knn_overlap": 0.7907500000000001,
+   "relative_move": 0.4427228445165086,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.1930335667509724,
-   "move_fraction_in_prefix_domain_subspace": 0.012127647176384926,
-   "move_fraction_in_null_subspace": 0.007186286151409149,
+   "move_fraction_in_own_subspace": 0.19200587120418683,
+   "move_fraction_in_prefix_domain_subspace": 0.011950275860726833,
+   "move_fraction_in_null_subspace": 0.007152634672820568,
    "example": "91+6=97. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -272,18 +283,18 @@
   "neutral": {
    "prefix_domain": "neutral",
    "status": "matches",
-   "shape_metric": 0.5874070464487183,
+   "shape_metric": 0.5861993069145177,
    "metrics": {
-    "probe_r2_period_10": 0.6000734562782623,
-    "probe_r2_period_5": 0.5747406366191744
+    "probe_r2_period_10": 0.5995326367945989,
+    "probe_r2_period_5": 0.5728659770344365
    },
-   "knn_overlap": 0.715,
-   "relative_move": 0.3945612498938696,
+   "knn_overlap": 0.7140000000000001,
+   "relative_move": 0.39806412422884535,
    "top1_agreement": 1.0,
    "task_accuracy": null,
-   "move_fraction_in_own_subspace": 0.08619797884152598,
+   "move_fraction_in_own_subspace": 0.08381932025103289,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.005152156110852957,
+   "move_fraction_in_null_subspace": 0.00511308666318655,
    "example": "Please see the note below. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
    "examples": [
     {
@@ -308,5 +319,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 154.2
+ "elapsed_s": 72.0
 }

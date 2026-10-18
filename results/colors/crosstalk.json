@@ -3,6 +3,17 @@
  "layer": 19,
  "n_prompts": 800,
  "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "provenance": {
+  "pipeline_version": "2026-10-18.1",
+  "code_commit": "ce81e03",
+  "gpu": "NVIDIA L40S",
+  "run_at": "2026-10-18T19:46:15+00:00",
+  "model_id": "unsloth/Llama-3.1-8B",
+  "dtype": "bfloat16",
+  "batch_size": 32,
+  "max_prompts": 800,
+  "null_bases_sha": "67532379f7"
+ },
  "clean": {
   "status": "partial",
   "shape_metric": 0.9297694051962019,
@@ -13,9 +24,9 @@
   "weekdays": {
    "prefix_domain": "weekdays",
    "status": "partial",
-   "shape_metric": 0.8804405319820253,
+   "shape_metric": 0.8804405319820252,
    "metrics": {
-    "hue_circular_corr": 0.9326886125003748,
+    "hue_circular_corr": 0.9326886125003746,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.7086329834457011
    },
@@ -23,9 +34,9 @@
    "relative_move": 0.918826283469356,
    "top1_agreement": 0.465,
    "task_accuracy": 0.6525,
-   "move_fraction_in_own_subspace": 0.15831175590577026,
+   "move_fraction_in_own_subspace": 0.15831175590577032,
    "move_fraction_in_prefix_domain_subspace": 0.0007948093116283417,
-   "move_fraction_in_null_subspace": 0.004038191866129637,
+   "move_fraction_in_null_subspace": 0.0035559211391955614,
    "example": "They rest on Sunday. The hex code #0e277d is for the color",
    "examples": [
     {
@@ -61,9 +72,9 @@
    "relative_move": 0.8435033662593955,
    "top1_agreement": 0.385,
    "task_accuracy": 0.65125,
-   "move_fraction_in_own_subspace": 0.16798988338882792,
+   "move_fraction_in_own_subspace": 0.167989883388828,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0038152080960571766,
+   "move_fraction_in_null_subspace": 0.003364078002050519,
    "example": "The harvest is in October. The hex code #0e277d is for the color",
    "examples": [
     {
@@ -99,9 +110,9 @@
    "relative_move": 0.5561296476115414,
    "top1_agreement": 0.41,
    "task_accuracy": 0.64,
-   "move_fraction_in_own_subspace": 0.1446916527140484,
+   "move_fraction_in_own_subspace": 0.14469165271404846,
    "move_fraction_in_prefix_domain_subspace": 0.004675540141761303,
-   "move_fraction_in_null_subspace": 0.004084297455847263,
+   "move_fraction_in_null_subspace": 0.003650246188044548,
    "example": "He is 45 years old. The hex code #0e277d is for the color",
    "examples": [
     {
@@ -127,9 +138,9 @@
   "geography": {
    "prefix_domain": "geography",
    "status": "partial",
-   "shape_metric": 0.9045652006388313,
+   "shape_metric": 0.9045652006388312,
    "metrics": {
-    "hue_circular_corr": 0.8899812073781108,
+    "hue_circular_corr": 0.8899812073781106,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8237143945383829
    },
@@ -137,9 +148,9 @@
    "relative_move": 0.739327647391801,
    "top1_agreement": 0.40875,
    "task_accuracy": 0.375,
-   "move_fraction_in_own_subspace": 0.590888321625703,
+   "move_fraction_in_own_subspace": 0.5908883216257032,
    "move_fraction_in_prefix_domain_subspace": 0.003565608523786068,
-   "move_fraction_in_null_subspace": 0.004935174714773893,
+   "move_fraction_in_null_subspace": 0.005031135398894548,
    "example": "The city of Lagos is in Nigeria. The hex code #0e277d is for the color",
    "examples": [
     {
@@ -175,9 +186,9 @@
    "relative_move": 1.1841946649940855,
    "top1_agreement": 0.285,
    "task_accuracy": 0.6475,
-   "move_fraction_in_own_subspace": 0.12249291203910748,
+   "move_fraction_in_own_subspace": 0.12249291203910753,
    "move_fraction_in_prefix_domain_subspace": 0.010850096121430397,
-   "move_fraction_in_null_subspace": 0.002739270683377981,
+   "move_fraction_in_null_subspace": 0.00250754551962018,
    "example": "The candidate spoke about tax cuts and welfare. The hex code #0e277d is for the color",
    "examples": [
     {
@@ -203,9 +214,9 @@
   "arithmetic": {
    "prefix_domain": "arithmetic",
    "status": "partial",
-   "shape_metric": 0.9362259219495952,
+   "shape_metric": 0.9362259219495951,
    "metrics": {
-    "hue_circular_corr": 0.954453802177595,
+    "hue_circular_corr": 0.9544538021775948,
     "hue_cyclic_order": 1.0,
     "height_vs_lightness_or_saturation": 0.8542239636711905
    },
@@ -213,9 +224,9 @@
    "relative_move": 0.46491549317460845,
    "top1_agreement": 0.3725,
    "task_accuracy": 0.6825,
-   "move_fraction_in_own_subspace": 0.09727929142149135,
+   "move_fraction_in_own_subspace": 0.09727929142149142,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.0030248602852225304,
+   "move_fraction_in_null_subspace": 0.0027143482584506273,
    "example": "48+37=85. The hex code #0e277d is for the color",
    "examples": [
     {
@@ -251,9 +262,9 @@
    "relative_move": 0.8800690148557161,
    "top1_agreement": 0.3225,
    "task_accuracy": 0.6,
-   "move_fraction_in_own_subspace": 0.2773256043903207,
+   "move_fraction_in_own_subspace": 0.2773256043903208,
    "move_fraction_in_prefix_domain_subspace": null,
-   "move_fraction_in_null_subspace": 0.004672323353588581,
+   "move_fraction_in_null_subspace": 0.004243537317961454,
    "example": "This paragraph continues the text. The hex code #0e277d is for the color",
    "examples": [
     {
@@ -278,5 +289,5 @@
   }
  },
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 168.3
+ "elapsed_s": 31.0
 }
