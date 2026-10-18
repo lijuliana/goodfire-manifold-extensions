@@ -40,6 +40,7 @@ import torch
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import compare, prepare, summary_metric
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
+from manifolds.analysis.probe import apply_probe, fit_probe
 from manifolds.analysis.shapes import ROLES
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
@@ -277,7 +278,15 @@ def run_neurons(spec: ManifoldSpec, cfg: RunConfig, fm: Any, *, results_dir: Pat
     masker = NeuronMask(fm)
     causal: dict[str, dict[str, Any]] = {}
     sub = subsample(len(idx), max_points, seed=cfg.seed)
-    steps: list[tuple[str, np.ndarray]] = [("clean", coords[sub])]
+    is_probe = roles["kind"] == "fourier_probe"
+    probe = (fit_probe(clean_prep, np.asarray([lab[roles["value"]] for lab in labels], float))
+             if is_probe else None)
+
+    def view(prep: np.ndarray, fixed: np.ndarray) -> np.ndarray:
+        return apply_probe(probe, prep) if probe is not None else fixed
+
+    steps: list[tuple[str, np.ndarray]] = [("clean", view(clean_prep, coords)[sub])]
+    captions: dict[str, str] = {"clean": "no neurons zeroed"}
     order = [(r["block"], r["neuron"]) for r in writers]
     # writers list only holds top_n per block; extend with the global ranking for larger k
     flat = [(bi, int(j)) for bj, bi in enumerate(writer_blocks)
@@ -305,8 +314,12 @@ def run_neurons(spec: ManifoldSpec, cfg: RunConfig, fm: Any, *, results_dir: Pat
                                "share_removed": float(all_share[rank[:k]].sum() / (total_share + 1e-12))
                                if cond == "top" else
                                float(sum(all_share[flat.index(p)] for p in pairs) / (total_share + 1e-12))}
-                steps.append((f"{'top' if cond == 'top' else 'random'} {k}",
-                              cmp["coords_fixed_basis"][sub]))
+                lab = f"{'top' if cond == 'top' else 'random'} {k}"
+                steps.append((lab, view(prep, cmp["coords_fixed_basis"])[sub]))
+                captions[lab] = (f"top {k} writer neurons zeroed · "
+                                 f"{causal[key]['share_removed']:.0%} of the neuron-attributable "
+                                 f"subspace variance" if cond == "top" else
+                                 f"{k} random neurons of the same blocks zeroed")
                 print(f"  {spec.name:20s} ablate {key:11s} shape={causal[key]['shape_metric']:.3f} "
                       f"knn={cmp['knn_overlap']:.2f} task={causal[key]['task_accuracy']}")
     finally:
@@ -334,6 +347,8 @@ def run_neurons(spec: ManifoldSpec, cfg: RunConfig, fm: Any, *, results_dir: Pat
                   "shape_metric": summary_metric(spec.name, clean_shape["metrics_refit"]),
                   "task_accuracy": clean_task["accuracy"] if clean_task else None,
                   "task": task.name if task else None},
+        "view": ("Fourier probe fitted on the clean activations, applied to every frame"
+                 if is_probe else "clean PCA basis"),
         "model_id": fm.model_id, "elapsed_s": round(elapsed, 1),
     }
     (out_dir / "neurons.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
@@ -344,7 +359,7 @@ def run_neurons(spec: ManifoldSpec, cfg: RunConfig, fm: Any, *, results_dir: Pat
     hover = [(prompts[i] if len(prompts[i]) <= 60 else prompts[i][:57] + "…")
              + f"<br>{tl}: {labels[i][tl]}" for i in sub]
     fig = frames_figure(steps, color_values, color_mode=roles["color_mode"], hover_text=hover,
-                        prefix="writer neurons zeroed: ")
+                        prefix="neurons zeroed: ", captions=captions)
     (out_dir / "neurons_figure.json").write_text(fig.to_json(), encoding="utf-8")
     (out_dir / "neurons_tuning.json").write_text(tuning_figure(writers_top, tl, "writer").to_json(),
                                                  encoding="utf-8")

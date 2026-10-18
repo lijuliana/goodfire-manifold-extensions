@@ -107,11 +107,24 @@ a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 """
 
 JS = r"""
+function clampZoom(el){
+  // 3-D scenes: never zoom out past the starting view (the toolbar's zoom tool still zooms in)
+  const sc = el.layout && el.layout.scene; if (!sc) return;
+  const e0 = (sc.camera && sc.camera.eye) || {x:1.55, y:1.25, z:0.85};
+  const r0 = Math.hypot(e0.x, e0.y, e0.z);
+  el.on('plotly_relayout', ev => {
+    const cam = ev['scene.camera']; if (!cam || !cam.eye) return;
+    const r = Math.hypot(cam.eye.x, cam.eye.y, cam.eye.z);
+    if (r > r0 * 1.001) { const k = r0 / r;
+      Plotly.relayout(el, {'scene.camera.eye': {x: cam.eye.x * k, y: cam.eye.y * k, z: cam.eye.z * k}}); }
+  });
+}
 function renderFig(el, fig){
-  // pass the whole figure so slider frames are registered (data/layout alone drops them)
+  // pass the whole figure so slider frames are registered (data/layout alone drops them);
+  // wheel zoom is off so scrolling the page never zooms a plot
   return Plotly.newPlot(el, {data: fig.data, layout: fig.layout, frames: fig.frames || []},
-    {responsive:true, displaylogo:false,
-     modeBarButtonsToRemove:['toImage','resetCameraLastSave3d','hoverClosest3d']});
+    {responsive:true, displaylogo:false, scrollZoom:false,
+     modeBarButtonsToRemove:['toImage','resetCameraLastSave3d','hoverClosest3d']}).then(() => { clampZoom(el); return el; });
 }
 function figFrom(id){ return JSON.parse(document.getElementById(id).textContent); }
 if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
@@ -209,12 +222,12 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 {% if r.probe %}
 <div class="fig eager-fig" id="fig-probe" data-fig="json-probe"></div>
 <script type="application/json" id="json-probe">{{ r.probe.figure_json|safe }}</script>
-<p class="small mono">Fourier-probe view · drag to rotate · scroll to zoom · hover for the value</p>
-<p class="small">The source's claim here is about linear <em>probes</em> (Feucht et al. 2026, Fig. 6), not the top principal components. Each point sits at out-of-fold predictions of ridge probes on the block activations: x and y are the predicted cos and sin of 2π·{{ r.probe.label }}/10 (the ones-digit circle, R² {{ '%.2f'|format(r.probe.r2_circle) }}), z the predicted magnitude (R² {{ '%.2f'|format(r.probe.r2_linear) }}). The raw PCA of the same activations is a blob, as the paper reports; it is in the details below.</p>
+<p class="small mono">Fourier-probe view · drag to rotate · zoom in with the toolbar's zoom tool (wheel zoom is off, and you cannot zoom out past this view) · hover for the value</p>
+<p class="small">Why not PCA here? PCA shows the three directions the points spread along <em>most</em>, and for these prompts that is the size of the numbers and which tokens they use, so the pattern the paper is about (the last digit going round in a circle) is buried under it. A probe is a direction found by training instead: we fit a linear readout on the block activations to predict where each prompt's <code>{{ r.probe.label }}</code> sits on a ones-digit clock (cos and sin of 2π·value/10) and how big it is, then plot each prompt where that readout puts it, using held-out predictions so nothing is fitted to itself. If the circle really is in the activations the readout finds it (circle R² {{ '%.2f'|format(r.probe.r2_circle) }}, magnitude R² {{ '%.2f'|format(r.probe.r2_linear) }}); if it is not, the points stay a blob. Every slider on this page uses the same probe view (fitted per layer, per checkpoint, or on the clean model and reused), so the frames stay readable. The raw PCA, which is a blob as the paper reports, is in the details at the bottom.</p>
 {% else %}
 <div class="fig eager-fig" id="fig-main" data-fig="json-main"></div>
 <script type="application/json" id="json-main">{{ r.figure_json|safe }}</script>
-<p class="small mono">drag to rotate · scroll to zoom · hover for the prompt</p>
+<p class="small mono">drag to rotate · zoom in with the toolbar's zoom tool (wheel zoom is off, and you cannot zoom out past this view) · hover for the prompt</p>
 {% endif %}
 
 {% if r.depth and r.depth.pcs %}
@@ -235,14 +248,15 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 
 {% if r.depth %}
 <h2>Across the layers</h2>
-<p class="small">The same prompts read out at every residual-stream position: 0 is the token embedding, position i is the output of block i−1 (the paper's layer 19 is position 20). Drag the slider to watch the manifold form. Hover shows what the model would say next from that point at that depth under the logit (L), tuned (T) and Jacobian (J) lenses.</p>
+<p class="small">The same prompts read out at every residual-stream position: 0 is the token embedding, position i is the output of block i−1 (the paper's layer 19 is position 20). Drag the slider to watch the manifold form.{% if r.probe %} Each frame is the Fourier-probe view fitted at that depth (held-out predictions), so the slider shows at which depth the digit circle becomes readable.{% endif %} Hover shows what the model would say next from that point at that depth under the logit (L), tuned (T) and Jacobian (J) lenses.</p>
 <div class="fig eager-fig" id="fig-depth" data-fig="json-depth" style="height:560px"></div>
 <script type="application/json" id="json-depth">{{ r.depth.depth_json|safe }}</script>
 {% endif %}
 
 {% if r.ablation %}
 <h2>Weak activations: does the manifold survive?</h2>
-<p class="small">Cammarata's <a href="https://already-clean.goodfire.com/">Neural Networks Are Already Clean</a> argues that weak neuron activations can be removed at little cost; <a href="https://www.lesswrong.com/posts/neural-networks-are-not-already-clean">Gao's reply</a> argues that graded, weak activations carry essential information. A concept manifold is a graded structure, so it is a direct test. Here every SwiGLU activation in every MLP block with |a| below X% of that neuron's calibrated maximum is set to zero (method of Li 2026, <code>weak-activation-ablation</code>; calibration on FineWeb-edu), the manifold is re-read at block {{ r.ablation.layer }}, and the model's behaviour is scored under the same perturbation. Drag the slider: the points are the same prompts projected onto the <em>clean</em> PCA axes, so movement is real displacement. The control zeroes the same number of activations at random (<code>r</code> steps); the <code>×0.5</code>/<code>×2</code> steps scale the weak tail instead of zeroing it.</p>
+<p class="small">Cammarata's <a href="https://already-clean.goodfire.com/">Neural Networks Are Already Clean</a> argues that weak neuron activations can be removed at little cost; <a href="https://www.lesswrong.com/posts/neural-networks-are-not-already-clean">Gao's reply</a> argues that graded, weak activations carry essential information. A concept manifold is a graded structure, so it is a direct test.</p>
+<p class="small"><b>What the slider does.</b> Every MLP neuron in the model has a typical maximum activation, measured once on ordinary text. A step labelled <code>1</code> sets to zero every activation that is smaller than 1% of its own neuron's maximum, in every block, on every token, and then re-reads the manifold at block {{ r.ablation.layer }} and re-scores the model. Because most activations are tiny, the thresholds bite fast: 1% already removes about half of all MLP activations and 10% removes 97%, which is why the sweep stops there (past 10% almost nothing is left and the model is destroyed). The steps after <code>10</code> are controls, not larger thresholds: <code>r0.1</code>…<code>r1</code> zero the <em>same number</em> of activations chosen at random, and <code>×0.5@1.5</code> / <code>×2@1.5</code> halve or double the weak tail below 1.5% instead of deleting it. The caption above the plot says what each step did and how much it removed. Points are the same prompts drawn in a fixed frame (the clean model's axes, or its probe), so movement is real displacement.</p>
 <div class="fig eager-fig" id="fig-ablation" data-fig="json-ablation" style="height:560px"></div>
 <script type="application/json" id="json-ablation">{{ r.ablation.figure_json|safe }}</script>
 <div class="two">
@@ -275,7 +289,7 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 <div><div class="small mono" style="margin-bottom:4px">causal: zero the top-k writers vs k random neurons</div><div class="fig2d eager-fig" id="fig-neu-causal" data-fig="json-neu-causal"></div>
 <script type="application/json" id="json-neu-causal">{{ r.neurons.causal_json|safe }}</script></div>
 </div>
-<div class="small mono" style="margin:14px 0 4px">the manifold with the top writers zeroed (clean PCA axes; drag the slider)</div>
+<div class="small mono" style="margin:14px 0 4px">the manifold with the top writers zeroed ({{ 'probe fitted on the clean model' if r.probe else 'clean PCA axes' }}; drag the slider)</div>
 <div class="fig eager-fig" id="fig-neu-3d" data-fig="json-neu-3d" style="height:480px"></div>
 <script type="application/json" id="json-neu-3d">{{ r.neurons.figure_json|safe }}</script>
 <details><summary class="small mono">top writers and readers</summary>
@@ -289,7 +303,7 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 
 {% if r.interference %}
 <h2>Interference with other manifolds</h2>
-<p class="small">Cammarata allows that the residual stream may hold "manifolds woven through each other"; the plan asks how much. Left: the overlap of this manifold's 3-PC subspace with every other manifold read at the same layer (mean squared cosine of the principal angles, 1 = identical subspaces), against random 3-D subspaces drawn from the pooled activation covariance and the split-half ceiling. Right: this manifold and its most overlapping partner, <b>{{ r.interference.partner }}</b> (overlap {{ '%.2f'|format(r.interference.partner_overlap) }},{{ r.interference.partner_note }}; random 95th percentile {{ r.interference.null95 }}), drawn together in the span of their two subspaces.</p>
+<p class="small">Each manifold lives in a 3-D slice of the model's 4096-dimensional activation space (its three PCA axes). Do different concepts share a slice, so that one could disturb another, or does each get its own? Cammarata allows that the residual stream may hold "manifolds woven through each other"; this measures it. <b>Left:</b> how much this manifold's slice overlaps every other manifold's slice at the same layer, on a 0–1 scale (1 = the same three directions, 0 = at right angles). Two unrelated 3-D slices of this space score about {{ r.interference.null95 }} or less (the dotted line is the typical random value), and the dashed line is the ceiling you get by comparing two halves of this manifold with itself. <b>Right:</b> this manifold and the one it overlaps most, <b>{{ r.interference.partner }}</b> (overlap {{ '%.2f'|format(r.interference.partner_overlap) }},{{ r.interference.partner_note }}), drawn together inside their two slices.</p>
 <div class="two">
 <div><div class="fig2d eager-fig" id="fig-int-bars" data-fig="json-int-bars" style="height:380px"></div>
 <script type="application/json" id="json-int-bars">{{ r.interference.bars_json|safe }}</script></div>
@@ -297,7 +311,7 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 <script type="application/json" id="json-int-woven">{{ r.interference.woven_json|safe }}</script></div>
 </div>
 {% if r.interference.crosstalk %}
-<p class="small" style="margin-top:14px">Does the overlap matter? Each prompt was prefixed with one of six sentences from another manifold's domain (or six neutral sentences) and re-read; the prefixed activations are centred per prefix sentence first, so the metrics measure distortion of the manifold rather than the offset a prefix adds. {{ r.interference.crosstalk_text }}</p>
+<p class="small" style="margin-top:14px"><b>Does it matter in practice?</b> We put a sentence about another concept in front of every prompt (for example a colour sentence before a weekday question) and re-read the manifold, comparing with a neutral sentence of similar length. If concepts interfered, the colour sentence should warp the weekday manifold more than a neutral one. Bars: how much of the manifold's neighbourhood structure survives, its shape score, and its task accuracy, per prefix domain. (The prefixed activations are centred per prefix sentence first, so the bars measure distortion of the manifold rather than the offset any sentence adds.) {{ r.interference.crosstalk_text }}</p>
 <div class="fig2d eager-fig" id="fig-int-cross" data-fig="json-int-cross" style="height:340px"></div>
 <script type="application/json" id="json-int-cross">{{ r.interference.crosstalk_json|safe }}</script>
 <details><summary class="small mono">where the points moved</summary>
@@ -314,7 +328,7 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 
 {% if r.checkpoints %}
 <h2>Forming during pre-training (OLMo-2 1B)</h2>
-<p class="small">Llama 3.1 has no public training checkpoints, so this is <code>{{ r.checkpoints.model_id }}</code> read with the same prompts at residual position {{ r.checkpoints.layer }} of {{ r.checkpoints.n_layers }} (the position with the best shape metric at the final checkpoint), across 12 log-spaced stage-1 checkpoints and the final model. Frames are aligned to the final checkpoint by orthogonal Procrustes, so rotations between independently fitted PCAs do not show. {{ r.checkpoints.summary }}</p>
+<p class="small">Llama 3.1 has no public training checkpoints, so this is <code>{{ r.checkpoints.model_id }}</code> read with the same prompts at residual position {{ r.checkpoints.layer }} of {{ r.checkpoints.n_layers }} (the position with the best shape metric at the final checkpoint), across 12 log-spaced stage-1 checkpoints and the final model. {% if r.probe %}Frames are the Fourier-probe view fitted per checkpoint (held-out predictions).{% else %}Frames are aligned to the final checkpoint by orthogonal Procrustes, so rotations between independently fitted PCAs do not show.{% endif %} This is a 1B model with 16 blocks, read on 600 prompts, so even a formed manifold looks rougher than the Llama-3.1-8B views above; several manifolds never form at this size. "Final" is the released model after the stage-2 anneal (a different data mix, and a merge of annealing runs), which can rearrange the last positions relative to the last stage-1 checkpoint. {{ r.checkpoints.summary }}</p>
 <div class="fig eager-fig" id="fig-ckpt" data-fig="json-ckpt" style="height:520px"></div>
 <script type="application/json" id="json-ckpt">{{ r.checkpoints.figure_json|safe }}</script>
 <div class="two">

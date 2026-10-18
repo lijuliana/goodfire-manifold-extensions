@@ -29,6 +29,7 @@ import torch
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import critical_metrics, procrustes_align, summary_metric
 from manifolds.analysis.pca import fit_pca
+from manifolds.analysis.probe import cv_probe_coords
 from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check
 from manifolds.config import RunConfig
 from manifolds.depth import DepthConfig, FullModel
@@ -130,23 +131,34 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
     display: dict[str, int] = {}
     for rev, tokens in order:
         done_path = raw_dir / f"{rev}.json"
+        entry: dict[str, Any] | None = None
         if done_path.exists():
-            per_ckpt[rev] = json.loads(done_path.read_text(encoding="utf-8"))
+            entry = json.loads(done_path.read_text(encoding="utf-8"))
+        # states are needed for the frames (and metrics for new manifolds); recapture whatever is
+        # missing, reuse the rest
+        need_states = [n for n in names if not (raw_dir / f"{rev}__{n}.npy").exists()]
+        need_metrics = [n for n in names if entry is None or n not in entry["manifolds"]]
+        if entry is not None and not need_states and not need_metrics:
+            per_ckpt[rev] = entry
             if rev == final_rev:
                 for name in names:
-                    fl = per_ckpt[rev]["manifolds"][name]["layers"]
+                    fl = entry["manifolds"][name]["layers"]
                     display[name] = int(max(fl, key=lambda k: fl[k]["shape_metric"]))
             continue
         t1 = time.time()
         fm = load_checkpoint(rev, device=device, batch_size=batch_size, model_id=model_id)
-        entry: dict[str, Any] = {"revision": rev, "tokens_B": tokens, "n_layers": fm.n_layers,
-                                 "manifolds": {}}
+        if entry is None:
+            entry = {"revision": rev, "tokens_B": tokens, "n_layers": fm.n_layers, "manifolds": {}}
         for name in names:
             s = sets[name]
+            if name in need_states:
+                states = fm.capture_all_layers(s["prompts"], progress=False, spans=s["spans"])
+                np.save(raw_dir / f"{rev}__{name}.npy", states)
+            if name not in need_metrics:
+                continue
+            states = np.load(raw_dir / f"{rev}__{name}.npy")
             task = s["task"]
             cand = first_token_ids(fm.tokenizer, task.candidates) if task and task.candidates else None
-            states = fm.capture_all_layers(s["prompts"], progress=False, spans=s["spans"])
-            np.save(raw_dir / f"{rev}__{name}.npy", states)
             cap = fm.capture_layer_and_logits(s["prompts"], 0, spans=s["spans"], cand_ids=cand,
                                               progress=False)
             tk = score_task(task, cap["top1"], cap["cand"], fm.tokenizer) if task else None
@@ -178,6 +190,10 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
             print(f"  {rev:34s} {name:20s} best layer {best} metric "
                   f"{layers[best]['shape_metric']:.3f} task={entry['manifolds'][name]['task_accuracy']}")
         entry["elapsed_s"] = round(time.time() - t1, 1)
+        if rev == final_rev:
+            for name in names:
+                fl = entry["manifolds"][name]["layers"]
+                display[name] = int(max(fl, key=lambda k: fl[k]["shape_metric"]))
         done_path.write_text(json.dumps(entry), encoding="utf-8")
         per_ckpt[rev] = entry
         del fm
@@ -210,15 +226,28 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         steps: list[tuple[str, np.ndarray]] = []
         curve: list[dict[str, Any]] = []
         matrix: list[list[float | None]] = []
+        is_probe = roles["kind"] == "fourier_probe"
+        value = (np.asarray([lab[roles["value"]] for lab in s["labels"]], float)
+                 if is_probe else None)
+        captions: dict[str, str] = {}
         for rev, tokens in checkpoints:
             x = np.load(raw_dir / f"{rev}__{name}.npy")[:, layer].astype(np.float32)
             if nuisance:
                 x = center_by_group(x, s["labels"], nuisance)
-            c = procrustes_align(fit_pca(x, 3).coords, ref)
+            if is_probe:   # probe axes are label-defined, so frames are comparable without alignment
+                c = cv_probe_coords(x[sub], cast(np.ndarray, value)[sub], seed=cfg.seed)
+                c_full = np.zeros((len(x), 3), dtype=np.float32)
+                c_full[sub] = c
+                c = c_full
+            else:
+                c = procrustes_align(fit_pca(x, 3).coords, ref)
             lab = f"{tokens:g}B" if rev != "main" else "final"
             steps.append((lab, c[sub]))
             m = per_ckpt[rev]["manifolds"][name]
             row = m["layers"][str(layer)]
+            captions[lab] = (f"{'after ' + format(tokens, 'g') + 'B tokens' if rev != 'main' else 'final model (after the stage-2 anneal)'}"
+                             f" · shape metric {row['shape_metric']:.2f} ({row['status']})"
+                             + (f" · {m['task']} {m['task_accuracy']:.0%}" if m.get("task_accuracy") is not None else ""))
             best_layer = max(m["layers"], key=lambda k: m["layers"][k]["shape_metric"])
             computed = sorted(int(k) for k in m["layers"])
             curve.append({"revision": rev, "tokens_B": tokens, "label": lab,
@@ -237,6 +266,8 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
                "n_prompts": int(len(s["prompts"])), "n_plotted": int(len(sub)),
                "task": s["task"].name if s["task"] else None,
                "checkpoints": curve, "metric_by_checkpoint_and_layer": matrix,
+               "view": ("Fourier probe, out-of-fold predictions, fitted per checkpoint"
+                        if is_probe else "PCA per checkpoint, Procrustes-aligned to the final one"),
                "note": "no norm-outlier filter (fixed point set across checkpoints); shape checks at "
                        "every position for the final checkpoint, at every 4th position plus the "
                        "display layer for the others"}
@@ -251,7 +282,7 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         hover = [(s["prompts"][i] if len(s["prompts"][i]) <= 60 else s["prompts"][i][:57] + "…")
                  + f"<br>{tl}: {s['labels'][i][tl]}" for i in sub]
         fig = frames_figure(steps, cv, color_mode=roles["color_mode"], hover_text=hover,
-                            active=len(steps) - 1, prefix="pre-training tokens: ")
+                            active=len(steps) - 1, prefix="checkpoint: ", captions=captions)
         (d / "checkpoints_figure.json").write_text(fig.to_json(), encoding="utf-8")
         (d / "checkpoints_curve.json").write_text(curve_figure(rep).to_json(), encoding="utf-8")
         (d / "checkpoints_heatmap.json").write_text(layer_heatmap(rep).to_json(), encoding="utf-8")

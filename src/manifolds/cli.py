@@ -153,13 +153,14 @@ def cmd_depth(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
     manifest = load_manifest()
     fm = FullModel(DepthConfig(model_id=cfg.model.id, fallback_model_id=cfg.model.fallback_id,
-                               dtype=cfg.model.dtype, device=args.device,
+                               dtype=args.dtype, device=args.device,
                                batch_size=args.batch_size, gpu_memory_gib=args.gpu_gib,
                                seed=cfg.seed))
     print(f"full model {fm.model_id} ({fm.resolution}), {fm.n_layers} blocks")
-    tuned = None if args.no_tuned_lens else TunedLens.from_hf(device="cpu", dtype=torch.float32)
+    tuned = (None if (args.no_tuned_lens or args.figure_only)
+             else TunedLens.from_hf(device="cpu", dtype=torch.float32))
     jlens = None
-    if not args.no_jlens:
+    if not args.no_jlens and not args.figure_only:
         from manifolds.jlens import JacobianLensFull
 
         jlens = JacobianLensFull.from_hf()
@@ -167,6 +168,13 @@ def cmd_depth(args: argparse.Namespace) -> int:
     for name in _select(args):
         if not (RESULTS_DIR / name / "activations.npy").exists():
             print(f"{name}: no activations, skipping", file=sys.stderr)
+            continue
+        if args.figure_only:
+            from manifolds.depth_report import rebuild_depth_figure
+
+            r = rebuild_depth_figure(manifest.get(name), cfg, fm, max_points=args.max_points,
+                                     provider=args.provider, instance=args.instance)
+            print(f"{name:18s} depth figure rebuilt ({r['frames_view']}, {r['elapsed_s']}s)")
             continue
         rep = run_depth(manifest.get(name), cfg, fm, tuned, jlens=jlens,
                         max_points=args.max_points, do_steer=not args.no_steer,
@@ -385,6 +393,9 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--no-tuned-lens", action="store_true")
     sp.add_argument("--no-jlens", action="store_true")
     sp.add_argument("--no-steer", action="store_true")
+    sp.add_argument("--figure-only", action="store_true",
+                    help="rebuild only the layer-slider figure (probe view for probe manifolds)")
+    sp.add_argument("--dtype", default="float16")
     sp.set_defaults(fn=cmd_depth)
 
     def add_gpu(sp: argparse.ArgumentParser) -> None:

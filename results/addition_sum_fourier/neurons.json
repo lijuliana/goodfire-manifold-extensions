@@ -32,9 +32,9 @@
  ],
  "subspace_variance": 9.987527847290039,
  "evr": [
-  0.11720356693815903,
-  0.056812342321708585,
-  0.05083627657236997
+  0.117203566938159,
+  0.05681234232170859,
+  0.050836276572369984
  ],
  "tuning_label": "sum",
  "writers": [
@@ -914,7 +914,7 @@
   {
    "block": 19,
    "neuron": 13713,
-   "cv_r2": 0.7541632056236267,
+   "cv_r2": 0.7541631460189819,
    "eta2": 0.6685970983039531,
    "weight_subspace_fraction": 0.00048097167746163905,
    "peak_label": 146.0,
@@ -1155,6 +1155,7 @@
   "task_accuracy": 0.95,
   "task": "addition (exact sum)"
  },
+ "view": "Fourier probe fitted on the clean activations, applied to every frame",
  "model_id": "unsloth/Llama-3.1-8B",
- "elapsed_s": 49.2
+ "elapsed_s": 45.6
 }

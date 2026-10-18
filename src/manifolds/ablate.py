@@ -39,6 +39,7 @@ from tqdm import tqdm
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import compare, prepare, summary_metric
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
+from manifolds.analysis.probe import apply_probe, fit_probe
 from manifolds.analysis.shapes import ROLES
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
@@ -404,9 +405,18 @@ def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
     basis = fit_pca(clean_prep, 3)
     clean_cmp = compare(spec.name, labels, clean_prep, clean_prep, basis)
     clean_task = score_task(task, clean["top1"], clean["cand"], fm.tokenizer) if task else None
+    # slider frames: the clean PCA basis, or for Fourier-probe manifolds a probe fitted on the
+    # clean activations and applied to every frame (the raw PCA of these prompts is a blob)
+    is_probe = roles["kind"] == "fourier_probe"
+    probe = (fit_probe(clean_prep, np.asarray([lab[roles["value"]] for lab in labels], float))
+             if is_probe else None)
+
+    def view(prep: np.ndarray, cmp: dict[str, Any]) -> np.ndarray:
+        return apply_probe(probe, prep) if probe is not None else cmp["coords_fixed_basis"]
 
     sub = subsample(len(idx), max_points, seed=cfg.seed)
-    steps: list[tuple[str, np.ndarray]] = [("clean", clean_cmp["coords_fixed_basis"][sub])]
+    steps: list[tuple[str, np.ndarray]] = [("clean", view(clean_prep, clean_cmp)[sub])]
+    captions: dict[str, str] = {"clean": "unmodified model"}
     rows: dict[str, dict[str, Any]] = {"clean": {
         **asdict(conds[0]), "label": "clean", "description": conds[0].description,
         "status": clean_cmp["status_refit"], "metrics": clean_cmp["metrics_refit"],
@@ -437,7 +447,10 @@ def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
             "top1_agreement": beh["top1_agreement_all"],
             "task_accuracy": tk["accuracy"] if tk else None,
         }
-        steps.append((c.label, cmp["coords_fixed_basis"][sub]))
+        steps.append((c.label, view(prep, cmp)[sub]))
+        zeroed = global_res["conditions"].get(c.key, {}).get("fraction_zeroed")
+        captions[c.label] = c.description + (f" · {zeroed:.0%} of all MLP activations zeroed"
+                                             if zeroed is not None else "")
         print(f"  {spec.name:20s} {c.key:14s} shape={rows[c.key]['shape_metric']:.3f} "
               f"knn={cmp['knn_overlap']:.2f} agree={beh['top1_agreement_all']:.2f} "
               f"task={rows[c.key]['task_accuracy']}")
@@ -452,9 +465,11 @@ def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
     hover = [(prompts[i] if len(prompts[i]) <= 60 else prompts[i][:57] + "…")
              + f"<br>{tl}: {labels[i][tl]}" for i in sub]
     fig = frames_figure(steps, color_values, color_mode=roles["color_mode"], hover_text=hover,
-                        active=0, prefix="threshold X (% of neuron max): ")
+                        active=0, prefix="condition: ", captions=captions)
     report = {
         "name": spec.name, "layer": layer, "n_points": int(len(idx)), "n_plotted": int(len(sub)),
+        "view": ("Fourier probe fitted on the clean activations, applied to every frame"
+                 if is_probe else "clean PCA basis"),
         "n_kl": int(len(kl_index)), "model_id": fm.model_id,
         "consistency_with_cached_activations": {"cosine_min": float(cos.min()),
                                                 "cosine_mean": float(cos.mean())},

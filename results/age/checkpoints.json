@@ -682,5 +682,6 @@
    0.9590527604227519
   ]
  ],
+ "view": "PCA per checkpoint, Procrustes-aligned to the final one",
  "note": "no norm-outlier filter (fixed point set across checkpoints); shape checks at every position for the final checkpoint, at every 4th position plus the display layer for the others"
 }

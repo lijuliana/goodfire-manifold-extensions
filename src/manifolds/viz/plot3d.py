@@ -156,12 +156,24 @@ def frames_figure(
     active: int = 0,
     prefix: str = "",
     hover_by_step: dict[str, Sequence[str]] | None = None,
+    captions: dict[str, str] | None = None,
     point_size: float = 3.8,
     camera_eye: tuple[float, float, float] = (1.55, 1.25, 0.85),
 ) -> go.Figure:
     """One 3-D scatter per step with a slider (used for ablation strength, neuron ablations,
-    training checkpoints). Same look as `build_figure`; the floor is rebuilt per frame."""
+    training checkpoints). Same look as `build_figure`; the floor is rebuilt per frame. An
+    optional caption per step is drawn above the plot and updates with the slider."""
     hover_by_step = hover_by_step or {}
+    captions = captions or {}
+
+    def caption_layout(label: str) -> dict[str, Any]:
+        text = captions.get(label)
+        if not text:
+            return {}
+        return {"annotations": [{"text": text, "x": 0.5, "y": 0.985, "xref": "paper",
+                                 "yref": "paper", "showarrow": False, "xanchor": "center",
+                                 "yanchor": "top", "align": "center",
+                                 "font": {"family": FONT, "size": 12, "color": TEXT}}]}
     base_marker: dict[str, Any] = {"size": point_size, "opacity": 0.95, "line": {"width": 0}}
     if color_mode == "hex":
         base_marker["color"] = [str(c) for c in color_values]
@@ -180,8 +192,9 @@ def frames_figure(
             x=c[:, 0], y=c[:, 1], z=c[:, 2], mode="markers", marker=base_marker, text=txt,
             hoverinfo="text", name=label)]
 
-    fig = go.Figure(data=traces(*steps[active]))
-    fig.frames = [go.Frame(data=traces(lab, c), name=lab) for lab, c in steps]
+    fig = go.Figure(data=traces(*steps[active]), layout=caption_layout(steps[active][0]))
+    fig.frames = [go.Frame(data=traces(lab, c), name=lab, layout=caption_layout(lab))
+                  for lab, c in steps]
     slider_steps = [{"method": "animate", "label": lab,
                      "args": [[lab], {"mode": "immediate", "frame": {"duration": 0, "redraw": True},
                                       "transition": {"duration": 0}}]} for lab, _ in steps]
@@ -192,7 +205,7 @@ def frames_figure(
         sliders=[{"active": active, "steps": slider_steps, "x": 0.05, "len": 0.9, "y": 0.02,
                   "pad": {"t": 10}, "font": {"family": FONT, "size": 11},
                   "currentvalue": {"prefix": prefix, "font": {"family": FONT, "size": 12}}}],
-        paper_bgcolor="white", margin={"l": 0, "r": 0, "t": 0, "b": 0},
+        paper_bgcolor="white", margin={"l": 0, "r": 0, "t": 26 if captions else 0, "b": 0},
         font={"family": FONT, "color": TEXT}, showlegend=False,
         hoverlabel={"font": {"family": FONT, "size": 11}, "bgcolor": "white"},
     )

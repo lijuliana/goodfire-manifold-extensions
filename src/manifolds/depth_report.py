@@ -1,3 +1,4 @@
+# ruff: noqa: E501
 """Depth sweep report: per-layer PCA + shape score, lens readouts, steering, consistency check."""
 
 from __future__ import annotations
@@ -5,7 +6,7 @@ from __future__ import annotations
 import json
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import plotly.graph_objects as go
@@ -13,6 +14,7 @@ import torch
 
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
+from manifolds.analysis.probe import cv_probe_coords
 from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check
 from manifolds.config import RunConfig
 from manifolds.jlens import JacobianLensFull, pc_readouts
@@ -184,12 +186,16 @@ def run_depth(
     scores: dict[int, dict[str, Any]] = {}
     metric_names: list[str] = []
     nuisance = roles.get("nuisance_group")
+    is_probe = roles["kind"] == "fourier_probe"
+    value = (np.asarray([lab[roles["value"]] for lab in labels], float) if is_probe else None)
     for li in range(n_layers + 1):
         xl = states[:, li].astype(np.float32)
         if nuisance:
             xl = center_by_group(xl, labels, nuisance)
         pca = fit_pca(xl, 3)
-        coords_by_layer[li] = pca.coords[sub]
+        # frames: PCA, or for Fourier-probe manifolds the probe view fitted at this depth
+        coords_by_layer[li] = (cv_probe_coords(xl[sub], cast(np.ndarray, value)[sub], seed=cfg.seed) if is_probe
+                               else pca.coords[sub])
         evr[li] = [float(v) for v in pca.explained_variance_ratio]
         rep = run_shape_check(spec.name, pca.coords, labels, acts=xl).to_dict()
         crit = _critical_metrics(rep)
@@ -268,6 +274,7 @@ def run_depth(
         "n_layers": n_layers,
         "layer_convention": "0 = embeddings, i = output of block i-1",
         "paper_layer": layer,
+        "frames_view": ("Fourier probe (out-of-fold), fitted per layer" if is_probe else "PCA per layer"),
         "consistency_block19_vs_truncated": consistency,
         "evr": {str(k): v for k, v in evr.items()},
         "scores": {str(k): v for k, v in scores.items()},
@@ -292,3 +299,79 @@ def run_depth(
                                          end, round(elapsed / 3600, 4),
                                          f"depth sweep + lens + steering {spec.name}"))
     return report
+
+
+def rebuild_depth_figure(spec: ManifoldSpec, cfg: RunConfig, full_model: Any,
+                         results_dir: Path = RESULTS_DIR, *, max_points: int = 800,
+                         provider: str = "unknown", instance: str = "unknown") -> dict[str, Any]:
+    """Rebuild only the layer-slider figure from an existing depth.json (lens hover text is
+    reused); the residual states are captured again if `depth_states.npy` is absent."""
+    out_dir = results_dir / spec.name
+    dj = json.loads((out_dir / "depth.json").read_text(encoding="utf-8"))
+    ps = PromptSet.load(out_dir / "prompts.json")
+    acts = np.load(out_dir / "activations.npy")
+    keep = filter_norm_outliers(acts, cfg.analysis.outlier_n_std)
+    idx = np.flatnonzero(keep)
+    labels = [ps.labels[i] for i in idx]
+    prompts = [ps.prompts[i] for i in idx]
+    roles = ROLES[spec.name]
+    layer = spec.layer if isinstance(spec.layer, int) else cfg.model.layer
+    start = ledger.now_iso()
+    t0 = time.time()
+    states_path = out_dir / "depth_states.npy"
+    if states_path.exists():
+        states = np.load(states_path)
+    else:
+        spans = [ps.spans[i] for i in idx] if ps.spans is not None else None
+        states = full_model.capture_all_layers(prompts, spans=spans)
+        np.save(states_path, states)
+    n_layers = states.shape[1] - 1
+    sub = np.asarray(dj.get("subsample_index") or subsample(len(idx), max_points, seed=cfg.seed))
+    nuisance = roles.get("nuisance_group")
+    is_probe = roles["kind"] == "fourier_probe"
+    value = (np.asarray([lab[roles["value"]] for lab in labels], float) if is_probe else None)
+    coords_by_layer: dict[int, np.ndarray] = {}
+    for li in range(n_layers + 1):
+        xl = states[:, li].astype(np.float32)
+        if nuisance:
+            xl = center_by_group(xl, labels, nuisance)
+        coords_by_layer[li] = (cv_probe_coords(xl[sub], cast(np.ndarray, value)[sub], seed=cfg.seed) if is_probe
+                               else fit_pca(xl, 3).coords[sub])
+    lens = dj["lens"]
+    tl = roles["tuning_label"]
+
+    def short(p: str) -> str:
+        return p if len(p) <= 70 else p[:67] + "…"
+
+    hover = [f"{short(prompts[i])}<br>{tl}: {labels[i][tl]}" for i in sub]
+    hover_by_layer: dict[int, list[str]] = {}
+    for li_s in lens.get("logit", {}):
+        li = int(li_s)
+        lg, tn, jl = lens["logit"].get(li_s), lens.get("tuned", {}).get(li_s), lens.get("jacobian", {}).get(li_s)
+        rows = []
+        for j, base in enumerate(hover):
+            parts = [base]
+            if lg:
+                parts.append(f"logit lens → {lg['tokens'][j][0]!r} ({lg['probs'][j][0]:.2f})")
+            if tn:
+                parts.append(f"tuned lens → {tn['tokens'][j][0]!r} ({tn['probs'][j][0]:.2f})")
+            if jl:
+                parts.append(f"J-lens → {jl['tokens'][j][0]!r} ({jl['probs'][j][0]:.2f})")
+            rows.append("<br>".join(parts))
+        hover_by_layer[li] = rows
+    color_key = roles["color_by"]
+    color_values = [labels[i][color_key] for i in sub]
+    fig_depth = depth_figure(coords_by_layer, color_values, roles["color_mode"], hover,
+                             layer_default=layer + 1, hover_by_layer=hover_by_layer)
+    (out_dir / "depth_figure.json").write_text(fig_depth.to_json(), encoding="utf-8")
+    dj["frames_view"] = ("Fourier probe (out-of-fold), fitted per layer" if is_probe
+                         else "PCA per layer")
+    (out_dir / "depth.json").write_text(json.dumps(dj), encoding="utf-8")
+    elapsed = time.time() - t0
+    if torch.cuda.is_available() and not states_path.exists():
+        pass
+    if torch.cuda.is_available():
+        ledger.append(ledger.LedgerEntry(provider, instance, torch.cuda.get_device_name(0), start,
+                                         ledger.now_iso(), round(elapsed / 3600, 4),
+                                         f"depth figure rebuild {spec.name}"))
+    return {"name": spec.name, "frames_view": dj["frames_view"], "elapsed_s": round(elapsed, 1)}

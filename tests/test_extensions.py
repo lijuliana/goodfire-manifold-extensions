@@ -1,3 +1,4 @@
+# ruff: noqa: E501
 """Debate extensions on a random tiny Llama (CPU, no downloads): weak-activation ablation,
 neuron writers/readers, interference, checkpoint sweep."""
 
@@ -288,3 +289,58 @@ def test_site_with_extension_sections(tmp_path, monkeypatch):
     assert "Weak activations" not in other
     index = (out / "index.html").read_text()
     assert "Across manifolds" in index and "json-ext-global" in index and "ablation · neurons" in index
+
+
+def test_probe_helpers(rng):
+    from manifolds.analysis.probe import apply_probe, cv_probe_coords, fit_probe, probe_r2
+
+    v = rng.integers(2, 200, size=300).astype(float)
+    ph = 2 * np.pi * (v % 10) / 10
+    d = rng.normal(size=(5, 48))
+    acts = (np.c_[np.cos(ph), np.sin(ph), v / 100, rng.normal(size=(300, 2))] @ d
+            + 0.05 * rng.normal(size=(300, 48))).astype(np.float32)
+    c = cv_probe_coords(acts, v)
+    r2 = probe_r2(c, v)
+    assert c.shape == (300, 3) and r2["r2_circle"] > 0.9 and r2["r2_linear"] > 0.9
+    p = fit_probe(acts, v)
+    assert np.corrcoef(apply_probe(p, acts)[:, 0], np.cos(ph))[0, 1] > 0.95
+    shuffled = cv_probe_coords(acts, rng.permutation(v))
+    assert probe_r2(shuffled, v)["r2_circle"] < 0.3
+
+
+def test_probe_manifold_sliders_tiny(tmp_path, monkeypatch):
+    """A Fourier-probe manifold gets probe-view frames in the ablation and checkpoint sliders."""
+    fm = _tiny_fm(tmp_path)
+    layer = 2
+    cfg = load_config()
+    manifest = load_manifest()
+    spec = manifest.get("months_last").model_copy(update={"layer": layer})
+    _, d = _results_for(tmp_path, "months_last", fm, layer)
+    ab = ablate.Ablator(fm.model)
+    ab.set("calibrate")
+    with torch.no_grad():
+        fm.model(input_ids=torch.randint(2, 200, (4, 16)))
+    ab.load_calibration(ab.calibration_tensor(), "cpu")
+    conds = [ablate.Condition("clean", "clean", "off", 0.0),
+             ablate.Condition("weak_1", "weak", "threshold", 1.0)]
+    glob = {"conditions": {c.key: {"lm_loss": 2.0, "lm_loss_delta": 0.0, "popqa_accuracy": 0.2,
+                                   "fraction_zeroed": 0.3 * i} for i, c in enumerate(conds)}}
+    rep = ablate.run_manifold(spec, cfg, fm, ab, conds, glob, results_dir=tmp_path / "results",
+                              max_points=60, n_kl=10)
+    ab.remove()
+    assert rep["view"].startswith("Fourier probe")
+    fig = json.loads((d / "ablation_figure.json").read_text())
+    assert fig["frames"][1]["layout"]["annotations"][0]["text"].endswith("30% of all MLP activations zeroed")
+    monkeypatch.setattr(checkpoints, "load_checkpoint", lambda rev, **kw: fm)
+    checkpoints.run_checkpoints(manifest, cfg, ["months_last"], checkpoints=[("early", 1.0), ("main", 4.0)],
+                                max_prompts=60, max_points=40, out_dir=tmp_path / "_ck",
+                                results_dir=tmp_path / "results", free_cache=False, model_id="tiny")
+    ck = json.loads((d / "checkpoints.json").read_text())
+    assert ck["view"].startswith("Fourier probe")
+    # a second call with the state files removed recaptures them without redoing the metrics
+    for f in (tmp_path / "_ck" / "raw").glob("*__months_last.npy"):
+        f.unlink()
+    checkpoints.run_checkpoints(manifest, cfg, ["months_last"], checkpoints=[("early", 1.0), ("main", 4.0)],
+                                max_prompts=60, max_points=40, out_dir=tmp_path / "_ck",
+                                results_dir=tmp_path / "results", free_cache=False, model_id="tiny")
+    assert (tmp_path / "_ck" / "raw" / "main__months_last.npy").exists()

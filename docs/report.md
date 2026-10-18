@@ -323,6 +323,17 @@ this checkpoint spacing: the centroid dimensionality of the age and weekday mani
 at its final value (≈ 2.1–2.4 and ≈ 2.7) at 21B tokens, with no intermediate axis-like stage
 between the 1B and 21B checkpoints.
 
+### Views and interaction (2026-10-18 revision)
+
+For the five Fourier-probe manifolds (addition_sum_fourier, months_last, weekdays_last, hours_last,
+numbers_1_100) every slider now shows the probe view rather than a PCA: the layer slider fits a
+probe per depth (held-out predictions), the ablation and neuron sliders apply one probe fitted on
+the clean model to every frame (the probe analogue of a fixed PCA basis), and the checkpoint
+slider fits a probe per checkpoint. Slider frames carry a caption saying what the step did (for
+the ablation: the condition and the share of MLP activations removed). Wheel zoom is disabled on
+all plots and the camera cannot be moved farther out than the starting view (the toolbar's zoom
+tool still zooms in). `src/manifolds/analysis/probe.py`, `site/build.py`.
+
 ### What this says about the debate
 
 - Weak activations are cheap to remove on Llama-3.1-8B exactly as on Qwen3-1.7B, and the cost
