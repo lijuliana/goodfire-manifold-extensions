@@ -192,8 +192,13 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         s = sets[name]
         roles = ROLES[name]
         n_layers = per_ckpt[final_rev]["n_layers"]
-        fin = per_ckpt[final_rev]["manifolds"][name]["layers"]
-        layer = int(max(fin, key=lambda k: fin[k]["shape_metric"]))
+        # display layer: the best (checkpoint, layer) cell among layers checked at every checkpoint
+        # (the final model can lose structure that earlier checkpoints have, e.g. after stage 2)
+        common = set.intersection(*[set(per_ckpt[r]["manifolds"][name]["layers"])
+                                    for r, _ in checkpoints])
+        best_cell = {li: max(per_ckpt[r]["manifolds"][name]["layers"][li]["shape_metric"]
+                             for r, _ in checkpoints) for li in common}
+        layer = int(max(best_cell, key=lambda k: best_cell[k]))
         tl = roles["tuning_label"]
         label = np.asarray([float(lab[tl]) for lab in s["labels"]])
         ref_states = np.load(raw_dir / f"{final_rev}__{name}.npy")[:, layer].astype(np.float32)
@@ -226,6 +231,8 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
                            for li in range(n_layers + 1)])
             curve[-1]["layers_checked"] = computed
         rep = {"name": name, "model_id": model_id, "display_layer": layer, "n_layers": n_layers,
+               "display_layer_rule": "best shape metric over all checkpoints among positions "
+                                     "checked at every checkpoint",
                "layer_convention": "0 = embeddings, i = output of block i-1",
                "n_prompts": int(len(s["prompts"])), "n_plotted": int(len(sub)),
                "task": s["task"].name if s["task"] else None,

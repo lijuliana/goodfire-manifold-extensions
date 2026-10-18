@@ -1,0 +1,76 @@
+{
+ "model_id": "allenai/OLMo-2-0425-1B",
+ "checkpoints": [
+  [
+   "stage1-step0-tokens0B",
+   0.0
+  ],
+  [
+   "stage1-step300-tokens1B",
+   1.0
+  ],
+  [
+   "stage1-step10000-tokens21B",
+   21.0
+  ],
+  [
+   "stage1-step20000-tokens42B",
+   42.0
+  ],
+  [
+   "stage1-step50000-tokens105B",
+   105.0
+  ],
+  [
+   "stage1-step100000-tokens210B",
+   210.0
+  ],
+  [
+   "stage1-step190000-tokens399B",
+   399.0
+  ],
+  [
+   "stage1-step380000-tokens797B",
+   797.0
+  ],
+  [
+   "stage1-step570000-tokens1196B",
+   1196.0
+  ],
+  [
+   "stage1-step950000-tokens1993B",
+   1993.0
+  ],
+  [
+   "stage1-step1430000-tokens2999B",
+   2999.0
+  ],
+  [
+   "stage1-step1907359-tokens4001B",
+   4001.0
+  ],
+  [
+   "main",
+   4051.0
+  ]
+ ],
+ "names": [
+  "addition_sum_fourier",
+  "colors",
+  "age",
+  "weekdays_circle",
+  "geography",
+  "months_last",
+  "political_bias"
+ ],
+ "elapsed_s": 0.0,
+ "display_layers": {
+  "addition_sum_fourier": 15,
+  "colors": 12,
+  "age": 16,
+  "weekdays_circle": 12,
+  "geography": 16,
+  "months_last": 16,
+  "political_bias": 16
+ }
+}

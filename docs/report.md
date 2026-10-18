@@ -289,7 +289,57 @@ prompts), whereas addition, country recall and the lean classification are unaff
 
 ### 4. Forming during pre-training (`manifolds checkpoints`, OLMo-2 1B)
 
-CHECKPOINTS_PLACEHOLDER
+`allenai/OLMo-2-0425-1B` (16 blocks), the same prompt sets (≤ 600 per manifold), twelve log-spaced
+stage-1 checkpoints (0, 1B, 21B, 42B, 105B, 210B, 399B, 797B, 1.2T, 2.0T, 3.0T, 4.0T tokens) and
+`main` (after the 50B-token stage-2 anneal). Every residual position is shape-checked at the final
+checkpoint and every 4th position plus the display layer elsewhere (the Fourier-probe check is
+CPU-heavy); the display layer is the best cell over all checkpoints among positions checked
+everywhere. Slider frames are Procrustes-aligned to the final checkpoint. Shape metric at the
+display layer (position of 16; "–" = below 0.1), with the manifold's task accuracy in the final model:
+
+| manifold | display pos. | 0 | 1B | 21B | 42B | 105B | 399B | 797B | 1.2T | 2T | 4T | final | task (final) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| age | 16 | – | 0.23 | 0.96 | 0.97 | 0.98 | 0.98 | 0.99 | 0.98 | 0.98 | 0.99 | 0.96 | – |
+| weekdays_circle | 12 | 0.36 | 0.10 | 0.99 | 1.00 | 0.99 | 1.00 | 1.00 | 0.99 | 1.00 | 0.99 | 0.99 | 14% (chance 14%) |
+| colors | 12 | – | 0.22 | 0.40 | 0.47 | 0.41 | 0.38 | 0.46 | 0.26 | 0.37 | 0.38 | 0.46 | 9% |
+| months_last | 16 | – | – | 0.26 | 0.28 | 0.32 | 0.37 | 0.38 | 0.68 | 0.61 | 0.73 | 0.14 | 8% (chance 8%) |
+| political_bias | 16 | – | – | – | – | – | 0.36 | 0.43 | 0.43 | 0.50 | 0.53 | – | 73% (2-way) |
+| addition_sum_fourier | 15 | – | – | – | – | – | – | 0.18 | 0.12 | – | 0.15 | 0.55 | 16% |
+| geography | 16 | 0.13 | 0.10 | 0.12 | 0.24 | 0.11 | 0.23 | 0.24 | 0.20 | 0.25 | 0.27 | 0.12 | 1% |
+
+Reading. Two manifolds form early and completely: the age line and the weekday circle are at
+their final quality by the 21B-token checkpoint (the first one after 1B; OLMo-2 publishes nothing
+in between, so the formation window itself is not resolved) and stay there for the remaining 4T
+tokens, while OLMo-2 1B never learns weekday arithmetic (14%, chance). Geometry precedes
+behaviour here, or behaviour never arrives at 1B. Three structures form late: the last-token
+month features reach 0.68 only at 1.2T tokens, political lean at position 16 rises from nothing at
+210B to 0.36 at 399B and 0.53 at 4T (its lean accuracy from 49% to 87% over the same span), and
+addition's base-10 Fourier features appear only in the final model (0.55 after the stage-2 anneal,
+≤ 0.18 during stage 1), with addition accuracy at 16%. The anneal also removes the last-position
+month and political structure of the stage-1 checkpoints (0.73 → 0.14 and 0.53 → 0.04) while the
+lean accuracy stays at 73%, so the final 1B model keeps the behaviour in another form. Colours and
+geography never pass the checks at 1B (0.46 and 0.31 at best). Coarse-to-fine was not observed at
+this checkpoint spacing: the centroid dimensionality of the age and weekday manifolds is already
+at its final value (≈ 2.1–2.4 and ≈ 2.7) at 21B tokens, with no intermediate axis-like stage
+between the 1B and 21B checkpoints.
+
+### What this says about the debate
+
+- Weak activations are cheap to remove on Llama-3.1-8B exactly as on Qwen3-1.7B, and the cost
+  that appears is not specific to graded structure: the two cleanest low-dimensional manifolds
+  (a line and a circle) survive longer than fact recall, while colours and the arithmetic Fourier
+  features do not. "Weak activations carry the manifolds" is therefore false in general and true
+  for particular manifolds; which ones is now a measurable property.
+- No manifold is a few neurons, but the top writers of the ordered manifolds have the receptive
+  fields the "clean" picture predicts (one weekday each; hue arcs; the two political poles), and
+  zeroing a few dozen of them is enough to break the manifold's task where the task is
+  carried by the manifold (addition, months, weekdays). Colours and age have no such handle.
+- Different concepts occupy near-orthogonal 3-D subspaces, and prefixing another concept's
+  sentence perturbs a manifold along its own axes, not toward the other concept: the crosstalk
+  Cammarata allowed for is below the random level at this resolution, which is the measurement
+  McGrath's position needed.
+- In OLMo-2 1B the simplest manifolds exist long before, and independently of, the behaviour
+  they would support; the arithmetic features arrive with the math-heavy anneal.
 
 ## Skipped (and why)
 
@@ -303,4 +353,11 @@ CHECKPOINTS_PLACEHOLDER
 GPU ledger: `logs/gpu_ledger.jsonl` (`uv run manifolds ledger summary`). Billed Azure T4 uptime,
 reconciled against the Azure activity log: 4.91 GPU-hours over seven sessions (one of them
 ran ~2 h longer than needed because a cycle script died after a crash without deallocating). Actual
-model computation inside those sessions was well under an hour. No AWS or GCP GPU time was used.
+model computation inside those sessions was well under an hour.
+
+Debate extensions (2026-10-17/18): one AWS `g6e.2xlarge` (L40S) on-demand session, launched
+02:14 UTC and terminated (verified) 03:40 UTC: 1.45 billed hours (≈ $3.25 at $2.24/h), of which
+the pipeline logged 1.06 GPU-hours of model computation (ablation 0.47 h, neurons / crosstalk
+/ checkpoints the rest; the OLMo sweep was CPU-bound on the Fourier-probe shape checks and was
+restarted once with a reduced layer set). `g6e.xlarge` had no capacity in any us-east-1 zone at
+launch time. No GCP GPU time was used; the Azure VM stayed deallocated.
