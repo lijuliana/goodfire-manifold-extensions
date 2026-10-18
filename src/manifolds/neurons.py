@@ -41,7 +41,7 @@ from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import compare, prepare, summary_metric
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
 from manifolds.analysis.probe import apply_probe, fit_probe
-from manifolds.analysis.shapes import ROLES
+from manifolds.analysis.shapes import ROLES, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
@@ -352,13 +352,10 @@ def run_neurons(spec: ManifoldSpec, cfg: RunConfig, fm: Any, *, results_dir: Pat
         "model_id": fm.model_id, "elapsed_s": round(elapsed, 1),
     }
     (out_dir / "neurons.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
-    color_key = roles["color_by"]
-    color_values = [labels[i][color_key] for i in sub]
-    if roles["color_mode"] == "categorical":
-        color_values = [str(v) for v in color_values]
+    color_values, color_mode = slider_coloring(spec.name, [labels[i] for i in sub])
     hover = [(prompts[i] if len(prompts[i]) <= 60 else prompts[i][:57] + "…")
              + f"<br>{tl}: {labels[i][tl]}" for i in sub]
-    fig = frames_figure(steps, color_values, color_mode=roles["color_mode"], hover_text=hover,
+    fig = frames_figure(steps, color_values, color_mode=color_mode, hover_text=hover,
                         prefix="neurons zeroed: ", captions=captions)
     (out_dir / "neurons_figure.json").write_text(fig.to_json(), encoding="utf-8")
     (out_dir / "neurons_tuning.json").write_text(tuning_figure(writers_top, tl, "writer").to_json(),

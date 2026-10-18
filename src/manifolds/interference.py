@@ -30,12 +30,20 @@ import torch
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import compare, prepare, summary_metric
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
-from manifolds.analysis.shapes import ROLES
+from manifolds.analysis.shapes import ROLES, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.manifest import Manifest
 from manifolds.prompts.types import PromptSet
 from manifolds.tasks import first_token_ids, score_task, task_for
-from manifolds.viz.plot3d import CATEGORICAL, FONT, TEXT, _floor_traces, line_layout, subsample
+from manifolds.viz.plot3d import (
+    CATEGORICAL,
+    FONT,
+    TEXT,
+    _floor_traces,
+    colorscale_for,
+    line_layout,
+    subsample,
+)
 
 GLOBAL_DIR = RESULTS_DIR / "_interference"
 
@@ -189,13 +197,27 @@ def woven_figure(results_dir: Path, cfg: RunConfig, a: str, b: str, max_points: 
     ca, cb = p.coords[: len(za)], p.coords[len(za):]
     tla, tlb = ROLES[a]["tuning_label"], ROLES[b]["tuning_label"]
     fig = go.Figure(data=_floor_traces(np.r_[ca, cb], 3.5))
-    for name, c, labs, tl, col in ((a, ca, [la[i] for i in ia], tla, CATEGORICAL[0]),
-                                   (b, cb, [lb[i] for i in ib], tlb, CATEGORICAL[1])):
-        fig.add_trace(go.Scatter3d(x=c[:, 0], y=c[:, 1], z=c[:, 2], mode="markers",
-                                   marker={"size": 3.5, "color": col, "opacity": 0.9},
-                                   name=name.replace("_", " "),
-                                   text=[f"{name}: {tl} = {lab[tl]}" for lab in labs],
-                                   hoverinfo="text"))
+    labs_a = [la[i] for i in ia]
+    cvals, cmode = slider_coloring(a, labs_a)
+    marker_a: dict[str, Any] = {"size": 3.5, "opacity": 0.9}
+    if cmode == "hex":
+        marker_a["color"] = [str(v) for v in cvals]
+    elif cmode == "categorical":
+        cats = list(dict.fromkeys(cvals))
+        marker_a["color"] = [CATEGORICAL[cats.index(v) % len(CATEGORICAL)] for v in cvals]
+    else:
+        marker_a["color"] = [float(v) for v in cvals]
+        marker_a["colorscale"] = colorscale_for(cmode)
+    # the page's own manifold keeps its colour coding; the partner is drawn in grey
+    fig.add_trace(go.Scatter3d(x=cb[:, 0], y=cb[:, 1], z=cb[:, 2], mode="markers",
+                               marker={"size": 3.2, "color": "#9a9a9a", "opacity": 0.55},
+                               name=b.replace("_", " ") + " (partner, grey)",
+                               text=[f"{b}: {tlb} = {lab[tlb]}" for lab in [lb[i] for i in ib]],
+                               hoverinfo="text"))
+    fig.add_trace(go.Scatter3d(x=ca[:, 0], y=ca[:, 1], z=ca[:, 2], mode="markers", marker=marker_a,
+                               name=a.replace("_", " "),
+                               text=[f"{a}: {tla} = {lab[tla]}" for lab in labs_a],
+                               hoverinfo="text"))
     axis = {"visible": False, "showbackground": False}
     fig.update_layout(scene={"xaxis": axis, "yaxis": axis, "zaxis": axis, "aspectmode": "data"},
                       paper_bgcolor="white", margin={"l": 0, "r": 0, "t": 0, "b": 0},

@@ -30,7 +30,7 @@ from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import critical_metrics, procrustes_align, summary_metric
 from manifolds.analysis.pca import fit_pca
 from manifolds.analysis.probe import cv_probe_coords
-from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check
+from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.depth import DepthConfig, FullModel
 from manifolds.manifest import Manifest
@@ -275,13 +275,10 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         d = results_dir / name
         d.mkdir(parents=True, exist_ok=True)
         (d / "checkpoints.json").write_text(json.dumps(rep, indent=1), encoding="utf-8")
-        color_key = roles["color_by"]
-        cv = [s["labels"][i][color_key] for i in sub]
-        if roles["color_mode"] == "categorical":
-            cv = [str(v) for v in cv]
+        cv, cmode = slider_coloring(name, [s["labels"][i] for i in sub])
         hover = [(s["prompts"][i] if len(s["prompts"][i]) <= 60 else s["prompts"][i][:57] + "…")
                  + f"<br>{tl}: {s['labels'][i][tl]}" for i in sub]
-        fig = frames_figure(steps, cv, color_mode=roles["color_mode"], hover_text=hover,
+        fig = frames_figure(steps, cv, color_mode=cmode, hover_text=hover,
                             active=len(steps) - 1, prefix="checkpoint: ", captions=captions)
         (d / "checkpoints_figure.json").write_text(fig.to_json(), encoding="utf-8")
         (d / "checkpoints_curve.json").write_text(curve_figure(rep).to_json(), encoding="utf-8")

@@ -40,7 +40,7 @@ from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.compare import compare, prepare, summary_metric
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
 from manifolds.analysis.probe import apply_probe, fit_probe
-from manifolds.analysis.shapes import ROLES
+from manifolds.analysis.shapes import ROLES, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
@@ -457,14 +457,11 @@ def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
     ablator.set("off")
     elapsed = time.time() - t0
 
-    color_key = roles["color_by"]
-    color_values = [labels[i][color_key] for i in sub]
-    if roles["color_mode"] == "categorical":
-        color_values = [str(v) for v in color_values]
+    color_values, color_mode = slider_coloring(spec.name, [labels[i] for i in sub])
     tl = roles["tuning_label"]
     hover = [(prompts[i] if len(prompts[i]) <= 60 else prompts[i][:57] + "…")
              + f"<br>{tl}: {labels[i][tl]}" for i in sub]
-    fig = frames_figure(steps, color_values, color_mode=roles["color_mode"], hover_text=hover,
+    fig = frames_figure(steps, color_values, color_mode=color_mode, hover_text=hover,
                         active=0, prefix="condition: ", captions=captions)
     report = {
         "name": spec.name, "layer": layer, "n_points": int(len(idx)), "n_plotted": int(len(sub)),

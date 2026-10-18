@@ -15,7 +15,7 @@ import torch
 from manifolds import RESULTS_DIR, ledger
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
 from manifolds.analysis.probe import cv_probe_coords
-from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check
+from manifolds.analysis.shapes import ROLES, center_by_group, run_shape_check, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.jlens import JacobianLensFull, pc_readouts
 from manifolds.lens import TunedLens, lens_readout
@@ -235,8 +235,7 @@ def run_depth(
     elapsed = time.time() - t0
     end = ledger.now_iso()
 
-    color_key = roles["color_by"]
-    color_values = [labels[i][color_key] for i in sub]
+    color_values, color_mode = slider_coloring(spec.name, [labels[i] for i in sub])
     tl = roles["tuning_label"]
 
     def short(p: str) -> str:
@@ -259,7 +258,7 @@ def run_depth(
                 parts.append(f"J-lens → {jl['tokens'][j][0]!r} ({jl['probs'][j][0]:.2f})")
             rows.append("<br>".join(parts))
         hover_by_layer[li] = rows
-    fig_depth = depth_figure(coords_by_layer, color_values, roles["color_mode"], hover,
+    fig_depth = depth_figure(coords_by_layer, color_values, color_mode, hover,
                              layer_default=layer + 1, hover_by_layer=hover_by_layer)
     fig_lens = lens_summary_figure(lens, layer + 1)
     metrics = {m: [scores[li]["metrics"].get(m, float("nan")) for li in range(n_layers + 1)]
@@ -359,9 +358,8 @@ def rebuild_depth_figure(spec: ManifoldSpec, cfg: RunConfig, full_model: Any,
                 parts.append(f"J-lens → {jl['tokens'][j][0]!r} ({jl['probs'][j][0]:.2f})")
             rows.append("<br>".join(parts))
         hover_by_layer[li] = rows
-    color_key = roles["color_by"]
-    color_values = [labels[i][color_key] for i in sub]
-    fig_depth = depth_figure(coords_by_layer, color_values, roles["color_mode"], hover,
+    color_values, color_mode = slider_coloring(spec.name, [labels[i] for i in sub])
+    fig_depth = depth_figure(coords_by_layer, color_values, color_mode, hover,
                              layer_default=layer + 1, hover_by_layer=hover_by_layer)
     (out_dir / "depth_figure.json").write_text(fig_depth.to_json(), encoding="utf-8")
     dj["frames_view"] = ("Fourier probe (out-of-fold), fitted per layer" if is_probe

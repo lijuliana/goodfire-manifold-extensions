@@ -577,3 +577,15 @@ def center_by_group(acts: np.ndarray, labels: list[dict[str, Any]], key: str) ->
         m = g == v
         out[m] -= out[m].mean(0, keepdims=True)
     return out
+
+
+def slider_coloring(name: str, labels: list[dict[str, Any]]) -> tuple[list[Any], str]:
+    """Colour values and mode for the slider figures of a manifold: Fourier-probe manifolds are
+    coloured like their probe view (value mod 10, cyclic scale); the others by ROLES."""
+    r = ROLES[name]
+    if r["kind"] == "fourier_probe":
+        return [float(lab[r["value"]]) % 10 for lab in labels], "cyclic"
+    vals = [lab[r["color_by"]] for lab in labels]
+    if r["color_mode"] == "categorical":
+        vals = [str(v) for v in vals]
+    return vals, r["color_mode"]
