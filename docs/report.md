@@ -371,4 +371,6 @@ Debate extensions (2026-10-17/18): one AWS `g6e.2xlarge` (L40S) on-demand sessio
 the pipeline logged 1.06 GPU-hours of model computation (ablation 0.47 h, neurons / crosstalk
 / checkpoints the rest; the OLMo sweep was CPU-bound on the Fourier-probe shape checks and was
 restarted once with a reduced layer set). `g6e.xlarge` had no capacity in any us-east-1 zone at
-launch time. No GCP GPU time was used; the Azure VM stayed deallocated.
+launch time. A second `g6e.2xlarge` session on 2026-10-18 (04:37–05:20 UTC, ≈ 0.7 billed hours, ≈ $1.6)
+rebuilt the sliders of the Fourier-probe manifolds as probe views and recaptured the OLMo
+checkpoint states. No GCP GPU time was used; the Azure VM stayed deallocated.
