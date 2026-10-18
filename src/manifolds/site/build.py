@@ -107,23 +107,30 @@ a:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 """
 
 JS = r"""
+const ZOOM_IN_LIMIT = 0.35;   // closest camera distance, as a fraction of the starting distance
 function clampZoom(el){
-  // 3-D scenes: never zoom out past the starting view (the toolbar's zoom tool still zooms in)
+  // 3-D scenes: the wheel zooms between the starting view (max) and ZOOM_IN_LIMIT of it (min);
+  // at either limit the wheel is handed back to the page, so scrolling never gets stuck on a plot
   const sc = el.layout && el.layout.scene; if (!sc) return;
   const e0 = (sc.camera && sc.camera.eye) || {x:1.55, y:1.25, z:0.85};
-  const r0 = Math.hypot(e0.x, e0.y, e0.z);
+  const r0 = Math.hypot(e0.x, e0.y, e0.z), rmin = r0 * ZOOM_IN_LIMIT;
+  const dist = () => { const c = el.layout.scene && el.layout.scene.camera && el.layout.scene.camera.eye;
+                       return c ? Math.hypot(c.x, c.y, c.z) : r0; };
+  el.addEventListener('wheel', ev => {
+    const r = dist(), out = ev.deltaY > 0;
+    if ((out && r >= r0 * 0.995) || (!out && r <= rmin * 1.005)) ev.stopImmediatePropagation();  // page scrolls natively
+  }, {capture: true, passive: true});
   el.on('plotly_relayout', ev => {
     const cam = ev['scene.camera']; if (!cam || !cam.eye) return;
     const r = Math.hypot(cam.eye.x, cam.eye.y, cam.eye.z);
-    if (r > r0 * 1.001) { const k = r0 / r;
-      Plotly.relayout(el, {'scene.camera.eye': {x: cam.eye.x * k, y: cam.eye.y * k, z: cam.eye.z * k}}); }
+    const k = r > r0 * 1.001 ? r0 / r : (r < rmin * 0.999 ? rmin / r : 1);
+    if (k !== 1) Plotly.relayout(el, {'scene.camera.eye': {x: cam.eye.x * k, y: cam.eye.y * k, z: cam.eye.z * k}});
   });
 }
 function renderFig(el, fig){
-  // pass the whole figure so slider frames are registered (data/layout alone drops them);
-  // wheel zoom is off so scrolling the page never zooms a plot
+  // pass the whole figure so slider frames are registered (data/layout alone drops them)
   return Plotly.newPlot(el, {data: fig.data, layout: fig.layout, frames: fig.frames || []},
-    {responsive:true, displaylogo:false, scrollZoom:false,
+    {responsive:true, displaylogo:false, scrollZoom:true,
      modeBarButtonsToRemove:['toImage','resetCameraLastSave3d','hoverClosest3d']}).then(() => { clampZoom(el); return el; });
 }
 function figFrom(id){ return JSON.parse(document.getElementById(id).textContent); }
@@ -222,12 +229,12 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 {% if r.probe %}
 <div class="fig eager-fig" id="fig-probe" data-fig="json-probe"></div>
 <script type="application/json" id="json-probe">{{ r.probe.figure_json|safe }}</script>
-<p class="small mono">Fourier-probe view · drag to rotate · zoom in with the toolbar's zoom tool (wheel zoom is off, and you cannot zoom out past this view) · hover for the value</p>
+<p class="small mono">Fourier-probe view · drag to rotate · scroll to zoom (between this view and 3× closer; at either limit the page scrolls instead) · hover for the value</p>
 <p class="small">Why not PCA here? PCA shows the three directions the points spread along <em>most</em>, and for these prompts that is the size of the numbers and which tokens they use, so the pattern the paper is about (the last digit going round in a circle) is buried under it. A probe is a direction found by training instead: we fit a linear readout on the block activations to predict where each prompt's <code>{{ r.probe.label }}</code> sits on a ones-digit clock (cos and sin of 2π·value/10) and how big it is, then plot each prompt where that readout puts it, using held-out predictions so nothing is fitted to itself. If the circle really is in the activations the readout finds it (circle R² {{ '%.2f'|format(r.probe.r2_circle) }}, magnitude R² {{ '%.2f'|format(r.probe.r2_linear) }}); if it is not, the points stay a blob. Every slider on this page uses the same probe view (fitted per layer, per checkpoint, or on the clean model and reused), so the frames stay readable. The raw PCA, which is a blob as the paper reports, is in the details at the bottom.</p>
 {% else %}
 <div class="fig eager-fig" id="fig-main" data-fig="json-main"></div>
 <script type="application/json" id="json-main">{{ r.figure_json|safe }}</script>
-<p class="small mono">drag to rotate · zoom in with the toolbar's zoom tool (wheel zoom is off, and you cannot zoom out past this view) · hover for the prompt</p>
+<p class="small mono">drag to rotate · scroll to zoom (between this view and 3× closer; at either limit the page scrolls instead) · hover for the prompt</p>
 {% endif %}
 
 {% if r.depth and r.depth.pcs %}

@@ -330,9 +330,9 @@ numbers_1_100) every slider now shows the probe view rather than a PCA: the laye
 probe per depth (held-out predictions), the ablation and neuron sliders apply one probe fitted on
 the clean model to every frame (the probe analogue of a fixed PCA basis), and the checkpoint
 slider fits a probe per checkpoint. Slider frames carry a caption saying what the step did (for
-the ablation: the condition and the share of MLP activations removed). Wheel zoom is disabled on
-all plots and the camera cannot be moved farther out than the starting view (the toolbar's zoom
-tool still zooms in). `src/manifolds/analysis/probe.py`, `site/build.py`.
+the ablation: the condition and the share of MLP activations removed). The wheel zooms a plot only
+between its starting view and 3× closer; at either limit the wheel event is handed back to the
+page, so scrolling never gets stuck on a plot. `src/manifolds/analysis/probe.py`, `site/build.py`.
 
 ### What this says about the debate
 
