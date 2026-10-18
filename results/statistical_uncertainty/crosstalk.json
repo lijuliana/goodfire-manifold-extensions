@@ -1,0 +1,312 @@
+{
+ "name": "statistical_uncertainty",
+ "layer": 19,
+ "n_prompts": 300,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "partial",
+  "shape_metric": 0.5326760899857255,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "failed",
+   "shape_metric": 0.21329352666406637,
+   "metrics": {
+    "spearman_best_direction": 0.2449671663018478,
+    "knn_r2": 0.18161988702628493
+   },
+   "knn_overlap": 0.6426666666666667,
+   "relative_move": 0.8093588636319574,
+   "top1_agreement": 0.6166666666666667,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.08822347130160951,
+   "move_fraction_in_prefix_domain_subspace": 0.0025218806695193052,
+   "move_fraction_in_null_subspace": 0.004245028831064701,
+   "example": "The hex code #80b918 is for the color green. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "failed",
+   "shape_metric": 0.324750355852057,
+   "metrics": {
+    "spearman_best_direction": 0.44931343681596453,
+    "knn_r2": 0.20018727488814952
+   },
+   "knn_overlap": 0.485,
+   "relative_move": 0.8534199206339105,
+   "top1_agreement": 0.5833333333333334,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.03533235076774464,
+   "move_fraction_in_prefix_domain_subspace": 0.0013562641106545925,
+   "move_fraction_in_null_subspace": 0.0030141761526465416,
+   "example": "Today is Wednesday. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "Today is Wednesday. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "Today is Wednesday. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "Today is Wednesday. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "failed",
+   "shape_metric": 0.2976369564253053,
+   "metrics": {
+    "spearman_best_direction": 0.44471338570428565,
+    "knn_r2": 0.150560527146325
+   },
+   "knn_overlap": 0.5063333333333333,
+   "relative_move": 0.8384151901578019,
+   "top1_agreement": 0.5866666666666667,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.03867993218270412,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.0030406119767576456,
+   "example": "The festival is in September. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "The festival is in September. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": " mm",
+     "answer": null
+    },
+    {
+     "prompt": "The harvest is in October. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The festival is in September. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "failed",
+   "shape_metric": 0.46909143064170783,
+   "metrics": {
+    "spearman_best_direction": 0.5985808731208124,
+    "knn_r2": 0.33960198816260323
+   },
+   "knn_overlap": 0.6890000000000001,
+   "relative_move": 0.5463987001275454,
+   "top1_agreement": 0.6733333333333333,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.05012992815244075,
+   "move_fraction_in_prefix_domain_subspace": 0.0034435181878507137,
+   "move_fraction_in_null_subspace": 0.002920334693044424,
+   "example": "He is 82 years old. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "He is 82 years old. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": " mg",
+     "answer": null
+    },
+    {
+     "prompt": "She is 56 years old. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    },
+    {
+     "prompt": "She is 56 years old. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "failed",
+   "shape_metric": 0.3538566889767749,
+   "metrics": {
+    "spearman_best_direction": 0.4443947154968388,
+    "knn_r2": 0.2633186624567111
+   },
+   "knn_overlap": 0.5933333333333334,
+   "relative_move": 0.7957343960564267,
+   "top1_agreement": 0.7,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.04997303816201723,
+   "move_fraction_in_prefix_domain_subspace": 0.002926694229245186,
+   "move_fraction_in_null_subspace": 0.0051732370629906654,
+   "example": "The city of Oslo is in Norway. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "The city of Oslo is in Norway. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": " ng",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Lima is in Peru. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Lagos is in Nigeria. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "failed",
+   "shape_metric": 0.29585223400795707,
+   "metrics": {
+    "spearman_best_direction": 0.4566739630440338,
+    "knn_r2": 0.13503050497188038
+   },
+   "knn_overlap": 0.41600000000000004,
+   "relative_move": 0.9023437962596484,
+   "top1_agreement": 0.49333333333333335,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.05258425655288718,
+   "move_fraction_in_prefix_domain_subspace": 0.0035739040467888117,
+   "move_fraction_in_null_subspace": 0.003026867052540183,
+   "example": "The debate covered healthcare and the minimum wage. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "The debate covered healthcare and the minimum wage. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The governor signed a bill on gun regulation. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The governor signed a bill on gun regulation. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "failed",
+   "shape_metric": 0.3865531556470796,
+   "metrics": {
+    "spearman_best_direction": 0.4749097212191246,
+    "knn_r2": 0.29819659007503463
+   },
+   "knn_overlap": 0.7656666666666666,
+   "relative_move": 0.4903091670620323,
+   "top1_agreement": 0.6733333333333333,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.09063631286361451,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.003884881269186735,
+   "example": "63+9=72. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "63+9=72. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": " mg",
+     "answer": null
+    },
+    {
+     "prompt": "35+46=81. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    },
+    {
+     "prompt": "22+58=80. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "failed",
+   "shape_metric": 0.3220764356155954,
+   "metrics": {
+    "spearman_best_direction": 0.4489076545294947,
+    "knn_r2": 0.1952452167016961
+   },
+   "knn_overlap": 0.46966666666666657,
+   "relative_move": 0.7297708437627094,
+   "top1_agreement": 0.66,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.045084548227110305,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.0034811601508408785,
+   "example": "This paragraph continues the text. The mean value was 540 +/- 16.0",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. The mean value was 540 +/- 16.0",
+     "clean_top1": " mg",
+     "prefixed_top1": " mg",
+     "answer": null
+    },
+    {
+     "prompt": "This paragraph continues the text. The patients' mean age was 120 +/- 1.01 years",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    },
+    {
+     "prompt": "The package arrived without any delay. Mean heart rate increased to 3.2 +/- 1.89 beats per minute",
+     "clean_top1": " (",
+     "prefixed_top1": " (",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 47.3
+}

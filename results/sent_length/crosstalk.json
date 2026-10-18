@@ -1,0 +1,312 @@
+{
+ "name": "sent_length",
+ "layer": 19,
+ "n_prompts": 800,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.7754783902058591,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "matches",
+   "shape_metric": 0.7645503122233532,
+   "metrics": {
+    "spearman_best_direction": 0.814145168811756,
+    "knn_r2": 0.7149554556349503
+   },
+   "knn_overlap": 0.32762500000000006,
+   "relative_move": 0.8552067044189097,
+   "top1_agreement": 0.55625,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.10720424064004896,
+   "move_fraction_in_prefix_domain_subspace": 0.0032654290553182364,
+   "move_fraction_in_null_subspace": 0.010885657742619514,
+   "example": "The hex code #80b918 is for the color green. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "5",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "matches",
+   "shape_metric": 0.7579846821997103,
+   "metrics": {
+    "spearman_best_direction": 0.8067047579418725,
+    "knn_r2": 0.7092646064575481
+   },
+   "knn_overlap": 0.401875,
+   "relative_move": 0.6644623087594612,
+   "top1_agreement": 0.65,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.1354756139464954,
+   "move_fraction_in_prefix_domain_subspace": 0.0010336249833926558,
+   "move_fraction_in_null_subspace": 0.011938931420445442,
+   "example": "They rest on Sunday. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "They rest on Sunday. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "The meeting is on Friday. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "5",
+     "answer": null
+    },
+    {
+     "prompt": "It happened on a Monday. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "partial",
+   "shape_metric": 0.730113404173438,
+   "metrics": {
+    "spearman_best_direction": 0.7866656924893408,
+    "knn_r2": 0.6735611158575351
+   },
+   "knn_overlap": 0.4241249999999999,
+   "relative_move": 0.6536086929579318,
+   "top1_agreement": 0.635,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.1290009141671732,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.011368341743946075,
+   "example": "The harvest is in October. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "The harvest is in October. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "The harvest is in October. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "5",
+     "answer": null
+    },
+    {
+     "prompt": "The festival is in September. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.7701518215668666,
+   "metrics": {
+    "spearman_best_direction": 0.8081088890128998,
+    "knn_r2": 0.7321947541208333
+   },
+   "knn_overlap": 0.40537500000000004,
+   "relative_move": 0.7227908742819417,
+   "top1_agreement": 0.605,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.1259435444124125,
+   "move_fraction_in_prefix_domain_subspace": 0.013488922268152237,
+   "move_fraction_in_null_subspace": 0.01103757694363594,
+   "example": "He is 82 years old. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "He is 82 years old. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "She is 7 years old. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "5",
+     "answer": null
+    },
+    {
+     "prompt": "She is 7 years old. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "partial",
+   "shape_metric": 0.7102465299552951,
+   "metrics": {
+    "spearman_best_direction": 0.7756853950149837,
+    "knn_r2": 0.6448076648956066
+   },
+   "knn_overlap": 0.37325,
+   "relative_move": 0.735055597978424,
+   "top1_agreement": 0.5875,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.12692600770711476,
+   "move_fraction_in_prefix_domain_subspace": 0.0020146851893514395,
+   "move_fraction_in_null_subspace": 0.011220266111195087,
+   "example": "The city of Lagos is in Nigeria. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "The city of Lagos is in Nigeria. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Oslo is in Norway. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "5",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Perth is in Australia. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "partial",
+   "shape_metric": 0.7178664353156126,
+   "metrics": {
+    "spearman_best_direction": 0.7905942871869233,
+    "knn_r2": 0.6451385834443017
+   },
+   "knn_overlap": 0.34525000000000006,
+   "relative_move": 0.7666170167898837,
+   "top1_agreement": 0.5975,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.12649557053465582,
+   "move_fraction_in_prefix_domain_subspace": 0.007914058864116669,
+   "move_fraction_in_null_subspace": 0.0109557518735528,
+   "example": "The candidate spoke about tax cuts and welfare. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "The mayor announced a climate and energy plan. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "00",
+     "answer": null
+    },
+    {
+     "prompt": "Protesters gathered over abortion rights. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "matches",
+   "shape_metric": 0.7588443877244226,
+   "metrics": {
+    "spearman_best_direction": 0.8075009619789344,
+    "knn_r2": 0.7101878134699108
+   },
+   "knn_overlap": 0.43775,
+   "relative_move": 0.6349798477193481,
+   "top1_agreement": 0.6075,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.12817759676438686,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.01089878287166357,
+   "example": "91+6=97. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "91+6=97. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "48+37=85. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "5",
+     "answer": null
+    },
+    {
+     "prompt": "91+6=97. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "matches",
+   "shape_metric": 0.7574731352873909,
+   "metrics": {
+    "spearman_best_direction": 0.8132878075658944,
+    "knn_r2": 0.7016584630088873
+   },
+   "knn_overlap": 0.3727500000000001,
+   "relative_move": 0.6789950082568292,
+   "top1_agreement": 0.62375,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.12851225021835408,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.011055215261876583,
+   "example": "Please see the note below. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+   "examples": [
+    {
+     "prompt": "Please see the note below. Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise .",
+     "clean_top1": " What",
+     "prefixed_top1": " What",
+     "answer": null
+    },
+    {
+     "prompt": "The door at the end of the hall is open. M1842 .69 cal smoothbore ( percussion ) 357.",
+     "clean_top1": "5",
+     "prefixed_top1": "5",
+     "answer": null
+    },
+    {
+     "prompt": "This paragraph continues the text. Hall 's carbines 267.",
+     "clean_top1": " Hall",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 234.5
+}

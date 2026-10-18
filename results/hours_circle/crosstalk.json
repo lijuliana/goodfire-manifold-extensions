@@ -1,0 +1,312 @@
+{
+ "name": "hours_circle",
+ "layer": 19,
+ "n_prompts": 800,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "partial",
+  "shape_metric": 0.8728566752425444,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "partial",
+   "shape_metric": 0.8879031862856672,
+   "metrics": {
+    "cyclic_order": 0.9166666666666666,
+    "circular_corr": 0.8591397059046679
+   },
+   "knn_overlap": 0.31125,
+   "relative_move": 0.36510195959432934,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.1579635709979005,
+   "move_fraction_in_prefix_domain_subspace": 0.0014334236038848758,
+   "move_fraction_in_null_subspace": 0.013259291648864746,
+   "example": "The hex code #80b918 is for the color green. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "partial",
+   "shape_metric": 0.788883616997814,
+   "metrics": {
+    "cyclic_order": 0.75,
+    "circular_corr": 0.8277672339956279
+   },
+   "knn_overlap": 0.33599999999999997,
+   "relative_move": 0.2559903353273129,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.1653641672750034,
+   "move_fraction_in_prefix_domain_subspace": 0.004844652488827705,
+   "move_fraction_in_null_subspace": 0.014485575258731842,
+   "example": "They rest on Sunday. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "They rest on Sunday. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The meeting is on Friday. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "It happened on a Monday. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "partial",
+   "shape_metric": 0.8378274640656588,
+   "metrics": {
+    "cyclic_order": 0.8333333333333334,
+    "circular_corr": 0.8423215947979842
+   },
+   "knn_overlap": 0.32849999999999996,
+   "relative_move": 0.2643872073589412,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.10345030883634766,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.008351250551640987,
+   "example": "The harvest is in October. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "The harvest is in October. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The harvest is in October. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The festival is in September. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "partial",
+   "shape_metric": 0.8071174671287045,
+   "metrics": {
+    "cyclic_order": 0.7916666666666666,
+    "circular_corr": 0.8225682675907423
+   },
+   "knn_overlap": 0.32025,
+   "relative_move": 0.2383159769505411,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.12537513454147386,
+   "move_fraction_in_prefix_domain_subspace": 0.001468281145207584,
+   "move_fraction_in_null_subspace": 0.009700578637421131,
+   "example": "He is 82 years old. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "He is 82 years old. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "She is 7 years old. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "She is 7 years old. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "partial",
+   "shape_metric": 0.8897956083353277,
+   "metrics": {
+    "cyclic_order": 0.9166666666666666,
+    "circular_corr": 0.8629245500039887
+   },
+   "knn_overlap": 0.34149999999999997,
+   "relative_move": 0.28534026536583046,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.11348892957107669,
+   "move_fraction_in_prefix_domain_subspace": 0.001493218238465488,
+   "move_fraction_in_null_subspace": 0.009882797487080097,
+   "example": "The city of Lagos is in Nigeria. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "The city of Lagos is in Nigeria. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Oslo is in Norway. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Perth is in Australia. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "failed",
+   "shape_metric": 0.7553279641092038,
+   "metrics": {
+    "cyclic_order": 0.6666666666666666,
+    "circular_corr": 0.8439892615517409
+   },
+   "knn_overlap": 0.339875,
+   "relative_move": 0.3266935829316799,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.06176930337628944,
+   "move_fraction_in_prefix_domain_subspace": 0.004566893447190523,
+   "move_fraction_in_null_subspace": 0.0058767362497746944,
+   "example": "The candidate spoke about tax cuts and welfare. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The mayor announced a climate and energy plan. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "Protesters gathered over abortion rights. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "partial",
+   "shape_metric": 0.8787472318695784,
+   "metrics": {
+    "cyclic_order": 0.9166666666666666,
+    "circular_corr": 0.8408277970724902
+   },
+   "knn_overlap": 0.324625,
+   "relative_move": 0.2686849633920698,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.0683141473560497,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.005739434156566858,
+   "example": "91+6=97. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "91+6=97. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "48+37=85. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "91+6=97. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "partial",
+   "shape_metric": 0.8553262782805783,
+   "metrics": {
+    "cyclic_order": 0.875,
+    "circular_corr": 0.8356525565611566
+   },
+   "knn_overlap": 0.302625,
+   "relative_move": 0.2517652616892968,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.0732540085654838,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.006702899932861328,
+   "example": "Please see the note below. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+   "examples": [
+    {
+     "prompt": "Please see the note below. Q: In 24-hour time, it is now 00:00. What time will it be in one hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "The door at the end of the hall is open. Q: In 24-hour time, it is now 00:00. What time will it be in two hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    },
+    {
+     "prompt": "This paragraph continues the text. Q: In 24-hour time, it is now 00:00. What time will it be in three hours?\n A: In 24-hour time, it will be",
+     "clean_top1": " ",
+     "prefixed_top1": " ",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 135.3
+}

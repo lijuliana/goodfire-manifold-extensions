@@ -334,6 +334,164 @@ the ablation: the condition and the share of MLP activations removed). The wheel
 between its starting view and 3× closer; at either limit the wheel event is handed back to the
 page, so scrolling never gets stuck on a plot. `src/manifolds/analysis/probe.py`, `site/build.py`.
 
+### Site revision of 2026-10-18: archive, order, and every method on every page
+
+- Archived for now (hidden from the site and from default runs; results stay in `results/`):
+  adverbs_pace, bible_verses, chemical_bonds, formality, scotus_cases (`archived: true` in
+  `manifest.yaml`). The gallery now opens with days, age, colors, political bias, temperature.
+- Correction: the years steering plot published until this revision was degenerate. Llama 3
+  writes " 1899" as a space token followed by "189" and "9", so the paper's century targets
+  "17"…"21" all resolved to the same first token (the bare space) and the five curves were the
+  same curve. The readout is now the summed probability of the 3-digit chunks of each century
+  ("170"…"179" etc.) after the suffix "-01-01, which year is it? It is ". All other steering
+  targets were checked for first-token collisions with the Llama tokenizer; none collide.
+- Steering added for political bias (targets conservative / neutral / liberal) and for the
+  weekday and month circles. Those two circles are read at the concept word, so they are steered
+  there and the answer is read at the last token. These targets are ours, not the paper's.
+- Layer-18 Llama Scope SAE (`Llama3_1-8B-Base-L18R-8x`) tiling for the four layer-18 pages.
+- The four debate extensions now run on all 21 pages (results below).
+
+### All 21 pages (2026-10-18)
+
+The four debate extensions now run on every non-archived page (14 more pages on an AWS g5.2xlarge,
+A10G 24 GB, because no g6e capacity was available; same code, smaller batches). Tables are
+generated from `results/` by `scripts/report_tables.py`.
+
+Weak-activation ablation. X is the threshold in % of each neuron's max ("–" = never crossed
+within X ≤ 10%):
+
+| manifold | read at | task (clean) | shape halves at X | k-NN < ½ at X | task halves at X | shape at X = 5% |
+|---|---|---|---|---|---|---|
+| days | last token | – | 10 | 10 | – | 0.69 of 0.99 |
+| age | last token | – | – | 10 | – | 0.96 of 0.98 |
+| colors | last token | hue-family naming (60%) | 1 | 1 | 3 | 0.31 of 0.93 |
+| political_bias | last token | lean (conservative vs liberal) (96%) | 3 | 1 | – | 0.13 of 0.92 |
+| temperature | last token | – | – | – | – | 0.98 of 0.99 |
+| weekdays_circle | concept word | weekday arithmetic (70%) | 7.5 | 10 | 3 | 0.93 of 0.99 |
+| years | last token | – | – | 10 | – | 0.47 of 0.86 |
+| geography | last token | country recall (fact) (81%) | 5 | 5 | 3 | 0.26 of 0.61 |
+| addition_sum_fourier | last token | addition (exact sum) (95%) | 5 | 5 | 5 | 0.40 of 0.92 |
+| months_last | last token | month arithmetic (65%) | 3 | 5 | 3 | -0.05 of 0.89 |
+| months_circle | concept word | month arithmetic (65%) | 7.5 | 10 | 3 | 0.85 of 0.86 |
+| hours_circle | concept word | – | – | – | – | 0.62 of 0.88 |
+| emotions_valence_arousal | last token | – | 5 | 5 | – | 0.24 of 0.54 |
+| numbers_1_100 | last token | – | 10 | 10 | – | 0.84 of 0.90 |
+| weekdays_last | last token | weekday arithmetic (70%) | 3 | 7.5 | 3 | -0.09 of 0.88 |
+| hours_last | last token | – | 3 | 3 | – | -0.01 of 0.71 |
+| ordinals | last token | – | – | 5 | – | 0.72 of 0.85 |
+| classical_composers | last token | – | 5 | 3 | – | 0.34 of 0.94 |
+| statistical_uncertainty | last token | – | 5 | 7.5 | – | 0.24 of 0.53 |
+| slant_rhymes_ore | last token | – | 10 | 5 | – | 0.69 of 0.79 |
+| sent_length | last token | – | – | 1.5 | – | 0.71 of 0.78 |
+
+Reading. Across 21 manifolds the split is by what the manifold is, not by whether it is
+continuous. Structures read off an input word survive: the concept-word weekday, month and hour
+circles, and the number lines of age, temperature and 1–100, keep their shape to X = 5–10%, past
+the point where fact recall halves (X = 5%). Structures the model computes at the last token
+break earlier: the base-10 features of month, weekday and hour arithmetic and of addition fail
+at X = 3–5%, hue from a hex code at 1%. The month pair shows it most directly: the circle on the
+month word survives to 7.5%, while month-arithmetic accuracy and the computed last-token
+features both collapse at 3%.
+
+Neuron writers (top 256 zeroed, against 256 random neurons of the same blocks):
+
+| manifold | top writers' tuning η² (random) | top-256 writers zeroed: shape (random 256) | k-NN kept (random) | task (random) |
+|---|---|---|---|---|
+| days | 0.96 (0.33) | 0.27 of 0.99 (0.99) | 0.58 (0.99) | – |
+| age | 0.84 (0.69) | 0.97 of 0.98 (0.98) | 0.92 (0.97) | – |
+| colors | 0.60 (0.17) | 0.94 of 0.93 (0.93) | 0.68 (0.87) | 61% (60%) |
+| political_bias | 0.62 (0.07) | 0.69 of 0.92 (0.92) | 0.59 (0.84) | 92% (96%) |
+| temperature | 0.98 (0.73) | 0.97 of 0.99 (0.99) | 0.80 (0.97) | – |
+| weekdays_circle | 0.99 (0.73) | 0.62 of 0.99 (0.99) | 0.86 (0.98) | 26% (73%) |
+| years | 0.09 (0.31) | 0.48 of 0.86 (0.89) | 0.52 (0.97) | – |
+| geography | 0.17 (0.26) | 0.61 of 0.60 (0.59) | 0.85 (0.97) | 59% (81%) |
+| addition_sum_fourier | 0.27 (0.15) | 0.38 of 0.92 (0.91) | 0.49 (0.96) | 3% (94%) |
+| months_last | 0.34 (0.29) | 0.33 of 0.89 (0.88) | 0.49 (0.97) | 11% (62%) |
+| months_circle | 0.92 (0.64) | 0.33 of 0.86 (0.86) | 0.90 (0.98) | 37% (67%) |
+| hours_circle | 0.87 (0.62) | 0.67 of 0.92 (0.88) | 1.00 (1.00) | – |
+| emotions_valence_arousal | 0.16 (0.07) | 0.65 of 0.54 (0.53) | 0.65 (0.96) | – |
+| numbers_1_100 | 0.90 (0.35) | 0.81 of 0.90 (0.90) | 0.53 (0.98) | – |
+| weekdays_last | 0.39 (0.28) | 0.22 of 0.88 (0.88) | 0.62 (0.99) | 15% (68%) |
+| hours_last | 0.27 (0.27) | 0.34 of 0.69 (0.66) | 0.60 (0.96) | – |
+| ordinals | 0.56 (0.45) | 0.59 of 0.85 (0.84) | 0.70 (0.96) | – |
+| classical_composers | 0.81 (0.34) | 0.72 of 0.94 (0.93) | 0.63 (0.95) | – |
+| statistical_uncertainty | 0.05 (0.06) | 0.40 of 0.53 (0.55) | 0.67 (0.97) | – |
+| slant_rhymes_ore | 0.17 (0.05) | 0.60 of 0.79 (0.78) | 0.51 (0.96) | – |
+| sent_length | 0.25 (0.11) | 0.67 of 0.80 (0.80) | 0.37 (0.93) | – |
+
+Reading. The cyclic and calendar manifolds have the tiling the "clean" picture predicts (top
+writers with η² ≈ 0.9–1.0, one day or month each), and zeroing them breaks the manifold and its
+task while random neurons do nothing: days 0.99 → 0.27, weekday circle task 73% → 26%, month
+circle task 67% → 37%, the last-token weekday and month features and addition likewise. The number
+lines (age, temperature, numbers) also have sharply tuned writers but survive their removal, so
+they are carried redundantly.
+
+Crosstalk:
+
+| manifold | neutral prefix: k-NN kept | most disruptive domain | its k-NN kept | max move into a prefix domain's subspace (random) |
+|---|---|---|---|---|
+| days | 0.80 | colors | 0.61 | 0.9% (politics) (0.6%) |
+| age | 0.39 | politics | 0.33 | 0.8% (politics) (0.7%) |
+| colors | 0.33 | weekdays | 0.35 | 1.1% (politics) (0.5%) |
+| political_bias | 0.12 | weekdays | 0.14 | 1.1% (colors) (0.8%) |
+| temperature | 0.46 | geography | 0.37 | 2.2% (colors) (1.4%) |
+| weekdays_circle | 0.88 | colors | 0.86 | 1.8% (politics) (0.7%) |
+| years | 0.73 | months | 0.70 | 0.6% (politics) (0.5%) |
+| geography | 0.91 | politics | 0.88 | 0.4% (politics) (0.3%) |
+| addition_sum_fourier | 0.70 | age | 0.68 | 1.2% (months) (0.5%) |
+| months_last | 0.43 | politics | 0.35 | 1.6% (arithmetic) (1.1%) |
+| months_circle | 0.87 | politics | 0.82 | 0.8% (weekdays) (0.7%) |
+| hours_circle | 0.30 | colors | 0.31 | 0.5% (weekdays) (1.4%) |
+| emotions_valence_arousal | 0.27 | politics | 0.14 | 1.7% (age) (1.1%) |
+| numbers_1_100 | 0.77 | age | 0.68 | 0.5% (age) (0.6%) |
+| weekdays_last | 0.68 | politics | 0.44 | 10.7% (months) (1.5%) |
+| hours_last | 0.71 | geography | 0.71 | 2.3% (months) (0.7%) |
+| ordinals | 0.50 | politics | 0.52 | 0.6% (politics) (0.5%) |
+| classical_composers | 0.63 | age | 0.37 | 0.7% (age) (0.7%) |
+| statistical_uncertainty | 0.47 | politics | 0.42 | 0.4% (politics) (0.5%) |
+| slant_rhymes_ore | 0.67 | months | 0.62 | 0.4% (geography) (0.5%) |
+| sent_length | 0.37 | colors | 0.33 | 1.3% (age) (1.2%) |
+
+Reading. No page shows concept-specific interference: the most disruptive domain is within a
+few points of the neutral prefix everywhere, and the displacement into the prefix domain's
+subspace is at the random level. The single exception, the last-token weekday features moving
+10.7% into the months subspace, is the shared arithmetic subspace those two manifolds already
+have (overlap 0.30), not interference between unrelated concepts.
+
+Formation in OLMo-2 1B (shape metric at the display position; "–" = below 0.1):
+
+| manifold | display position | 0 | 1B | 21B | 105B | 399B | 1.2T | 4T | final | first passes | task (final) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| days | 4 of 16 | 0.19 | 0.17 | 1.00 | 1.00 | 1.00 | 1.00 | 0.99 | 0.99 | 21B | – |
+| age | 16 of 16 | – | 0.23 | 0.96 | 0.98 | 0.98 | 0.98 | 0.99 | 0.96 | 21B | – |
+| colors | 12 of 16 | – | 0.22 | 0.40 | 0.41 | 0.38 | 0.26 | 0.38 | 0.46 | never | 9% |
+| political_bias | 16 of 16 | – | – | – | – | 0.36 | 0.43 | 0.53 | – | never | 73% |
+| temperature | 7 of 16 | 0.49 | 0.42 | 0.97 | 0.98 | 0.97 | 0.98 | 0.98 | 0.99 | 21B | – |
+| weekdays_circle | 12 of 16 | 0.36 | – | 0.99 | 0.99 | 1.00 | 0.99 | 0.99 | 0.99 | 21B | 14% |
+| years | 1 of 16 | 0.11 | 0.16 | 0.47 | 0.49 | 0.52 | 0.91 | 0.90 | 0.91 | 1196B | – |
+| geography | 16 of 16 | 0.13 | – | 0.12 | 0.11 | 0.23 | 0.20 | 0.27 | 0.12 | never | 1% |
+| addition_sum_fourier | 15 of 16 | – | – | – | – | – | 0.12 | 0.15 | 0.55 | final | 16% |
+| months_last | 16 of 16 | – | – | 0.26 | 0.32 | 0.37 | 0.68 | 0.73 | 0.14 | 1196B | 8% |
+| months_circle | 12 of 16 | 0.10 | 0.34 | 1.00 | 0.99 | 0.99 | 0.99 | 0.99 | 0.99 | 21B | 8% |
+| hours_circle | 0 of 16 | 0.18 | 0.23 | 0.69 | 0.94 | 0.89 | 0.93 | 0.95 | 0.90 | 105B | – |
+| emotions_valence_arousal | 8 of 16 | – | 0.17 | 0.18 | 0.47 | 0.57 | 0.69 | 0.53 | 0.23 | never | – |
+| numbers_1_100 | 12 of 16 | – | – | 0.83 | 0.86 | 0.90 | 0.90 | 0.91 | 0.95 | 21B | – |
+| weekdays_last | 16 of 16 | – | – | 0.13 | 0.27 | 0.18 | 0.24 | 0.23 | 0.20 | never | 15% |
+| hours_last | 16 of 16 | – | – | – | – | – | 0.15 | 0.12 | – | never | – |
+| ordinals | 16 of 16 | 0.23 | 0.16 | 0.64 | 0.49 | 0.63 | 0.61 | 0.50 | 0.79 | final | – |
+| classical_composers | 13 of 16 | – | 0.20 | 0.31 | 0.53 | 0.76 | 0.74 | 0.82 | 0.88 | 210B | – |
+| statistical_uncertainty | 4 of 16 | – | – | 0.25 | 0.28 | 0.26 | 0.28 | 0.37 | 0.22 | never | – |
+| slant_rhymes_ore | 14 of 16 | – | – | 0.50 | 0.55 | 0.61 | 0.65 | 0.67 | 0.71 | 797B | – |
+| sent_length | 8 of 16 | 0.70 | 0.75 | 0.74 | 0.71 | 0.74 | 0.75 | 0.79 | 0.81 | 1B | – |
+
+Reading. Input-word structures form first and completely: days, age, temperature, the weekday and
+month circles and the 1–100 number line are all at their final quality by 21B tokens, the first
+checkpoint after 1B. Others form gradually (composers by birth year from 210B, the hour circle by
+105B, years by 1.2T) and some never pass at 1B (colours, geography, political lean, the last-token
+weekday and hour features). Sentence length is already readable at initialization-scale
+checkpoints (0.70 at step 0), which says the sentence-length signal is largely a property of the
+input rather than something learned.
+
 ### What this says about the debate
 
 - Weak activations are cheap to remove on Llama-3.1-8B exactly as on Qwen3-1.7B, and the cost
@@ -374,4 +532,6 @@ restarted once with a reduced layer set). `g6e.xlarge` had no capacity in any us
 launch time. A second `g6e.2xlarge` session on 2026-10-18 (1.35 billed hours including the wait for the
 rebuilt code, ≈ $3.0)
 rebuilt the sliders of the Fourier-probe manifolds as probe views and recaptured the OLMo
-checkpoint states. No GCP GPU time was used; the Azure VM stayed deallocated.
+checkpoint states. A third session on 2026-10-18 brought the 14 remaining pages up to the full set of
+methods on a `g5.2xlarge` (A10G 24 GB; no g6e capacity in any us-east-1 zone): 2.51 billed hours,
+≈ $3.0. No GCP GPU time was used; the Azure VM stayed deallocated.

@@ -1,0 +1,275 @@
+{
+ "name": "weekdays_last",
+ "layer": 18,
+ "n_prompts": 98,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.8838884651287029,
+  "task_accuracy": 0.7040816326530612,
+  "task": "weekday arithmetic"
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "matches",
+   "shape_metric": 0.729223333024739,
+   "metrics": {
+    "probe_r2_period_10": 0.8345873890642489,
+    "probe_r2_period_5": 0.623859276985229
+   },
+   "knn_overlap": 0.8367346938775512,
+   "relative_move": 0.5260093051908108,
+   "top1_agreement": 0.5204081632653061,
+   "task_accuracy": 0.5510204081632653,
+   "move_fraction_in_own_subspace": 0.14233883988046606,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.007974008098244667,
+   "example": "The hex code #80b918 is for the color green. Q: What day is one days after Monday?\nA:",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. Q: What day is one days after Monday?\nA:",
+     "clean_top1": " Tuesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Tuesday"
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Q: What day is two days after Monday?\nA:",
+     "clean_top1": " Wednesday",
+     "prefixed_top1": " Wednesday",
+     "answer": " Wednesday"
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Q: What day is three days after Monday?\nA:",
+     "clean_top1": " Thursday",
+     "prefixed_top1": " Thursday",
+     "answer": " Thursday"
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "partial",
+   "shape_metric": 0.5670995127885095,
+   "metrics": {
+    "probe_r2_period_10": 0.6497871630009792,
+    "probe_r2_period_5": 0.48441186257603963
+   },
+   "knn_overlap": 0.7183673469387756,
+   "relative_move": 0.5553716089194708,
+   "top1_agreement": 0.5102040816326531,
+   "task_accuracy": 0.32653061224489793,
+   "move_fraction_in_own_subspace": 0.2624806118418845,
+   "move_fraction_in_prefix_domain_subspace": 0.10652868449687958,
+   "move_fraction_in_null_subspace": 0.012482894584536552,
+   "example": "Rent is due in November. Q: What day is one days after Monday?\nA:",
+   "examples": [
+    {
+     "prompt": "Rent is due in November. Q: What day is one days after Monday?\nA:",
+     "clean_top1": " Tuesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Tuesday"
+    },
+    {
+     "prompt": "It snowed in January. Q: What day is two days after Monday?\nA:",
+     "clean_top1": " Wednesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Wednesday"
+    },
+    {
+     "prompt": "Rent is due in November. Q: What day is three days after Monday?\nA:",
+     "clean_top1": " Thursday",
+     "prefixed_top1": " Thursday",
+     "answer": " Thursday"
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.6546582099355458,
+   "metrics": {
+    "probe_r2_period_10": 0.713932119355634,
+    "probe_r2_period_5": 0.5953843005154574
+   },
+   "knn_overlap": 0.7551020408163265,
+   "relative_move": 0.5307413748099876,
+   "top1_agreement": 0.5102040816326531,
+   "task_accuracy": 0.3877551020408163,
+   "move_fraction_in_own_subspace": 0.2522599313318174,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.011440498754382133,
+   "example": "He is 82 years old. Q: What day is one days after Monday?\nA:",
+   "examples": [
+    {
+     "prompt": "He is 82 years old. Q: What day is one days after Monday?\nA:",
+     "clean_top1": " Tuesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Tuesday"
+    },
+    {
+     "prompt": "He is 45 years old. Q: What day is two days after Monday?\nA:",
+     "clean_top1": " Wednesday",
+     "prefixed_top1": " Wednesday",
+     "answer": " Wednesday"
+    },
+    {
+     "prompt": "He is 82 years old. Q: What day is three days after Monday?\nA:",
+     "clean_top1": " Thursday",
+     "prefixed_top1": " Thursday",
+     "answer": " Thursday"
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "matches",
+   "shape_metric": 0.6764630283702284,
+   "metrics": {
+    "probe_r2_period_10": 0.7051510036100419,
+    "probe_r2_period_5": 0.647775053130415
+   },
+   "knn_overlap": 0.8102040816326531,
+   "relative_move": 0.48473589061467837,
+   "top1_agreement": 0.673469387755102,
+   "task_accuracy": 0.5408163265306123,
+   "move_fraction_in_own_subspace": 0.19433512410422749,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.009845564141869545,
+   "example": "The city of Oslo is in Norway. Q: What day is one days after Monday?\nA:",
+   "examples": [
+    {
+     "prompt": "The city of Oslo is in Norway. Q: What day is one days after Monday?\nA:",
+     "clean_top1": " Tuesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Tuesday"
+    },
+    {
+     "prompt": "The city of Perth is in Australia. Q: What day is two days after Monday?\nA:",
+     "clean_top1": " Wednesday",
+     "prefixed_top1": " Wednesday",
+     "answer": " Wednesday"
+    },
+    {
+     "prompt": "The city of Perth is in Australia. Q: What day is three days after Monday?\nA:",
+     "clean_top1": " Thursday",
+     "prefixed_top1": " Thursday",
+     "answer": " Thursday"
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "failed",
+   "shape_metric": 0.1330068292193789,
+   "metrics": {
+    "probe_r2_period_10": 0.18681656437017086,
+    "probe_r2_period_5": 0.07919709406858694
+   },
+   "knn_overlap": 0.43673469387755104,
+   "relative_move": 0.7479597899864612,
+   "top1_agreement": 0.2755102040816326,
+   "task_accuracy": 0.1836734693877551,
+   "move_fraction_in_own_subspace": 0.3323842981551638,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.014905421063303947,
+   "example": "The candidate spoke about tax cuts and welfare. Q: What day is one days after Monday?\nA:",
+   "examples": [
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. Q: What day is one days after Monday?\nA:",
+     "clean_top1": " Tuesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Tuesday"
+    },
+    {
+     "prompt": "The senator gave a speech about immigration policy. Q: What day is two days after Monday?\nA:",
+     "clean_top1": " Wednesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Wednesday"
+    },
+    {
+     "prompt": "Protesters gathered over abortion rights. Q: What day is three days after Monday?\nA:",
+     "clean_top1": " Thursday",
+     "prefixed_top1": " Thursday",
+     "answer": " Thursday"
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "matches",
+   "shape_metric": 0.7106575452499421,
+   "metrics": {
+    "probe_r2_period_10": 0.7720770760961089,
+    "probe_r2_period_5": 0.6492380144037753
+   },
+   "knn_overlap": 0.6959183673469388,
+   "relative_move": 0.6071485209302514,
+   "top1_agreement": 0.2755102040816326,
+   "task_accuracy": 0.21428571428571427,
+   "move_fraction_in_own_subspace": 0.3216521146539272,
+   "move_fraction_in_prefix_domain_subspace": 0.007887451909482479,
+   "move_fraction_in_null_subspace": 0.014305578544735909,
+   "example": "48+37=85. Q: What day is one days after Monday?\nA:",
+   "examples": [
+    {
+     "prompt": "48+37=85. Q: What day is one days after Monday?\nA:",
+     "clean_top1": " Tuesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Tuesday"
+    },
+    {
+     "prompt": "91+6=97. Q: What day is two days after Monday?\nA:",
+     "clean_top1": " Wednesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Wednesday"
+    },
+    {
+     "prompt": "22+58=80. Q: What day is three days after Monday?\nA:",
+     "clean_top1": " Thursday",
+     "prefixed_top1": " Wednesday",
+     "answer": " Thursday"
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "partial",
+   "shape_metric": 0.45817620370799794,
+   "metrics": {
+    "probe_r2_period_10": 0.5169545881671536,
+    "probe_r2_period_5": 0.39939781924884227
+   },
+   "knn_overlap": 0.6826530612244895,
+   "relative_move": 0.6124210148416099,
+   "top1_agreement": 0.29591836734693877,
+   "task_accuracy": 0.2653061224489796,
+   "move_fraction_in_own_subspace": 0.2749601695487503,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.012507746927440166,
+   "example": "This paragraph continues the text. Q: What day is one days after Monday?\nA:",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. Q: What day is one days after Monday?\nA:",
+     "clean_top1": " Tuesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Tuesday"
+    },
+    {
+     "prompt": "The door at the end of the hall is open. Q: What day is two days after Monday?\nA:",
+     "clean_top1": " Wednesday",
+     "prefixed_top1": " Tuesday",
+     "answer": " Wednesday"
+    },
+    {
+     "prompt": "Please see the note below. Q: What day is three days after Monday?\nA:",
+     "clean_top1": " Thursday",
+     "prefixed_top1": " Wednesday",
+     "answer": " Thursday"
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 15.2
+}

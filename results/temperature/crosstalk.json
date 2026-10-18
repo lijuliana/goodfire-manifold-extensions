@@ -1,0 +1,312 @@
+{
+ "name": "temperature",
+ "layer": 19,
+ "n_prompts": 150,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.9903601764072404,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "matches",
+   "shape_metric": 0.958386317145155,
+   "metrics": {
+    "spearman_best_direction": 0.9684003733499267,
+    "knn_r2": 0.9483722609403834
+   },
+   "knn_overlap": 0.5206666666666666,
+   "relative_move": 1.414882964871979,
+   "top1_agreement": 0.4533333333333333,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.27533394524847854,
+   "move_fraction_in_prefix_domain_subspace": 0.02239294722676277,
+   "move_fraction_in_null_subspace": 0.013123284094035625,
+   "example": "The hex code #80b918 is for the color green. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "matches",
+   "shape_metric": 0.9709174283425298,
+   "metrics": {
+    "spearman_best_direction": 0.9706582514778436,
+    "knn_r2": 0.971176605207216
+   },
+   "knn_overlap": 0.5359999999999998,
+   "relative_move": 0.5146047596694067,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.23577316714751745,
+   "move_fraction_in_prefix_domain_subspace": 0.0009851126233115792,
+   "move_fraction_in_null_subspace": 0.0036595850251615047,
+   "example": "Today is Wednesday. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "Today is Wednesday. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "It happened on a Monday. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "They rest on Sunday. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "matches",
+   "shape_metric": 0.9522271237631074,
+   "metrics": {
+    "spearman_best_direction": 0.9513116138495045,
+    "knn_r2": 0.9531426336767103
+   },
+   "knn_overlap": 0.4926666666666667,
+   "relative_move": 0.6230285774861045,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.20999850956887958,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.0031796277035027742,
+   "example": "It is the month of July. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "It is the month of July. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "It is the month of July. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "It is the month of July. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.957745603135777,
+   "metrics": {
+    "spearman_best_direction": 0.9509453753500157,
+    "knn_r2": 0.9645458309215382
+   },
+   "knn_overlap": 0.5479999999999999,
+   "relative_move": 0.8167007845452031,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.10300979828449101,
+   "move_fraction_in_prefix_domain_subspace": 0.007265935651957989,
+   "move_fraction_in_null_subspace": 0.005475291050970554,
+   "example": "She is 56 years old. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "She is 56 years old. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "They are 19 years old. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "He is 45 years old. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "matches",
+   "shape_metric": 0.9260354754733204,
+   "metrics": {
+    "spearman_best_direction": 0.9618543046357616,
+    "knn_r2": 0.8902166463108794
+   },
+   "knn_overlap": 0.37266666666666665,
+   "relative_move": 1.723202890975036,
+   "top1_agreement": 0.6533333333333333,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.16002430694386638,
+   "move_fraction_in_prefix_domain_subspace": 0.00656110467389226,
+   "move_fraction_in_null_subspace": 0.013607916422188282,
+   "example": "The city of Oslo is in Norway. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "The city of Oslo is in Norway. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Quito is in Ecuador. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Oslo is in Norway. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "matches",
+   "shape_metric": 0.9555161628321802,
+   "metrics": {
+    "spearman_best_direction": 0.9532921463176142,
+    "knn_r2": 0.9577401793467463
+   },
+   "knn_overlap": 0.5366666666666665,
+   "relative_move": 0.7614132029527797,
+   "top1_agreement": 0.98,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.2485908513808934,
+   "move_fraction_in_prefix_domain_subspace": 0.004115257412195206,
+   "move_fraction_in_null_subspace": 0.0039937449619174,
+   "example": "The senator gave a speech about immigration policy. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "The senator gave a speech about immigration policy. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The debate covered healthcare and the minimum wage. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The governor signed a bill on gun regulation. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "matches",
+   "shape_metric": 0.9780595474457556,
+   "metrics": {
+    "spearman_best_direction": 0.9737268323036579,
+    "knn_r2": 0.9823922625878534
+   },
+   "knn_overlap": 0.6706666666666666,
+   "relative_move": 0.5724010881073235,
+   "top1_agreement": 1.0,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.25844049211407977,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.004586091265082359,
+   "example": "48+37=85. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "48+37=85. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "22+58=80. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "22+58=80. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "matches",
+   "shape_metric": 0.9687096083206856,
+   "metrics": {
+    "spearman_best_direction": 0.9654420196453176,
+    "knn_r2": 0.9719771969960537
+   },
+   "knn_overlap": 0.4579999999999999,
+   "relative_move": 0.5734011843133019,
+   "top1_agreement": 0.8533333333333334,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.18191951145598206,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.003870958462357521,
+   "example": "Please see the note below. Today it's -30 degrees Fahrenheit outside",
+   "examples": [
+    {
+     "prompt": "Please see the note below. Today it's -30 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The package arrived without any delay. Today it's -29 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "Please see the note below. Today it's -28 degrees Fahrenheit outside",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 32.6
+}

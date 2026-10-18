@@ -1,0 +1,304 @@
+{
+ "name": "emotions_valence_arousal",
+ "layer": 19,
+ "n_prompts": 240,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "partial",
+  "shape_metric": 0.5375,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "partial",
+   "shape_metric": 0.12083333333333332,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.12083333333333332
+   },
+   "knn_overlap": 0.18541666666666667,
+   "relative_move": 1.0508865553814462,
+   "top1_agreement": 0.13333333333333333,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.13896193761227804,
+   "move_fraction_in_prefix_domain_subspace": 0.0025262325070798397,
+   "move_fraction_in_null_subspace": 0.011212368495762348,
+   "example": "The hex code #80b918 is for the color green. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " Dmit",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "partial",
+   "shape_metric": 0.2166666666666667,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.2166666666666667
+   },
+   "knn_overlap": 0.2808333333333334,
+   "relative_move": 0.8513929455707365,
+   "top1_agreement": 0.6375,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.10610962715068314,
+   "move_fraction_in_prefix_domain_subspace": 0.0011327617103233933,
+   "move_fraction_in_null_subspace": 0.009477359242737293,
+   "example": "We leave on Saturday. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "We leave on Saturday. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "It happened on a Monday. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " He",
+     "answer": null
+    },
+    {
+     "prompt": "The meeting is on Friday. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "partial",
+   "shape_metric": 0.2291666666666667,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.2291666666666667
+   },
+   "knn_overlap": 0.31916666666666665,
+   "relative_move": 0.8092370654010942,
+   "top1_agreement": 0.6208333333333333,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.08734782252846458,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.008935963734984398,
+   "example": "The festival is in September. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "The festival is in September. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "The trip is in March. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " I",
+     "answer": null
+    },
+    {
+     "prompt": "The trip is in March. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "partial",
+   "shape_metric": 0.1583333333333334,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.1583333333333334
+   },
+   "knn_overlap": 0.21875,
+   "relative_move": 0.9936145344448049,
+   "top1_agreement": 0.5416666666666666,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.10055056647795094,
+   "move_fraction_in_prefix_domain_subspace": 0.016852490603923798,
+   "move_fraction_in_null_subspace": 0.009982150979340076,
+   "example": "He is 45 years old. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "He is 45 years old. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "She is 56 years old. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " The",
+     "answer": null
+    },
+    {
+     "prompt": "She is 7 years old. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "partial",
+   "shape_metric": 0.17083333333333336,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.17083333333333336
+   },
+   "knn_overlap": 0.22291666666666668,
+   "relative_move": 0.9800669450850625,
+   "top1_agreement": 0.25416666666666665,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.10942241191849318,
+   "move_fraction_in_prefix_domain_subspace": 0.0012994222342967987,
+   "move_fraction_in_null_subspace": 0.010001572780311108,
+   "example": "The city of Perth is in Australia. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "The city of Perth is in Australia. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Lagos is in Nigeria. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " The",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Quito is in Ecuador. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "partial",
+   "shape_metric": 0.10416666666666671,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.10416666666666671
+   },
+   "knn_overlap": 0.13541666666666666,
+   "relative_move": 1.1123852100459677,
+   "top1_agreement": 0.20833333333333334,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.11874246196379418,
+   "move_fraction_in_prefix_domain_subspace": 0.009683342650532722,
+   "move_fraction_in_null_subspace": 0.010311856865882874,
+   "example": "Protesters gathered over abortion rights. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "Protesters gathered over abortion rights. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "The senator gave a speech about immigration policy. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " I",
+     "answer": null
+    },
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " The",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "partial",
+   "shape_metric": 0.18333333333333338,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.18333333333333338
+   },
+   "knn_overlap": 0.2783333333333333,
+   "relative_move": 0.9169742504037448,
+   "top1_agreement": 0.5208333333333334,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.11032165641292503,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.010355157777667046,
+   "example": "17+25=42. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "17+25=42. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "17+25=42. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " He",
+     "answer": null
+    },
+    {
+     "prompt": "35+46=81. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "partial",
+   "shape_metric": 0.20416666666666664,
+   "metrics": {
+    "knn_group_acc_minus_baseline": 0.20416666666666664
+   },
+   "knn_overlap": 0.2675,
+   "relative_move": 0.8530657219401448,
+   "top1_agreement": 0.6125,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.10565877006765338,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.009357433766126633,
+   "example": "This paragraph continues the text. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. The old circus closed forever, and Rosa walked past the faded tent feeling sad that the cheerful music was gone.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    },
+    {
+     "prompt": "The door at the end of the hall is open. Dmitri clenched his fists angrily when the vending machine swallowed his last coins and refused to give him any snack.",
+     "clean_top1": " He",
+     "prefixed_top1": " He",
+     "answer": null
+    },
+    {
+     "prompt": "Please see the note below. Amara screamed in fright when a long black snake slithered out from under the rock beside her bare feet.",
+     "clean_top1": " She",
+     "prefixed_top1": " She",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 44.6
+}

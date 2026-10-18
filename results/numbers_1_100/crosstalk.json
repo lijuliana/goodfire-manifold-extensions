@@ -1,0 +1,275 @@
+{
+ "name": "numbers_1_100",
+ "layer": 19,
+ "n_prompts": 100,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.9018871601251158,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "matches",
+   "shape_metric": 0.5731629400744338,
+   "metrics": {
+    "probe_r2_period_10": 0.5900672473445239,
+    "probe_r2_period_5": 0.5562586328043437
+   },
+   "knn_overlap": 0.7490000000000001,
+   "relative_move": 0.6854523181380348,
+   "top1_agreement": 0.05,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.17554547287450484,
+   "move_fraction_in_prefix_domain_subspace": 0.0016710717463865876,
+   "move_fraction_in_null_subspace": 0.006349095609039068,
+   "example": "The hex code #80b918 is for the color green. The number is 1",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. The number is 1",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. The number is 2",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. The number is 3",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "weekdays": {
+   "prefix_domain": "weekdays",
+   "status": "partial",
+   "shape_metric": 0.5414654846946931,
+   "metrics": {
+    "probe_r2_period_10": 0.44747800488116385,
+    "probe_r2_period_5": 0.6354529645082223
+   },
+   "knn_overlap": 0.725,
+   "relative_move": 0.545673100762489,
+   "top1_agreement": 0.92,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.0714534531610871,
+   "move_fraction_in_prefix_domain_subspace": 0.003600024851039052,
+   "move_fraction_in_null_subspace": 0.004655379336327314,
+   "example": "It happened on a Monday. The number is 1",
+   "examples": [
+    {
+     "prompt": "It happened on a Monday. The number is 1",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "The deadline is Tuesday. The number is 2",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The meeting is on Friday. The number is 3",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "failed",
+   "shape_metric": 0.42549775585399857,
+   "metrics": {
+    "probe_r2_period_10": 0.28245094569090046,
+    "probe_r2_period_5": 0.5685445660170967
+   },
+   "knn_overlap": 0.726,
+   "relative_move": 0.6106166971328358,
+   "top1_agreement": 0.85,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.05969187586184775,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.004067678935825825,
+   "example": "The trip is in March. The number is 1",
+   "examples": [
+    {
+     "prompt": "The trip is in March. The number is 1",
+     "clean_top1": ".",
+     "prefixed_top1": "-",
+     "answer": null
+    },
+    {
+     "prompt": "Rent is due in November. The number is 2",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The trip is in March. The number is 3",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.6291763914045774,
+   "metrics": {
+    "probe_r2_period_10": 0.6165941104092704,
+    "probe_r2_period_5": 0.6417586723998843
+   },
+   "knn_overlap": 0.6829999999999999,
+   "relative_move": 0.5886763907293905,
+   "top1_agreement": 0.98,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.11254530356685395,
+   "move_fraction_in_prefix_domain_subspace": 0.005479495041072369,
+   "move_fraction_in_null_subspace": 0.005012881476432085,
+   "example": "They are 34 years old. The number is 1",
+   "examples": [
+    {
+     "prompt": "They are 34 years old. The number is 1",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "They are 34 years old. The number is 2",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "They are 34 years old. The number is 3",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "matches",
+   "shape_metric": 0.6229372170663068,
+   "metrics": {
+    "probe_r2_period_10": 0.5740657622273164,
+    "probe_r2_period_5": 0.6718086719052971
+   },
+   "knn_overlap": 0.7080000000000001,
+   "relative_move": 0.6701034338457382,
+   "top1_agreement": 0.9,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.0818095261925097,
+   "move_fraction_in_prefix_domain_subspace": 0.0025658714585006237,
+   "move_fraction_in_null_subspace": 0.004650456830859184,
+   "example": "The city of Quito is in Ecuador. The number is 1",
+   "examples": [
+    {
+     "prompt": "The city of Quito is in Ecuador. The number is 1",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Osaka is in Japan. The number is 2",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Perth is in Australia. The number is 3",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "partial",
+   "shape_metric": 0.5087495178529055,
+   "metrics": {
+    "probe_r2_period_10": 0.5577858531016257,
+    "probe_r2_period_5": 0.4597131826041852
+   },
+   "knn_overlap": 0.75,
+   "relative_move": 0.5544726458114153,
+   "top1_agreement": 0.43,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.0721316599329612,
+   "move_fraction_in_prefix_domain_subspace": 0.003308966988697648,
+   "move_fraction_in_null_subspace": 0.004257583990693092,
+   "example": "The senator gave a speech about immigration policy. The number is 1",
+   "examples": [
+    {
+     "prompt": "The senator gave a speech about immigration policy. The number is 1",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The candidate spoke about tax cuts and welfare. The number is 2",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "Protesters gathered over abortion rights. The number is 3",
+     "clean_top1": ".",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "matches",
+   "shape_metric": 0.5617728150073342,
+   "metrics": {
+    "probe_r2_period_10": 0.5843602679308317,
+    "probe_r2_period_5": 0.5391853620838368
+   },
+   "knn_overlap": 0.77,
+   "relative_move": 0.5131821985526352,
+   "top1_agreement": 0.71,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.0957275873877253,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.00444917194545269,
+   "example": "This paragraph continues the text. The number is 1",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. The number is 1",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "A short sentence comes first here. The number is 2",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    },
+    {
+     "prompt": "This paragraph continues the text. The number is 3",
+     "clean_top1": ".",
+     "prefixed_top1": ".",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 24.6
+}

@@ -363,7 +363,7 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 {% if r.steer %}
 <details class="box"><summary><b>Steering along the manifold</b> <span class="small">· does the geometry drive behaviour?</span></summary>
 <p class="small">The paper's causal test (App. B.1, Fig. 2 right). Take one base prompt from the middle of the manifold. During a forward pass, replace its block-19 vector with points that walk along the manifold (straight lines between the centroids of successive label bins, mapped back from PCA space), let the remaining blocks and the output head run, and read the probability of the paper's diagnostic answer tokens. If the shape is causal, sliding along it slides the model's answer: for temperature the answer should move from "cold" to "warm", for days from one weekday to the next.</p>
-<p class="small">Base prompt: <code>{{ r.steer.base_prompt }}</code> (label {{ r.steer.base_label }}{% if r.steer.base_answer %}, correct answer {{ r.steer.base_answer }}{% endif %}); PCA with {{ r.steer.k }} components, {{ r.steer.n_bins }} bins of <code>{{ r.steer.label }}</code>; steered at the {{ r.steer.position }}, answer read at the last token.{% if r.steer.position == "concept token" %} Here the circle lives on the concept word, so the walk moves the model's idea of the starting day or month; if the geometry is causal, the answer should step through the cycle shifted by the offset.{% endif %}{% if r.steer.ours %} The target tokens are ours; this manifold is not in the paper's steering table.{% endif %}{% if r.steer.readout and "3-digit" in r.steer.readout %} Llama writes a year as a 3-digit chunk after a space, so each century is read as the summed probability of its chunks (e.g. 180–189) after "It is ".{% endif %}</p>
+<p class="small">Base prompt: <code>{{ r.steer.base_prompt }}</code> (label {{ r.steer.base_label }}{% if r.steer.base_answer %}, correct answer {{ r.steer.base_answer }}{% endif %}); PCA with {{ r.steer.k }} components, {{ r.steer.n_bins }} bins of <code>{{ r.steer.label }}</code>; steered at the {{ r.steer.position }}, answer read at the last token.{% if r.steer.position == "concept token" %} Here the circle lives on the concept word, so the walk moves the model's idea of the starting day or month; if the geometry is causal, the answer should step through the cycle shifted by the offset.{% endif %}{% if r.steer.follow %} {{ r.steer.follow }}{% endif %}{% if r.steer.ours %} The target tokens are ours; this manifold is not in the paper's steering table.{% endif %}{% if r.steer.readout and "3-digit" in r.steer.readout %} Llama writes a year as a 3-digit chunk after a space, so each century is read as the summed probability of its chunks (e.g. 180–189) after "It is ".{% endif %}</p>
 <div class="fig2d eager-fig" id="fig-steer" data-fig="json-steer" style="height:340px"></div>
 <script type="application/json" id="json-steer">{{ r.steer.figure_json|safe }}</script>
 </details>
@@ -646,6 +646,34 @@ def _depth_payload(d: Path) -> dict[str, Any] | None:
     }
 
 
+def _steer_follow(st: dict[str, Any]) -> str:
+    """For concept-token steering on a cycle: at each bin centre, is the top answer the one the
+    steered concept implies (steered concept + the prompt's offset)?"""
+    ex = st.get("extras", {})
+    if ex.get("steered_position") != "concept token" or not ex.get("base_answer"):
+        return ""
+    targets = st["targets"]
+    n = len(targets)
+    if ex["base_answer"] not in targets:
+        return ""
+    base = int(round(float(ex["base_label"])))
+    offset = (targets.index(ex["base_answer"]) - base) % n
+    probs, pos = st["probs"], st["positions"]
+    before, after = [0, 0], [0, 0]
+    for b in range(int(max(pos)) + 1):
+        j = min(range(len(pos)), key=lambda i: abs(pos[i] - b))
+        top = max(range(n), key=lambda t: probs[j][t])
+        hit = int(top == (b + offset) % n)
+        if b < base:
+            before[0] += hit
+            before[1] += 1
+        elif b > base:
+            after[0] += hit
+            after[1] += 1
+    return (f"Result: walking the concept later than the base, the top answer is the implied one at "
+            f"{after[0]} of {after[1]} positions; walking it earlier, at {before[0]} of {before[1]}.")
+
+
 def _steer_payload(d: Path) -> dict[str, Any] | None:
     if not (d / "depth.json").exists() or not (d / "steer_figure.json").exists():
         return None
@@ -661,6 +689,7 @@ def _steer_payload(d: Path) -> dict[str, Any] | None:
         "base_label": st["extras"].get("base_label"),
         "base_answer": st["extras"].get("base_answer"),
         "position": st["extras"].get("steered_position", "last token"),
+        "follow": _steer_follow(st),
         "ours": st["extras"].get("targets_ours", False),
         "readout": st["extras"].get("readout", ""),
     }

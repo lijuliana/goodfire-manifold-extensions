@@ -1,0 +1,275 @@
+{
+ "name": "days",
+ "layer": 19,
+ "n_prompts": 56,
+ "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+ "clean": {
+  "status": "matches",
+  "shape_metric": 0.9922877380749908,
+  "task_accuracy": null,
+  "task": null
+ },
+ "conditions": {
+  "colors": {
+   "prefix_domain": "colors",
+   "status": "failed",
+   "shape_metric": 0.5652906696685216,
+   "metrics": {
+    "cyclic_order": 1.0,
+    "circular_corr": 0.13058133933704313
+   },
+   "knn_overlap": 0.6124999999999999,
+   "relative_move": 0.8815747934770617,
+   "top1_agreement": 0.9642857142857143,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.1943644935354658,
+   "move_fraction_in_prefix_domain_subspace": 0.004538954235613346,
+   "move_fraction_in_null_subspace": 0.005880539305508137,
+   "example": "The hex code #80b918 is for the color green. It's the crack of dawn on Monday",
+   "examples": [
+    {
+     "prompt": "The hex code #80b918 is for the color green. It's the crack of dawn on Monday",
+     "clean_top1": " morning",
+     "prefixed_top1": " morning",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. It's early morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The hex code #4361ee is for the color blue. It's late morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "months": {
+   "prefix_domain": "months",
+   "status": "matches",
+   "shape_metric": 0.9515710184743058,
+   "metrics": {
+    "cyclic_order": 1.0,
+    "circular_corr": 0.9031420369486116
+   },
+   "knn_overlap": 0.7714285714285715,
+   "relative_move": 0.5798913502252173,
+   "top1_agreement": 0.7678571428571429,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.20411319948378642,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.005071219522505999,
+   "example": "Rent is due in November. It's the crack of dawn on Monday",
+   "examples": [
+    {
+     "prompt": "Rent is due in November. It's the crack of dawn on Monday",
+     "clean_top1": " morning",
+     "prefixed_top1": " morning",
+     "answer": null
+    },
+    {
+     "prompt": "It snowed in January. It's early morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The harvest is in October. It's late morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "age": {
+   "prefix_domain": "age",
+   "status": "matches",
+   "shape_metric": 0.9526554983524975,
+   "metrics": {
+    "cyclic_order": 1.0,
+    "circular_corr": 0.905310996704995
+   },
+   "knn_overlap": 0.8250000000000001,
+   "relative_move": 0.48436284417171005,
+   "top1_agreement": 0.9107142857142857,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.20834012824486864,
+   "move_fraction_in_prefix_domain_subspace": 0.002496959874406457,
+   "move_fraction_in_null_subspace": 0.005525157321244478,
+   "example": "He is 45 years old. It's the crack of dawn on Monday",
+   "examples": [
+    {
+     "prompt": "He is 45 years old. It's the crack of dawn on Monday",
+     "clean_top1": " morning",
+     "prefixed_top1": " morning",
+     "answer": null
+    },
+    {
+     "prompt": "He is 82 years old. It's early morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "He is 45 years old. It's late morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "geography": {
+   "prefix_domain": "geography",
+   "status": "matches",
+   "shape_metric": 0.9413913832033223,
+   "metrics": {
+    "cyclic_order": 1.0,
+    "circular_corr": 0.8827827664066445
+   },
+   "knn_overlap": 0.7714285714285715,
+   "relative_move": 0.6065204282732761,
+   "top1_agreement": 0.9464285714285714,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.20951899297270035,
+   "move_fraction_in_prefix_domain_subspace": 0.0011765280505642295,
+   "move_fraction_in_null_subspace": 0.005501344334334135,
+   "example": "The city of Lima is in Peru. It's the crack of dawn on Monday",
+   "examples": [
+    {
+     "prompt": "The city of Lima is in Peru. It's the crack of dawn on Monday",
+     "clean_top1": " morning",
+     "prefixed_top1": " morning",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Lagos is in Nigeria. It's early morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The city of Osaka is in Japan. It's late morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "politics": {
+   "prefix_domain": "politics",
+   "status": "partial",
+   "shape_metric": 0.9379734381411495,
+   "metrics": {
+    "cyclic_order": 1.0,
+    "circular_corr": 0.8759468762822992
+   },
+   "knn_overlap": 0.6928571428571428,
+   "relative_move": 0.7000624365830885,
+   "top1_agreement": 0.9464285714285714,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.1939095229789418,
+   "move_fraction_in_prefix_domain_subspace": 0.009366328828036785,
+   "move_fraction_in_null_subspace": 0.006078619509935379,
+   "example": "The mayor announced a climate and energy plan. It's the crack of dawn on Monday",
+   "examples": [
+    {
+     "prompt": "The mayor announced a climate and energy plan. It's the crack of dawn on Monday",
+     "clean_top1": " morning",
+     "prefixed_top1": " morning",
+     "answer": null
+    },
+    {
+     "prompt": "The debate covered healthcare and the minimum wage. It's early morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The governor signed a bill on gun regulation. It's late morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "arithmetic": {
+   "prefix_domain": "arithmetic",
+   "status": "matches",
+   "shape_metric": 0.9848780392109828,
+   "metrics": {
+    "cyclic_order": 1.0,
+    "circular_corr": 0.9697560784219657
+   },
+   "knn_overlap": 0.8125,
+   "relative_move": 0.5227726075862426,
+   "top1_agreement": 0.9107142857142857,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.137302984050567,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.005623912438750267,
+   "example": "17+25=42. It's the crack of dawn on Monday",
+   "examples": [
+    {
+     "prompt": "17+25=42. It's the crack of dawn on Monday",
+     "clean_top1": " morning",
+     "prefixed_top1": " morning",
+     "answer": null
+    },
+    {
+     "prompt": "91+6=97. It's early morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "63+9=72. It's late morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  },
+  "neutral": {
+   "prefix_domain": "neutral",
+   "status": "matches",
+   "shape_metric": 0.9779386952019529,
+   "metrics": {
+    "cyclic_order": 1.0,
+    "circular_corr": 0.9558773904039056
+   },
+   "knn_overlap": 0.8035714285714286,
+   "relative_move": 0.545665713249145,
+   "top1_agreement": 0.7321428571428571,
+   "task_accuracy": null,
+   "move_fraction_in_own_subspace": 0.15938757545195342,
+   "move_fraction_in_prefix_domain_subspace": null,
+   "move_fraction_in_null_subspace": 0.004439431242644787,
+   "example": "This paragraph continues the text. It's the crack of dawn on Monday",
+   "examples": [
+    {
+     "prompt": "This paragraph continues the text. It's the crack of dawn on Monday",
+     "clean_top1": " morning",
+     "prefixed_top1": " morning",
+     "answer": null
+    },
+    {
+     "prompt": "A short sentence comes first here. It's early morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    },
+    {
+     "prompt": "The report was published this morning. It's late morning on Monday",
+     "clean_top1": ",",
+     "prefixed_top1": ",",
+     "answer": null
+    }
+   ]
+  }
+ },
+ "model_id": "unsloth/Llama-3.1-8B",
+ "elapsed_s": 19.0
+}
