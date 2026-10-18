@@ -51,6 +51,9 @@ GLOBAL_DIR = RESULTS_DIR / "_interference"
 DOMAIN_OF = {"colors": "colors", "weekdays_circle": "weekdays", "months_last": "months",
              "age": "age", "geography": "geography", "political_bias": "politics",
              "addition_sum_fourier": "arithmetic"}
+# manifolds whose own domain is one of the prefix domains (that prefix is skipped for them)
+OWN_DOMAIN = {**DOMAIN_OF, "days": "weekdays", "weekdays_last": "weekdays",
+              "months_circle": "months", "numbers_1_100": "arithmetic"}
 PREFIXES: dict[str, list[str]] = {
     "colors": ["The hex code #e63946 is for the color red. ", "The hex code #2a9d8f is for the color teal. ",
                "The hex code #f4a261 is for the color orange. ", "The hex code #4361ee is for the color blue. ",
@@ -302,7 +305,7 @@ def run_crosstalk(spec: Any, cfg: RunConfig, fm: Any, geometry: dict[str, Any], 
         x, lab = _load_prepared(results_dir, other, cfg)
         other_bases[dom] = fit_pca(x, 3).components.astype(np.float32)
 
-    own_domain = DOMAIN_OF.get(spec.name)
+    own_domain = OWN_DOMAIN.get(spec.name)
     rows: dict[str, dict[str, Any]] = {}
     for dom, sents in PREFIXES.items():
         if dom == own_domain:

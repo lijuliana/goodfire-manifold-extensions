@@ -40,6 +40,18 @@ SOURCE_LINKS: dict[str, tuple[str, str]] = {
 
 SITE_TITLE = "Llama Concept Manifolds"
 
+# Gallery order: the clearest, most legible manifolds first; anything not listed follows by name.
+FEATURED_ORDER = [
+    "days", "age", "colors", "political_bias", "temperature", "weekdays_circle", "years",
+    "geography", "addition_sum_fourier", "months_last", "months_circle", "hours_circle",
+    "emotions_valence_arousal", "numbers_1_100", "weekdays_last", "hours_last", "ordinals",
+    "classical_composers", "statistical_uncertainty", "slant_rhymes_ore", "sent_length",
+]
+
+
+def _featured_key(name: str) -> tuple[int, str]:
+    return (FEATURED_ORDER.index(name) if name in FEATURED_ORDER else len(FEATURED_ORDER), name)
+
 BADGE_TEXT = {"matches": "matches paper", "partial": "partial", "failed": "failed", "pending": "pending"}
 
 CSS = r"""
@@ -169,7 +181,7 @@ INDEX = r"""{% extends "base" %}{% block body %}
 <p class="lede">A replication of the concept manifolds reported in Goodfire's Neural Geometry series and the papers behind it, on the base Llama-3.1-8B.
 Each entry shows a 3-D PCA of residual-stream activations (last token, block 19), the shape the source reports, a quantitative shape check, and a replication badge. Nothing here is hand-edited: badges come from the checks.
 Beyond the sources, every page adds a layer slider (the manifold at all 33 residual positions), what the model would say from each point under the logit, tuned and Jacobian lenses, a decoding of what each principal axis means, the paper's steering experiment, and the SAE tiling analysis.</p>
-{% if ext %}<p class="lede">Seven pilot pages ({{ ext.pilots }}) also carry four experiments prompted by the <a href="https://already-clean.goodfire.com/">Neural Networks Are Already Clean</a> debate: a weak-activation ablation slider (does the manifold survive zeroing the weak tail of every MLP neuron, and how does that compare with facts and LM loss), the MLP neurons that write and read each manifold, subspace overlap and crosstalk between manifolds, and the manifold forming across OLMo-2 1B training checkpoints.</p>{% endif %}
+{% if ext %}<p class="lede">{{ ext.n_pages }} pages also carry four experiments prompted by the <a href="https://already-clean.goodfire.com/">Neural Networks Are Already Clean</a> debate: a weak-activation ablation slider (does the manifold survive zeroing the weak tail of every MLP neuron, and how does that compare with facts and LM loss), the MLP neurons that write and read each manifold, subspace overlap and crosstalk between manifolds, and the manifold forming across OLMo-2 1B training checkpoints.</p>{% endif %}
 </header>
 {% if cards %}
 <h2>Manifolds</h2>
@@ -219,6 +231,7 @@ Beyond the sources, every page adds a layer slider (the manifold at all 33 resid
 </tr>
 {% endfor %}{% endfor %}
 </tbody></table></div>
+{% if archived %}<p class="small">Archived for now (results kept in the repository, hidden from the site): {{ archived|join(", ") }}.</p>{% endif %}
 {% endblock %}"""
 
 DETAIL = r"""{% extends "base" %}{% block body %}
@@ -350,14 +363,14 @@ DETAIL = r"""{% extends "base" %}{% block body %}
 {% if r.steer %}
 <details class="box"><summary><b>Steering along the manifold</b> <span class="small">· does the geometry drive behaviour?</span></summary>
 <p class="small">The paper's causal test (App. B.1, Fig. 2 right). Take one base prompt from the middle of the manifold. During a forward pass, replace its block-19 vector with points that walk along the manifold (straight lines between the centroids of successive label bins, mapped back from PCA space), let the remaining blocks and the output head run, and read the probability of the paper's diagnostic answer tokens. If the shape is causal, sliding along it slides the model's answer: for temperature the answer should move from "cold" to "warm", for days from one weekday to the next.</p>
-<p class="small">Base prompt: <code>{{ r.steer.base_prompt }}</code> (label {{ r.steer.base_label }}); PCA with {{ r.steer.k }} components, {{ r.steer.n_bins }} bins of <code>{{ r.steer.label }}</code>.</p>
+<p class="small">Base prompt: <code>{{ r.steer.base_prompt }}</code> (label {{ r.steer.base_label }}{% if r.steer.base_answer %}, correct answer {{ r.steer.base_answer }}{% endif %}); PCA with {{ r.steer.k }} components, {{ r.steer.n_bins }} bins of <code>{{ r.steer.label }}</code>; steered at the {{ r.steer.position }}, answer read at the last token.{% if r.steer.position == "concept token" %} Here the circle lives on the concept word, so the walk moves the model's idea of the starting day or month; if the geometry is causal, the answer should step through the cycle shifted by the offset.{% endif %}{% if r.steer.ours %} The target tokens are ours; this manifold is not in the paper's steering table.{% endif %}{% if r.steer.readout and "3-digit" in r.steer.readout %} Llama writes a year as a 3-digit chunk after a space, so each century is read as the summed probability of its chunks (e.g. 180–189) after "It is ".{% endif %}</p>
 <div class="fig2d eager-fig" id="fig-steer" data-fig="json-steer" style="height:340px"></div>
 <script type="application/json" id="json-steer">{{ r.steer.figure_json|safe }}</script>
 </details>
 {% endif %}
 {% if r.sae %}
 <details class="box"><summary><b>SAE tiling</b> <span class="small">· {{ r.sae.repo }} · {{ r.sae.verdict }}</span></summary>
-<p class="small">Bhalla et al. 2026 Sec. 5 ask whether a small, fixed group of SAE atoms spans the manifold (<em>compact capture</em>) or whether it is spread over many partially redundant atoms (<em>dilution</em>). The paper's SAEs were not released; this uses the public Llama Scope layer-19 SAE for the same base model (JumpReLU, 32k features). On these {{ r.sae.n_points }} prompts the SAE fires {{ '%.1f'|format(r.sae.l0) }} features per token on average and rebuilds {{ '%.0f'|format(100*r.sae.ve_total) }}% of the activation energy (cosine {{ '%.2f'|format(r.sae.cos) }}); relative to the within-manifold spread its reconstruction error is {{ r.sae.ve_within_text }}.</p>
+<p class="small">Bhalla et al. 2026 Sec. 5 ask whether a small, fixed group of SAE atoms spans the manifold (<em>compact capture</em>) or whether it is spread over many partially redundant atoms (<em>dilution</em>). The paper's SAEs were not released; this uses the public Llama Scope layer-{{ r.sae.layer }} SAE for the same base model (JumpReLU, 32k features). On these {{ r.sae.n_points }} prompts the SAE fires {{ '%.1f'|format(r.sae.l0) }} features per token on average and rebuilds {{ '%.0f'|format(100*r.sae.ve_total) }}% of the activation energy (cosine {{ '%.2f'|format(r.sae.cos) }}); relative to the within-manifold spread its reconstruction error is {{ r.sae.ve_within_text }}.</p>
 <div class="tablewrap"><table style="margin:6px 0 12px"><thead><tr><th>method</th>{% for k in r.sae.ks %}<th>k = {{ k }}</th>{% endfor %}</tr></thead><tbody>
 {% for row in r.sae.table %}<tr><td class="mono">{{ row.name }}</td>{% for v in row.vals %}<td class="mono">{{ v }}</td>{% endfor %}</tr>{% endfor %}
 </tbody></table></div>
@@ -556,7 +569,11 @@ def _sae_payload(d: Path) -> dict[str, Any] | None:
     vw = st["ve_within"]
     ve_within_text = (f"{(1 - vw):.1f}x that spread (variance explained {vw:.2f})"
                       if vw < 0 else f"{(1 - vw):.2f}x that spread (variance explained {vw:.2f})")
+    import re as _re
+
+    m_layer = _re.search(r"L(\d+)R", sj["sae"].get("repo", ""))
     return {
+        "layer": int(m_layer.group(1)) if m_layer else 19,
         "repo": sj["sae"].get("repo", ""), "n_points": sj["n_points"], "l0": st["l0_mean"],
         "ve_total": st["ve_total"], "cos": st.get("cosine_mean", float("nan")),
         "ve_within_text": ve_within_text, "ks": ks, "table": table,
@@ -642,6 +659,10 @@ def _steer_payload(d: Path) -> dict[str, Any] | None:
         "label": STEER_TASKS.get(dj.get("name", ""), {}).get("label", ""),
         "base_prompt": st["base_prompt"],
         "base_label": st["extras"].get("base_label"),
+        "base_answer": st["extras"].get("base_answer"),
+        "position": st["extras"].get("steered_position", "last token"),
+        "ours": st["extras"].get("targets_ours", False),
+        "readout": st["extras"].get("readout", ""),
     }
 
 
@@ -806,7 +827,8 @@ def _extensions_index(results_dir: Path, reports: dict[str, dict[str, Any]]) -> 
               or (results_dir / n / "neurons.json").exists() or (results_dir / n / "checkpoints.json").exists()]
     if not pilots:
         return None
-    out: dict[str, Any] = {"pilots": ", ".join(p.replace("_", " ") for p in pilots), "global_json": None,
+    out: dict[str, Any] = {"pilots": ", ".join(p.replace("_", " ") for p in pilots), "n_pages": len(pilots),
+                           "global_json": None,
                            "heatmap_json": None, "breaking": [], "null": "", "global_text": ""}
     g = results_dir / "_ablation" / "global.json"
     if g.exists():
@@ -853,7 +875,10 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
     env = _env()
     built = datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC")
     reports: dict[str, dict[str, Any]] = {}
-    for d in sorted(results_dir.glob("*/report.json")):
+    archived = [m.name for m in manifest.manifolds if m.archived]
+    for d in sorted(results_dir.glob("*/report.json"), key=lambda q: _featured_key(q.parent.name)):
+        if d.parent.name in archived:
+            continue
         reports[d.parent.name] = json.loads(d.read_text(encoding="utf-8"))
 
     (out_dir / "manifolds").mkdir(parents=True, exist_ok=True)
@@ -869,6 +894,8 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
     for tier in tier_order:
         rows = []
         for m in manifest.by_tier(tier):  # type: ignore[arg-type]
+            if m.archived:
+                continue
             rep = reports.get(m.name)
             status = rep["status"] if rep else "pending"
             counts[status] = counts.get(status, 0) + 1
@@ -914,6 +941,7 @@ def build_site(results_dir: Path, out_dir: Path) -> int:
     for artifact, fname in ((False, "index.html"), (True, "artifact.html")):
         index_html = env.get_template("index").render(
             title=SITE_TITLE, root="", counts=counts, tiers=tiers, cards=cards, ext=ext,
+            archived=[a.replace("_", " ") for a in archived],
             artifact=artifact, **common,
         )
         (out_dir / fname).write_text(index_html, encoding="utf-8")

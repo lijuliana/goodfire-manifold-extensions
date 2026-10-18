@@ -20,9 +20,9 @@ def _select(args: argparse.Namespace) -> list[str]:
     if getattr(args, "manifold", None):
         names = list(args.manifold)
     elif getattr(args, "tier", None):
-        names = [m.name for m in manifest.by_tier(args.tier)]
+        names = [m.name for m in manifest.by_tier(args.tier) if not m.archived]
     else:
-        names = [m.name for m in manifest.manifolds if m.name in BUILDERS]
+        names = [m.name for m in manifest.manifolds if m.name in BUILDERS and not m.archived]
     missing = [n for n in names if n not in BUILDERS]
     if missing:
         print(f"skipping (no prompt builder yet): {missing}", file=sys.stderr)
@@ -119,17 +119,18 @@ def cmd_sae(args: argparse.Namespace) -> int:
             device = "mps"
         else:
             device = "cpu"
-    sae = LlamaScopeSAE.from_hf(device=device)
-    print(json.dumps(sae.info, indent=1))
+    saes: dict[int, LlamaScopeSAE] = {}
     for name in _select(args):
         if not (RESULTS_DIR / name / "activations.npy").exists():
             print(f"{name}: no activations, skipping", file=sys.stderr)
             continue
         spec = manifest.get(name)
-        if isinstance(spec.layer, int) and spec.layer != cfg.model.layer:
-            print(f"{name}: block {spec.layer} activations; the Llama Scope SAE is for block "
-                  f"{cfg.model.layer}, skipping")
-            continue
+        layer = spec.layer if isinstance(spec.layer, int) else cfg.model.layer
+        if layer not in saes:   # Llama Scope has one residual SAE per layer (L{layer}R-8x)
+            saes[layer] = LlamaScopeSAE.from_hf(subfolder=f"Llama3_1-8B-Base-L{layer}R-8x",
+                                                device=device)
+            print(json.dumps(saes[layer].info, indent=1))
+        sae = saes[layer]
         rep = analyze_sae(spec, cfg, sae, max_k=args.max_k,
                           max_points=args.max_points, provider=args.provider,
                           instance=args.instance)
@@ -216,7 +217,7 @@ def cmd_ablate(args: argparse.Namespace) -> int:
             continue
         rep = run_manifold(manifest.get(name), cfg, fm, ablator, conds, glob,
                            max_points=args.max_points, provider=args.provider,
-                           instance=args.instance)
+                           instance=args.instance, workers=args.workers)
         print(f"{name:20s} breaking points {rep['breaking_points']} ({rep['elapsed_s']}s)")
     ablator.remove()
     return 0
@@ -250,7 +251,7 @@ def cmd_interference(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
     manifest = load_manifest()
     names = [m.name for m in manifest.manifolds
-             if (RESULTS_DIR / m.name / "activations.npy").exists()]
+             if (RESULTS_DIR / m.name / "activations.npy").exists() and not m.archived]
     res = run_geometry(manifest, cfg, names, k=args.k)
     print(f"{len(res['names'])} manifolds; null (pooled) {res['null_pooled_mean']:.4f}, "
           f"isotropic {res['null_isotropic_mean']:.4f}")
@@ -306,8 +307,55 @@ def cmd_checkpoints(args: argparse.Namespace) -> int:
     names = _select(args)
     summary = run_checkpoints(manifest, cfg, names, device=args.device, batch_size=args.batch_size,
                               max_prompts=args.max_prompts, max_points=args.max_points,
-                              provider=args.provider, instance=args.instance)
+                              provider=args.provider, instance=args.instance,
+                              workers=args.workers)
     print(json.dumps(summary["display_layers"]))
+    return 0
+
+
+def cmd_steer(args: argparse.Namespace) -> int:
+    import time
+
+    import numpy as np
+    import torch
+
+    from manifolds import ledger
+    from manifolds.analysis.pca import filter_norm_outliers
+    from manifolds.depth_report import steer_figure
+    from manifolds.prompts.types import PromptSet
+    from manifolds.steer import STEER_TASKS, run_steering
+
+    cfg = load_config(args.config)
+    manifest = load_manifest()
+    fm = _full_model(args, cfg)
+    for name in _select(args):
+        if name not in STEER_TASKS:
+            print(f"{name}: no steering task, skipping")
+            continue
+        d = RESULTS_DIR / name
+        ps = PromptSet.load(d / "prompts.json")
+        acts = np.load(d / "activations.npy")
+        idx = np.flatnonzero(filter_norm_outliers(acts, cfg.analysis.outlier_n_std))
+        labels = [ps.labels[i] for i in idx]
+        prompts = [ps.prompts[i] for i in idx]
+        spans = [ps.spans[i] for i in idx] if ps.spans is not None else None
+        spec = manifest.get(name)
+        layer = spec.layer if isinstance(spec.layer, int) else cfg.model.layer
+        start, t0 = ledger.now_iso(), time.time()
+        res = run_steering(fm, name, acts[idx], labels, prompts, layer=layer, spans=spans).to_dict()
+        (d / "steer_figure.json").write_text(steer_figure(res).to_json(), encoding="utf-8")
+        dj_path = d / "depth.json"
+        if dj_path.exists():
+            dj = json.loads(dj_path.read_text(encoding="utf-8"))
+            dj["steering"] = res
+            dj_path.write_text(json.dumps(dj), encoding="utf-8")
+        if torch.cuda.is_available():
+            ledger.append(ledger.LedgerEntry(args.provider, args.instance,
+                                             torch.cuda.get_device_name(0), start,
+                                             ledger.now_iso(), round((time.time() - t0) / 3600, 4),
+                                             f"steering {name}"))
+        print(f"{name:18s} steered at {res['extras']['steered_position']}: "
+              f"{res['base_prompt']!r}")
     return 0
 
 
@@ -406,6 +454,8 @@ def main(argv: list[str] | None = None) -> int:
         sp.add_argument("--batch-size", type=int, default=16)
         sp.add_argument("--gpu-gib", type=float, default=44.0)
         sp.add_argument("--force", action="store_true")
+        sp.add_argument("--workers", type=int, default=1,
+                        help="processes for the CPU-bound shape checks")
 
     sp = sub.add_parser("ablate",
                         help="weak-activation ablation sweep (all MLP blocks) vs geometry")
@@ -438,6 +488,10 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--max-prompts", type=int, default=600)
     sp.add_argument("--max-points", type=int, default=600)
     sp.set_defaults(fn=cmd_checkpoints)
+    sp = sub.add_parser("steer", help="manifold steering only (writes steer_figure.json)")
+    add_select(sp)
+    add_gpu(sp)
+    sp.set_defaults(fn=cmd_steer)
     sp = sub.add_parser("site", help="build the static site")
     sp.add_argument("--out", default=str(SITE_DIR))
     sp.set_defaults(fn=cmd_site)

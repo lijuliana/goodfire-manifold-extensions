@@ -21,6 +21,7 @@ elif [ "${1:-}" = "--pull" ]; then
   rsync -az -e "ssh ${OPTS[*]}" --include '*/' \
     --include 'ablation*.json' --include 'neurons*.json' --include 'crosstalk*.json' \
     --include 'woven*.json' --include 'checkpoints*.json' \
+    --include 'sae*.json' --include 'steer_figure.json' --include 'depth.json' \
     --include '_ablation/global.json' --include '_ablation/calibration_amax.pt' \
     --include '_interference/*.json' --include '_interference/null_bases.npy' \
     --include '_checkpoints/summary.json' --include '_checkpoints/raw/*.json' --exclude '*' \

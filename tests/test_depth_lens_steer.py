@@ -59,15 +59,23 @@ def test_plan_interpolation_recovers_line(rng):
     assert np.all(np.diff(proj) > 0)
 
 
-def test_steerer_changes_logits(tmp_path):
+def test_steerer_changes_logits(tmp_path, monkeypatch):
     _tiny(tmp_path)
     fm = FullModel(DepthConfig(model_id=str(tmp_path / "tiny"), dtype="float32", device="cpu"),
                    tokenizer=CharTokenizer())
     st = Steerer(fm, layer=1)
     targets = ["a", "b"]
+    # the char tokenizer gives " a" and " b" the same first token (space); that collision is
+    # rejected, so use two distinct token ids here
+    import pytest
+
+    with pytest.raises(ValueError):
+        st.target_ids(targets)
+    monkeypatch.setattr(Steerer, "target_ids", lambda self, t, digit_chunks=False: [[5], [9]])
     p0 = st.next_token_probs("hello", np.zeros((1, 32), dtype=np.float32), targets)
     p1 = st.next_token_probs("hello", 5.0 * np.ones((1, 32), dtype=np.float32), targets)
-    assert p0.shape == (1, 2) and not np.allclose(p0, p1)
+    assert p0.shape == (1, 2) and not np.allclose(p0, p1) and not np.isclose(p0[0, 0], p0[0, 1])
+    st.remove()
 
 
 def test_jacobian_lens_identity_matches_logit_lens(tmp_path, rng):

@@ -37,7 +37,7 @@ import torch.nn.functional as F
 from tqdm import tqdm
 
 from manifolds import RESULTS_DIR, ledger
-from manifolds.analysis.compare import compare, prepare, summary_metric
+from manifolds.analysis.compare import compare, compare_many, prepare, summary_metric
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
 from manifolds.analysis.probe import apply_probe, fit_probe
 from manifolds.analysis.shapes import ROLES, category_order, slider_coloring
@@ -375,7 +375,8 @@ def run_global(fm: Any, ablator: Ablator, conds: list[Condition], *, out_dir: Pa
 def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
                  conds: list[Condition], global_res: dict[str, Any], *,
                  results_dir: Path = RESULTS_DIR, max_points: int = 800, n_kl: int = 400,
-                 provider: str = "unknown", instance: str = "unknown") -> dict[str, Any]:
+                 provider: str = "unknown", instance: str = "unknown", workers: int = 1
+                 ) -> dict[str, Any]:
     out_dir = results_dir / spec.name
     ps = PromptSet.load(out_dir / "prompts.json")
     acts = np.load(out_dir / "activations.npy")
@@ -425,16 +426,23 @@ def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
         "knn_overlap": 1.0, "relative_move": 0.0, "kl_mean": 0.0, "top1_agreement": 1.0,
         "task_accuracy": clean_task["accuracy"] if clean_task else None,
     }}
+    # GPU pass per condition (behaviour scored immediately), then the CPU-bound geometry
+    # comparisons for all conditions, in parallel when workers > 1
+    pending: list[tuple[Condition, np.ndarray, dict[str, Any], dict[str, Any] | None]] = []
     for c in conds:
         if c.group == "clean":
             continue
         ablator.set_condition(c)
         cap = capture()
         prep = prepare(cap["hidden"], spec.name, labels)
-        cmp = compare(spec.name, labels, clean_prep, prep, basis)
         beh = kl_and_agreement(clean["full"].astype(np.float32), cap["full"].astype(np.float32))
         beh["top1_agreement_all"] = float((clean["top1"] == cap["top1"]).mean())
         tk = score_task(task, cap["top1"], cap["cand"], fm.tokenizer) if task else None
+        pending.append((c, prep, beh, tk))
+    ablator.set("off")
+    cmps = compare_many(spec.name, labels, clean_prep, [pr for _, pr, _, _ in pending], basis,
+                        workers=workers)
+    for (c, prep, beh, tk), cmp in zip(pending, cmps, strict=True):
         rows[c.key] = {
             **asdict(c), "label": c.label, "description": c.description,
             "status": cmp["status_refit"], "metrics": cmp["metrics_refit"],

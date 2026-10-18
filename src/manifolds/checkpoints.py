@@ -111,12 +111,46 @@ def _bin_centroids(coords: np.ndarray, label: np.ndarray, n_bins: int = 12) -> d
             "between_over_within": between / (within + 1e-12)}
 
 
+def _layer_metrics(name: str, x: np.ndarray, labels: list[dict[str, Any]]) -> dict[str, Any]:
+    from threadpoolctl import threadpool_limits
+
+    with threadpool_limits(1):            # one BLAS thread per worker process
+        return _layer_metrics_inner(name, x, labels)
+
+
+def _layer_metrics_inner(name: str, x: np.ndarray, labels: list[dict[str, Any]]
+                         ) -> dict[str, Any]:
+    nuisance = ROLES[name].get("nuisance_group")
+    x = x.astype(np.float32)
+    if nuisance:
+        x = center_by_group(x, labels, nuisance)
+    p = fit_pca(x, 3)
+    rep = run_shape_check(name, p.coords, labels, acts=x).to_dict()
+    crit = critical_metrics(rep)
+    return {"status": rep["status"], "metrics": crit, "shape_metric": summary_metric(name, crit),
+            "evr": [float(v) for v in p.explained_variance_ratio]}
+
+
+def _metrics_for_layers(name: str, states: np.ndarray, labels: list[dict[str, Any]],
+                        layers: list[int], workers: int) -> dict[str, Any]:
+    if workers <= 1:
+        return {str(li): _layer_metrics(name, states[:, li], labels) for li in layers}
+    import multiprocessing as mp
+    from concurrent.futures import ProcessPoolExecutor
+
+    ctx = mp.get_context("spawn")   # fork can deadlock with torch / BLAS threads loaded
+    with ProcessPoolExecutor(max_workers=min(workers, len(layers)), mp_context=ctx) as ex:
+        futs = {li: ex.submit(_layer_metrics, name, states[:, li], labels) for li in layers}
+        return {str(li): futs[li].result() for li in layers}
+
+
 def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
                     checkpoints: list[tuple[str, float]] | None = None, device: str = "auto",
                     batch_size: int = 32, max_prompts: int = 600, max_points: int = 600,
                     out_dir: Path = GLOBAL_DIR, results_dir: Path = RESULTS_DIR,
                     free_cache: bool = True, provider: str = "unknown", instance: str = "unknown",
-                    model_id: str = MODEL_ID, layer_stride: int = 4) -> dict[str, Any]:
+                    model_id: str = MODEL_ID, layer_stride: int = 4, workers: int = 1
+                    ) -> dict[str, Any]:
     checkpoints = checkpoints or CHECKPOINTS
     out_dir.mkdir(parents=True, exist_ok=True)
     raw_dir = out_dir / "raw"
@@ -168,8 +202,6 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
             cap = fm.capture_layer_and_logits(s["prompts"], 0, spans=s["spans"], cand_ids=cand,
                                               progress=False)
             tk = score_task(task, cap["top1"], cap["cand"], fm.tokenizer) if task else None
-            layers: dict[str, Any] = {}
-            nuisance = ROLES[name].get("nuisance_group")
             n_pos = states.shape[1]
             # the shape checks are CPU-heavy (Fourier probes): every position for the final
             # checkpoint, every `layer_stride`-th position plus the display layer otherwise
@@ -177,16 +209,7 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
                 todo = list(range(n_pos))
             else:
                 todo = sorted(set(range(0, n_pos, layer_stride)) | {n_pos - 1} | {display.get(name, 0)})
-            for li in todo:
-                x = states[:, li].astype(np.float32)
-                if nuisance:
-                    x = center_by_group(x, s["labels"], nuisance)
-                p = fit_pca(x, 3)
-                rep = run_shape_check(name, p.coords, s["labels"], acts=x).to_dict()
-                crit = critical_metrics(rep)
-                layers[str(li)] = {"status": rep["status"], "metrics": crit,
-                                   "shape_metric": summary_metric(name, crit),
-                                   "evr": [float(v) for v in p.explained_variance_ratio]}
+            layers: dict[str, Any] = _metrics_for_layers(name, states, s["labels"], todo, workers)
             entry["manifolds"][name] = {"layers": layers,
                                         "task_accuracy": tk["accuracy"] if tk else None,
                                         "task": task.name if task else None}
@@ -290,9 +313,13 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         (d / "checkpoints_figure.json").write_text(fig.to_json(), encoding="utf-8")
         (d / "checkpoints_curve.json").write_text(curve_figure(rep).to_json(), encoding="utf-8")
         (d / "checkpoints_heatmap.json").write_text(layer_heatmap(rep).to_json(), encoding="utf-8")
-    summary = {"model_id": model_id, "checkpoints": checkpoints, "names": names,
-               "elapsed_s": round(elapsed, 1),
-               "display_layers": {n: reports[n]["display_layer"] for n in names}}
+    prev: dict[str, Any] = {}
+    if (out_dir / "summary.json").exists():
+        prev = json.loads((out_dir / "summary.json").read_text(encoding="utf-8"))
+    shown = {**prev.get("display_layers", {}), **{n: reports[n]["display_layer"] for n in names}}
+    summary = {"model_id": model_id, "checkpoints": checkpoints, "names": sorted(shown),
+               "elapsed_s": round(elapsed + float(prev.get("elapsed_s", 0)), 1),
+               "display_layers": shown}
     (out_dir / "summary.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
     if torch.cuda.is_available() and elapsed > 1:
         ledger.append(ledger.LedgerEntry(provider, instance, torch.cuda.get_device_name(0), start,

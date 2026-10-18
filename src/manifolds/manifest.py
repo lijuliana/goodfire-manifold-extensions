@@ -43,6 +43,7 @@ class ManifoldSpec(BaseModel):
     intrinsic_coords: list[str] | None = None
     n_paper: int | str | None = None
     token_position: str | None = None
+    archived: bool = False          # hidden from the site and from default runs; results are kept
 
     @property
     def sources(self) -> list[str]:

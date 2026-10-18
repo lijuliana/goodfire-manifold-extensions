@@ -93,5 +93,29 @@ def summary_metric(name: str, metrics: dict[str, float]) -> float:
     return float(np.mean(vals)) if vals else float("nan")
 
 
-__all__ = ["prepare", "project", "knn_overlap", "displacement", "compare", "procrustes_align",
-           "summary_metric", "critical_metrics"]
+def _compare_one(name: str, labels: list[dict[str, Any]], clean: np.ndarray, other: np.ndarray,
+                 basis: PCAResult, k: int) -> dict[str, Any]:
+    from threadpoolctl import threadpool_limits
+
+    with threadpool_limits(1):            # one BLAS thread per worker process
+        return compare(name, labels, clean, other, basis, k)
+
+
+def compare_many(name: str, labels: list[dict[str, Any]], clean: np.ndarray,
+                 others: list[np.ndarray], basis: PCAResult, workers: int = 1, k: int = 10
+                 ) -> list[dict[str, Any]]:
+    """`compare` for several perturbed copies, in worker processes when workers > 1 (the shape
+    checks are CPU-bound; the Fourier probes in particular)."""
+    if workers <= 1 or len(others) <= 1:
+        return [compare(name, labels, clean, o, basis, k) for o in others]
+    import multiprocessing as mp
+    from concurrent.futures import ProcessPoolExecutor
+
+    ctx = mp.get_context("spawn")   # fork can deadlock with torch / BLAS threads loaded
+    with ProcessPoolExecutor(max_workers=min(workers, len(others)), mp_context=ctx) as ex:
+        futs = [ex.submit(_compare_one, name, labels, clean, o, basis, k) for o in others]
+        return [f.result() for f in futs]
+
+
+__all__ = ["prepare", "project", "knn_overlap", "displacement", "compare", "compare_many",
+           "procrustes_align", "summary_metric", "critical_metrics"]

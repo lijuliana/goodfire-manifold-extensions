@@ -128,6 +128,7 @@ manifolds:
     status: pending
 
   - name: formality
+    archived: true   # hidden from the site for now (2026-10-18); results kept
     tier: core
     model: meta-llama/Llama-3.1-8B
     layer: 19
@@ -199,6 +200,7 @@ manifolds:
     status: pending
 
   - name: scotus_cases
+    archived: true   # hidden from the site for now (2026-10-18); results kept
     tier: extended
     model: meta-llama/Llama-3.1-8B
     layer: 19
@@ -211,6 +213,7 @@ manifolds:
     status: pending
 
   - name: chemical_bonds
+    archived: true   # hidden from the site for now (2026-10-18); results kept
     tier: extended
     model: meta-llama/Llama-3.1-8B
     layer: 19
@@ -223,6 +226,7 @@ manifolds:
     status: pending
 
   - name: adverbs_pace
+    archived: true   # hidden from the site for now (2026-10-18); results kept
     tier: extended
     model: meta-llama/Llama-3.1-8B
     layer: 19
@@ -247,6 +251,7 @@ manifolds:
     status: pending
 
   - name: bible_verses
+    archived: true   # hidden from the site for now (2026-10-18); results kept
     tier: extended
     model: meta-llama/Llama-3.1-8B
     layer: 19

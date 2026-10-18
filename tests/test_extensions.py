@@ -344,3 +344,69 @@ def test_probe_manifold_sliders_tiny(tmp_path, monkeypatch):
                                 max_prompts=60, max_points=40, out_dir=tmp_path / "_ck",
                                 results_dir=tmp_path / "results", free_cache=False, model_id="tiny")
     assert (tmp_path / "_ck" / "raw" / "main__months_last.npy").exists()
+
+
+def test_span_steering_and_target_ids(tmp_path, monkeypatch):
+    from manifolds import steer
+
+    fm = _tiny_fm(tmp_path)
+    ps = build("weekdays_circle")
+    cap = fm.capture_layer_and_logits(ps.prompts, 3, spans=ps.spans, progress=False)
+    probe_st = steer.Steerer(fm, 2)
+    with pytest.raises(ValueError):          # char tokenizer: every " Day" starts with a space
+        probe_st.target_ids(["Monday", "Tuesday"])
+    probe_st.remove()
+    n_hooks = [len(m._forward_hooks) for m in fm.model.model.layers]   # transformers adds its own
+    monkeypatch.setattr(steer.Steerer, "target_ids",
+                        lambda self, t, digit_chunks=False: [[5 + i] for i in range(len(t))])
+    res = steer.run_steering(fm, "weekdays_circle", cap["hidden"], ps.labels, ps.prompts, layer=2,
+                             spans=ps.spans).to_dict()
+    assert res["extras"]["steered_position"] == "concept token"
+    assert np.array(res["probs"]).shape == (len(res["positions"]), 7)
+    assert res["extras"]["base_answer"] in steer.STEER_TASKS["weekdays_circle"]["targets"]
+    # steering hooks are removed afterwards: the model's output is unchanged
+    enc = CharTokenizer()([ps.prompts[0]])
+    with torch.no_grad():
+        a = fm.model(**enc).logits
+        b = fm.model(**enc).logits
+    torch.testing.assert_close(a, b)
+    assert [len(m._forward_hooks) for m in fm.model.model.layers] == n_hooks
+
+
+def test_compare_many_parallel_matches_serial(rng):
+    from manifolds.analysis.compare import compare_many
+
+    labels = [{"age": float(i)} for i in range(60)]
+    clean = (np.outer(np.arange(60), rng.normal(size=24)) + rng.normal(size=(60, 24))).astype(np.float32)
+    others = [clean + s * rng.normal(size=clean.shape).astype(np.float32) for s in (0.5, 5.0, 50.0)]
+    basis = fit_pca(clean, 3)
+    a = compare_many("age", labels, clean, others, basis, workers=1)
+    b = compare_many("age", labels, clean, others, basis, workers=2)
+    for x, y in zip(a, b, strict=True):
+        assert x["status_refit"] == y["status_refit"] and np.isclose(x["knn_overlap"], y["knn_overlap"])
+    assert a[0]["knn_overlap"] > a[2]["knn_overlap"]
+
+
+def test_archived_hidden_from_site(tmp_path):
+    from manifolds.analysis.report import analyze_manifold
+    from manifolds.site.build import build_site
+
+    manifest = load_manifest()
+    assert {m.name for m in manifest.manifolds if m.archived} == {
+        "adverbs_pace", "bible_verses", "chemical_bonds", "formality", "scotus_cases"}
+    cfg = load_config()
+    results = tmp_path / "results"
+    rng = np.random.default_rng(0)
+    for n in ("age", "formality"):
+        ps = build(n) if n == "age" else None
+        if ps is None:
+            from manifolds.prompts.types import PromptSet
+            ps = PromptSet("formality", [f"s{i}" for i in range(40)],
+                           [{"formality": float(i), "domain": "x"} for i in range(40)], "{s}", "test")
+        acts = (np.outer(np.arange(len(ps)), rng.normal(size=32)) + rng.normal(size=(len(ps), 32))).astype(np.float32)
+        analyze_manifold(manifest.get(n), cfg, results, acts=acts, prompt_set=ps, write=True)
+    out = tmp_path / "site"
+    assert build_site(results, out) == 1
+    assert not (out / "manifolds" / "formality.html").exists()
+    index = (out / "index.html").read_text()
+    assert "Archived for now" in index and 'href="manifolds/formality.html"' not in index
