@@ -41,6 +41,7 @@ from manifolds.config import RunConfig
 from manifolds.depth import DepthConfig, FullModel
 from manifolds.manifest import Manifest
 from manifolds.prompts import build
+from manifolds.provenance import stamp
 from manifolds.tasks import first_token_ids, score_task, task_for
 from manifolds.viz.plot3d import CATEGORICAL, FONT, frames_figure, line_layout, subsample
 
@@ -149,8 +150,8 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
                     batch_size: int = 32, max_prompts: int = 600, max_points: int = 600,
                     out_dir: Path = GLOBAL_DIR, results_dir: Path = RESULTS_DIR,
                     free_cache: bool = True, provider: str = "unknown", instance: str = "unknown",
-                    model_id: str = MODEL_ID, layer_stride: int = 4, workers: int = 1
-                    ) -> dict[str, Any]:
+                    model_id: str = MODEL_ID, layer_stride: int = 4, workers: int = 1,
+                    recompute: bool = False) -> dict[str, Any]:
     checkpoints = checkpoints or CHECKPOINTS
     out_dir.mkdir(parents=True, exist_ok=True)
     raw_dir = out_dir / "raw"
@@ -177,7 +178,8 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         # states are needed for the frames (and metrics for new manifolds); recapture whatever is
         # missing, reuse the rest
         need_states = [n for n in names if not (raw_dir / f"{rev}__{n}.npy").exists()]
-        need_metrics = [n for n in names if entry is None or n not in entry["manifolds"]]
+        need_metrics = [n for n in names if entry is None or recompute
+                        or n not in entry["manifolds"]]
         if entry is not None and not need_states and not need_metrics:
             per_ckpt[rev] = entry
             if rev == final_rev:
@@ -239,6 +241,16 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
         n_layers = per_ckpt[final_rev]["n_layers"]
         # display layer: the best (checkpoint, layer) cell among layers checked at every checkpoint
         # (the final model can lose structure that earlier checkpoints have, e.g. after stage 2)
+        # every non-final checkpoint is read on the same positions: every `layer_stride`-th, the
+        # last, and the final checkpoint's best (extra positions from older runs are dropped)
+        fin_layers = per_ckpt[final_rev]["manifolds"][name]["layers"]
+        n_pos = len(fin_layers)
+        final_best = max(fin_layers, key=lambda k: fin_layers[k]["shape_metric"])
+        allowed = {str(li) for li in range(0, n_pos, layer_stride)} | {str(n_pos - 1), final_best}
+        for r, _ in checkpoints:
+            if r != final_rev:
+                ml = per_ckpt[r]["manifolds"][name]["layers"]
+                per_ckpt[r]["manifolds"][name]["layers"] = {k: v for k, v in ml.items() if k in allowed}
         common = set.intersection(*[set(per_ckpt[r]["manifolds"][name]["layers"])
                                     for r, _ in checkpoints])
         best_cell = {li: max(per_ckpt[r]["manifolds"][name]["layers"][li]["shape_metric"]
@@ -295,6 +307,8 @@ def run_checkpoints(manifest: Manifest, cfg: RunConfig, names: list[str], *,
                "n_prompts": int(len(s["prompts"])), "n_plotted": int(len(sub)),
                "task": s["task"].name if s["task"] else None,
                "checkpoints": curve, "metric_by_checkpoint_and_layer": matrix,
+               "provenance": stamp(None, max_prompts=max_prompts, max_points=max_points,
+                                   layer_stride=layer_stride, checkpoints=[r for r, _ in checkpoints]),
                "view": ("Fourier probe, out-of-fold predictions, fitted per checkpoint"
                         if is_probe else "PCA per checkpoint, Procrustes-aligned to the final one"),
                "note": "no norm-outlier filter (fixed point set across checkpoints); shape checks at "

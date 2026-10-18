@@ -10,7 +10,13 @@ import numpy as np
 
 from manifolds import RESULTS_DIR
 from manifolds.analysis.pca import filter_norm_outliers, fit_pca
-from manifolds.analysis.shapes import ROLES, category_order, center_by_group, run_shape_check
+from manifolds.analysis.shapes import (
+    ROLES,
+    RUBRIC_VERSION,
+    category_order,
+    center_by_group,
+    run_shape_check,
+)
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
@@ -160,6 +166,7 @@ def analyze_manifold(
         "pca": pca.to_dict(),
         "shape": shape.to_dict(),
         "status": shape.status,
+        "rubric_version": RUBRIC_VERSION,
         "status_v1": _status_v1(spec.name),
         "probe_view": probe_view,
         "color": color,

@@ -44,6 +44,7 @@ from manifolds.analysis.shapes import ROLES, category_order, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
+from manifolds.provenance import stamp
 from manifolds.tasks import first_token_ids, kl_and_agreement, score_task, task_for
 from manifolds.viz.plot3d import CATEGORICAL, frames_figure, line_layout, subsample
 
@@ -475,6 +476,8 @@ def run_manifold(spec: ManifoldSpec, cfg: RunConfig, fm: Any, ablator: Ablator,
                         category_order=category_order(spec.name, labels))
     report = {
         "name": spec.name, "layer": layer, "n_points": int(len(idx)), "n_plotted": int(len(sub)),
+        "provenance": stamp(fm, max_points=max_points, n_kl=n_kl, workers=workers,
+                            conditions=[c.key for c in conds]),
         "view": ("Fourier probe fitted on the clean activations, applied to every frame"
                  if is_probe else "clean PCA basis"),
         "n_kl": int(len(kl_index)), "model_id": fm.model_id,

@@ -17,6 +17,7 @@ from manifolds.analysis.shapes import ROLES, category_order
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
+from manifolds.provenance import stamp
 from manifolds.sae.capture import (
     greedy_geometric,
     greedy_statistical,
@@ -185,6 +186,7 @@ def analyze_sae(
     report = {
         "name": spec.name,
         "sae": sae.info,
+        "provenance": stamp(None, max_k=max_k, max_points=max_points),
         "stats": stats.to_dict(),
         "n_points": int(len(idx)),
         "n_points_before_subsample": n_before,

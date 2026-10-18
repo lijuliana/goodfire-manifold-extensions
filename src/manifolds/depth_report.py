@@ -316,7 +316,8 @@ def run_depth(
 
 def rebuild_depth_figure(spec: ManifoldSpec, cfg: RunConfig, full_model: Any,
                          results_dir: Path = RESULTS_DIR, *, max_points: int = 800,
-                         provider: str = "unknown", instance: str = "unknown") -> dict[str, Any]:
+                         provider: str = "unknown", instance: str = "unknown",
+                         recapture: bool = False) -> dict[str, Any]:
     """Rebuild only the layer-slider figure from an existing depth.json (lens hover text is
     reused); the residual states are captured again if `depth_states.npy` is absent."""
     out_dir = results_dir / spec.name
@@ -332,7 +333,8 @@ def rebuild_depth_figure(spec: ManifoldSpec, cfg: RunConfig, full_model: Any,
     start = ledger.now_iso()
     t0 = time.time()
     states_path = out_dir / "depth_states.npy"
-    if states_path.exists():
+    had_states = states_path.exists() and not recapture
+    if had_states:
         states = np.load(states_path)
     else:
         spans = [ps.spans[i] for i in idx] if ps.spans is not None else None
@@ -379,6 +381,10 @@ def rebuild_depth_figure(spec: ManifoldSpec, cfg: RunConfig, full_model: Any,
     (out_dir / "depth_figure.json").write_text(fig_depth.to_json(), encoding="utf-8")
     dj["frames_view"] = ("Fourier probe (out-of-fold), fitted per layer" if is_probe
                          else "PCA per layer")
+    from manifolds.provenance import stamp
+
+    dj["frames_provenance"] = stamp(full_model, max_points=max_points,
+                                    states="recaptured" if not had_states else "cached")
     (out_dir / "depth.json").write_text(json.dumps(dj), encoding="utf-8")
     elapsed = time.time() - t0
     if torch.cuda.is_available() and not states_path.exists():

@@ -34,6 +34,7 @@ from manifolds.analysis.shapes import ROLES, category_order, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.manifest import Manifest
 from manifolds.prompts.types import PromptSet
+from manifolds.provenance import stamp
 from manifolds.tasks import first_token_ids, score_task, task_for
 from manifolds.viz.plot3d import (
     CATEGORICAL,
@@ -268,6 +269,12 @@ def overlap_bar_figure(res: dict[str, Any], name: str) -> go.Figure:
 
 
 # ---- crosstalk (GPU) -------------------------------------------------------------------------
+def _sha(path: Path) -> str | None:
+    import hashlib
+
+    return hashlib.sha1(path.read_bytes()).hexdigest()[:10] if path.exists() else None
+
+
 def run_crosstalk(spec: Any, cfg: RunConfig, fm: Any, geometry: dict[str, Any], *,
                   results_dir: Path = RESULTS_DIR, max_prompts: int = 800,
                   provider: str = "unknown", instance: str = "unknown") -> dict[str, Any]:
@@ -351,6 +358,8 @@ def run_crosstalk(spec: Any, cfg: RunConfig, fm: Any, geometry: dict[str, Any], 
     clean_cmp = compare(spec.name, labels, clean_prep, clean_prep, basis)
     rep = {"name": spec.name, "layer": layer, "n_prompts": int(len(idx)),
            "preprocessing": "prefixed activations centred per prefix sentence (offset removed)",
+           "provenance": stamp(fm, max_prompts=max_prompts,
+                               null_bases_sha=_sha(GLOBAL_DIR / "null_bases.npy")),
            "clean": {"status": clean_cmp["status_refit"],
                      "shape_metric": summary_metric(spec.name, clean_cmp["metrics_refit"]),
                      "task_accuracy": clean_task["accuracy"] if clean_task else None,

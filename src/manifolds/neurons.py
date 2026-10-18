@@ -45,6 +45,7 @@ from manifolds.analysis.shapes import ROLES, category_order, slider_coloring
 from manifolds.config import RunConfig
 from manifolds.manifest import ManifoldSpec
 from manifolds.prompts.types import PromptSet
+from manifolds.provenance import stamp
 from manifolds.tasks import first_token_ids, score_task, task_for
 from manifolds.viz.plot3d import CATEGORICAL, frames_figure, line_layout, subsample
 
@@ -349,6 +350,8 @@ def run_neurons(spec: ManifoldSpec, cfg: RunConfig, fm: Any, *, results_dir: Pat
                   "task": task.name if task else None},
         "view": ("Fourier probe fitted on the clean activations, applied to every frame"
                  if is_probe else "clean PCA basis"),
+        "provenance": stamp(fm, max_prompts=max_prompts, max_points=max_points, top_n=top_n,
+                            ablate_k=list(TOP_K_ABLATE)),
         "model_id": fm.model_id, "elapsed_s": round(elapsed, 1),
     }
     (out_dir / "neurons.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

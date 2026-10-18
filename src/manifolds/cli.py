@@ -174,7 +174,8 @@ def cmd_depth(args: argparse.Namespace) -> int:
             from manifolds.depth_report import rebuild_depth_figure
 
             r = rebuild_depth_figure(manifest.get(name), cfg, fm, max_points=args.max_points,
-                                     provider=args.provider, instance=args.instance)
+                                     provider=args.provider, instance=args.instance,
+                                     recapture=args.recapture)
             print(f"{name:18s} depth figure rebuilt ({r['frames_view']}, {r['elapsed_s']}s)")
             continue
         rep = run_depth(manifest.get(name), cfg, fm, tuned, jlens=jlens,
@@ -308,7 +309,7 @@ def cmd_checkpoints(args: argparse.Namespace) -> int:
     summary = run_checkpoints(manifest, cfg, names, device=args.device, batch_size=args.batch_size,
                               max_prompts=args.max_prompts, max_points=args.max_points,
                               provider=args.provider, instance=args.instance,
-                              workers=args.workers)
+                              workers=args.workers, recompute=args.recompute_metrics)
     print(json.dumps(summary["display_layers"]))
     return 0
 
@@ -343,6 +344,9 @@ def cmd_steer(args: argparse.Namespace) -> int:
         layer = spec.layer if isinstance(spec.layer, int) else cfg.model.layer
         start, t0 = ledger.now_iso(), time.time()
         res = run_steering(fm, name, acts[idx], labels, prompts, layer=layer, spans=spans).to_dict()
+        from manifolds.provenance import stamp
+
+        res["provenance"] = stamp(fm)
         (d / "steer_figure.json").write_text(steer_figure(res).to_json(), encoding="utf-8")
         dj_path = d / "depth.json"
         if dj_path.exists():
@@ -444,6 +448,8 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--figure-only", action="store_true",
                     help="rebuild only the layer-slider figure (probe view for probe manifolds)")
     sp.add_argument("--dtype", default="float16")
+    sp.add_argument("--recapture", action="store_true",
+                    help="with --figure-only: capture the residual states again")
     sp.set_defaults(fn=cmd_depth)
 
     def add_gpu(sp: argparse.ArgumentParser) -> None:
@@ -487,6 +493,8 @@ def main(argv: list[str] | None = None) -> int:
     add_gpu(sp)
     sp.add_argument("--max-prompts", type=int, default=600)
     sp.add_argument("--max-points", type=int, default=600)
+    sp.add_argument("--recompute-metrics", action="store_true",
+                    help="recompute cached per-checkpoint shape metrics")
     sp.set_defaults(fn=cmd_checkpoints)
     sp = sub.add_parser("steer", help="manifold steering only (writes steer_figure.json)")
     add_select(sp)
